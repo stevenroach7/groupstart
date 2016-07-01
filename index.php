@@ -14,10 +14,9 @@
   </p>
   <h5>University of Minnesota Twin Cities - Computer Science &amp; Engineering - GroupLens Research</h5>
 
+</Body>
 
   <?php
     $name = "Steven";
     echo "Welcome to GroupStart, ".$name.".";
   ?>
-
-</Body>
