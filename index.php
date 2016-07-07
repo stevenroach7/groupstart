@@ -1,12 +1,23 @@
-<html>
+<?php
 
+
+
+
+ ?>
+
+
+<html>
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+
+
+<script src="js/dropzone.min.js"></script>
 
 <head>
   <h1>GroupStart</h1>
 </head>
 
 
-<Body>
+<body>
 
   <p>
     GroupStart is an experimental, alpha-stage application
@@ -14,9 +25,21 @@
   </p>
   <h5>University of Minnesota Twin Cities - Computer Science &amp; Engineering - GroupLens Research</h5>
 
-</Body>
+  <a href="views/login.php">Login</a>
+
 
   <?php
     $name = "Steven";
-    echo "Welcome to GroupStart, ".$name.".";
+    $name1 = "Tosin";
+    echo "<h3>Welcome to GroupStart, ".$name." and ".$name1.".</h3>";
   ?>
+
+
+
+
+
+  <form action="../php_scripts/upload.php" class="dropzone"></form>
+
+
+
+</body>
