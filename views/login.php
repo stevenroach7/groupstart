@@ -33,19 +33,36 @@
 
     <div id="student-sign-up" class="modal-dialog">
       <div>
-  		  <a href="#close" title="Close" class="close">X</a>
-  		  <h2>Sign In</h2>
-  		  <p>This is a sample modal box that can be created using the powers of CSS3.</p>
-  		  <p>You could do a lot of things here like have a pop-up ad that shows when your website loads, or create a login/register form for users.</p>
+  		  <a href="#close" title="Close" class="close">close</a>
+  		  <h2>Student Sign Up</h2>
+        <form method="post" action="login.php">
+          <p><input type="text" name="first-name" placeholder="First Name">
+            <input type="text" name="last-name" placeholder="Last Name"></p>
+          <p><input type="text" name="email" maxlength="255" placeholder="Email"></p>
+          <p><input type="text" name="password" maxlength="32" placeholder="Password"></p>
+          <p><input type="text" name="confirm-password" maxlength="32" placeholder="Confirm Password"></p>
+          <p><input type="radio" name="age-range" value="0-18">18 or younger
+            <input type="radio" name="age-range" value="19-29">19-29
+            <input type="radio" name="age-range" value="30-39">30-39
+            <input type="radio" name="age-range" value="30-39">30-39
+
+          </p>
+          <p><input type="submit" name="sign-in" value="Sign In"></p>
+        </form>
   	  </div>
     </div>
 
     <div id="instructor-sign-up" class="modal-dialog">
       <div>
-  		  <a href="#close" title="Close" class="close">X</a>
-  		  <h2>Login</h2>
-  		  <p>This is a sample modal box that can be created using the powers of CSS3.</p>
-  		  <p>You could do a lot of things here like have a pop-up ad that shows when your website loads, or create a login/register form for users.</p>
+  		  <a href="#close" title="Close" class="close">close</a>
+  		  <h2>Instructor Sign Up</h2>
+        <form method="post" action="login.php">
+          <p><input type="radio" name="account-type" value="student">Student
+            <input type="radio" name="account-type" value="instructor">Instructor</p>
+          <p><input type="text" name="email" maxlength="255" placeholder="Email"></p>
+          <p><input type="text" name="password" maxlength="32" placeholder="Password"></p>
+          <p><input type="submit" name="sign-in" value="Sign In"></p>
+        </form>
   	  </div>
     </div>
 
