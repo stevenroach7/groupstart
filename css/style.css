@@ -1,6 +1,6 @@
 
 /* Modal */
-.modalDialog {
+.modal-dialog {
 	position: fixed;
 	font-family: Arial, Helvetica, sans-serif;
 	top: 0;
@@ -19,12 +19,12 @@
 
 
 
-.modalDialog:target {
+.modal-dialog:target {
 	opacity:1;
 	pointer-events: auto;
 }
 
-.modalDialog > div {
+.modal-dialog > div {
 	width: 400px;
 	position: relative;
 	margin: 10% auto;
