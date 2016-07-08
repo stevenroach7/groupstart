@@ -36,13 +36,20 @@
 	background: -o-linear-gradient(#fff, #999);
 }
 
+.close {
+  float: right;
+}
+
+
+
+
+
+
 
 
 
 
 /* Dropzone */
-
-
 
 /*
  * The MIT License
