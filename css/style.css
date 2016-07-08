@@ -1,3 +1,17 @@
+/* Banner */
+.banner ul li {
+  display: inline-block;
+}
+
+#cog {
+  float: right;
+}
+
+
+
+
+
+
 
 /* Modal */
 .modal-dialog {
@@ -39,9 +53,6 @@
 .close {
   float: right;
 }
-
-
-
 
 
 
