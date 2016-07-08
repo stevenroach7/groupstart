@@ -1,0 +1,10 @@
+Naming Conventions
+
+
+
+Folders - lowercase with an underscore in between words i.e. php_scripts
+
+
+php files - lowercase with a dash between words
+
+html class names - lowercase with a dash between words

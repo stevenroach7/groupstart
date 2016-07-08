@@ -51,9 +51,8 @@
           <p>
             <?php include 'features/timezones.php' ?>
           </p>
+          <a href='student-courses.php'><input type="submit" name="sign-up" value="Sign Up"></a>
 
-
-          <p><input type="submit" name="sign-in" value="Sign Up"></p>
         </form>
   	  </div>
     </div>
@@ -73,9 +72,7 @@
           <p>
             <?php include 'features/timezones.php' ?>
           </p>
-
-
-          <p><input type="submit" name="sign-in" value="Sign Up"></p>
+          <p><a href='instructor-courses.php'><input type="submit" name="sign-up" value="Sign Up"></a></p>
         </form>
   	  </div>
     </div>
@@ -87,16 +84,13 @@
           <input type="radio" name="account-type" value="instructor">Instructor</p>
         <p><input type="text" name="email" maxlength="255" placeholder="Email"></p>
         <p><input type="text" name="password" maxlength="32" placeholder="Password"></p>
+        <!-- <p><input type="submit" name="sign-up" value="Sign In"></p> -->
         <p><input type="submit" name="sign-in" value="Sign In"></p>
       </form>
 
     </div>
-
-
-
-
-
-
+    <a href="student-courses.php">Student Courses</a>
+    <a href="instructor-courses.php">Instructor Courses</a>
 
   </body>
 </html>
