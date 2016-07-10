@@ -1,4 +1,4 @@
-
+<!-- Banner at the top of each page -->
 
   <link rel="stylesheet" type="text/css" href="../css/style.css" />
 
