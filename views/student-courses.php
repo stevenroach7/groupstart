@@ -9,6 +9,7 @@
     <?php include 'features/banner.php' ?>
 
   <head>
+    <?php echo $banner ?>
     <h1>List of Courses</h1>
   </head>
 

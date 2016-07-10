@@ -9,6 +9,7 @@
   <?php include 'features/banner.php' ?>
 
   <head>
+    <?php echo $banner ?>
     <h1>Project Title</h1>
   </head>
 

@@ -9,6 +9,7 @@
     <?php include 'features/banner.php' ?>
 
   <head>
+    <?php echo $banner ?>
     <h1>Group Introduction Questionnaire</h1>
   </head>
 

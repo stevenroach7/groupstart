@@ -11,7 +11,7 @@
   <?php include 'features/banner.php' ?>
 
   <head>
-
+    <?php echo $banner ?>
     <h1>Welcome to GroupStart</h1>
   </head>
 

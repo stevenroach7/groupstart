@@ -9,7 +9,7 @@
   <?php include 'features/banner.php' ?>
 
   <head>
-
+    <?php echo $banner ?>
   </head>
 
 
