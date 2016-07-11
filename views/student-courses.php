@@ -32,11 +32,10 @@
     <div class="container" id="instructor-course-list">
 
 
-
+    <div id='accordion'>
     <?php foreach ($courses as $course) { // Loop only makes accordion for the first one since it is id and not class.
 
-      echo "<div id='accordion'>
-        <h3>$course</h3>
+      echo "<h3>$course</h3>
         <div>
           <section id='course-decription'><h4>Course Description</h4>
             <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
@@ -65,11 +64,11 @@
 
             <button id='view-course-attachments'>View course attachments</button>
 
-        </div>
-      </div>";
+        </div>";
 
     }
     ?>
+    </div>
          <!-- <a href="instructor-add-course.php" class="btn btn-info" role="button" id="add-new-course">Add New Course</a> -->
         <!--button id="add-new-course" type="button" class="btn btn-default">Add New Course</button-->
       <form method="post" action="student-courses.php">
