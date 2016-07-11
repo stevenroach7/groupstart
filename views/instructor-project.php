@@ -28,6 +28,7 @@
       
       <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
 <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+      <script type="text/javascript" src="../js/instructor-project.js"></script>
 
 
   </head>
@@ -79,13 +80,23 @@
 		<div class="col-md-4" id="manage-group">
 			<div class="row">
 				<div class="col-md-12">
-                    
-
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+                    <div id="tabs">
+                        <ul>
+                            <li><a href="#a">Tab A</a></li>
+                            <li><a href="#b">Tab B</a></li>
+                            <li><a href="#c">Tab C</a></li>
+                            <li><a href="#d">Tab D</a></li>
+                        </ul>
+                        <div id="a">Content of A</div>
+                        <div id="b">Content of B</div>
+                        <div id="c">Content of C</div>
+                        <div id="d">Content of D</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+          </div>
+      </div>
         
 
   </body>

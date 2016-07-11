@@ -44,7 +44,8 @@
               </ul>
           </div>
           <br />
-          <button id="add-new-group" type="button">Create new group project</button>
+          <!--button id="add-new-group" type="button">Create new group project</button-->
+          <a href="instructor-add-project.php" class="btn btn-info" role="button" id="add-new-group">Create New Project</a>
       </section>
       <br />
       
