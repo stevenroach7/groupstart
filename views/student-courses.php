@@ -1,5 +1,7 @@
 <?php
 
+  $courses = ['Introduction to Computer Science', 'User Interface Design'];
+
 
 
  ?>
@@ -8,6 +10,18 @@
 <html>
     <?php include 'features/banner.php' ?>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script type="text/javascript" src="../js/accordion_functionality.js"></script>
+
+    <script src="http://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+
   <head>
     <?php echo $banner ?>
     <h1>List of Courses</h1>
@@ -15,38 +29,65 @@
 
   <body>
 
-
-    <ul> <!-- Will have some type of loop here. Will use bootstrap (http://www.w3schools.com/bootstrap/bootstrap_collapse.asp) to make items collapsible.-->
-      <li><h5>Introduction to Computer Science</h5> <a href="#collapsible">View Course</a></li>
-      <div id="collapsible">
-        <h4>Short Description of Course</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec neque ante. Donec id diam vel risus mattis molestie.
-          Nunc fringilla faucibus lorem non sollicitudin. Duis finibus commodo mi, eu feugiat ligula malesuada nec. Cras eget maximus mi.
-          Aenean vel diam gravida, venenatis mi in, malesuada turpis. Mauris velit sapien, laoreet vel eleifend et, varius in neque.
-          Sed mollis ex mauris.
-        </p>
-
-        <h4>Group Projects</h4>
-        <ul>
-          <li><a href="student-start-project.php">Map Coloring</a></li>
-          <li><a href="student-start-project.php">Game</a></li>
-          <li><a href="student-start-project.php">Map Game</a></li>
-        </ul>
-        <a>View Attachments</a>
-      </div>
-      <li> <h5>Real Life Implementations of Machine Learning Algorithms</h5> <a href="#collapsible">View Course</a></li>
-      <li> <h5>Mobile Development for Social Good</h5> <a href="#collapsible">View Course</a></li>
-      <li> <h5>User Interface Design</h5> <a href="#collapsible">View Course</a></li>
-    </ul>
+    <div class="container" id="instructor-course-list">
 
 
+    <div id='accordion'>
+    <?php foreach ($courses as $course) { // Loop only makes accordion for the first one since it is id and not class.
+
+      echo "<h3>$course</h3>
+        <div>
+          <section id='course-decription'><h4>Course Description</h4>
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+              Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet
+              quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et
+              sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi.
+              Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui.
+              Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque
+              egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor,
+              facilisis luctus, metus
+              </p>
+            </section>
+            <section id='course-projects'>
+                <h4>Course Projects</h4>
+                <div id='project-list'>
+                    <ul class='list-group'>
+                        <a href='student-start-project.php'><li class='list-group-item'>First item</li> </a>
+                        <a href='student-start-project.php'><li class='list-group-item'>Second item</li></a>
+                        <a href='student-start-project.php'><li class='list-group-item'>Third item</li></a>
+                        <a href='student-start-project.php'><li class='list-group-item'>First item</li></a>
+                        <a href='student-start-project.php'><li class='list-group-item'>Second item</li></a>
+                        <a href='student-start-project.php'><li class='list-group-item'>Third item</li></a>
+                    </ul>
+                </div>
+            </section>
+
+            <button id='view-course-attachments'>View course attachments</button>
+
+        </div>";
+
+    }
+    ?>
+    </div>
+         <!-- <a href="instructor-add-course.php" class="btn btn-info" role="button" id="add-new-course">Add New Course</a> -->
+        <!--button id="add-new-course" type="button" class="btn btn-default">Add New Course</button-->
+      <form method="post" action="student-courses.php">
+        <h2>Add New Course</h2>
+        <input type="text" name="registration-code" placeholder="Enter Course Registration Code">
+        <input type="submit" name="student-add-course" value="Submit">
+      </form>
+    </div>
 
 
-    <form method="post" action="student-courses.php">
-      <h2>Add New Course</h2>
-      <input type="text" name="registration-code" placeholder="Enter Course Registration Code">
-      <input type="submit" name="student-add-course" value="Submit">
-    </form>
+
+
+
+
+
+
+
+
+
 
 
 

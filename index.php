@@ -1,6 +1,6 @@
 <?php
 
-
+  header('Refresh: 0; URL=views/login.php');
 
 
  ?>

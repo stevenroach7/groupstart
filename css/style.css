@@ -13,7 +13,7 @@
 
 html, body {
 	height: 100%;
-    
+
 }
 /* Modal */
 .modal-dialog {
@@ -30,7 +30,7 @@ html, body {
 	-moz-transition: opacity 400ms ease-in;
   -o-transition: opacity 400ms ease-in;
 	transition: opacity 400ms ease-in;
-	pointer-events: none;
+	pointer-events: none
 }
 
 
@@ -455,10 +455,10 @@ html, body {
 
 /* Below is styling on instrcutor-courses.php*/
 
-    #project-list, #student-list { 
-        border:2px solid black; 
-        width:auto; 
-        height: 100px; 
+    #project-list, #student-list {
+        border:2px solid black;
+        width:auto;
+        height: 100px;
         overflow-x: scroll; }
 
 /*Above is styling for on instrcutor-courses.php*/
