@@ -6,10 +6,10 @@
 
 
 <html>
-  <link rel="stylesheet" type="text/css" href="../css/style.css" />
+  <?php include 'features/banner.php' ?>
 
   <head>
-
+    <?php echo $banner ?>
   </head>
 
 
