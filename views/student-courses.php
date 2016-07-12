@@ -5,16 +5,16 @@
 
   use Auth0\SDK\Auth0;
 
-  $auth0 = new Auth0(array(
+  $auth0Students = new Auth0(array(
       'domain'        => 'grouplens.auth0.com',
       'client_id'     => 'bCtvXMfHvtJH650uSGQ0K6N1RjPGK0RW',
       'client_secret' => 'NpHPjNmtZjQQVnGeQvbbdRqwdAcit3KutB4RM0XoqO_K5Pgr1mK0DG0XRK3IaL15',
       'redirect_uri'  => 'http://localhost/groupstart/views/student-courses.php'
   ));
 
-    $userInfo = $auth0->getUser();
+    $studentInfo = $auth0Students->getUser();
 
-    if (!$userInfo) {
+    if (!$studentInfo) {
         // We have no user info
         // redirect to Login
     } else {
@@ -53,8 +53,8 @@
 
   <head>
     <?php echo $banner ?>
-      
-    <div><h2>Welcome <?php echo $userInfo['name']?></h2> </div>
+
+    <div><h2>Welcome <?php echo $studentInfo['name']?></h2> </div>
 
   </head>
 
