@@ -1,6 +1,35 @@
 <?php
 
-$courses = ['Introduction to Computer Science', 'User Interface Design'];
+
+  // Require composer autoloader
+  require(__DIR__ . '/../vendor/autoload.php');
+
+  use Auth0\SDK\Auth0;
+
+  $auth0Instructors = new Auth0(array(
+    'domain'        => 'grouplens.auth0.com',
+    'client_id'     => 'JRm23mco7fQ8ShKjH7ibaLMT568bWaKP',
+    'client_secret' => 'uNnsAh5D4VRzT09rSTCJB27kbhqtmCJcPPmxKBCGfNbe_2uMTZA_b6sFMgMKhfcu',
+    'redirect_uri'  => 'http://localhost/groupstart/views/instructor-courses.php'
+  ));
+
+
+  $instructorInfo = $auth0Instructors->getUser();
+
+  if (!$instructorInfo) {
+      // We have no user info
+      // redirect to Login
+  } else {
+      // User is authenticated
+      // Say hello to $userInfo['name']
+      // print logout button
+      // start sessions maybe
+
+  }
+
+
+
+  $courses = ['Introduction to Computer Science', 'User Interface Design'];
 
 
  ?>
@@ -8,22 +37,23 @@ $courses = ['Introduction to Computer Science', 'User Interface Design'];
 
 <head>
       <link rel="stylesheet" type="text/css" href="../css/style.css" />
-    
+
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    
+
       <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-    
-    
+
+
       <script type="text/javascript" src="../js/accordion_functionality.js"></script>
-    
+
   <script src="http://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
-    
+
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
-    
+
   <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
-   
-    
+    <div><h2>Welcome <?php echo $instructorInfo['name']?></h2> </div>
+
+
 </head>
 <body>
 
@@ -52,7 +82,7 @@ $courses = ['Introduction to Computer Science', 'User Interface Design'];
             <a href='instructor-add-project.php' class='btn btn-info' role='button' id='add-new-group'>Create New Project</a>
       </section>
       <br />
-      
+
       <section id='student-course-list'>
           <h4>Students</h4>
           <div id='student-list'>
@@ -67,13 +97,13 @@ $courses = ['Introduction to Computer Science', 'User Interface Design'];
           </div>
       </section>
       <br />
-      
+
       <b>Student registraion code: 123ABC</b>
-      
+
       <br/>
-      
+
       <button id='view-course-attachments'>View course attachments</button>
-      
+
   </div>";
 
     }
@@ -83,12 +113,11 @@ $courses = ['Introduction to Computer Science', 'User Interface Design'];
         <!--button id="add-new-course" type="button" class="btn btn-default">Add New Course</button-->
       </div>
      <a href="instructor-add-course.php" class="btn btn-info" role="button" id="add-new-course">Add New Course</a>
-    
-    </div>
-    
-    
 
- 
+    </div>
+
+
+
+
 </body>
 </html>
-
