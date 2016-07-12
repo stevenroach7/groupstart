@@ -1,5 +1,16 @@
 <?php
 
+  // Require composer autoloader
+  require(__DIR__ . '/../vendor/autoload.php');
+
+  use Auth0\SDK\Auth0;
+
+  $auth0 = new Auth0(array(
+      'domain'        => 'grouplens.auth0.com',
+      'client_id'     => 'bCtvXMfHvtJH650uSGQ0K6N1RjPGK0RW',
+      'client_secret' => 'NpHPjNmtZjQQVnGeQvbbdRqwdAcit3KutB4RM0XoqO_K5Pgr1mK0DG0XRK3IaL15',
+      'redirect_uri'  => 'http://localhost/groupstart/views/student-courses.php'
+  ));
 
 
 
@@ -92,5 +103,33 @@
     <a href="student-courses.php">Student Courses</a>
     <a href="instructor-courses.php">Instructor Courses</a>
 
+    <script src="https://cdn.auth0.com/js/lock-9.1.min.js"></script>
+    <script type="text/javascript">
+
+      var lock = new Auth0Lock('bCtvXMfHvtJH650uSGQ0K6N1RjPGK0RW', 'grouplens.auth0.com');
+
+
+      function signin() {
+        lock.show({
+            callbackURL: 'http://localhost/groupstart/views/student-courses.php'
+          , responseType: 'code'
+          , authParams: {
+            scope: 'openid email'  // Learn about scopes: https://auth0.com/docs/scopes
+          }
+          , gravatar: false
+        });
+      }
+
+
+
+
+
+
+
+    </script>
+    <button onclick="window.signin();">Login</button>
+
   </body>
+
+
 </html>
