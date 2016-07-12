@@ -610,18 +610,92 @@ tbody{
 
 /*Styling for student-settings.php*/
 
-#profile-info{
-    width: 620px;
-    height: 50%;
-    font-size: 17px;
+#profile-pic{
     /*background: red;*/
+    width: 100%;
+    height: 500px;
 }
 
-#email{
-    width: 100%;
-    margin:auto 0;
-    background: purple;
+#profile-pic img{
+    display: block;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
 }
+#profile-area{
+    /*background: blue;*/
+}
+
+#section1 div:first-of-type {
+    /*background: orange;*/
+    height: 75px;
+}
+#section1 div:nth-of-type(2) {
+    /*background: pink;*/
+    height: 75px;
+}
+#section2{
+    /*background: #f333f3;*/
+    height: 75px;
+}
+#section3{
+    /*background: #f4ffff;*/
+    height: 75px;
+}
+
+#section4{
+    /*background: #b5bbbb;*/
+    height: 75px;
+}
+
+#profile-info{
+    margin-top: 50px;
+    width: 100%;
+    height: 500px;
+    font-size: 17px;
+    /*background: grey;*/
+}
+
+#fn input[type="text"]{
+    /*margin-top: 2px;*/
+    width: 100%;
+}
+
+#ln input[type="text"]{
+    /*margin-top: 2px;*/
+    width: 100%;
+}
+
+#ln p{
+    text-align: center;
+}
+
+#fn p{
+    text-align: center;
+}
+
+#email-part p{
+    text-align: center;
+}
+
+#email-part input[type="text"]{
+    width: 100%;
+    /*background: purple;*/
+}
+
+#pw input[type="text"]{
+    /*margin-top: 2px;*/
+    width: 100%;
+}
+
+#pw p{
+    text-align: center;
+}
+
+#change-pw button{
+    margin-top: 30px;
+}
+    
  #course-manage-list {
         border:2px solid black;
         width:auto;
@@ -629,3 +703,27 @@ tbody{
         overflow-x: scroll; 
     }
 /*Styling for student-settings.php*/
+
+
+
+/*Styling for student-cluster-form.php*/
+
+#skills-list{
+    border:2px solid #ccc; 
+    width:100%; 
+    height: 200px; 
+    overflow-y: scroll; 
+}
+
+/*Styling for student-cluster-form.php*/
+
+
+
+/*Styling for student-charter-form.php*/
+input[type="text"]{
+    width: 70%;
+}
+#part_1, #part_2, #part_3, #part_4{
+    transform: translate(10%);
+}
+/*Styling for student-charter-form.php*/

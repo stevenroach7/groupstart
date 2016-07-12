@@ -3,14 +3,14 @@
   // Require composer autoloader
   require(__DIR__ . '/../vendor/autoload.php');
 
-  use Auth0\SDK\Auth0;
+use Auth0\SDK\Auth0;
 
-  $auth0 = new Auth0(array(
-      'domain'        => 'grouplens.auth0.com',
-      'client_id'     => 'bCtvXMfHvtJH650uSGQ0K6N1RjPGK0RW',
-      'client_secret' => 'NpHPjNmtZjQQVnGeQvbbdRqwdAcit3KutB4RM0XoqO_K5Pgr1mK0DG0XRK3IaL15',
-      'redirect_uri'  => 'http://localhost/groupstart/views/student-courses.php'
-  ));
+$auth0 = new Auth0(array(
+    'domain'        => 'grouplens.auth0.com',
+    'client_id'     => 'bCtvXMfHvtJH650uSGQ0K6N1RjPGK0RW',
+    'client_secret' => 'NpHPjNmtZjQQVnGeQvbbdRqwdAcit3KutB4RM0XoqO_K5Pgr1mK0DG0XRK3IaL15',
+    'redirect_uri'  => 'http://localhost/groupstart/views/student-courses.php'
+));
 
 
 
