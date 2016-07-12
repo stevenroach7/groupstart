@@ -1,5 +1,34 @@
 <?php
 
+  // Require composer autoloader
+  require(__DIR__ . '/../vendor/autoload.php');
+
+  use Auth0\SDK\Auth0;
+
+  $auth0 = new Auth0(array(
+      'domain'        => 'grouplens.auth0.com',
+      'client_id'     => 'bCtvXMfHvtJH650uSGQ0K6N1RjPGK0RW',
+      'client_secret' => 'NpHPjNmtZjQQVnGeQvbbdRqwdAcit3KutB4RM0XoqO_K5Pgr1mK0DG0XRK3IaL15',
+      'redirect_uri'  => 'http://localhost/groupstart/views/student-courses.php'
+  ));
+
+    $userInfo = $auth0->getUser();
+
+    if (!$userInfo) {
+        // We have no user info
+        // redirect to Login
+    } else {
+        // User is authenticated
+        // Say hello to $userInfo['name']
+        // print logout button
+        // start sessions maybe
+
+    }
+
+
+
+
+
   $courses = ['Introduction to Computer Science', 'User Interface Design'];
 
 
@@ -24,7 +53,9 @@
 
   <head>
     <?php echo $banner ?>
-    
+      
+    <div><h2>Welcome <?php echo $userInfo['name']?></h2> </div>
+
   </head>
 
   <body>
