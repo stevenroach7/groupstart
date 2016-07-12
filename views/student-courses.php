@@ -24,13 +24,13 @@
 
   <head>
     <?php echo $banner ?>
-    <h1>List of Courses</h1>
+    
   </head>
 
   <body>
 
     <div class="container" id="instructor-course-list">
-
+        <h1>List of Courses</h1>
 
     <div id='accordion'>
     <?php foreach ($courses as $course) { // Loop only makes accordion for the first one since it is id and not class.
@@ -60,7 +60,7 @@
                         <a href='student-start-project.php'><li class='list-group-item'>Third item</li></a>
                     </ul>
                 </div>
-            </section>
+            </section><br>
 
             <button id='view-course-attachments'>View course attachments</button>
 

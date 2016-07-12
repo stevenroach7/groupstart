@@ -35,20 +35,5 @@ $(document).ready(function() {
         $("#complete-add-project-process").show();
         $("#write-description-panel, #impo-state-panel, #clustering-options-panel, #charter-options-panel").hide();     
     });
-    
-    
-    /*$("#write-description-panel").hide();
-    $("#impo-state-panel").hide();
-    
-  $("#write-description").click(function(){
-        $("#write-description-panel").toggle();
-    });
-    
-    $("#group-importance-statement").click(function(){
-        $("#impo-state-panel").toggle();
-    });
-    
-    $('#edit-impo-statment').click(function(){
-    $('#statement').attr('contenteditable','true');
-    });*/
+   
 });

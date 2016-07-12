@@ -44,7 +44,7 @@
 					<p>
 						Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
 					</p> 
-					<button type="button" class="btn btn-default">
+					<button type="button" class="btn btn-block btn-default ">
 						Edit
 					</button>
 				</div>
@@ -53,25 +53,25 @@
 					<p>
 						Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
 					</p> 
-					<button type="button" class="btn btn-default">
+					<button type="button" class="btn btn-block btn-default">
 						Edit
 					</button>
 				</div>
 			</div>
 			<div class="row" id="chosen-machnisms">
-				<div class="col-md-6" id="group-formation">
+				<div class="col-md-6" id="group-formation"><h2>Clustering Options</h2>
 					<p>
 						Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
 					</p> 
-					<button type="button" class="btn btn-default">
+					<button type="button" class="btn btn-block btn-default">
 						Change
 					</button>
 				</div>
 				<div class="col-md-6" id="group-intro">
-					<p>
+					<h2>Introduction Options</h2><p>
 						Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
 					</p> 
-					<button type="button" class="btn btn-default">
+					<button type="button" class="btn btn-block btn-default">
 						Change
 					</button>
 				</div>
@@ -79,7 +79,8 @@
 		</div>
 		<div class="col-md-4" id="manage-group">
 			<div class="row">
-				<div class="col-md-12">
+                <h3>Manage Groups</h3>
+				<div class="col-md-12" id="manade-group-panels">
                     <div id="tabs">
                         <ul>
                             <li><a href="#a">Tab A</a></li>
@@ -87,11 +88,26 @@
                             <li><a href="#c">Tab C</a></li>
                             <li><a href="#d">Tab D</a></li>
                         </ul>
-                        <div id="a">Content of A</div>
-                        <div id="b">Content of B</div>
-                        <div id="c">Content of C</div>
-                        <div id="d">Content of D</div>
+                        <div id="a"><p>Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus.</p></div>
+                        <div id="b"><p>In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus.</p></div>
+                        <div id="c"><p> Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus.</p></div>
+                        <div id="d"><p> Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus.</p></div>
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <h3>View other Projects</h3>
+            <div class="col-md-12">
+                <div id='project-list-inpro'>
+              <ul class='list-group'>
+                  <li class='list-group-item'>project 1</li>
+                  <li class='list-group-item'>project 2</li>
+                  <li class='list-group-item'>project 3</li>
+                  <li class='list-group-item'>project 4</li>
+                  <li class='list-group-item'>project 5</li>
+                  <li class='list-group-item'>project 6</li>
+              </ul>
+          </div>
                 </div>
             </div>
         </div>

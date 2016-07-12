@@ -76,7 +76,7 @@
                     <a href="instructor-project.php" class="btn btn-info" role="button" id="create-project">Add New Project</a>
 				</div>
 				<div class="col-md-8" id="panel-content">
-                    <div id="write-description-panel">
+                    <div class="current" id="write-description-panel">
                     <textarea rows="4" cols="50" id="textarea-description" name="course_description"></textarea><br><br>
                         
                         <h4>Project Attachments</h4>
@@ -89,7 +89,7 @@
                         <a href="#" class="btn btn-info" role="button" id="add-project-options">Add Project Options</a><i>(optional)</i><br><br>
                          <a href="#" class="btn btn-info" role="button" id="add-project-examples">Add Project Examples</a><i>(optional)</i>
                         
-                         <a href="#" class="btn btn-info" role="button" id="next-step" style="float:right">Next Step</a>
+                         <a href="#" class="btn btn-info" role="button" id="next-step-to-impo-statement" style="float:right">Next Step</a>
                         </div>
                     <div id="impo-state-panel">
                         <h2>Group Importance Statement</h2>
