@@ -3,7 +3,8 @@
   // Require composer autoloader
   require(__DIR__ . '/../vendor/autoload.php');
 
-  use Auth0\SDK\Auth0;
+use Auth0\SDK\Auth0;
+
 
   $auth0Students = new Auth0(array(
     'domain'        => 'groupstartstudents.auth0.com',
@@ -14,10 +15,11 @@
 
     $studentInfo = $auth0Students->getUser();
 
-    if (!$studentInfo) {
-        // We have no user info
-        // redirect to Login
+
+    if (!$userInfo) {
+        //echo("Prob");
     } else {
+        //echo("TGRSVD");
         // User is authenticated
         // Say hello to $userInfo['name']
         // print logout button

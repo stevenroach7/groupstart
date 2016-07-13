@@ -1,5 +1,6 @@
 <?php
 
+$questions = ['question 1', 'question 2', 'question 3', 'question 4' ,'question 5'];
 
 
  ?>
@@ -10,22 +11,74 @@
 
   <head>
     <?php echo $banner ?>
-    <h1>Group Introduction Questionnaire</h1>
+      
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      
+      <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    
   </head>
 
   <body>
-    <form method="post" action="student-charter-form.php">
-      <p><input type="text" name="q1" placeholder="Question 1">
-      </p>
-      <p><input type="text" name="q2" maxlength="255" placeholder="Question 2"></p>
-      <p><input type="text" name="q3" maxlength="255" placeholder="Question 3"></p>
-      <p><input type="text" name="q4" maxlength="32" placeholder="Question 4"></p>
-      <p><input type="text" name="q5" maxlength="32" placeholder="Question 5"></p>
-      <p><input type="submit" name="submit-group-form" value="Submit"></p>
-
+    <div class="container" id="scharform">
+        <h1>Group Charter Activity</h1>
+        <div class="row" id="part_1">
+            <div class="col-md-12">
+                <h3>Part 1</h3>
+                <?php foreach ($questions as $question) {
+     echo "<h5>$question</h5>
+     <form method='post' action='student-charter-form.php'>
+      <p><input type='text' maxlength='255'></p>
     </form>
-
-    <a href="student-project.php">Go to Group Page</a>
+     ";
+ }?>
+            </div>
+        </div>
+        <div class="row" id="part_2">
+            <div class="col-md-12">
+            <h3>Part 2</h3>
+                <?php foreach ($questions as $question) {
+     echo "<h5>$question</h5>
+     <form method='post' action='student-charter-form.php'>
+      <p><input type='text' maxlength='255'></p>
+    </form>
+     ";
+ }?></div>
+        </div>
+        <div class="row" id="part_3">
+            <div class="col-md-12">
+            <h3>Part 3</h3>
+                <?php foreach ($questions as $question) {
+     echo "<h5>$question</h5>
+     <form method='post' action='student-charter-form.php'>
+      <p><input type='text' maxlength='255'></p>
+    </form>
+     ";
+ }?></div>
+        </div>
+        <div class="row" id="part_4">
+            <div class="col-md-12">
+            <h3>Part 4</h3>
+                <?php foreach ($questions as $question) {
+     echo "<h5>$question</h5>
+     <form method='post' action='student-charter-form.php'>
+      <p><input type='text' maxlength='255'></p>
+    </form>
+     ";
+ }?></div>
+        </div>
+        <div class="row" id="finished-button">
+              <div class="col-md-12">
+                  <button type="button" class="btn btn-block btn-primary">Submit</button>
+              </div>
+          </div><br>
+      </div>
 
   </body>
 </html>

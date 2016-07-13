@@ -3,6 +3,7 @@
   // Require composer autoloader
   require(__DIR__ . '/../vendor/autoload.php');
 
+
   use Auth0\SDK\Auth0;
 
   $auth0Students = new Auth0(array(
