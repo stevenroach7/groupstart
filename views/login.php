@@ -46,7 +46,7 @@
     <script src="https://cdn.auth0.com/js/lock-9.1.min.js"></script>
     <script type="text/javascript">
 
-      var studentLock = new Auth0Lock('0Q8Sf2krAjcnTwmXO8CxoJ6qQd0JFNrb', 'groupstartinstructors.auth0.com');
+      var studentLock = new Auth0Lock('KPiFueQyhPeAf8Gq1y0maxGbkThpG1fm', 'groupstartstudents.auth0.com');
 
 
 
@@ -91,10 +91,15 @@
         });
       }
 
+
+
+
+
     </script>
 
     <button onclick="window.studentSignIn();">Students</button>
     <button onclick="window.instructorSignIn();">Instructors</button>
+
 
 
 

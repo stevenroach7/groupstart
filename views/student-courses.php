@@ -16,14 +16,16 @@ use Auth0\SDK\Auth0;
     $studentInfo = $auth0Students->getUser();
 
 
-    if (!$userInfo) {
-        //echo("Prob");
+    if (!$studentInfo) {
+      // Redirect to Login Page
+
     } else {
-        //echo("TGRSVD");
         // User is authenticated
         // Say hello to $userInfo['name']
         // print logout button
         // start sessions maybe
+        echo "<a href='https://groupstartstudents.auth0.com/v2/logout?returnTo=http://localhost/groupstart/views/login.php'>Logout</a>";
+
 
     }
 
