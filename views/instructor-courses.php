@@ -18,12 +18,14 @@
 
   if (!$instructorInfo) {
       // We have no user info
-      // redirect to Login
+      // redirect to Login Page
   } else {
       // User is authenticated
       // Say hello to $userInfo['name']
       // print logout button
       // start sessions maybe
+      echo $instructorInfo['name'];
+      echo "<a href='https://groupstartinstructors.auth0.com/v2/logout?returnTo=http://localhost/groupstart/views/login.php'>Logout</a>";
 
   }
 
