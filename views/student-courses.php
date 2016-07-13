@@ -23,8 +23,8 @@ use Auth0\SDK\Auth0;
         // User is authenticated
         // Say hello to $userInfo['name']
         // print logout button
-        // start sessions maybe
-        echo "<a href='https://groupstartstudents.auth0.com/v2/logout?returnTo=http://localhost/groupstart/views/login.php'>Logout</a>";
+        echo $studentInfo['user_id']; // Add instructor/student to database 
+        echo "<a href='features/logout.php'>Logout</a>";
 
 
     }
