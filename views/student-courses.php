@@ -6,10 +6,10 @@
   use Auth0\SDK\Auth0;
 
   $auth0Students = new Auth0(array(
-      'domain'        => 'grouplens.auth0.com',
-      'client_id'     => 'bCtvXMfHvtJH650uSGQ0K6N1RjPGK0RW',
-      'client_secret' => 'NpHPjNmtZjQQVnGeQvbbdRqwdAcit3KutB4RM0XoqO_K5Pgr1mK0DG0XRK3IaL15',
-      'redirect_uri'  => 'http://localhost/groupstart/views/student-courses.php'
+    'domain'        => 'groupstartstudents.auth0.com',
+    'client_id'     => 'KPiFueQyhPeAf8Gq1y0maxGbkThpG1fm',
+    'client_secret' => 'I3EaB8zlG8-7oKohfL4r7ntfxYD_tWOReDkhcGQMVZcJau9KbJVaUAFcxo1XvnUC',
+    'redirect_uri'  => 'http://localhost/groupstart/views/student-courses.php'
   ));
 
     $studentInfo = $auth0Students->getUser();

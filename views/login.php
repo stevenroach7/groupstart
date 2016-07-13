@@ -6,16 +6,16 @@
   use Auth0\SDK\Auth0;
 
   $auth0Students = new Auth0(array(
-      'domain'        => 'grouplens.auth0.com',
-      'client_id'     => 'bCtvXMfHvtJH650uSGQ0K6N1RjPGK0RW',
-      'client_secret' => 'NpHPjNmtZjQQVnGeQvbbdRqwdAcit3KutB4RM0XoqO_K5Pgr1mK0DG0XRK3IaL15',
-      'redirect_uri'  => 'http://localhost/groupstart/views/student-courses.php'
+    'domain'        => 'groupstartstudents.auth0.com',
+    'client_id'     => 'KPiFueQyhPeAf8Gq1y0maxGbkThpG1fm',
+    'client_secret' => 'I3EaB8zlG8-7oKohfL4r7ntfxYD_tWOReDkhcGQMVZcJau9KbJVaUAFcxo1XvnUC',
+    'redirect_uri'  => 'http://localhost/groupstart/views/student-courses.php'
   ));
 
   $auth0Instructors = new Auth0(array(
-    'domain'        => 'grouplens.auth0.com',
-    'client_id'     => 'JRm23mco7fQ8ShKjH7ibaLMT568bWaKP',
-    'client_secret' => 'uNnsAh5D4VRzT09rSTCJB27kbhqtmCJcPPmxKBCGfNbe_2uMTZA_b6sFMgMKhfcu',
+    'domain'        => 'groupstartinstructors.auth0.com',
+    'client_id'     => '0Q8Sf2krAjcnTwmXO8CxoJ6qQd0JFNrb',
+    'client_secret' => 'vP3PKAfgSTQ3b7FROEqo2x5aC2SIdQlxxFiGxDPiBpoPtgJC2dCuhYk4ZAiI4AQk',
     'redirect_uri'  => 'http://localhost/groupstart/views/instructor-courses.php'
   ));
 
@@ -45,7 +45,8 @@
     <script src="https://cdn.auth0.com/js/lock-9.1.min.js"></script>
     <script type="text/javascript">
 
-      var studentLock = new Auth0Lock('bCtvXMfHvtJH650uSGQ0K6N1RjPGK0RW', 'grouplens.auth0.com');
+      var studentLock = new Auth0Lock('0Q8Sf2krAjcnTwmXO8CxoJ6qQd0JFNrb', 'groupstartinstructors.auth0.com');
+
 
 
       function studentSignIn() {
@@ -68,7 +69,7 @@
       }
 
 
-      var instructorLock = new Auth0Lock('JRm23mco7fQ8ShKjH7ibaLMT568bWaKP', 'grouplens.auth0.com');
+      var instructorLock = new Auth0Lock('0Q8Sf2krAjcnTwmXO8CxoJ6qQd0JFNrb', 'groupstartinstructors.auth0.com');
 
       function instructorSignIn() {
         instructorLock.show({

@@ -1,6 +1,7 @@
 <?php
 
-  header('Refresh: 0; URL=views/login.php');
+  // header('Refresh: 0; URL=views/login.php');
+
 
 
  ?>
@@ -14,6 +15,7 @@
 
 <head>
   <h1>GroupStart</h1>
+
 </head>
 
 

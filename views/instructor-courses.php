@@ -7,9 +7,9 @@
   use Auth0\SDK\Auth0;
 
   $auth0Instructors = new Auth0(array(
-    'domain'        => 'grouplens.auth0.com',
-    'client_id'     => 'JRm23mco7fQ8ShKjH7ibaLMT568bWaKP',
-    'client_secret' => 'uNnsAh5D4VRzT09rSTCJB27kbhqtmCJcPPmxKBCGfNbe_2uMTZA_b6sFMgMKhfcu',
+    'domain'        => 'groupstartinstructors.auth0.com',
+    'client_id'     => '0Q8Sf2krAjcnTwmXO8CxoJ6qQd0JFNrb',
+    'client_secret' => 'vP3PKAfgSTQ3b7FROEqo2x5aC2SIdQlxxFiGxDPiBpoPtgJC2dCuhYk4ZAiI4AQk',
     'redirect_uri'  => 'http://localhost/groupstart/views/instructor-courses.php'
   ));
 
