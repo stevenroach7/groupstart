@@ -727,3 +727,26 @@ input[type="text"]{
     transform: translate(10%);
 }
 /*Styling for student-charter-form.php*/
+
+
+
+/*Styling for login.php*/
+
+#research-affil{
+    margin-bottom: 50px;
+}
+
+#group-work, #idea-generation, #charter-formation{
+    margin: 20px;
+}
+#web-icons-area{
+    width:100%;
+    /*background: red;*/
+}
+#web-rep-icons{
+    width: 390px;
+    /*background: blue;*/
+    margin:0 auto;
+}
+
+/*Styling for login.php*/

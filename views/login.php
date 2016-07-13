@@ -30,23 +30,68 @@
 
   <head>
     <?php echo $banner ?>
-    <h1>Welcome to GroupStart</h1>
+      
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      
+      <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+      
+      
+      <link rel="stylesheet" type="text/css" href="../css/style.css" />
+      
+      <script src="https://use.fontawesome.com/1439d65c28.js"></script>
+      
   </head>
 
 
   <body>
-
-    <p>
-      GroupStart is an experimental, alpha-stage application
-       that seeks to facilitate the early stages of an online group project.
+      <div class="container">
+          <h1 style="text-align:center">Welcome to GroupStart</h1><br>
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="row" id="webpage-description">
+                      <div class="col-md-12">
+                            <p style="text-align:center">
+      <b>GroupStart</b> is an experimental, alpha-stage application that seeks to facilitate the early stages of an online group project.
     </p>
-    <h5>University of Minnesota Twin Cities - Computer Science &amp; Engineering - GroupLens Research</h5>
+                           <h5 style="text-align:center" id="research-affil">University of Minnesota Twin Cities - Computer Science &amp; Engineering - GroupLens Research</h5>
+                      </div>
+                  </div>
+                  <div class="row" id="web-icons-area">
+                      <div class="col-md-12">
+                          <div id="web-rep-icons">
+                          <i class="fa fa-users fa-5x" aria-hidden="true" id="group-work">
+                          </i>
+                          <i class="fa fa-cloud fa-5x" aria-hidden="true" id="idea-generation"></i>
+                      <i class="fa fa-file-text-o fa-5x" aria-hidden="true" id="charter-formation"></i></div>
+                  </div>
+              
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="row">
+              <div class="col-md-6">
+              </div>
+              <div class="col-md-6"></div>
+                  </div>
+                  </div>
+          </div>
+      </div>
+
+   
 
 
     <script src="https://cdn.auth0.com/js/lock-9.1.min.js"></script>
     <script type="text/javascript">
 
-      var studentLock = new Auth0Lock('0Q8Sf2krAjcnTwmXO8CxoJ6qQd0JFNrb', 'groupstartinstructors.auth0.com');
+      var studentLock = new Auth0Lock('KPiFueQyhPeAf8Gq1y0maxGbkThpG1fm', 'groupstartstudents.auth0.com');
 
 
 
@@ -70,7 +115,7 @@
       }
 
 
-      var instructorLock = new Auth0Lock('0Q8Sf2krAjcnTwmXO8CxoJ6qQd0JFNrb', 'groupstartinstructors.auth0.com');
+        var instructorLock = new Auth0Lock('0Q8Sf2krAjcnTwmXO8CxoJ6qQd0JFNrb', 'groupstartinstructors.auth0.com');
 
       function instructorSignIn() {
         instructorLock.show({
