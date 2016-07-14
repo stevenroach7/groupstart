@@ -12,8 +12,8 @@
 
   $courses = ['Introduction to Computer Science', 'User Interface Design'];
 
-
  ?>
+
 
 
 <head>
