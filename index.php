@@ -61,11 +61,6 @@
 
 
 
-  <?php
-    $name = "Steven";
-    $name1 = "Tosin";
-    echo "<h3>Welcome to GroupStart, ".$name." and ".$name1.".</h3>";
-  ?>
 
 
 
