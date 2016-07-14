@@ -1,33 +1,12 @@
 <?php
 
 
-  // Require composer autoloader
-  require(__DIR__ . '/../vendor/autoload.php');
 
-  use Auth0\SDK\Auth0;
+  session_start();
 
-  $auth0Instructors = new Auth0(array(
-    'domain'        => 'groupstartinstructors.auth0.com',
-    'client_id'     => '0Q8Sf2krAjcnTwmXO8CxoJ6qQd0JFNrb',
-    'client_secret' => 'vP3PKAfgSTQ3b7FROEqo2x5aC2SIdQlxxFiGxDPiBpoPtgJC2dCuhYk4ZAiI4AQk',
-    'redirect_uri'  => 'http://localhost/groupstart/views/instructor-courses.php'
-  ));
+  $_SESSION['loggedin'] = true;
+  $_SESSION['type'] = 'instructor';
 
-
-  $instructorInfo = $auth0Instructors->getUser();
-
-  if (!$instructorInfo) {
-      // We have no user info
-      // redirect to Login Page
-  } else {
-      // User is authenticated
-      // Say hello to $userInfo['name']
-      // print logout button
-      // start sessions maybe
-      echo $instructorInfo['name'];
-      echo "<a href='https://groupstartinstructors.auth0.com/v2/logout?returnTo=http://localhost/groupstart/views/login.php'>Logout</a>";
-
-  }
 
 
 
@@ -54,7 +33,7 @@
 
   <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
-    
+
 
 
 </head>
@@ -63,8 +42,8 @@
 
 <div class="container" id="instructor-course-list">
     <h1 style="text-align:center">List of Courses</h1>
-    <h2 style="text-align:center">Welcome <?php echo $instructorInfo['name']?></h2><br>
-    
+    <!-- <h2 style="text-align:center">Welcome <?php echo $instructorInfo['name']?></h2><br> -->
+
     <div id='accordion'>
     <?php foreach ($courses as $course) { // Loop only makes accordion for the first one since it is id and not class.
 
@@ -119,7 +98,7 @@
         <!--button id="add-new-course" type="button" class="btn btn-default">Add New Course</button-->
     <a href="instructor-add-course.php" class="btn btn-info" role="button" id="add-new-course">Add New Course</a>
       </div>
-     
+
 
 
 

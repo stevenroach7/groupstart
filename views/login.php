@@ -21,6 +21,7 @@
   ));
 
 
+
  ?>
 
 
@@ -30,11 +31,11 @@
 
   <head>
     <?php echo $banner ?>
-      
-   
-      
+
+
+
       <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script-->
-      
+
       <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
@@ -43,12 +44,12 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    
+
          <link rel="stylesheet" type="text/css" href="../css/style.css" />
-      
+
       <script src="https://use.fontawesome.com/1439d65c28.js"></script>
       <script src="../js/modal.js"></script>
-      
+
   </head>
 
 
@@ -74,7 +75,7 @@
                           <i class="fa fa-cloud fa-5x" aria-hidden="true" id="idea-generation"></i>
                       <i class="fa fa-file-text-o fa-5x" aria-hidden="true" id="charter-formation"></i><br><h3>Group Work</h3><h3>Idea Formation</h3><h3>Charter Creation</h3></div>
                   </div>
-              
+
               </div>
               </div></div>
   </div>
@@ -92,7 +93,7 @@
                       <button type="button" class="btn btn-primary" id="student-myBtn">Student</button><br>
                       <button type="button" class="btn btn-primary" id="instructor-myBtn">Instructor</button>
 </div>
-                    
+
 <!-- The Modal -->
 <div id="stuModal" class="modal">
 
@@ -141,7 +142,7 @@
       }
 
 
-        var instructorLock = new Auth0Lock('0Q8Sf2krAjcnTwmXO8CxoJ6qQd0JFNrb', 'groupstartinstructors.auth0.com');
+      var instructorLock = new Auth0Lock('0Q8Sf2krAjcnTwmXO8CxoJ6qQd0JFNrb', 'groupstartinstructors.auth0.com');
 
       function instructorSignIn() {
         instructorLock.show({
@@ -171,12 +172,12 @@
     <button onclick="window.studentSignIn();">Students</button>
     <button onclick="window.instructorSignIn();">Instructors</button>
                       </div>
-                      
+
                   </div>
-                  
+
               </div>
                   <div class="row" id="login-side">
-            
+
               <div class="col-md-6">
                   <div class="row" id="login-square">
                   <!--div class="vr">&nbsp;</div-->
@@ -191,7 +192,7 @@
             <label class="radio-label">Instructor</label>
                           </div>
                           </fieldset><br>
-                          
+
   <fieldset class="form-group">
       <div>
       <label for="user-email">Email address</label><br>
@@ -211,10 +212,10 @@
           </div>
       </div>
 
-   
 
 
-    
+
+
 
 
 

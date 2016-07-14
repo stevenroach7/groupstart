@@ -1,47 +1,15 @@
 <?php
 
-  // Require composer autoloader
-  require(__DIR__ . '/../vendor/autoload.php');
+  session_start();
 
-use Auth0\SDK\Auth0;
-
-
-  $auth0Students = new Auth0(array(
-    'domain'        => 'groupstartstudents.auth0.com',
-    'client_id'     => 'KPiFueQyhPeAf8Gq1y0maxGbkThpG1fm',
-    'client_secret' => 'I3EaB8zlG8-7oKohfL4r7ntfxYD_tWOReDkhcGQMVZcJau9KbJVaUAFcxo1XvnUC',
-    'redirect_uri'  => 'http://localhost/groupstart/views/student-courses.php'
-  ));
-
-    $studentInfo = $auth0Students->getUser();
-
-
-    if (!$studentInfo) {
-      // Redirect to Login Page
-
-    } else {
-        // User is authenticated
-        // Say hello to $userInfo['name']
-        // print logout button
-        echo $studentInfo['user_id']; // Add instructor/student to database 
-        echo "<a href='features/logout.php'>Logout</a>";
-
-
-    }
-
-
-
-
-
+  $_SESSION['loggedin'] = true;
+  $_SESSION['type'] = 'student';
   $courses = ['Introduction to Computer Science', 'User Interface Design'];
-
-
 
  ?>
 
 
 <html>
- 
 
   <head>
       <?php include 'features/banner.php' ?>
@@ -66,7 +34,7 @@ use Auth0\SDK\Auth0;
 
     <div class="container" id="instructor-course-list">
         <h1 style="text-align:center">List of Courses</h1>
-        <h2 style="text-align:center">Welcome <?php echo $studentInfo['name']?></h2><br>
+        <!-- <h2 style="text-align:center">Welcome <?php echo $studentInfo['name']?></h2><br> -->
 
     <div id='accordion'>
     <?php foreach ($courses as $course) { // Loop only makes accordion for the first one since it is id and not class.
@@ -98,7 +66,7 @@ use Auth0\SDK\Auth0;
                 </div>
             </section><br><br>
 
-            
+
             <a href=# class='btn btn-info' role='button' id='view-course-attachments'>View course attachments</a>
             <a href='student-project.php' class='btn btn-info' style='float:right; width:300px;' role='button' id='view-student-group'>View My Group</a>
 
@@ -107,7 +75,7 @@ use Auth0\SDK\Auth0;
     }
     ?>
     </div><br>
-        
+
       <form method="post" action="student-courses.php">
         <h4>Add New Course</h4>
         <input type="text" name="registration-code" placeholder="Enter Course Registration Code">
