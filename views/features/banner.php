@@ -9,16 +9,17 @@
     session_start();
   }
 
-  if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
-    // echo "<a href='features/logout.php'>Logout</a>";
+  if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) { // If session loggedin is set and logged in == true.
     // echo "You're in";
   } else {
     // echo "not logged in";
-    // header('Location: http://localhost/groupstart/views/login.php'); //
+    // header('Location: http://localhost/groupstart/index.php'); // TODO: Figure out the logic here and test rigourously.
+    // Kick them out
   }
 
   if (isset($_SESSION['type'])) {
-    if ($_SESSION['type']=='student') {
+
+    if ($_SESSION['type'] == 'student') {
       // echo "student";
 
       $auth0Students = new Auth0(array(
@@ -38,9 +39,10 @@
           // Say hello to $userInfo['name']
           // print logout button
           // echo $studentInfo['user_id']; // Add instructor/student to database
+
       }
 
-    } else {
+    } else { // type == instructor
       // echo "instructor";
 
       $auth0Instructors = new Auth0(array(
@@ -68,16 +70,6 @@
     // echo "no Type";
   }
 
-  if (isset($_SESSION['type'])) { // Create redirect links for banner.
-    if ($_SESSION['type'] == 'student') {
-      $redirectHome = 'student-courses.php';
-    } else {
-      $redirectHome = 'instructor-courses.php';
-    }
-  } else { // Test this
-    $redirectHome = 'login.php';
-  }
-
 
 ?>
 
@@ -98,9 +90,7 @@ if (isset($_SESSION['type'])) { // Create redirect links for banner.
   $logo = '<a class="banner pull-left" href="login.php" style="text-align:left"><h1>GroupStart</h1></a>';
 }
 
-  $settings ='
-  <a href="student-settings.php"><span class="glyphicon glyphicon-cog pull-right" style="font-size: 40px; margin-top:20px;"></span></a>
-  ';
+  $settings ='<a href="student-settings.php"><span class="glyphicon glyphicon-cog pull-right" style="font-size: 40px; margin-top:20px;"></span></a>';
 
   if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
     $logout = "<a href='features/logout.php'>Logout</a>";
