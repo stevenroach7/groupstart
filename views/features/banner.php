@@ -68,6 +68,17 @@
     // echo "no Type";
   }
 
+  if (isset($_SESSION['type'])) { // Create redirect links for banner.
+    if ($_SESSION['type'] == 'student') {
+      $redirectHome = 'student-courses.php';
+    } else {
+      $redirectHome = 'instructor-courses.php';
+    }
+  } else { // Test this
+    $redirectHome = 'login.php';
+  }
+
+
 ?>
 
 
@@ -76,9 +87,18 @@
 
 <php
 
-<?php $mainbanner ='
-  <a class="banner pull-left" href="login.php" style="text-align:left"><h1>GroupStart</h1></a>
+<?php
+if (isset($_SESSION['type'])) { // Create redirect links for banner.
+  if ($_SESSION['type'] == 'student') {
+    $logo = '<a class="banner pull-left" href="student-courses.php" style="text-align:left"><h1>GroupStart</h1></a>';
+  } else {
+    $logo = '<a class="banner pull-left" href="instructor-courses.php" style="text-align:left"><h1>GroupStart</h1></a>';
+  }
+} else { // Test this
+  $logo = '<a class="banner pull-left" href="login.php" style="text-align:left"><h1>GroupStart</h1></a>';
+}
 
+  $settings ='
   <a href="student-settings.php"><span class="glyphicon glyphicon-cog pull-right" style="font-size: 40px; margin-top:20px;"></span></a>
   ';
 
@@ -89,7 +109,7 @@
   }
 
   $banner = '<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">'.$mainbanner.$logout.'</div></nav>';
+  <div class="container">'.$logo.$settings.$logout.'</div></nav>';
 
 
   ?>
