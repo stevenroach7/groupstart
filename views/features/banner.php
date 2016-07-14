@@ -4,12 +4,13 @@
 
 
 <?php $banner ='
-    <div class="banner">
-      <ul>
-        <li><a class="banner" href="login.php"><h1>GroupStart</h1></a></li>
-        <li id="cog"><a class="banner" href="profile-settings.php"><h1>Cog</h1></a></li> <!--Will use bootstrap (http://www.w3schools.com/bootstrap/bootstrap_ref_comp_glyphs.asp) to make cog icon -->
-      </ul>
-    </div>'?>
+      <nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+  <a class="banner pull-left" href="login.php" style="text-align:left"><h1>GroupStart</h1></a>
+  <a href="student-settings.php"><span class="glyphicon glyphicon-cog pull-right" style="font-size: 40px; margin-top:20px;"></span></a>
+  </div>
+</nav>
+    '?>
 
 
 </html>

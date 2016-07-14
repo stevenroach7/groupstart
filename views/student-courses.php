@@ -41,7 +41,10 @@ use Auth0\SDK\Auth0;
 
 
 <html>
-    <?php include 'features/banner.php' ?>
+ 
+
+  <head>
+      <?php include 'features/banner.php' ?>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
@@ -55,17 +58,15 @@ use Auth0\SDK\Auth0;
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
 
-  <head>
-    <?php echo $banner ?>
-
-    <div><h2>Welcome <?php echo $studentInfo['name']?></h2> </div>
 
   </head>
 
   <body>
+       <?php echo $banner ?>
 
     <div class="container" id="instructor-course-list">
-        <h1>List of Courses</h1>
+        <h1 style="text-align:center">List of Courses</h1>
+        <h2 style="text-align:center">Welcome <?php echo $studentInfo['name']?></h2><br>
 
     <div id='accordion'>
     <?php foreach ($courses as $course) { // Loop only makes accordion for the first one since it is id and not class.
@@ -82,7 +83,7 @@ use Auth0\SDK\Auth0;
               egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor,
               facilisis luctus, metus
               </p>
-            </section>
+            </section><br>
             <section id='course-projects'>
                 <h4>Course Projects</h4>
                 <div id='project-list'>
@@ -95,19 +96,20 @@ use Auth0\SDK\Auth0;
                         <a href='student-start-project.php'><li class='list-group-item'>Third item</li></a>
                     </ul>
                 </div>
-            </section><br>
+            </section><br><br>
 
-            <button id='view-course-attachments'>View course attachments</button>
+            
+            <a href=# class='btn btn-info' role='button' id='view-course-attachments'>View course attachments</a>
+            <a href='student-project.php' class='btn btn-info' style='float:right; width:300px;' role='button' id='view-student-group'>View My Group</a>
 
         </div>";
 
     }
     ?>
-    </div>
-         <!-- <a href="instructor-add-course.php" class="btn btn-info" role="button" id="add-new-course">Add New Course</a> -->
-        <!--button id="add-new-course" type="button" class="btn btn-default">Add New Course</button-->
+    </div><br>
+        
       <form method="post" action="student-courses.php">
-        <h2>Add New Course</h2>
+        <h4>Add New Course</h4>
         <input type="text" name="registration-code" placeholder="Enter Course Registration Code">
         <input type="submit" name="student-add-course" value="Submit">
       </form>

@@ -6,10 +6,11 @@
 
 
 <html>
-    <?php include 'features/banner.php' ?>
+    
 
   <head>
-    <?php echo $banner ?>
+      <?php include 'features/banner.php' ?>
+    
       
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
       
@@ -26,6 +27,7 @@
   </head>
 
   <body>
+      <?php echo $banner ?>
     <div class="container">
         <div class="row">
             <div class=col-md-12>

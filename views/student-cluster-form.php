@@ -7,10 +7,11 @@ $questions = ['question 1', 'question 2', 'question 3', 'question 4' ,'question 
 
 
 <html>
-    <?php include 'features/banner.php' ?>
+    
 
   <head>
-    <?php echo $banner ?>
+      <?php include 'features/banner.php' ?>
+    
       
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
       
@@ -27,6 +28,7 @@ $questions = ['question 1', 'question 2', 'question 3', 'question 4' ,'question 
   </head>
 
   <body>
+      <?php echo $banner ?>
       <div class="container">
           <h1> Clustering Questionnaire</h1><br>
           <div class="row" id="project-options">

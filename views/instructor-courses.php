@@ -38,6 +38,7 @@
 
 
 <head>
+    <?php include 'features/banner.php' ?>
       <link rel="stylesheet" type="text/css" href="../css/style.css" />
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -53,14 +54,17 @@
 
   <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
-    <div><h2>Welcome <?php echo $instructorInfo['name']?></h2> </div>
+    
 
 
 </head>
 <body>
+    <?php echo $banner ?>
 
 <div class="container" id="instructor-course-list">
-    <h1>List of Courses</h1>
+    <h1 style="text-align:center">List of Courses</h1>
+    <h2 style="text-align:center">Welcome <?php echo $instructorInfo['name']?></h2><br>
+    
     <div id='accordion'>
     <?php foreach ($courses as $course) { // Loop only makes accordion for the first one since it is id and not class.
 
@@ -72,12 +76,12 @@
           <h4>Course Projects</h4>
           <div id='project-list'>
               <ul class='list-group'>
-                  <li class='list-group-item'>First item</li>
-                  <li class='list-group-item'>Second item</li>
-                  <li class='list-group-item'>Third item</li>
-                  <li class='list-group-item'>First item</li>
-                  <li class='list-group-item'>Second item</li>
-                  <li class='list-group-item'>Third item</li>
+                  <a href='instructor-project.php'><li class='list-group-item'>First item</li> </a>
+                        <a href='instructor-project.php'><li class='list-group-item'>Second item</li></a>
+                        <a href='instructor-project.php'><li class='list-group-item'>Third item</li></a>
+                        <a href='instructor-project.php'><li class='list-group-item'>First item</li></a>
+                        <a href='instructor-project.php'><li class='list-group-item'>Second item</li></a>
+                        <a href='instructor-project.php'><li class='list-group-item'>Third item</li></a>
               </ul>
           </div>
           <br />
@@ -102,21 +106,20 @@
 
       <b>Student registraion code: 123ABC</b>
 
-      <br/>
+      <br><br>
 
-      <button id='view-course-attachments'>View course attachments</button>
+      <a href=# class='btn btn-info' role='button' id='view-course-attachments'>View course attachments</a>
 
   </div>";
 
     }
     ?>
-    </div>
+    </div><br>
          <!-- <a href="instructor-add-course.php" class="btn btn-info" role="button" id="add-new-course">Add New Course</a> -->
         <!--button id="add-new-course" type="button" class="btn btn-default">Add New Course</button-->
+    <a href="instructor-add-course.php" class="btn btn-info" role="button" id="add-new-course">Add New Course</a>
       </div>
-     <a href="instructor-add-course.php" class="btn btn-info" role="button" id="add-new-course">Add New Course</a>
-
-    </div>
+     
 
 
 

@@ -1,20 +1,13 @@
-/* Banner */
-.banner ul li {
-  display: inline-block;
-}
-
-#cog {
-  float: right;
-}
-
-
-
-
-
 html, body {
 	height: 100%;
 
 }
+body{
+    padding-top: 70px;
+}
+/* Banner */
+
+
 /* Modal */
 .modal-dialog {
 	position: fixed;
@@ -473,14 +466,14 @@ html, body {
 
 
 #manage-group-panels{
-    width: inherit;
+    width: auto;
 }
 
 #project-list-inpro{
-    height: 200px;
-    width: inherit;
+    height: 250px;
+    width: 438px;
     overflow-x: scroll;
-    border:2px solid grey;
+    border:1px solid grey;
     
 }
 .ui-tabs.ui-tabs-vertical {
@@ -488,21 +481,21 @@ html, body {
     width: inherit;
 }
 .ui-tabs.ui-tabs-vertical .ui-widget-header {
-    border: none;
+    border: 2px solid grey;
 }
 .ui-tabs.ui-tabs-vertical .ui-tabs-nav {
     float: left;
     width: 10em;
     /*background: #CCC;*/
     border-radius: 4px 0 0 4px;
-    border-right: 1px solid;
+    border-right: 2px solid grey;
 }
 .ui-tabs.ui-tabs-vertical .ui-tabs-nav li {
     clear: left;
     width: 100%;
     margin: 0.2em 0;
-    border: 1px solid;
-    border-width: 1px 0 1px 1px;
+    border: 2px solid grey;
+    border-width: 2px 0 2px 2px;
     border-radius: 4px 0 0 4px;
     overflow: hidden;
     position: relative;
@@ -520,7 +513,7 @@ html, body {
 .ui-tabs.ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active {
     margin-bottom: 0.2em;
     padding-bottom: 0;
-    border-right: 1px solid white;
+    border-right: 2px solid grey;
 }
 .ui-tabs.ui-tabs-vertical .ui-tabs-nav li:last-child {
     margin-bottom: 10px;
@@ -528,7 +521,7 @@ html, body {
 .ui-tabs.ui-tabs-vertical .ui-tabs-panel {
     float: left;
     width: 28em;
-    border-left: 1px solid;
+    border-left: 2px solid grey;
     border-radius: 0;
     position: relative;
     left: -1px;
@@ -539,6 +532,25 @@ html, body {
 /*Styling for instructor-project.php*/
 
 /*Styling for instructor-add-project.php*/
+
+
+
+#steps-panel{
+    /*background: blue;*/
+    height: 760px;
+}
+
+#panel-1, #panel-2, #panel-3, #panel-4{
+    height: 187px;
+}
+
+#write-description, #group-importance-statement, #group-clustering-formation, #group-introduction-mechanism {
+    height: 100px;
+	margin-top: 60px;	
+    font-size: 20px;
+    text-align: center;
+    vertical-align: middle;
+}
 
 #random, #knn, #weighting{
     border: 2px solid #a1a1a1;
@@ -564,6 +576,54 @@ html, body {
     border: 2px solid #a1a1a1;
 }
 
+#chart {
+	margin: 2em auto;
+	list-style: none;
+	padding: 0;
+	max-width: 500px;
+	position: relative;
+	top: 2em;
+}
+
+#chart li {
+	display: inline;
+	
+}
+
+#chart .block {
+	width: 200px;
+	/*margin-top: 10em;*/
+	height: 200px;
+	border: thick solid grey;
+	-webkit-transform: rotate( 45deg );
+	-ms-transform: rotate( 45deg );
+		transform: rotate( 45deg );
+	position: relative;
+	
+}
+
+
+
+#chart li:nth-of-type(4){
+    margin-right: 5px;
+    margin-top: 10em;
+}
+#chart li:nth-of-type(3){
+    margin-top: 10em;
+}
+
+#chart .block-content {
+	-webkit-transform: rotate( -45deg );
+	-ms-transform: rotate( -45deg );
+		transform: rotate( -45deg );
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	text-align: center;
+	margin-top: -0.5em;	
+}
+
+
 /*Styling for instructor-add-project.php*/
 
 
@@ -577,12 +637,15 @@ html, body {
     border: 2px solid #D3D3D3;
     padding: 10px;
 }
-
-
 /*Styling for student-start-project.php*/
 
 
+
+
 /*Styling for student-project.php*/
+#memeber-list-area{
+    padding-top: 20px;
+}
 #member-list {
     border:2px solid black;
     width:auto;
@@ -732,21 +795,205 @@ input[type="text"]{
 
 /*Styling for login.php*/
 
+#home-page{
+    /*background: grey;*/
+}
+
+/*#top-half{
+    width: 100%;
+    background: red;
+    height: 500px;
+}*/
+#hom-page p,  #hom-page h1,  #hom-page h5,  #hom-pageh3{
+    color: white;
+    
+}
+
+#webpage-description div:first-of-type p{
+    font-size: 30px;
+    text-align:center; 
+}
+
+#webpage-description div:first-of-type h5{
+    font-size: 20px;
+    text-align:center;
+    
+}
 #research-affil{
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 #group-work, #idea-generation, #charter-formation{
-    margin: 20px;
+    margin-left: 60px;
+    margin-right: 60px;
+    margin-bottom: 10px;
 }
 #web-icons-area{
-    width:100%;
+    /*height: 300px;*/
     /*background: red;*/
 }
 #web-rep-icons{
-    width: 390px;
+    width: 600px;
     /*background: blue;*/
     margin:0 auto;
 }
 
+#web-icons-area h3{
+    display: inline;
+    margin: 20px;
+    text-align: center;
+}
+
+#bottom-half{
+    height: 400px;
+    /*background: purple;*/
+}
+
+#users-part{
+    /*background: green;*/
+    height: 400px;
+    margin-top:10px;
+}
+
+#sign-up-side{
+    /*background: pink;*/
+    height: 400px;
+    margin: 20px;
+    border: 5px solid grey;
+    margin-right: 20px;
+}
+
+#login-square{
+    border: 5px solid grey;
+    height: 400px;
+    margin: 20px;
+}
+
+/*
+#login-side{
+    height: 400px;
+    margin: 20px;
+
+}*/
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#su-buttons{
+    width: 50%;
+    /*background: orange;*/
+    height: auto;
+    transform: translateY(40%);
+    margin: 0 auto;
+    display: block;
+    position: relative;
+    
+}
+
+#su-buttons button{
+    margin-right: 10px;
+    margin-bottom: 50px;
+    width: 100% !important;
+}
+
+.vr {
+    width:5px;
+    background-color:gray;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0px;
+}
+
+#user-identity {
+    text-align: center;
+}
+#user-identity label{
+    margin-right: 50px;
+}
+.form-group{
+    text-align: center;
+}
+
+.form-group input{
+    width: 400px;
+}
+#login-form{
+    align-content: center;
+    /*background: red;*/
+}
+
+#p1{
+    /*border: 2px solid #888;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    height: 350px;*/
+}
+
+#p0{
+    /*border: 2px solid #888;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    height: 350px;*/
+}
+
+#sign-up-buttons{
+    align-content: center;
+    /*background: green;*/
+}
+
+#login-form button{
+    width: 400px !important;
+}
+
 /*Styling for login.php*/
+
+/*Styling for index.php*/
+
+#index-page {
+    height: 600px;
+}
+
+#get-started{
+    margin-top: 50px;
+    width: 700px;
+    font-size: 25px !important;
+}
+
+
+/*Styling for index.php*/

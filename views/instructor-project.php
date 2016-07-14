@@ -9,6 +9,7 @@
 
 
   <head>
+      <?php include 'features/banner.php' ?>
       
         <link rel="stylesheet" type="text/css" href="../css/style.css" />
       
@@ -35,25 +36,26 @@
 
 
   <body>
-      <div class="container-fluid">
+      <?php echo $banner ?>
+      <div class="container">
 	<div class="row">
 		<div class="col-md-8" id="project-info">
 			<div class="row" id="description-importance">
 				<div class="col-md-6" id="project-description">
                     <h2>Project Description</h2>
-					<p>
+					<p id="proj-descrip-statement">
 						Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
 					</p> 
-					<button type="button" class="btn btn-block btn-default ">
+					<button type="button" class="btn btn-block btn-default " id="edit-proj-descrip">
 						Edit
 					</button>
 				</div>
 				<div class="col-md-6" id="importance-statment">
                     <h2>Group Importance Statement</h2>
-					<p>
+					<p id="group-impo-statement">
 						Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
 					</p> 
-					<button type="button" class="btn btn-block btn-default">
+					<button type="button" class="btn btn-block btn-default" id="edit-impo-statement">
 						Edit
 					</button>
 				</div>
@@ -77,10 +79,11 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4" id="manage-group">
+        <div class="col-md-1"></div>
+		<div class="col-md-3" id="manage-group">
 			<div class="row">
                 <h3>Manage Groups</h3>
-				<div class="col-md-12" id="manade-group-panels">
+				<div class="col-md-12" id="manage-group-panels">
                     <div id="tabs">
                         <ul>
                             <li><a href="#a">Tab A</a></li>
@@ -100,12 +103,12 @@
             <div class="col-md-12">
                 <div id='project-list-inpro'>
               <ul class='list-group'>
-                  <li class='list-group-item'>project 1</li>
-                  <li class='list-group-item'>project 2</li>
-                  <li class='list-group-item'>project 3</li>
-                  <li class='list-group-item'>project 4</li>
-                  <li class='list-group-item'>project 5</li>
-                  <li class='list-group-item'>project 6</li>
+                  <a href='instructor-project.php'><li class='list-group-item'>Project 1</li> </a>
+                        <a href='instructor-project.php'><li class='list-group-item'>Project 2</li></a>
+                        <a href='instructor-project.php'><li class='list-group-item'>Project 3</li></a>
+                        <a href='instructor-project.php'><li class='list-group-item'>Project 4</li></a>
+                        <a href='instructor-project.php'><li class='list-group-item'>Project 5</li></a>
+                        <a href='instructor-project.php'><li class='list-group-item'>Project 6</li></a>
               </ul>
           </div>
                 </div>

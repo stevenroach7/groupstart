@@ -10,6 +10,8 @@
     
 
   <head>
+      <?php include 'features/banner.php' ?>
+      
       <link rel="stylesheet" type="text/css" href="../css/style.css" />
       
     <script src="../js/dropzone.min.js"></script>
@@ -29,6 +31,7 @@
 
 
   <body>
+      <?php echo $banner ?>
       
       <div class="container main-page-form">
           <h1>Add New Course</h1>

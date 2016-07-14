@@ -6,6 +6,7 @@
 
 
 <html>
+    
   <link rel="stylesheet" type="text/css" href="../css/style.css" />
 
   <head>
@@ -28,16 +29,19 @@
       <script type="text/javascript" src="../js/add_project.js"></script>
       
       <script src="../js/dropzone.min.js"></script>
+      
+      <?php include 'features/banner.php' ?>
   </head>
 
 
   <body>
-      <div class="container">
+      <?php echo $banner ?>
+      <div class="container" id="iap">
 	<div class="row">
 		<div class="col-md-12">
-			<div class="row">
-				<div class="col-md-4">
-                    <div class="row"><div class="col-md-12">
+			<div class="row" id="int-add-pro-part-1">
+				<div class="col-md-4" id="steps-panel">
+                    <div class="row" id="panel-1"><div class="col-md-12">
                         <div class="panel panel-default" id="write-description">
                             <div class="panel-body">
                                 <label>
@@ -46,7 +50,7 @@
                         </div>
                         </div>
                     </div>
-                    <div class="row"><div class="col-md-12">
+                    <div class="row" id="panel-2"><div class="col-md-12">
                         <div class="panel panel-default" id="group-importance-statement">
                             <div class="panel-body">
                                 <label>
@@ -55,7 +59,7 @@
                         </div>
                         </div>
                     </div>
-                    <div class="row"><div class="col-md-12">
+                    <div class="row" id="panel-3"><div class="col-md-12">
                         <div class="panel panel-default" id="group-clustering-formation">
                             <div class="panel-body">
                                 <label>
@@ -64,7 +68,7 @@
                         </div>
                         </div>
                     </div>
-                    <div class="row"><div class="col-md-12">
+                    <div class="row" id="panel-4"><div class="col-md-12">
                         <div class="panel panel-default" id="group-introduction-mechanism">
                             <div class="panel-body">
                                 <label>
@@ -72,11 +76,42 @@
                             </div>
                         </div>
                         </div>
-                    </div>
-                    <a href="instructor-project.php" class="btn btn-info" role="button" id="create-project">Add New Project</a>
+                    </div><br>
+                    <a href="instructor-project.php" class="btn btn-info btn-block" role="button" id="create-project">Add New Project</a>
 				</div>
 				<div class="col-md-8" id="panel-content">
-                    <div class="current" id="write-description-panel">
+                    <div id="start-div">
+                        <h1 style="text-align:center">Steps to add a new project</h1><br><div id="steps-to-add-project">
+                        <ul id="chart">
+	<li class="block" style="float:left">
+		<div class="block-content">
+            <p>Step 1: Write project Description</p>
+		</div>
+		
+	</li>
+	<li class="block" style="float:right">
+		<div class="block-content">
+			<p>Step 2: Edit group importance statment</p>
+		</div>
+		
+	</li>
+	<li class="block" style="float:left">
+		<div class="block-content">
+			<p>Step 3: Choose clustering options</p>
+		</div>
+	</li>
+                            <li class="block" style="float:right">
+		<div class="block-content">
+			<p>Step 4: Choose group introduction option</p>
+		</div>
+		
+	</li>
+	
+</ul>	
+                        </div>
+                   
+                </div>
+                    <div id="write-description-panel">
                     <textarea rows="4" cols="50" id="textarea-description" name="course_description"></textarea><br><br>
                         
                         <h4>Project Attachments</h4>
@@ -91,6 +126,7 @@
                         
                          <a href="#" class="btn btn-info" role="button" id="next-step-to-impo-statement" style="float:right">Next Step</a>
                         </div>
+                    
                     <div id="impo-state-panel">
                         <h2>Group Importance Statement</h2>
                                                  <p id="statement"> Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.
@@ -140,7 +176,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="row">
-						<div class="col-md-6" id="cluster-by-options">
+						<div class="col-md-6" id="cluster-by-options"><h4 style="color:black">Clustering Options</h4>
                             <div class="scrollbox">
                                 <ul class="list-group">
   <li><input type="checkbox" name="clustering-by" value="cluster-by-option1"> Option 1</li>
@@ -151,19 +187,20 @@
 </ul>
                             </div>
 						</div>
-						<div class="col-md-6" id="summary">
-                            <h4>Clustering options summary</h4><hr>
-                    <h5>clustering algorithm:</h5>
-                    <h5>clustering by:</h5>
+						<div class="col-md-6">
+                            <h4>Clustering options summary</h4><div id="summary">
+                    <h5 style="color:black">clustering algorithm:</h5>
+                    <h5 style="color:black">clustering by:</h5>
                     <ul>
                         <li>location</li>
                         <li>experience</li>
                         <li>age</li>
                     </ul>
-                    <h5>Minimum group size:</h5>
-                    <h5>Maximum group size:</h5>
+                    <h5 style="color:black">Minimum group size:</h5>
+                    <h5 style="color:black">Maximum group size:</h5>
                             
 						</div>
+                            </div>
 					</div>
 				</div>
 			</div><br>

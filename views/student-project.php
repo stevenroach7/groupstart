@@ -9,7 +9,8 @@
   <?php include 'features/banner.php' ?>
 
   <head>
-    <?php echo $banner ?>
+      
+     <?php include 'features/banner.php' ?>
       
       <link rel="stylesheet" type="text/css" href="../css/style.css" />
       
@@ -27,9 +28,12 @@
   </head>
 
   <body>
+      <?php echo $banner ?>
       <div class="container">
+          
 	<div class="row" id="memeber-list-area">
 		<div class="col-md-12">
+            <h3>Group Members</h3>
             <div id="member-list">
             <ul class="list-group" >
   <li class="list-group-item">Cras justo odio</li>
