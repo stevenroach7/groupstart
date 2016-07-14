@@ -12,7 +12,7 @@
     // echo "You're in";
   } else {
     // echo "not logged in";
-    // header('Location: http://localhost/groupstart/index.php'); // TODO: Figure out the logic here and test rigourously.
+    header('Location: http://localhost/groupstart/index.php'); // TODO: Figure out the logic here and test rigourously.
     // Kick them out
   }
 
@@ -33,6 +33,7 @@
       if (!$studentInfo) {
         // Redirect to Login Page
         // echo "no student data";
+        header('Location: http://localhost/groupstart/index.php');
       } else {
           // User is authenticated
           // Say hello to $userInfo['name']
@@ -57,6 +58,7 @@
       if (!$instructorInfo) {
           // We have no user info
           // redirect to Login Page
+        header('Location: http://localhost/groupstart/index.php'); 
       } else {
           // User is authenticated
           // Say hello to $userInfo['name']
