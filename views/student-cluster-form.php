@@ -7,14 +7,17 @@ $questions = ['question 1', 'question 2', 'question 3', 'question 4' ,'question 
 
 
 <html>
-    
+
 
   <head>
-      <?php include 'features/banner.php' ?>
-    
-      
+    <?php
+      include 'features/authentication.php';
+      include 'features/banner.php'
+    ?>
+
+
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-      
+
       <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
@@ -23,7 +26,7 @@ $questions = ['question 1', 'question 2', 'question 3', 'question 4' ,'question 
 
 <!-- Latest compiled JavaScript -->
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-      
+
       <link rel="stylesheet" type="text/css" href="../css/style.css" />
   </head>
 
@@ -91,9 +94,9 @@ $questions = ['question 1', 'question 2', 'question 3', 'question 4' ,'question 
 <label>
 <input type='radio' value='s-disagree'> &nbsp;Strongly Disagree
 </label></form>";
-     
+
      }?>
-     
+
               </div>
           </div>
           <div class="row" id="personality-behavioral-questions">
@@ -117,7 +120,7 @@ $questions = ['question 1', 'question 2', 'question 3', 'question 4' ,'question 
 <label>
 <input type='radio' value='s-disagree'> &nbsp;Strongly Disagree
 </label></form>";
-     
+
      }?>
               </div>
           </div>
@@ -142,7 +145,7 @@ $questions = ['question 1', 'question 2', 'question 3', 'question 4' ,'question 
 <label>
 <input type='radio' value='s-disagree'> &nbsp;Strongly Disagree
 </label></form>";
-     
+
      }?>
               </div>
           </div>
@@ -161,7 +164,7 @@ $questions = ['question 1', 'question 2', 'question 3', 'question 4' ,'question 
     <input type="checkbox" /> This is checkbox <br />
     <input type="checkbox" /> This is checkbox <br />
                   </div>
-                
+
               </div>
           </div>
           <div class="row" id="motivation-questions">
@@ -185,7 +188,7 @@ $questions = ['question 1', 'question 2', 'question 3', 'question 4' ,'question 
 <label>
 <input type='radio' value='s-disagree'> &nbsp;Strongly Disagree
 </label></form>";
-     
+
      }?>
               </div>
           </div><br>
@@ -197,6 +200,6 @@ $questions = ['question 1', 'question 2', 'question 3', 'question 4' ,'question 
       </div><br>
 
 
-    
+
   </body>
 </html>

@@ -6,31 +6,34 @@
 
 
 <html>
-    
+
   <link rel="stylesheet" type="text/css" href="../css/style.css" />
 
   <head>
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-      
+
   <script src="https://cdn.tinymce.com/4/tinymce.min.js"></script>
-      
+
       <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-      
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-      
+
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-      
+
     <script>
         tinymce.init({
             selector: "#textarea-description"
         });
   </script>
-      
+
       <script type="text/javascript" src="../js/add_project.js"></script>
-      
+
       <script src="../js/dropzone.min.js"></script>
-      
-      <?php include 'features/banner.php' ?>
+
+      <?php
+        include 'features/authentication.php';
+        include 'features/banner.php'
+      ?>
   </head>
 
 
@@ -87,13 +90,13 @@
 		<div class="block-content">
             <p>Step 1: Write project Description</p>
 		</div>
-		
+
 	</li>
 	<li class="block" style="float:right">
 		<div class="block-content">
 			<p>Step 2: Edit group importance statment</p>
 		</div>
-		
+
 	</li>
 	<li class="block" style="float:left">
 		<div class="block-content">
@@ -104,18 +107,18 @@
 		<div class="block-content">
 			<p>Step 4: Choose group introduction option</p>
 		</div>
-		
+
 	</li>
-	
-</ul>	
+
+</ul>
                         </div>
-                   
+
                 </div>
                     <div id="write-description-panel">
                     <textarea rows="4" cols="50" id="textarea-description" name="course_description"></textarea><br><br>
-                        
+
                         <h4>Project Attachments</h4>
-           
+
                         <form action="../php_scripts/upload.php" class="dropzone dz-clickable">
                <div class="dz-default dz-message">
                    <span>Drop files here to upload</span>
@@ -123,31 +126,31 @@
           </form><br><br>
                         <a href="#" class="btn btn-info" role="button" id="add-project-options">Add Project Options</a><i>(optional)</i><br><br>
                          <a href="#" class="btn btn-info" role="button" id="add-project-examples">Add Project Examples</a><i>(optional)</i>
-                        
+
                          <a href="#" class="btn btn-info" role="button" id="next-step-to-impo-statement" style="float:right">Next Step</a>
                         </div>
-                    
+
                     <div id="impo-state-panel">
                         <h2>Group Importance Statement</h2>
                                                  <p id="statement"> Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.
                         </p>
                                                      <a href="#" class="btn btn-info" role="button" id="edit-impo-statment">Edit</a>
                                                      <a href="#" class="btn btn-info" role="button" id="next-step" style="float:right">Next Step</a>
-                   
+
                 </div>
                     <div id="clustering-options-panel"><h2>Clustering Options</h2>
                         <div class="row">
 		<div class="col-md-12">
             <h2>Cluster using...</h2>
 			<div class="row" id="clustering-algos">
-                
+
 				<div class="col-md-4" id=random>
 					<h3 style="text-align:center">
 						Random Algorithm
 					</h3>
 					<p class="text-info">
 						description of what the random algorithm does.
-					</p> 
+					</p>
 				</div>
 				<div class="col-md-4" id="knn">
 					<h3 style="text-align:center">
@@ -155,8 +158,8 @@
 					</h3>
 					<p class="text-info">
 						description of what the KNN algorithm does.
-					</p> 
-					
+					</p>
+
 				</div>
 				<div class="col-md-4" id="weighting">
 					<h3 style="text-align:center">
@@ -164,15 +167,15 @@
 					</h3>
 					<p class="text-info">
 						description of what the weighting algorithm does.
-					</p> 
+					</p>
 				</div>
 			</div><br/>
-            
+
             <div class="row" id="space-out"><div class="col-md-12">
           <div style="float:left">Minimum Group Size <input type="text" name="min-group-size" id="min-group-size"></div>
                 <div style="float:right">Maximum Group Size <input type="text" name="max-group-size" id="max-group-size"></div></div>
             </div>
-            
+
 			<div class="row">
 				<div class="col-md-12">
 					<div class="row">
@@ -198,7 +201,7 @@
                     </ul>
                     <h5 style="color:black">Minimum group size:</h5>
                     <h5 style="color:black">Maximum group size:</h5>
-                            
+
 						</div>
                             </div>
 					</div>
@@ -214,7 +217,7 @@
                     </div>
                     <div id="charter-options-panel">Charter Options panel is now open
                     <a href="#" class="btn btn-info" role="button" id="next-step-to-complete-div" style="float:right">Next Step</a></div>
-                    
+
                     <div id="complete-add-project-process">
                     <div class="row">
 		<div class="col-md-12">
@@ -226,11 +229,11 @@
 			<div class="row">
 				<div class="col-md-6">
 					<h3>
-						Project Description 
+						Project Description
 					</h3>
 					<p>
 						Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
-					</p> 
+					</p>
 					<button type="button" class="btn btn-default">
 						Edit
 					</button>
@@ -241,7 +244,7 @@
 					</h3>
 					<p>
 						Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
-					</p> 
+					</p>
 					<button type="button" class="btn btn-default">
 						Edit
 					</button>
@@ -254,7 +257,7 @@
 					</h3>
 					<p>
 						Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
-					</p> 
+					</p>
 					<button type="button" class="btn btn-default">
 						Change
 					</button>
@@ -265,7 +268,7 @@
 					</h3>
 					<p>
 						Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
-					</p> 
+					</p>
 					<button type="button" class="btn btn-default">
 						Change
 					</button>
@@ -273,8 +276,8 @@
 			</div>
 		</div>
 	</div></div>
-                    
-                        
+
+
 			</div>
 		</div>
 	</div>

@@ -6,14 +6,17 @@
 
 
 <html>
-    
+
 
   <head>
-      <?php include 'features/banner.php' ?>
-    
-      
+    <?php
+      include 'features/authentication.php';
+      include 'features/banner.php'
+    ?>
+
+
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-      
+
       <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
@@ -22,7 +25,7 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-      
+
       <link rel="stylesheet" type="text/css" href="../css/style.css" />
   </head>
 
@@ -71,7 +74,7 @@
                     <div class="row" id="section4">
                         <div class="col-md-12"></div>
                     </div>
-                
+
                 </div>
                 </div>
 
@@ -96,7 +99,7 @@
             </div>
         </div>
       </div>
-      
+
 
   </body>
 </html>

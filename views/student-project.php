@@ -6,16 +6,19 @@
 
 
 <html>
-  <?php include 'features/banner.php' ?>
+<?php
+  include 'features/authentication.php';
+  include 'features/banner.php'
+?>
 
   <head>
-      
+
      <?php include 'features/banner.php' ?>
-      
+
       <link rel="stylesheet" type="text/css" href="../css/style.css" />
-      
+
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-      
+
       <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
@@ -24,13 +27,13 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    
+
   </head>
 
   <body>
       <?php echo $banner ?>
       <div class="container">
-          
+
 	<div class="row" id="memeber-list-area">
 		<div class="col-md-12">
             <h3>Group Members</h3>
@@ -110,7 +113,7 @@
     <tr><td>..</td><td>..</td></tr>
     <tr><td>..</td><td>..</td></tr>
     <tr><td>..</td><td>..</td></tr>
-    
+
   </tbody></table>
             <button type="button" class="btn btn-default pull-right">View Group Charter</button>
 		</div>

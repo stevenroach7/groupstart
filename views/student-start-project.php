@@ -6,14 +6,17 @@
 
 
 <html>
-  
+
 
   <head>
-      <?php include 'features/banner.php' ?>
-    
-    
+    <?php
+      include 'features/authentication.php';
+      include 'features/banner.php'
+    ?>
+
+
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-      
+
       <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
@@ -22,9 +25,9 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-      
+
       <link rel="stylesheet" type="text/css" href="../css/style.css" />
-    
+
   </head>
 
   <body>
@@ -68,7 +71,7 @@
                       <div class = "col-md-12">
                       <h3>Introdcution Options</h3><p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi.</p>
                   </div></div><br>
-                  
+
                   <!--button type="button" class="btn btn-block btn-default">Go to Group Formation Step</button-->
                   <a href="student-cluster-form.php" class="btn btn-info btn-block" role="button" id="student-form-group">Go to Group Formation Step</a>
               </div>

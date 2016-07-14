@@ -17,7 +17,11 @@
 
 
 <head>
-    <?php include 'features/banner.php' ?>
+  <?php
+    include 'features/authentication.php';
+    include 'features/banner.php'
+  ?>
+
       <link rel="stylesheet" type="text/css" href="../css/style.css" />
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
