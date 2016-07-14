@@ -49,7 +49,7 @@
 
 <body>
 
- <div class="jumbotron jumbotron-fluid" id="index-page" style="background-color:grey !important">
+ <div class="jumbotron jumbotron-fluid" id="index-page" style="background-color: #d3d3d3 !important">
   <div class="container">
     <div class="row" id="top-half">
               <h1 style="text-align:center">Welcome to GroupStart</h1>
