@@ -4,17 +4,19 @@
 
   use Auth0\SDK\Auth0;
 
-  if (session_status() == PHP_SESSION_NONE) {
+  if (session_status() == PHP_SESSION_NONE) { // Start session if it has not been started already so we have access to session storage.
     session_start();
   }
 
   // TODO: Rigorously test logic on this page.
 
-  if (!isset($_SESSION['loggedin']) && $_SESSION['loggedin']) { // If session loggedin is set and logged in == true.
+  // Check if user is logged in
+  if (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin']) { // If session loggedin isn't set or loggedin == false.
     // Redirect to login page.
     header('Location: http://localhost/groupstart/views/login.php');
   }
 
+  // Check if user is student or instructor
   if (isset($_SESSION['type'])) {
 
     if ($_SESSION['type'] == 'student') {
@@ -49,7 +51,7 @@
         // No instructor data so log them out.
         header('Location: http://localhost/groupstart/views/features/logout.php');
       }
-    } else {
+    } else { // type is initialized but is not student or instructor. Logout user. 
       header('Location: http://localhost/groupstart/views/features/logout.php');
     }
 

@@ -5,7 +5,7 @@
   $type = $_SESSION['type'];
 
 
-  // Unset all of the session variables. TODO: Figure out best way to do this.
+  // Unset all of the session variables.
   $_SESSION = array();
 
   // If it's desired to kill the session, also delete the session cookie.
