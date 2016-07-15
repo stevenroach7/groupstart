@@ -46,7 +46,7 @@
          <link rel="stylesheet" type="text/css" href="../css/style.css" />
 
       <script src="https://use.fontawesome.com/1439d65c28.js"></script>
-      <script src="../js/modal.js"></script>
+      <!--script src="../js/modal.js"></script-->
 
   </head>
 
@@ -82,15 +82,15 @@
           <div class= "row" id="bottom-half">
               <div class="col-md-12">
                   <div class="row" id="users-part">
-              <div class="col-md-6">
+              <div class="col-md-12">
                   <div class="row" id="sign-up-side">
                   <div class="col-md-12" id="sign-up-buttons" >
                       <div id="p0">
                       <h1 style="color:black;text-align:center">Sign-Up</h1>
-            <div id="su-buttons">
+            <!--div id="su-buttons">
                       <button type="button" class="btn btn-primary" id="student-myBtn">Student</button><br>
                       <button type="button" class="btn btn-primary" id="instructor-myBtn">Instructor</button>
-</div>
+</div-->
 
 <!-- The Modal -->
 <div id="stuModal" class="modal">
@@ -166,19 +166,24 @@
 
 
     </script>
-
-    <button onclick="window.studentSignIn();">Students</button>
-    <button onclick="window.instructorSignIn();">Instructors</button>
+<div id="su-buttons">
+    
+    <button onclick="window.studentSignIn();" type="button" class="btn btn-primary" id="student-myBtn">Student</button><br>
+                      <button onclick="window.instructorSignIn();" type="button" class="btn btn-primary" id="instructor-myBtn">Instructor</button>
+    
+    <!--button onclick="window.studentSignIn();">Students</button-->
+    <!--button onclick="window.instructorSignIn();">Instructors</button-->
+                      </div>      
                       </div>
 
                   </div>
 
               </div>
-                  <div class="row" id="login-side">
+                  <!--div class="row" id="login-side">
 
               <div class="col-md-6">
                   <div class="row" id="login-square">
-                  <!--div class="vr">&nbsp;</div-->
+            
                   <div class="col-md-12" id="login-form"><div id="p1">
                       <h1 style="color:black;text-align:center">Sign-In</h1><br>
                       <form>
@@ -204,7 +209,7 @@
                       </div>
                       </div>
                   </div>
-                      </div>
+                      </div-->
                   </div>
                   </div>
           </div>
