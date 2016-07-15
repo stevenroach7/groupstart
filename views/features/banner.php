@@ -23,7 +23,7 @@ if (isset($_SESSION['type'])) { // Create redirect links for banner.
   $settings ='<a href="student-settings.php"><span class="glyphicon glyphicon-cog pull-right" style="font-size: 40px; margin-top:20px;"></span></a>';
 
   if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
-    $logout = "<a href='features/logout.php'>Logout</a>";
+    $logout = "<a class= 'logout-button pull-right' href='features/logout.php' style='font-size: 25px; margin-top:20px; margin-right:20px;'>Logout</a>";
   } else {
     $logout = "";
   }
