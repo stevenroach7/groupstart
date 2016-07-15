@@ -33,7 +33,7 @@
         header('Location: http://localhost/groupstart/views/features/logout.php');
       }
 
-    } else { // type == instructor
+    } elseif ($_SESSION['type'] == 'instructor') {
 
       $auth0Instructors = new Auth0(array(
         'domain'        => 'groupstartinstructors.auth0.com',
@@ -49,9 +49,11 @@
         // No instructor data so log them out.
         header('Location: http://localhost/groupstart/views/features/logout.php');
       }
+    } else {
+      header('Location: http://localhost/groupstart/views/features/logout.php');
     }
 
-  } else { // No Session type variable so redirect to logout page. 
+  } else { // No Session type variable so redirect to logout page.
     header('Location: http://localhost/groupstart/views/features/logout.php');
   }
 

@@ -11,6 +11,7 @@
 
       <?php
         include 'features/authentication.php';
+        include 'features/student-authentication.php';
         include 'features/banner.php'
       ?>
 
