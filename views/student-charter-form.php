@@ -12,6 +12,7 @@ $questions = ['question 1', 'question 2', 'question 3', 'question 4' ,'question 
   <head>
     <?php
       include 'features/authentication.php';
+      include 'features/student-authentication.php';
       include 'features/banner.php'
     ?>
 

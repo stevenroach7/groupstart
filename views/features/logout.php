@@ -5,7 +5,7 @@
   $type = $_SESSION['type'];
 
 
-  // Unset all of the session variables. TODO: Figure out best way to do this. 
+  // Unset all of the session variables. TODO: Figure out best way to do this.
   $_SESSION = array();
 
   // If it's desired to kill the session, also delete the session cookie.
@@ -28,8 +28,10 @@
   // Check if student or instructor before redirecting
   if ($type == 'student') {
     header('Location: https://groupstartstudents.auth0.com/v2/logout?returnTo=http://localhost/groupstart/views/login.php');
-  } else {
+  } elseif ($type == 'instructor') {
     header('Location: https://groupstartinstructors.auth0.com/v2/logout?returnTo=http://localhost/groupstart/views/login.php');
+  } else {
+    header('Location: http://localhost/groupstart/views/login.php');
   }
 
 ?>

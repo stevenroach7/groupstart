@@ -446,16 +446,16 @@ body{
         border-right: 6px solid transparent;
         border-bottom: 6px solid #be2626; }
 
-/* Below is styling on instrcutor-courses.php*/
+/* Below is styling on instructor-courses.php*/
 
     #project-list, #student-list {
         border:2px solid black;
         width:auto;
         height: 100px;
-        overflow-x: scroll; 
+        overflow-x: scroll;
     }
 
-/*Above is styling for on instrcutor-courses.php*/
+/*Above is styling for on instructor-courses.php*/
 
 
 /*Styling for instructor-project.php*/
@@ -474,7 +474,7 @@ body{
     width: 438px;
     overflow-x: scroll;
     border:1px solid grey;
-    
+
 }
 .ui-tabs.ui-tabs-vertical {
     padding: 0;
@@ -546,7 +546,7 @@ body{
 
 #write-description, #group-importance-statement, #group-clustering-formation, #group-introduction-mechanism {
     height: 100px;
-	margin-top: 60px;	
+	margin-top: 60px;
     font-size: 20px;
     text-align: center;
     vertical-align: middle;
@@ -587,7 +587,7 @@ body{
 
 #chart li {
 	display: inline;
-	
+
 }
 
 #chart .block {
@@ -599,7 +599,7 @@ body{
 	-ms-transform: rotate( 45deg );
 		transform: rotate( 45deg );
 	position: relative;
-	
+
 }
 
 
@@ -620,7 +620,7 @@ body{
 	top: 50%;
 	width: 100%;
 	text-align: center;
-	margin-top: -0.5em;	
+	margin-top: -0.5em;
 }
 
 
@@ -650,7 +650,7 @@ body{
     border:2px solid black;
     width:auto;
     height: 300px;
-    overflow-x: scroll; 
+    overflow-x: scroll;
 }
 
 tr {
@@ -659,7 +659,7 @@ tr {
 }
 
 table{
-    height:300px; 
+    height:300px;
 }
 
 tbody{
@@ -758,12 +758,12 @@ tbody{
 #change-pw button{
     margin-top: 30px;
 }
-    
+
  #course-manage-list {
         border:2px solid black;
         width:auto;
         height: 200px;
-        overflow-x: scroll; 
+        overflow-x: scroll;
     }
 /*Styling for student-settings.php*/
 
@@ -772,10 +772,10 @@ tbody{
 /*Styling for student-cluster-form.php*/
 
 #skills-list{
-    border:2px solid #ccc; 
-    width:100%; 
-    height: 200px; 
-    overflow-y: scroll; 
+    border:2px solid #ccc;
+    width:100%;
+    height: 200px;
+    overflow-y: scroll;
 }
 
 /*Styling for student-cluster-form.php*/
@@ -806,18 +806,18 @@ input[type="text"]{
 }*/
 #hom-page p,  #hom-page h1,  #hom-page h5,  #hom-pageh3{
     color: white;
-    
+
 }
 
 #webpage-description div:first-of-type p{
     font-size: 30px;
-    text-align:center; 
+    text-align:center;
 }
 
 #webpage-description div:first-of-type h5{
     font-size: 20px;
     text-align:center;
-    
+
 }
 #research-affil{
     margin-bottom: 20px;
@@ -922,7 +922,7 @@ input[type="text"]{
     margin: 0 auto;
     display: block;
     position: relative;
-    
+
 }
 
 #su-buttons button{

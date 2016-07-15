@@ -11,6 +11,7 @@
   <head>
 		<?php
 			include 'features/authentication.php';
+			include 'features/instructor-authentication.php';
 			include 'features/banner.php'
 		?>
 

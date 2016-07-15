@@ -10,17 +10,15 @@
     'domain'        => 'groupstartstudents.auth0.com',
     'client_id'     => 'KPiFueQyhPeAf8Gq1y0maxGbkThpG1fm',
     'client_secret' => 'I3EaB8zlG8-7oKohfL4r7ntfxYD_tWOReDkhcGQMVZcJau9KbJVaUAFcxo1XvnUC',
-    'redirect_uri'  => 'http://localhost/groupstart/views/student-courses.php'
+    'redirect_uri'  => 'http://localhost/groupstart/views/features/student-callback.php'
   ));
 
   $auth0Instructors = new Auth0(array(
     'domain'        => 'groupstartinstructors.auth0.com',
     'client_id'     => '0Q8Sf2krAjcnTwmXO8CxoJ6qQd0JFNrb',
     'client_secret' => 'vP3PKAfgSTQ3b7FROEqo2x5aC2SIdQlxxFiGxDPiBpoPtgJC2dCuhYk4ZAiI4AQk',
-    'redirect_uri'  => 'http://localhost/groupstart/views/instructor-courses.php'
+    'redirect_uri'  => 'http://localhost/groupstart/views/features/instructor-callback.php'
   ));
-
-
 
  ?>
 
@@ -132,7 +130,7 @@
               title: "Student Sign Up"
             }
           }
-          , callbackURL: 'http://localhost/groupstart/views/student-courses.php'
+          , callbackURL: 'http://localhost/groupstart/views/features/student-callback.php'
           , responseType: 'code'
           , authParams: {
             scope: 'openid email'  // Learn about scopes: https://auth0.com/docs/scopes
@@ -154,7 +152,7 @@
               title: "Instructor Sign Up"
             }
           }
-          , callbackURL: 'http://localhost/groupstart/views/instructor-courses.php'
+          , callbackURL: 'http://localhost/groupstart/views/features/instructor-callback.php'
           , responseType: 'code'
           , authParams: {
             scope: 'openid email'  // Learn about scopes: https://auth0.com/docs/scopes
