@@ -23,7 +23,7 @@
 
   if (!$instructorInfo) {
       // We have no user info
-      // redirect to Login Page
+      // Log user out 
     header('Location: http://localhost/groupstart/views/features/logout.php');
   } else {
       // User is authenticated

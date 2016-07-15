@@ -21,8 +21,7 @@
   $studentInfo = $auth0Students->getUser();
 
   if (!$studentInfo) {
-    // Redirect to Login Page
-    // echo "no student data";
+    // Log user out
     header('Location: http://localhost/groupstart/views/features/logout.php');
   } else {
     // User is authenticated
