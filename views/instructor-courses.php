@@ -1,17 +1,7 @@
 <?php
 
 
-
-  session_start();
-
-  $_SESSION['loggedin'] = true; // TODO: Change this so that users aren't logged in if they go directly to this page. 
-  $_SESSION['type'] = 'instructor';
-
-
-
-
   $courses = ['Introduction to Computer Science', 'User Interface Design'];
-
  ?>
 
 
