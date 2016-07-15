@@ -1,19 +1,21 @@
 <?php
 
-
-
   session_start();
 
   $_SESSION['loggedin'] = true; // TODO: Change this so that users aren't logged in if they go directly to this page. 
   $_SESSION['type'] = 'instructor';
 
 
-
-
   $courses = ['Introduction to Computer Science', 'User Interface Design'];
 
  ?>
 
+
+<?php
+//Connecting to mysql database
+ $db = mysqli_connect('localhost','root','','groupstart')
+ or die('Error connecting to MySQL server.');
+?>
 
 
 <head>
@@ -43,6 +45,12 @@
 </head>
 <body>
     <?php echo $banner ?>
+    
+    <?php
+//Selecting all rows in Instructor_courses table
+$query = "SELECT * FROM instructors_courses";
+mysqli_query($db, $query) or die('Error querying database.');
+?>
 
 <div class="container" id="instructor-course-list">
     <h1 style="text-align:center">List of Courses</h1>
