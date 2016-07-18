@@ -795,6 +795,15 @@ input[type="text"]{
 
 /*Styling for login.php*/
 
+body .a0-primary.a0-next{
+    background-color: #337ab7 !important;
+    
+}
+
+body .a0-icon-badge{
+    visibility: hidden;
+}
+
 #home-page{
     /*background: grey;*/
 }
