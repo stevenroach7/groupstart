@@ -11,7 +11,7 @@
  or die('Error connecting to MySQL server.');
 ?>
 
-
+<html>
 <head>
   <?php
     include 'features/authentication.php';

@@ -689,6 +689,10 @@ tbody{
     /*background: blue;*/
 }
 
+#section0{
+    height: 75px;
+}
+
 #section1 div:first-of-type {
     /*background: orange;*/
     height: 75px;
@@ -719,6 +723,10 @@ tbody{
     /*background: grey;*/
 }
 
+#dn input[type="text"]{
+    width: 100%;
+}
+
 #fn input[type="text"]{
     /*margin-top: 2px;*/
     width: 100%;
@@ -727,6 +735,10 @@ tbody{
 #ln input[type="text"]{
     /*margin-top: 2px;*/
     width: 100%;
+}
+
+#dn p{
+    text-align: center;
 }
 
 #ln p{

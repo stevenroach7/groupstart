@@ -34,7 +34,7 @@
   <body>
       <?php echo $banner ?>
       <div class="container">
-
+          <h1>Student's Settings</h1>
 	<div class="row" id="memeber-list-area">
 		<div class="col-md-12">
             <h3>Group Members</h3>

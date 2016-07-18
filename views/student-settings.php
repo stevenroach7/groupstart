@@ -33,6 +33,7 @@
   <body>
       <?php echo $banner ?>
     <div class="container">
+        <h1>Student's Settings</h1>
         <div class="row">
             <div class=col-md-12>
                 <div class="row" id="profile-area">
@@ -85,15 +86,42 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <div id='course-manage-list'>
-              <ul class='list-group'>
-                  <li class='list-group-item'>Course 1</li>
-                  <li class='list-group-item'>Course 2</li>
-                  <li class='list-group-item'>Course 3</li>
-                  <li class='list-group-item'>Course 4</li>
-                  <li class='list-group-item'>Course 5</li>
-                  <li class='list-group-item'>Course 6</li>
-              </ul>
+                <div class="list-group"id='course-manage-list'>
+                    <a class="list-group-item clearfix">Course 1
+      <span class="pull-right">
+        <button class="btn btn-xs btn-info">Leave course</button>
+      </span>
+    </a>
+                    <a class="list-group-item clearfix">Course 2
+      <span class="pull-right">
+        <button class="btn btn-xs btn-info">Leave course</button>
+      </span>
+    </a>
+                    <a class="list-group-item clearfix">Course 3
+      <span class="pull-right">
+        <button class="btn btn-xs btn-info">Leave course</button>
+      </span>
+    </a>
+                    <a class="list-group-item clearfix">Course 4
+      <span class="pull-right">
+        <button class="btn btn-xs btn-info">Leave course</button>
+      </span>
+    </a>
+                    <a class="list-group-item clearfix">Course 5
+      <span class="pull-right">
+        <button class="btn btn-xs btn-info">Leave course</button>
+      </span>
+    </a>
+                    <a class="list-group-item clearfix">Course 6
+      <span class="pull-right">
+        <button class="btn btn-xs btn-info">Leave course</button>
+      </span>
+    </a>
+                    <a class="list-group-item clearfix">Course 7
+      <span class="pull-right">
+        <button class="btn btn-xs btn-info">Leave course</button>
+      </span>
+    </a>     
           </div><br>
                 <button type="button" class="btn btn-block btn-primary">Save Changes</button>
                 <br>

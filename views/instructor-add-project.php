@@ -26,7 +26,8 @@
         });
   </script>
 
-      <script type="text/javascript" src="../js/add_project.js"></script>
+      <!--script type="text/javascript" src="../js/add_project.js"></script-->
+      <script type="text/javascript" src="../js/instructor-add-project.js"></script>
 
       <script src="../js/dropzone.min.js"></script>
 
@@ -47,7 +48,7 @@
 				<div class="col-md-4" id="steps-panel">
                     <div class="row" id="panel-1"><div class="col-md-12">
                         <div class="panel panel-default" id="write-description">
-                            <div class="panel-body">
+                            <div class="panel-body" id="wr-pr-de">
                                 <label>
                                     <input type="checkbox" value="project-desrciption"> &nbsp;Write project descriprion</label>
                             </div>
@@ -84,7 +85,7 @@
                     <a href="instructor-project.php" class="btn btn-info btn-block" role="button" id="create-project">Add New Project</a>
 				</div>
 				<div class="col-md-8" id="panel-content">
-                    <div id="start-div">
+                    <div id="start-div" class="section current">
                         <h1 style="text-align:center">Steps to add a new project</h1><br><div id="steps-to-add-project">
                         <ul id="chart">
 	<li class="block" style="float:left">
@@ -115,7 +116,7 @@
                         </div>
 
                 </div>
-                    <div id="write-description-panel">
+                    <div id="write-description-panel" class="section">
                     <textarea rows="4" cols="50" id="textarea-description" name="course_description"></textarea><br><br>
 
                         <h4>Project Attachments</h4>
@@ -131,15 +132,15 @@
                          <a href="#" class="btn btn-info" role="button" id="next-step-to-impo-statement" style="float:right">Next Step</a>
                         </div>
 
-                    <div id="impo-state-panel">
+                    <div id="impo-state-panel" class="section">
                         <h2>Group Importance Statement</h2>
                                                  <p id="statement"> Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.
                         </p>
                                                      <a href="#" class="btn btn-info" role="button" id="edit-impo-statment">Edit</a>
-                                                     <a href="#" class="btn btn-info" role="button" id="next-step" style="float:right">Next Step</a>
+                                                     <a href="#" class="btn btn-info" role="button" id="next-step-to-clustering" style="float:right">Next Step</a>
 
                 </div>
-                    <div id="clustering-options-panel"><h2>Clustering Options</h2>
+                    <div id="clustering-options-panel" class="section"><h2>Clustering Options</h2>
                         <div class="row">
 		<div class="col-md-12">
             <h2>Cluster using...</h2>
@@ -210,16 +211,16 @@
 			</div><br>
 			<div class="row">
 				<div class="col-md-12">
-                     <a href="#" class="btn btn-info" role="button" id="next-step" style="float:right">Next Step</a>
+                     <a href="#" class="btn btn-info" role="button" id="next-step-to-charter" style="float:right">Next Step</a>
 				</div>
 			</div>
 		</div>
 	</div><br/>
                     </div>
-                    <div id="charter-options-panel">Charter Options panel is now open
+                    <div id="charter-options-panel" class="section">Charter Options panel is now open
                     <a href="#" class="btn btn-info" role="button" id="next-step-to-complete-div" style="float:right">Next Step</a></div>
 
-                    <div id="complete-add-project-process">
+                    <div id="complete-add-project-process" class="section">
                     <div class="row">
 		<div class="col-md-12">
             <h1>You have completed the necessary steps. Click <b>add new project</b> at the bottom left-hand side of this page to confirm.</h1>
