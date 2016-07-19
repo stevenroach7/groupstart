@@ -51,13 +51,13 @@
     } else { // auth0_id does not exist yet in students table.
       echo "Need to register you.";
       //insert query goes here
-      $register = "INSERT INTO `students` (`student_id`, `auth0_id`, `email`, `pass_word`, `registration_time`, `first_name`, `last_name`, `age_range`, `time_zone`)
-      VALUES (NULL, '$auth0_id', '$email', '', CURRENT_TIMESTAMP, '$name', '', NULL, NULL)";
+      $register = "INSERT INTO `students` (`student_id`, `auth0_id`, `email`, `registration_time`, `name`)
+      VALUES (NULL, '$auth0_id', '$email', CURRENT_TIMESTAMP, '$name')";
 
       if ($db->query($register) === TRUE) {
         echo "New record created successfully";
       } else {
-        echo "Error: " . $q . "<br>" . $db->error;
+        echo "Error: " . $register . "<br>" . $db->error;
         header('Location: http://localhost/groupstart/views/features/logout.php'); // Error so log user out so they can try again.
       }
     }
