@@ -1,32 +1,3 @@
-<?php
-
-  // Restart session here to help with testing.
-
-  // Unset all of the session variables.
-  if (!session_status() == PHP_SESSION_NONE) {
-    $_SESSION = array();
-
-    // If it's desired to kill the session, also delete the session cookie.
-    // Note: This will destroy the session, and not just the session data!
-    if (ini_get("session.use_cookies")) {
-        $params = session_get_cookie_params();
-        setcookie(session_name(), '', time() - 42000,
-            $params["path"], $params["domain"],
-            $params["secure"], $params["httponly"]
-        );
-    }
-
-    // Finally, destroy the session.
-    session_destroy();
-  }
-
-  session_start();
-  $_SESSION['loggedin'] = false;
-
-
- ?>
-
-
 <html>
 
   <head>
@@ -40,7 +11,7 @@
 <!-- Latest compiled JavaScript -->
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-         <link rel="stylesheet" type="text/css" href="css/style.css" />
+         <link rel="stylesheet" type="text/css" href="../../css/style.css" />
 
       <script src="https://use.fontawesome.com/1439d65c28.js"></script>
 </head>
@@ -73,7 +44,7 @@
               </div>
               </div></div>
   </div>
-     <a href="views/login.php" class="btn btn-info btn-lg center-block" role="button" id="get-started">Get Started</a>
+     <a href="../login.php" class="btn btn-info btn-lg center-block" role="button" id="get-started">Get Started</a>
 </div>
 
 
