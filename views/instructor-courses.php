@@ -5,11 +5,6 @@
  ?>
 
 
-<?php
-//Connecting to mysql database
- $db = mysqli_connect('localhost','root','','groupstart')
- or die('Error connecting to MySQL server.');
-?>
 
 <html>
 <head>
@@ -39,15 +34,17 @@
 
 </head>
 <body>
-    <?php echo $banner ?>
-    
-    <?php
-//Selecting all rows in Instructor_courses table
-$query = "SELECT * FROM instructors_courses";
-mysqli_query($db, $query) or die('Error querying database.');
-?>
+  <?php echo $banner ?>
 
-<div class="container" id="instructor-course-list">
+  <?php
+    include '../config/connection.php';
+
+    //Selecting all rows in Instructor_courses table
+    $query = "SELECT * FROM instructors_courses";
+    mysqli_query($db, $query) or die('Error querying database.');
+  ?>
+
+  <div class="container" id="instructor-course-list">
     <h1 style="text-align:center">List of Courses</h1>
     <!-- <h2 style="text-align:center">Welcome <?php echo $instructorInfo['name']?></h2><br> -->
 
@@ -100,7 +97,7 @@ mysqli_query($db, $query) or die('Error querying database.');
 
     }
     ?>
-    </div><br>
+  </div><br>
          <!-- <a href="instructor-add-course.php" class="btn btn-info" role="button" id="add-new-course">Add New Course</a> -->
         <!--button id="add-new-course" type="button" class="btn btn-default">Add New Course</button-->
     <a href="instructor-add-course.php" class="btn btn-info" role="button" id="add-new-course">Add New Course</a>

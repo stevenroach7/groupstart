@@ -6,7 +6,6 @@
       include 'features/authentication.php';
       include 'features/instructor-authentication.php';
       include 'features/banner.php';
-//include '../config/connection.php';
     ?>
 
       <link rel="stylesheet" type="text/css" href="../css/style.css" />
@@ -32,17 +31,9 @@
       <?php
         include '../config/connection.php';
 
- //$con = mysql_connect("localhost", "root", "", "REUdata");
-
-  /*if (!$con)
-  {
-    die('Could not connect: ' . mysql_error());
-  };*/
-    
-  //mysql_select_db("REUdata", $db);
 
         $title = $description = $platform = $subject_area = "";
-        
+
         if(isset($_POST['submit'])){
             //echo "submit button has been clicked";
                 if(empty($_POST['title']) || (empty($_POST['description']))){
@@ -53,24 +44,24 @@
                  $description = $_POST['description'];
                 $platform = $_POST['platform'];
                 $subject_area = $_POST['subject_area'];
-                
+
                 $query = "INSERT INTO courses (course_id, title, description, platform, subject_area, registration_code) VALUES (NULL, '$title', '$description', '$platform', '$subject_area', '54321')";
-                
+
                 $retval = mysqli_query($db,$query);
-    
+
     if(! $retval ) {
       die('Could not enter data: ' . mysql_error());
     }
     //echo "Entered data successfully\n";
 
-  //mysql_close($db);       
+
             }
     };
-      
+
       ?>
       <div class="container main-page-form">
           <h1>Add New Course</h1><br>
-      <form  action="" method="POST" id ="add-course-form">
+      <form action="" method="POST" id ="add-course-form">
           <h4>Course Name</h4>
           <input type="text" name="title" value="<?php echo $title;?>"><br>
           <h4>Platform</h4>
@@ -97,5 +88,3 @@
 
   </body>
 </html>
-
-

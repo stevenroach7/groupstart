@@ -31,7 +31,44 @@
   </head>
 
   <body>
-       <?php echo $banner ?>
+   <?php echo $banner ?>
+   <?php
+    // script to add course.
+     include '../config/connection.php';
+     echo "Here we go";
+
+
+
+     if(isset($_POST['student_add_course'])){
+        echo "User has pressed submit";
+        if(empty($_POST['registration_code'])){
+          echo "Registration code is empty";
+        } else {
+          $registration_code = $_POST['registration_code'];
+          echo "User has entered registration code";
+
+          // Check if registration code exists in courses.
+
+          // Get course id of course
+
+          // If so, add student to that course
+
+
+          // $query = "INSERT INTO courses (course_id, title, description, platform, subject_area, registration_code) VALUES (NULL, '$title', '$description', '$platform', '$subject_area', '54321')";
+
+          // $retval = mysqli_query($db,$query);
+          //
+          // if(! $retval ) {
+          //   die('Could not enter data: ' . mysql_error());
+          // }
+          //echo "Entered data successfully\n";
+
+          //mysql_close($db);
+        }
+      };
+
+    ?>
+
 
     <div class="container" id="instructor-course-list">
         <h1 style="text-align:center">List of Courses</h1>
@@ -77,10 +114,10 @@
     ?>
     </div><br>
 
-      <form method="post" action="student-courses.php">
+      <form method="POST" action="student-courses.php" id="add-course-student-form">
         <h4>Add New Course</h4>
-        <input type="text" name="registration-code" placeholder="Enter Course Registration Code">
-        <input type="submit" name="student-add-course" value="Submit">
+        <input type="text" name="registration_code" placeholder="Enter Course Registration Code">
+        <input type="submit" name="student_add_course" value="Submit" form = "add-course-student-form">
       </form>
     </div>
 
