@@ -63,6 +63,20 @@
     }
 
 
+    // Add student_id to session storage.
+    $get_student_id = mysqli_query($db, "SELECT * FROM students WHERE auth0_id = '".$auth0_id."'");
+
+      // Get course id of course
+    if (mysqli_num_rows($get_student_id) > 0) {
+        // auth0_id is unique in database so this will return 1 or 0 results.
+        while($row = mysqli_fetch_assoc($get_student_id)) {
+          $_SESSION['student_id'] = $row['student_id'];
+        }
+    } else { // 0 results are returned so there must be an error.
+      header('Location: http://localhost/groupstart/views/features/logout.php'); // Error so log user out so they can try again.
+    }
+
+
     // Redirect to student homepage
     header('Location: http://localhost/groupstart/views/student-courses.php'); // Comment this line out to test if database insert logic is correct.
   }

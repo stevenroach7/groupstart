@@ -48,22 +48,36 @@
           echo "User has entered registration code";
 
           // Check if registration code exists in courses.
-
-          // Get course id of course
-
-          // If so, add student to that course
+          $check_registration_code = mysqli_query($db, "SELECT * FROM courses WHERE registration_code = '".$registration_code."'");
 
 
-          // $query = "INSERT INTO courses (course_id, title, description, platform, subject_area, registration_code) VALUES (NULL, '$title', '$description', '$platform', '$subject_area', '54321')";
+            // Get course id of course
+          if (mysqli_num_rows($check_registration_code) > 0) {
+            // output data of each row
+            while($row = mysqli_fetch_assoc($check_registration_code)) {
+              $course_id = $row["course_id"];
+            }
 
-          // $retval = mysqli_query($db,$query);
-          //
-          // if(! $retval ) {
-          //   die('Could not enter data: ' . mysql_error());
-          // }
-          //echo "Entered data successfully\n";
+            // If so, add student to that course
 
-          //mysql_close($db);
+
+            $query = "INSERT INTO student_courses (course_id, title, description, platform, subject_area, registration_code) VALUES (NULL, '$title', '$description', '$platform', '$subject_area', '54321')";
+
+            $retval = mysqli_query($db,$query);
+
+            if(! $retval ) {
+              die('Could not enter data: ' . mysql_error());
+            }
+            echo "Entered data successfully\n";
+
+
+
+          } else {
+            echo "Registration code does not exist. Please try again.";
+          }
+
+
+
         }
       };
 

@@ -1,7 +1,6 @@
 <?php
 
-$questions = ['question 1', 'question 2', 'question 3', 'question 4' ,'question 5'];
-
+$questions = ['question 1', 'question 2', 'question 3', 'question 4', 'question 5'];
 
  ?>
 
@@ -78,76 +77,77 @@ $questions = ['question 1', 'question 2', 'question 3', 'question 4' ,'question 
               <div class="col-md-12">
                   <h1>Learning Style Questions</h1>
                   <?php foreach ($questions as $question) {
-     echo "<h5>$question</h5>
+    echo "<h5>$question</h5>
      <form method='post' action='student-cluster-form.php'>
      <label>
-     <input type='radio' value='s-agree'> &nbsp;Strongly Agree
+     <input type='radio' name='learning' value='s-agree'> &nbsp;Strongly Agree
 </label>
 <label>
-    <input type='radio' value='agree'> &nbsp;Agree
+    <input type='radio' name='learning' value='agree'> &nbsp;Agree
 </label>
 <label>
-    <input type='radio' value='neutral'> &nbsp;Neutral
+    <input type='radio' name='learning' value='neutral'> &nbsp;Neutral
 </label>
 <label>
-<input type='radio' value='disagree'> &nbsp;Disagree
+<input type='radio' name='learning' value='disagree'> &nbsp;Disagree
 </label>
 <label>
-<input type='radio' value='s-disagree'> &nbsp;Strongly Disagree
+<input type='radio' name='learning' value='s-disagree'> &nbsp;Strongly Disagree
 </label></form>";
-
-     }?>
+}?>
 
               </div>
           </div>
           <div class="row" id="personality-behavioral-questions">
               <div class="col-md-12">
                   <h1>Personality and Behavioral Questions</h1>
-                  <?php foreach ($questions as $question) {
-     echo "<h5>$question</h5>
+
+  <?php foreach ($questions as $question) {
+    echo "<h5>$question</h5>
      <form method='post' action='student-cluster-form.php'>
      <label>
-     <input type='radio' value='s-agree'> &nbsp;Strongly Agree
+     <input type='radio' name='personality' value='s-agree'> &nbsp;Strongly Agree
 </label>
 <label>
-    <input type='radio' value='agree'> &nbsp;Agree
+    <input type='radio' name='personality' value='agree'> &nbsp;Agree
 </label>
 <label>
-    <input type='radio' value='neutral'> &nbsp;Neutral
+    <input type='radio' name='personality' value='neutral'> &nbsp;Neutral
 </label>
 <label>
-<input type='radio' value='disagree'> &nbsp;Disagree
+<input type='radio' name='personality' value='disagree'> &nbsp;Disagree
 </label>
 <label>
-<input type='radio' value='s-disagree'> &nbsp;Strongly Disagree
+<input type='radio' name='personality' value='s-disagree'> &nbsp;Strongly Disagree
 </label></form>";
+}?>
 
-     }?>
+
+
               </div>
           </div>
           <div class="row" id="expereinece-questions">
               <div class="col-md-12">
                   <h1>Experience Question</h1>
                   <?php foreach ($questions as $question) {
-     echo "<h5>$question</h5>
+    echo "<h5>$question</h5>
      <form method='post' action='student-cluster-form.php'>
      <label>
-     <input type='radio' value='s-agree'> &nbsp;Strongly Agree
+     <input type='radio' name='experience' value='s-agree'> &nbsp;Strongly Agree
 </label>
 <label>
-    <input type='radio' value='agree'> &nbsp;Agree
+    <input type='radio' name='experience' value='agree'> &nbsp;Agree
 </label>
 <label>
-    <input type='radio' value='neutral'> &nbsp;Neutral
+    <input type='radio' name='experience' value='neutral'> &nbsp;Neutral
 </label>
 <label>
-<input type='radio' value='disagree'> &nbsp;Disagree
+<input type='radio' name='experience' value='disagree'> &nbsp;Disagree
 </label>
 <label>
-<input type='radio' value='s-disagree'> &nbsp;Strongly Disagree
+<input type='radio' name='experience' value='s-disagree'> &nbsp;Strongly Disagree
 </label></form>";
-
-     }?>
+}?>
               </div>
           </div>
           <div class="row" id="skills-questions">
@@ -175,22 +175,21 @@ $questions = ['question 1', 'question 2', 'question 3', 'question 4' ,'question 
     echo "<h5>$question</h5>
      <form method='post' action='student-cluster-form.php'>
      <label>
-     <input type='radio' value='s-agree'> &nbsp;Strongly Agree
+     <input type='radio' name='motivation' value='s-agree'> &nbsp;Strongly Agree
 </label>
 <label>
-    <input type='radio' value='agree'> &nbsp;Agree
+    <input type='radio' name='motivation' value='agree'> &nbsp;Agree
 </label>
 <label>
-    <input type='radio' value='neutral'> &nbsp;Neutral
+    <input type='radio' name='motivation' value='neutral'> &nbsp;Neutral
 </label>
 <label>
-<input type='radio' value='disagree'> &nbsp;Disagree
+<input type='radio' name='motivation' value='disagree'> &nbsp;Disagree
 </label>
 <label>
-<input type='radio' value='s-disagree'> &nbsp;Strongly Disagree
+<input type='radio' name='motivation' value='s-disagree'> &nbsp;Strongly Disagree
 </label></form>";
-
-     }?>
+}?>
               </div>
           </div><br>
           <div class="row" id="finished-button">
