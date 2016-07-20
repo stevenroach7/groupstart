@@ -40,6 +40,8 @@
 
     // Store auth0_id in Session.
     $_SESSION['user_id'] = $auth0_id; // TODO: Possibly remove this.
+    $_SESSION['email'] = $email;
+    $_SESSION['name'] = $name;
 
     // Check if user is in database based off of Auth0-userID
     // Create query and number of rows returned from query.

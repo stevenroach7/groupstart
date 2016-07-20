@@ -33,13 +33,13 @@
   <body>
    <?php echo $banner ?>
    <?php
-    // script to add course.
+      // script to add course.
      include '../config/connection.php';
 
 
-     // TODO: Figure out how to style validation alerts. 
+     // TODO: Figure out how to style validation alerts.
 
-     if(isset($_POST['student_add_course'])){
+     if(isset($_POST['add_course_submit'])){
 
         if(empty($_POST['registration_code'])){
 
@@ -137,7 +137,7 @@
       <form method="POST" action="student-courses.php" id="add-course-student-form">
         <h4>Add New Course</h4>
         <input type="text" name="registration_code" placeholder="Enter Course Registration Code">
-        <input type="submit" name="student_add_course" value="Submit" form = "add-course-student-form">
+        <input type="submit" name="add_course_submit" value="Submit" form = "add-course-student-form">
       </form>
     </div>
 
