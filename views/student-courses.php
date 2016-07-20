@@ -35,17 +35,16 @@
    <?php
     // script to add course.
      include '../config/connection.php';
-     echo "Here we go";
 
 
+     // TODO: Figure out how to style validation alerts. 
 
      if(isset($_POST['student_add_course'])){
-        echo "User has pressed submit";
+
         if(empty($_POST['registration_code'])){
-          echo "Registration code is empty";
+
         } else {
           $registration_code = $_POST['registration_code'];
-          echo "User has entered registration code";
 
           // Check if registration code exists in courses.
           $check_registration_code = mysqli_query($db, "SELECT * FROM courses WHERE registration_code = '".$registration_code."'");
@@ -58,25 +57,32 @@
               $course_id = $row["course_id"];
             }
 
-            // If so, add student to that course
+            // get student_id from session storage
+            $student_id = $_SESSION['student_id'];
 
+            // Check if student is already in that course
+            $check_exists = mysqli_query($db, "SELECT * FROM students_courses WHERE student_fk = '".$student_id."' AND course_fk = '".$course_id."'");
+            $num_rows = mysqli_num_rows($check_exists);
 
-            $query = "INSERT INTO student_courses (course_id, title, description, platform, subject_area, registration_code) VALUES (NULL, '$title', '$description', '$platform', '$subject_area', '54321')";
+            if ($num_rows !== 0) {
+              echo "You are already registered for this course.";
 
-            $retval = mysqli_query($db,$query);
+            } else {
 
-            if(! $retval ) {
-              die('Could not enter data: ' . mysql_error());
+              // Add entry to student_courses table
+              $add_course = "INSERT INTO `students_courses` (`student_course_id`, `student_fk`, `course_fk`) VALUES (NULL, '$student_id', '$course_id')";
+              $retval = mysqli_query($db,$add_course);
+
+              if(!$retval ) {
+                die('Could not enter data: ' . mysqli_error($db));
+                echo "Registration did not work.";
+              }
+              echo "You have been registered for this course.\n";
             }
-            echo "Entered data successfully\n";
-
-
 
           } else {
             echo "Registration code does not exist. Please try again.";
           }
-
-
 
         }
       };
