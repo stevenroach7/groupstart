@@ -28,7 +28,8 @@
 
 </head>
 <body>
-  <?php echo $banner ?>
+  <?php echo $banner  ?>
+    
 
   <?php
     include '../config/connection.php';
@@ -45,6 +46,8 @@
     <div id='accordion'>
 
     <?php
+      
+       //echo $instructor_id;
 
     // Check if instructor is teaching courses or not
     if (empty($courses_data)) {
@@ -78,7 +81,7 @@
                 </ul>
             </div>
             <br />
-              <a href='instructor-add-project.php' class='btn btn-info' role='button' id='add-new-group'>Create New Project</a>
+              <a href='instructor-add-project.php?course_id=$course_id&instructor_id=$instructor_id' class='btn btn-info' role='button' id='add-new-group'>Create New Project</a>
         </section>
         <br />
 

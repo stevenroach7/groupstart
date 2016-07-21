@@ -4,6 +4,7 @@
  include '../config/connection.php';
 
  // Query students_courses table to get course id's
+if (isset($_SESSION['instructor_id'])) {
  $instructor_id = $_SESSION['instructor_id'];
  $get_courses = mysqli_query($db, "SELECT * FROM instructors_courses WHERE instructor_fk = '".$instructor_id."'");
 
@@ -34,6 +35,7 @@
        }
        $courses_data[] = $course_info;
      }
+ }
  }
 
 

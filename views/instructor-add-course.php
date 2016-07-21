@@ -30,6 +30,9 @@
       <?php echo $banner ?>
       <?php
         include '../config/connection.php';
+include 'features/instructor-get-courses-data.php';
+
+
 
  //$con = mysql_connect("localhost", "root", "", "REUdata");
 
@@ -63,7 +66,7 @@
                 $retval = mysqli_query($db,$query);
                 
                 if(!$retval ) {
-                    die('Could not enter data in first try: ' . mysql_error());
+                    die('Could not enter data given: ' . mysql_error());
                 }
     //echo "Entered data successfully\n";
                 //header("Location: http://localhost/groupstart/views/instructor-courses.php");
@@ -78,8 +81,10 @@
                 }
                 
                 $str = substr($str, 0, 4);
-                $numtitle = substr($numtitle, 0 , 8);
+                $numtitle = substr($numtitle, 0 , 10);
                 $strcon = mysqli_insert_id($db) . $str . $numtitle;
+                
+                //echo $strcon;
         
                 
                 $query2 = "UPDATE courses SET registration_code= CONCAT(LAST_INSERT_ID(), $numtitle) WHERE title = '$title'";
@@ -87,11 +92,30 @@
                     $retval2 = mysqli_query($db,$query2);
     
     if(!$retval2 ) {
-      die('Could not enter data: ' . mysql_error());
+        $sql = "DELETE FROM courses WHERE title = '$title'";
+        
+        if (mysqli_query($db, $sql)) {
+            echo "Record deleted successfully";
+        } else {
+            echo "Error deleting record: " . mysql_error();
+        };
+        
+        die('Could not input proper registration code for this course: ' . mysql_error());
     }
-    //echo "Entered data successfully\n";
+    //echo "Entered course data successfully\n";
+                
+                //echo "Now trying to update instrcutors_course table";
+                
+                
+                $query3 = "INSERT into instructors_courses (instructor_course_id, course_fk, instructor_fk) VALUES(NULL, LAST_INSERT_ID(), '$instructor_id') ";
+                
+                $retval3 = mysqli_query($db,$query3);
+                
+                if(!$retval ) {
+                    die('Could not update instructors_course_table: ' . mysql_error());
+                }
+                
                 header("Location: http://localhost/groupstart/views/instructor-courses.php");
-        //exit;
 
 
     //mysql_close($db);
