@@ -35,35 +35,31 @@
        // script to change student name.
       include '../config/connection.php';
 
+      // TODO: Figure out best way to display messages.
+      if (isset($_POST['change-name-submit'])) { // Check if submit is pressed
 
-
-      // TODO: Figure out best way to display messages. 
-      if(isset($_POST['change-name-submit'])){ // Check if submit is pressed
-
-         if(empty($_POST['name'])){ // check if name field is empty
-
+         if (empty($_POST['name'])) { // check if name field is empty
+           echo "Name field cannot be blank.";
          } else { // name field is not empty
-           $name = $_POST['name'];
+           $display_name = $_POST['name'];
 
            // TODO: Check for bad characters
 
            // Update session storage.
-           $_SESSION['name'] = $name;
-           $student_id = $_SESSION['student_id'];
+           $_SESSION['display_name'] = $display_name;
+             $student_id = $_SESSION['student_id'];
 
            // Add updated name to database.
 
-           $update_name = "UPDATE students SET name='$name' WHERE student_id='$student_id'";
+           $update_name = "UPDATE students SET display_name='$display_name' WHERE student_id='$student_id'";
 
-           if (mysqli_query($db, $update_name)) {
-             echo "Record updated successfully";
-           } else {
-             echo "Error updating record: " . mysqli_error($db);
-           }
-
-
+             if (mysqli_query($db, $update_name)) {
+                 echo 'Record updated successfully';
+             } else {
+                 echo 'Error updating record: '.mysqli_error($db);
+             }
          }
-       };
+      };
 
      ?>
 
@@ -71,8 +67,8 @@
 
     <div class="container">
         <?php
-        $name = $_SESSION['name'];
-        echo "<h1>$name</h1>";
+        $display_name = $_SESSION['display_name'];
+        echo "<h1>$display_name</h1>";
         ?>
         <div class="row">
             <div class=col-md-12>
@@ -98,28 +94,30 @@
                           </div>
                         </div>
                         <div class="row" id="section2">
-                        </div>
-                        <div class="row" id="section3">
-                        <div class="col-md-12">
-                          <div id="change-pw">
-                            <a href="features/change-password.php" class="btn btn-primary btn-block" role="button">Change Password</a>
+                          <div class="col-md-12">
+                            <div id="change-pw">
+                              <a href="features/change-password.php" class="btn btn-primary btn-block" role="button">Change Password</a>
+                              <p>If you are signed on through Google or Facebook, please use those services to change your password.</p>
+                            </div>
                           </div>
                         </div>
+                      <div class="row" id="section3">
+
                       </div>
                       <div class="row" id="section4">
                         <div class="col-md-12">
                           <form method="POST" action="student-settings.php" id="change-name-form">
-                            <div class="col-md-12">
-                              <div id="fn"><p>Name:</p>
+                            <div class="col-md-7">
+                              <div id="fn"><p>Display Name:</p>
                                 <?php
-                                echo "<input type='text' name='name' placeholder=\"$name\" form='change-name-form'>";
+                                echo "<input type='text' name='name' placeholder=\"$display_name\" form='change-name-form'>";
                                 ?>
                               </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                               <br />
                               <div id="change-name">
-                                <input type="submit" class="btn btn-primary btn-block" name="change-name-submit" value="Change Name" form="change-name-form">
+                                <input type="submit" class="btn btn-primary btn-block" name="change-name-submit" value="Change Display Name" form="change-name-form">
                               </div>
                             </div>
                           </form>
@@ -171,9 +169,7 @@
                       <button class="btn btn-xs btn-info">Leave course</button>
                     </span>
                   </a>
-                </div><br>
-                <button type="button" class="btn btn-block btn-primary">Save Changes</button>
-                <br>
+                </div>
               </div>
             </div>
           </div>
