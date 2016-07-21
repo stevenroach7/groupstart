@@ -40,6 +40,7 @@
   };*/
     
   //mysql_select_db("REUdata", $db);
+ 
 
         $title = $description = $platform = $subject_area = "";
         
@@ -49,22 +50,54 @@
                 //echo "You either forgot to put a course title or a course description.";
             }
             else{
+                
                 $title = $_POST['title'];
-                 $description = $_POST['description'];
+                 $description = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
                 $platform = $_POST['platform'];
                 $subject_area = $_POST['subject_area'];
                 
-                $query = "INSERT INTO courses (course_id, title, description, platform, subject_area, registration_code) VALUES (NULL, '$title', '$description', '$platform', '$subject_area', '54321')";
+                
+                $registration_code = trim($title);
+                
+                $query = "INSERT INTO courses (course_id, title, description, platform, subject_area, registration_code) VALUES (NULL, '$title', '$description', '$platform', '$subject_area', '$registration_code')";
                 
                 $retval = mysqli_query($db,$query);
+                
+                if(!$retval ) {
+                    die('Could not enter data in first try: ' . mysql_error());
+                }
+    //echo "Entered data successfully\n";
+                //header("Location: http://localhost/groupstart/views/instructor-courses.php");
+        //exit;
+                $str = preg_replace('/\s+/', '', $title);
+                $strlen = strlen($str);
+                $numtitle = "";
+                
+                for( $i = 0; $i <= $strlen; $i++ ) {
+                    $char = substr($str, $i, 1 );
+                    $numtitle .= ord($char);
+                }
+                
+                $str = substr($str, 0, 4);
+                $numtitle = substr($numtitle, 0 , 8);
+                $strcon = mysqli_insert_id($db) . $str . $numtitle;
+        
+                
+                $query2 = "UPDATE courses SET registration_code= CONCAT(LAST_INSERT_ID(), $numtitle) WHERE title = '$title'";
+                    
+                    $retval2 = mysqli_query($db,$query2);
     
-    if(! $retval ) {
+    if(!$retval2 ) {
       die('Could not enter data: ' . mysql_error());
     }
     //echo "Entered data successfully\n";
+                header("Location: http://localhost/groupstart/views/instructor-courses.php");
+        //exit;
 
-  //mysql_close($db);       
+         
             }
+    //mysql_close($db);
+            
     };
       
       ?>
@@ -72,14 +105,14 @@
           <h1>Add New Course</h1><br>
       <form  action="" method="POST" id ="add-course-form">
           <h4>Course Name</h4>
-          <input type="text" name="title" value="<?php echo $title;?>"><br>
+          <input type="text" name="title"><br>
           <h4>Platform</h4>
-          <input type="text" name="platform" value="<?php echo $platform;?>"><br>
+          <input type="text" name="platform" ><br>
           <h4>Subject Area</h4>
-          <input type="text" name="subject_area" value="<?php echo $subject_area;?>"><br><br>
+          <input type="text" name="subject_area"><br><br>
 
           <h4>Short Course Description</h4>
-          <textarea rows="4" cols="50" id="course-description" name="description"><?php echo $description;?></textarea>
+          <textarea rows="4" cols="50" id="course-description" name="description"></textarea>
       </form><br>
           <h4>Course Attachments</h4>
            <form action="../php_scripts/upload.php" class="dropzone dz-clickable">
@@ -89,7 +122,7 @@
           </form>
           <input type="file" multiple="multiple" class="dz-hidden-input" style="visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;">
 
-          <input type="submit" name= "submit" value="Add Course" class="btn btn-info" form="add-course-form" id="add-new-course"/><br>
+          <input type="submit" name="submit" value="Add Course" class="btn btn-info" form="add-course-form" id="add-new-course"/><br>
           <!--a class="btn btn-info" role="button" form="add-course-form" name="submit" id="add-new-course">Add Course</a-->
 
 
