@@ -53,8 +53,8 @@
     } else { // auth0_id does not exist yet in students table.
       echo "Need to register you.";
       //insert query goes here
-      $register = "INSERT INTO `students` (`student_id`, `auth0_id`, `email`, `registration_time`, `name`)
-      VALUES (NULL, '$auth0_id', '$email', CURRENT_TIMESTAMP, '$name')";
+      $register = "INSERT INTO `students` (`student_id`, `auth0_id`, `email`, `registration_time`, `name`, `display_name`)
+      VALUES (NULL, '$auth0_id', '$email', CURRENT_TIMESTAMP, '$name', '$name')";
 
       if ($db->query($register) === TRUE) {
         echo "New record created successfully";
@@ -65,15 +65,19 @@
     }
 
 
-    // Add student_id to session storage.
-    $get_student_id = mysqli_query($db, "SELECT * FROM students WHERE auth0_id = '".$auth0_id."'");
+    // Add student_id and display name to session storage.
+    $get_student = mysqli_query($db, "SELECT * FROM students WHERE auth0_id = '".$auth0_id."'");
 
       // Get course id of course
-    if (mysqli_num_rows($get_student_id) > 0) {
+    if (mysqli_num_rows($get_student) > 0) {
         // auth0_id is unique in database so this will return 1 or 0 results.
-        while($row = mysqli_fetch_assoc($get_student_id)) {
-          $_SESSION['student_id'] = $row['student_id'];
+        while($row = mysqli_fetch_assoc($get_student)) {
+          $student_id = $row['student_id'];
+          $display_name = $row['display_name'];
         }
+        $_SESSION['student_id'] = $student_id;
+        $_SESSION['display_name'] = $display_name;
+
     } else { // 0 results are returned so there must be an error.
       header('Location: http://localhost/groupstart/views/features/logout.php'); // Error so log user out so they can try again.
     }

@@ -1,7 +1,6 @@
 <?php
 
 
-
  ?>
 
 
@@ -12,7 +11,8 @@
     <?php
       include 'features/authentication.php';
       include 'features/instructor-authentication.php';
-      include 'features/banner.php'
+      include 'features/banner.php';
+      include 'features/instructor-get-courses-data.php'; // Gets $courses_data array.
     ?>
 
 
@@ -32,111 +32,134 @@
 
   <body>
       <?php echo $banner ?>
-    <div class="container">
-        <h1 style="text-align:center">Instructor's Settings</h1>
-        <div class="row">
-            <div class=col-md-12>
-                <div class="row" id="profile-area">
-            <div class="col-md-5" >
-                <div class="row" id="profile-pic">
-                    <div class="col-md-12" >
-                <img src="images/placeholder.png" alt="profile picture" class="img-rounded"><br><br>
-                <button type="button" class="btn btn-block btn-primary">Change Profile Picture</button><br>
+      <?php
+
+        // script to change instructor name.
+        include '../config/connection.php';
+
+        // TODO: Figure out best way to display messages.
+        if (isset($_POST['change-name-submit'])) { // Check if submit is pressed
+
+           if (empty($_POST['name'])) { // check if name field is empty
+             echo "Name field cannot be blank.";
+           } else { // name field is not empty
+             $name = $_POST['name'];
+
+             // TODO: Check for bad characters. Check to make sure name is appropriate. 
+
+             // Update session storage.
+             $_SESSION['display_name'] = $name;
+             $instructor_id = $_SESSION['instructor_id'];
+
+             // Add updated name to database.
+
+             $update_name = "UPDATE instructors SET display_name='$name' WHERE instructor_id = '$instructor_id'";
+
+               if (mysqli_query($db, $update_name)) {
+                   echo 'Record updated successfully';
+               } else {
+                   echo 'Error updating record: '.mysqli_error($db);
+               }
+           }
+        };
+
+       ?>
+
+
+      <div class="container">
+        <?php
+        include '../config/connection.php';
+
+        $display_name = $_SESSION['display_name'];
+
+        echo "<h1>$display_name</h1>";
+        ?>
+          <div class="row">
+              <div class=col-md-12>
+                  <div class="row" id="profile-area">
+                    <div class="col-md-5" >
+                      <div class="row" id="profile-pic">
+                        <div class="col-md-12" >
+                          <img src="images/placeholder.png" alt="profile picture" class="img-rounded"><br><br>
+                          <button type="button" class="btn btn-block btn-default">Change Profile Picture</button><br>
                         </div>
+                      </div>
                     </div>
-            </div>
-            <div class="col-md-7">
-                <div class="row" id="profile-info">
-                <div class="col-md-12">
-                    <div class="row" id="section0">
+                    <div class="col-md-7">
+                      <div class="row" id="profile-info">
                         <div class="col-md-12">
-                        <div id="dn"><p>Display Name:</p>
-<input type="text" name="displayname">
+                          <div class="row" id="section1">
+                            <div class="col-md-12">
+                              <?php
+                              $email = $_SESSION['email'];
+                              echo "<h2>$email</h2>";
+                              ?>
+
                             </div>
+                          </div>
+                          <div class="row" id="section2">
+                            <div class="col-md-12">
+                              <div id="change-pw">
+                                <a href="features/change-password.php" class="btn btn-primary btn-block" role="button">Change Password</a>
+                                <p>If you are signed on through Google or Facebook, please use those services to change your password.</p>
+                              </div>
+                            </div>
+                          </div>
+                        <div class="row" id="section3">
+
                         </div>
-                    </div>
-                    <div class="row" id="section1">
-                        <div class="col-md-6">
-                            
-                            <div id="fn"><p>First name:</p>
-<input type="text" name="firstname"></div>
+                        <div class="row" id="section4">
+                          <div class="col-md-12">
+                            <form method="POST" action="instructor-settings.php" id="change-name-form">
+                              <div class="col-md-7">
+                                <div id="fn"><p>Display Name:</p>
+                                  <?php
+                                  echo "<input type='text' name='name' placeholder=\"$display_name\" form='change-name-form'>";
+                                  ?>
+                                </div>
+                              </div>
+                              <div class="col-md-5">
+                                <br />
+                                <div id="change-name">
+                                  <input type="submit" class="btn btn-primary btn-block" name="change-name-submit" value="Change Display Name" form="change-name-form">
+                                </div>
+                              </div>
+                            </form>
+                          </div>
                         </div>
-                        <div class="col-md-6">
-                            <div id="ln"><p>Last name:</p>
-<input type="text" name="lastname"></div>
-                        </div>
-                    </div><br>
-                    <div class="row" id="section2">
-                        <div class="col-md-12">
-                            <div id="email-part"><p>Email:</p>
-<input type="text" name="email"></div>
-                        </div>
-                    </div>
-                    <div class="row" id="section3">
-                       <div class="col-md-6">
-                            <div id="pw"><p> Password:</p>
-<input type="text" name="password"></div>
-                        </div>
-                        <div class="col-md-6">
-                            <div id="change-pw"><button type="button" class="btn btn-block btn-primary">Change password</button></div>
-                        </div>
-                    </div>
-                    <div class="row" id="section4">
-                        <div class="col-md-12"></div>
+
+                      </div>
                     </div>
 
+                  </div>
                 </div>
-                </div>
-
+              </div>
             </div>
-                </div>
-                </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                 <div class="list-group"id='course-manage-list'>
-                    <a class="list-group-item clearfix">Course 1
-      <span class="pull-right">
-        <button class="btn btn-xs btn-info">Do not offer course</button>
-      </span>
-    </a>
-                    <a class="list-group-item clearfix">Course 2
-      <span class="pull-right">
-        <button class="btn btn-xs btn-info">Do not offer course</button>
-      </span>
-    </a>
-                    <a class="list-group-item clearfix">Course 3
-      <span class="pull-right">
-        <button class="btn btn-xs btn-info">Do not offer course</button>
-      </span>
-    </a>
-                    <a class="list-group-item clearfix">Course 4
-      <span class="pull-right">
-        <button class="btn btn-xs btn-info">Do not offer course</button>
-      </span>
-    </a>
-                    <a class="list-group-item clearfix">Course 5
-      <span class="pull-right">
-        <button class="btn btn-xs btn-info">Do not offer course</button>
-      </span>
-    </a>
-                    <a class="list-group-item clearfix">Course 6
-      <span class="pull-right">
-        <button class="btn btn-xs btn-info">Do not offer course</button>
-      </span>
-    </a>
-                    <a class="list-group-item clearfix">Course 7
-      <span class="pull-right">
-        <button class="btn btn-xs btn-info">Do not offer course</button>
-      </span>
-    </a>     
-          </div><br>
-                <button type="button" class="btn btn-block btn-primary">Save Changes</button>
-                <br>
-            </div>
-        </div>
-      </div>
+            <div class="row">
+              <div class="col-md-12">
+                  <div class="list-group"id='course-manage-list'>
 
+                    <?php
+                      if (empty($courses_data)) {
+                        echo "<h3>You are not teaching any courses.</h3>";
+                      } else {
+
+                        foreach($courses_data as $course_data) {
+                          $title = $course_data['title'];
+                          echo "<a class='list-group-item clearfix'>$title
+                            <span class='pull-right'>
+                              <button class='btn btn-xs btn-info'>End Course</button>
+                            </span>
+                          </a>";
+
+                        }
+                      }
+                    ?>
+
+                  </div>
+                </div>
+              </div>
+            </div>
 
   </body>
 </html>

@@ -42,6 +42,8 @@
 
     // Store auth0_id in Session.
     $_SESSION['user_id'] = $auth0_id; // TODO: Possibly remove this.
+    $_SESSION['email'] = $email;
+    $_SESSION['name'] = $name;
 
     // Check if user is in database based off of Auth0-userID
     // Create query and number of rows returned from query.
@@ -54,7 +56,7 @@
       echo "Need to register you.";
       //insert query goes here
       $register = "INSERT INTO `instructors` (`instructor_id`, `auth0_id`, `email`, `registration_time`, `name`, `display_name`)
-      VALUES (NULL, '$auth0_id', '$email', CURRENT_TIMESTAMP, '$name', 'name')";
+      VALUES (NULL, '$auth0_id', '$email', CURRENT_TIMESTAMP, '$name', '$name')";
 
       if ($db->query($register) === TRUE) {
         echo "New record created successfully";
@@ -64,7 +66,22 @@
       }
     }
 
+    // Add Display name and instructor id to session storage
+    $get_instructor = mysqli_query($db, "SELECT * FROM instructors WHERE auth0_id = '".$auth0_id."'");
 
+    if (mysqli_num_rows($get_instructor) > 0) {
+      // output data of each row
+      while ($row = mysqli_fetch_assoc($get_instructor)) {
+        $display_name = $row["display_name"];
+        $instructor_id = $row["instructor_id"];
+      }
+
+    $_SESSION['display_name'] = $display_name;
+    $_SESSION['instructor_id'] = $instructor_id;
+
+    } else {
+      header('Location: http://localhost/groupstart/views/features/logout.php'); // Error so log user out so they can try again.
+    }
 
     // Redirect to instructor homepage
     header('Location: http://localhost/groupstart/views/instructor-courses.php'); // Comment this line out to test if database insert logic is correct.
