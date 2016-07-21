@@ -54,20 +54,20 @@
       <?php 
             include '../config/connection.php';
 
-$title = $description = $group_importance_statement = $min_input_number = $max_input_number = $group_form_algorithm = "";
+$title = $description = $group_importance_statement = $min_group_size = $max_group_size = $group_form_algorithm = "";
 
 if(isset($_POST['submit'])){
-    if(empty($_POST['title']) || (empty($_POST['description'])) || (empty($_POST['group_form_algorithm'])) || (empty($_POST['min_input_number'])) || (empty($_POST['max_input_number']))){
+    if(empty($_POST['title']) || (empty($_POST['description'])) || (empty($_POST['group_form_algorithm'])) || (empty($_POST['min_group_size'])) || (empty($_POST['max_group_size']))){
         //echo "One of the required fields is empty.";
     }else{
     $title = $_POST['title'];
                  $description = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
     $group_importance_statement = $_POST['group_importance_statement'];
-    $min_input_number = $_POST['min_input_number'];
-    $max_input_number = $_POST['max_input_number'];
+    $min_group_size = $_POST['min_group_size'];
+    $max_group_size = $_POST['max_group_size'];
     $group_form_algorithm = $_POST['$group_form_algorithm'];
         
-         $query = "INSERT INTO projects (project_id, course_fk, title, description, group_importance_statement, min_input_number, max_input_number, group_form_algorithm) VALUES (NULL, '22', '$title', '$description', '$group_importance_statement', '$min_input_number', '$max_input_number', '$group_form_algorithm')";
+         $query = "INSERT INTO projects (project_id, course_fk, title, description, group_importance_statement, min_group_size, max_group_size, group_form_algorithm) VALUES (NULL, '22', '$title', '$description', '$group_importance_statement', '$min_group_size', '$max_group_size', '$group_form_algorithm')";
     };
     
     $retval = mysqli_query($db,$query);
@@ -249,9 +249,9 @@ if(isset($_POST['submit'])){
                       <div id="range"></div>
                         <form action="" method="POST" id="group-size-range">
                 <label for="min-input-number">Minimum group size</label>
-                <input type="number" min="2" max="40" step="1" id="min-input-number">
+                <input type="number" min="2" max="40" step="1" id="min-input-number" name="min_group_size">
                 <div id="max-option"><label for="max-input-number">Maximum group size</label>
-                <input type="number" min="2" max="40" step="1" id="max-input-number">
+                <input type="number" min="2" max="40" step="1" id="max-input-number" name="max_group_size">
                     </div>
                             </form>
           </div>

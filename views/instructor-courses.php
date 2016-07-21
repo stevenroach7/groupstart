@@ -68,6 +68,12 @@
               </ul>
           </div>
           <br />
+          <?php 
+          
+          include '../config/connection.php';
+        
+        
+        ?>
             <a href='instructor-add-project.php' class='btn btn-info' role='button' id='add-new-group'>Create New Project</a>
       </section>
       <br />
