@@ -96,7 +96,8 @@
 
     //mysql_close($db);
             
-    };
+    }
+        };
 
       ?>
       <div class="container main-page-form">
