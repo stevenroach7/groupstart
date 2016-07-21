@@ -31,7 +31,64 @@
   </head>
 
   <body>
-       <?php echo $banner ?>
+   <?php echo $banner ?>
+   <?php
+      // script to add course.
+     include '../config/connection.php';
+
+
+     // TODO: Figure out how to style validation alerts.
+
+     if(isset($_POST['add_course_submit'])){
+
+        if(empty($_POST['registration_code'])){
+
+        } else {
+          $registration_code = $_POST['registration_code'];
+
+          // Check if registration code exists in courses.
+          $check_registration_code = mysqli_query($db, "SELECT * FROM courses WHERE registration_code = '".$registration_code."'");
+
+
+            // Get course id of course
+          if (mysqli_num_rows($check_registration_code) > 0) {
+            // output data of each row
+            while($row = mysqli_fetch_assoc($check_registration_code)) {
+              $course_id = $row["course_id"];
+            }
+
+            // get student_id from session storage
+            $student_id = $_SESSION['student_id'];
+
+            // Check if student is already in that course
+            $check_exists = mysqli_query($db, "SELECT * FROM students_courses WHERE student_fk = '".$student_id."' AND course_fk = '".$course_id."'");
+            $num_rows = mysqli_num_rows($check_exists);
+
+            if ($num_rows !== 0) {
+              echo "You are already registered for this course.";
+
+            } else {
+
+              // Add entry to student_courses table
+              $add_course = "INSERT INTO `students_courses` (`student_course_id`, `student_fk`, `course_fk`) VALUES (NULL, '$student_id', '$course_id')";
+              $retval = mysqli_query($db,$add_course);
+
+              if(!$retval ) {
+                die('Could not enter data: ' . mysqli_error($db));
+                echo "Registration did not work.";
+              }
+              echo "You have been registered for this course.\n";
+            }
+
+          } else {
+            echo "Registration code does not exist. Please try again.";
+          }
+
+        }
+      };
+
+    ?>
+
 
     <div class="container" id="instructor-course-list">
         <h1 style="text-align:center">List of Courses</h1>
@@ -77,10 +134,10 @@
     ?>
     </div><br>
 
-      <form method="post" action="student-courses.php">
+      <form method="POST" action="student-courses.php" id="add-course-student-form">
         <h4>Add New Course</h4>
-        <input type="text" name="registration-code" placeholder="Enter Course Registration Code">
-        <input type="submit" name="student-add-course" value="Submit">
+        <input type="text" name="registration_code" placeholder="Enter Course Registration Code">
+        <input type="submit" name="add_course_submit" value="Submit" form = "add-course-student-form">
       </form>
     </div>
 

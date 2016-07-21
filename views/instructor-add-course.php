@@ -6,7 +6,6 @@
       include 'features/authentication.php';
       include 'features/instructor-authentication.php';
       include 'features/banner.php';
-//include '../config/connection.php';
     ?>
 
       <link rel="stylesheet" type="text/css" href="../css/style.css" />
@@ -43,7 +42,7 @@
  
 
         $title = $description = $platform = $subject_area = "";
-        
+
         if(isset($_POST['submit'])){
             //echo "submit button has been clicked";
                 if(empty($_POST['title']) || (empty($_POST['description']))){
@@ -94,16 +93,15 @@
                 header("Location: http://localhost/groupstart/views/instructor-courses.php");
         //exit;
 
-         
-            }
+
     //mysql_close($db);
             
     };
-      
+
       ?>
       <div class="container main-page-form">
           <h1>Add New Course</h1><br>
-      <form  action="" method="POST" id ="add-course-form">
+      <form action="" method="POST" id ="add-course-form">
           <h4>Course Name</h4>
           <input type="text" name="title"><br>
           <h4>Platform</h4>
@@ -130,5 +128,3 @@
 
   </body>
 </html>
-
-
