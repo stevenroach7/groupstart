@@ -93,7 +93,7 @@
 
     // Check if instructor is teaching courses or not
     if (empty($courses_data)) {
-      echo "<h1>You are not currently teaching any courses.";
+      echo "<h1>You are not currently enrolled in any courses.";
     } else {
 
       foreach ($courses_data as $course_data) {
