@@ -1,17 +1,11 @@
-<?php
-
-
-  $courses = ['Introduction to Computer Science', 'User Interface Design'];
- ?>
-
-
 
 <html>
 <head>
   <?php
     include 'features/authentication.php';
     include 'features/instructor-authentication.php';
-    include 'features/banner.php'
+    include 'features/banner.php';
+    include 'features/instructor-get-courses-data.php'; // Gets $courses_data array.
   ?>
 
       <link rel="stylesheet" type="text/css" href="../css/style.css" />
@@ -49,51 +43,67 @@
     <!-- <h2 style="text-align:center">Welcome <?php echo $instructorInfo['name']?></h2><br> -->
 
     <div id='accordion'>
-    <?php foreach ($courses as $course) { // Loop only makes accordion for the first one since it is id and not class.
+    <?php
 
-      echo "<h3>$course</h3>
-        <div>
-    <section id='course-decription'><h4>Course Description</h4>
-    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p></section>
-      <section id='course-projects'>
-          <h4>Course Projects</h4>
-          <div id='project-list'>
-              <ul class='list-group'>
-                  <a href='instructor-project.php'><li class='list-group-item'>First item</li> </a>
-                        <a href='instructor-project.php'><li class='list-group-item'>Second item</li></a>
-                        <a href='instructor-project.php'><li class='list-group-item'>Third item</li></a>
-                        <a href='instructor-project.php'><li class='list-group-item'>First item</li></a>
-                        <a href='instructor-project.php'><li class='list-group-item'>Second item</li></a>
-                        <a href='instructor-project.php'><li class='list-group-item'>Third item</li></a>
-              </ul>
-          </div>
-          <br />
-            <a href='instructor-add-project.php' class='btn btn-info' role='button' id='add-new-group'>Create New Project</a>
+    // Check if instructor is teaching courses or not
+    if (empty($courses_data)) {
+      echo "<h1>You are not currently teaching any courses.";
+
+    } else {
+
+      foreach ($courses_data as $course_data) {
+
+        $course_id = $course_data['course_id'];
+        $title = $course_data['title'];
+        $description = $course_data['description'];
+        $platform = $course_data['platform'];
+        $subject_area = $course_data['subject_area'];
+
+        echo "<h3>$title</h3>
+          <div>
+      <section id='course-decription'><h4>Course Description</h4>
+      <p>$description</p>
       </section>
-      <br />
+        <section id='course-projects'>
+            <h4>Course Projects</h4>
+            <div id='project-list'>
+                <ul class='list-group'>
+                    <a href='instructor-project.php'><li class='list-group-item'>First item</li> </a>
+                          <a href='instructor-project.php'><li class='list-group-item'>Second item</li></a>
+                          <a href='instructor-project.php'><li class='list-group-item'>Third item</li></a>
+                          <a href='instructor-project.php'><li class='list-group-item'>First item</li></a>
+                          <a href='instructor-project.php'><li class='list-group-item'>Second item</li></a>
+                          <a href='instructor-project.php'><li class='list-group-item'>Third item</li></a>
+                </ul>
+            </div>
+            <br />
+              <a href='instructor-add-project.php' class='btn btn-info' role='button' id='add-new-group'>Create New Project</a>
+        </section>
+        <br />
 
-      <section id='student-course-list'>
-          <h4>Students</h4>
-          <div id='student-list'>
-              <ul class='list-group'>
-                  <li class='list-group-item'>Student 1</li>
-                  <li class='list-group-item'>Student 2</li>
-                  <li class='list-group-item'>Student 3</li>
-                  <li class='list-group-item'>Student 4</li>
-                  <li class='list-group-item'>Student 5</li>
-                  <li class='list-group-item'>Student 6</li>
-              </ul>
-          </div>
-      </section>
-      <br />
+        <section id='student-course-list'>
+            <h4>Students</h4>
+            <div id='student-list'>
+                <ul class='list-group'>
+                    <li class='list-group-item'>Student 1</li>
+                    <li class='list-group-item'>Student 2</li>
+                    <li class='list-group-item'>Student 3</li>
+                    <li class='list-group-item'>Student 4</li>
+                    <li class='list-group-item'>Student 5</li>
+                    <li class='list-group-item'>Student 6</li>
+                </ul>
+            </div>
+        </section>
+        <br />
 
-      <b>Student registraion code: 123ABC</b>
+        <b>Student registraion code: 123ABC</b>
 
-      <br><br>
+        <br><br>
 
-      <a href=# class='btn btn-info' role='button' id='view-course-attachments'>View course attachments</a>
+        <a href=# class='btn btn-info' role='button' id='view-course-attachments'>View course attachments</a>
 
-  </div>";
+      </div>";
+      }
 
     }
     ?>

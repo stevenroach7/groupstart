@@ -1,9 +1,3 @@
-<?php
-
-  $courses = ['Introduction to Computer Science', 'User Interface Design'];
-
- ?>
-
 
 <html>
 
@@ -12,7 +6,8 @@
       <?php
         include 'features/authentication.php';
         include 'features/student-authentication.php';
-        include 'features/banner.php'
+        include 'features/banner.php';
+        include 'features/student-get-courses-data.php'; // Gets $courses_data array.
       ?>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -92,44 +87,50 @@
 
     <div class="container" id="instructor-course-list">
         <h1 style="text-align:center">List of Courses</h1>
-        <!-- <h2 style="text-align:center">Welcome <?php echo $studentInfo['name']?></h2><br> -->
 
     <div id='accordion'>
-    <?php foreach ($courses as $course) { // Loop only makes accordion for the first one since it is id and not class.
+    <?php
 
-      echo "<h3>$course</h3>
-        <div>
-          <section id='course-decription'><h4>Course Description</h4>
-            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-              Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet
-              quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et
-              sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi.
-              Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui.
-              Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque
-              egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor,
-              facilisis luctus, metus
-              </p>
-            </section><br>
-            <section id='course-projects'>
-                <h4>Course Projects</h4>
-                <div id='project-list'>
-                    <ul class='list-group'>
-                        <a href='student-start-project.php'><li class='list-group-item'>First item</li> </a>
-                        <a href='student-start-project.php'><li class='list-group-item'>Second item</li></a>
-                        <a href='student-start-project.php'><li class='list-group-item'>Third item</li></a>
-                        <a href='student-start-project.php'><li class='list-group-item'>First item</li></a>
-                        <a href='student-start-project.php'><li class='list-group-item'>Second item</li></a>
-                        <a href='student-start-project.php'><li class='list-group-item'>Third item</li></a>
-                    </ul>
-                </div>
-            </section><br><br>
+    // Check if instructor is teaching courses or not
+    if (empty($courses_data)) {
+      echo "<h1>You are not currently teaching any courses.";
+    } else {
+
+      foreach ($courses_data as $course_data) {
+
+        $course_id = $course_data['course_id'];
+        $title = $course_data['title'];
+        $description = $course_data['description'];
+        $platform = $course_data['platform'];
+        $subject_area = $course_data['subject_area'];
 
 
-            <a href=# class='btn btn-info' role='button' id='view-course-attachments'>View course attachments</a>
-            <a href='student-project.php' class='btn btn-info' style='float:right; width:300px;' role='button' id='view-student-group'>View My Group</a>
 
-        </div>";
+        echo "<h3>$title</h3>
+          <div>
+            <section id='course-decription'><h4>Course Description</h4>
+              <p>$description</p>
+              </section><br>
+              <section id='course-projects'>
+                  <h4>Course Projects</h4>
+                  <div id='project-list'>
+                      <ul class='list-group'>
+                          <a href='student-start-project.php'><li class='list-group-item'>First item</li> </a>
+                          <a href='student-start-project.php'><li class='list-group-item'>Second item</li></a>
+                          <a href='student-start-project.php'><li class='list-group-item'>Third item</li></a>
+                          <a href='student-start-project.php'><li class='list-group-item'>First item</li></a>
+                          <a href='student-start-project.php'><li class='list-group-item'>Second item</li></a>
+                          <a href='student-start-project.php'><li class='list-group-item'>Third item</li></a>
+                      </ul>
+                  </div>
+              </section><br><br>
 
+
+              <a href=# class='btn btn-info' role='button' id='view-course-attachments'>View course attachments</a>
+              <a href='student-project.php' class='btn btn-info' style='float:right; width:300px;' role='button' id='view-student-group'>View My Group</a>
+
+          </div>";
+        }
     }
     ?>
     </div><br>
