@@ -63,6 +63,46 @@
         };
 
        ?>
+       <?php
+        // script to display courses and allow instructors to end courses.
+
+        // Get courses instructor teaches
+
+        // Query students_courses table to get course id's
+        $instructor_id = $_SESSION['instructor_id'];
+        $get_courses = mysqli_query($db, "SELECT * FROM instructors_courses WHERE instructor_fk = '".$instructor_id."'");
+
+          // Get course id of courses
+        if (mysqli_num_rows($get_courses) > 0) {
+
+            $course_ids = array();
+
+            while($row = mysqli_fetch_assoc($get_courses)) {
+              $course_ids[] = $row['course_fk'];
+            }
+
+            // Query courses table to get other course info for each course_id
+            $courses_data = array();
+
+            foreach ($course_ids as $course_id) {
+              $get_course_info = mysqli_query($db, "SELECT * FROM courses WHERE course_id = '".$course_id."'");
+
+              $course_info = array();
+              // course_id is unique so there should be only one row returned.
+              while($row = mysqli_fetch_assoc($get_course_info)) {
+                $course_info['course_id'] = $row['course_id'];
+                $course_info['title'] = $row['title'];
+                $course_info['description'] = $row['description'];
+                $course_info['platform'] = $row['platform'];
+                $course_info['subject_area'] = $row['subject_area'];
+                // Get instructors here
+              }
+              $courses_data[] = $course_info;
+            }
+        }
+
+
+       ?>
 
       <div class="container">
         <?php
@@ -136,41 +176,24 @@
             <div class="row">
               <div class="col-md-12">
                   <div class="list-group"id='course-manage-list'>
-                    <a class="list-group-item clearfix">Course 1
-                      <span class="pull-right">
-                        <button class="btn btn-xs btn-info">Leave course</button>
-                      </span>
-                    </a>
-                    <a class="list-group-item clearfix">Course 2
-                      <span class="pull-right">
-                        <button class="btn btn-xs btn-info">Leave course</button>
-                      </span>
-                    </a>
-                    <a class="list-group-item clearfix">Course 3
-                      <span class="pull-right">
-                        <button class="btn btn-xs btn-info">Leave course</button>
-                      </span>
-                    </a>
-                    <a class="list-group-item clearfix">Course 4
-                      <span class="pull-right">
-                        <button class="btn btn-xs btn-info">Leave course</button>
-                      </span>
-                    </a>
-                    <a class="list-group-item clearfix">Course 5
-                      <span class="pull-right">
-                        <button class="btn btn-xs btn-info">Leave course</button>
-                      </span>
-                    </a>
-                    <a class="list-group-item clearfix">Course 6
-                      <span class="pull-right">
-                        <button class="btn btn-xs btn-info">Leave course</button>
-                      </span>
-                    </a>
-                    <a class="list-group-item clearfix">Course 7
-                      <span class="pull-right">
-                        <button class="btn btn-xs btn-info">Leave course</button>
-                      </span>
-                    </a>
+
+                    <?php
+                      if (empty($courses_data)) {
+                        echo "<h3>You are not teaching any courses.</h3>";
+                      } else {
+
+                        foreach($courses_data as $course_data) {
+                          $title = $course_data['title'];
+                          echo "<a class='list-group-item clearfix'>$title
+                            <span class='pull-right'>
+                              <button class='btn btn-xs btn-info'>End Course</button>
+                            </span>
+                          </a>";
+
+                        }
+                      }
+                    ?>
+
                   </div>
                 </div>
               </div>
