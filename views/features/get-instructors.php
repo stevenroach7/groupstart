@@ -3,6 +3,7 @@
   // File this script is included in must be in views folder.
   // This script will initialize the $instructors array,
   // an array of associative arrays which hold instructor_id, and display_name.
+  include '../config/connection.php';
 
 
   // For this course_id, get the instructors

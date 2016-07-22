@@ -7,7 +7,6 @@
         include 'features/authentication.php';
         include 'features/student-authentication.php';
         include 'features/banner.php';
-        include 'features/student-get-courses-data.php'; // Gets $courses_data array.
       ?>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -30,7 +29,6 @@
    <?php
       // script to add course.
      include '../config/connection.php';
-
 
      // TODO: Figure out how to style validation alerts.
 
@@ -81,6 +79,18 @@
 
         }
       };
+
+
+
+      // Script to get courses 
+      include 'features/student-get-courses-data.php'; // Gets $courses_data array.
+
+
+
+
+
+
+
 
     ?>
 

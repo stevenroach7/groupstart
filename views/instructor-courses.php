@@ -5,7 +5,6 @@
     include 'features/authentication.php';
     include 'features/instructor-authentication.php';
     include 'features/banner.php';
-    include 'features/instructor-get-courses-data.php'; // Gets $courses_data array.
   ?>
 
   <link rel="stylesheet" type="text/css" href="../css/style.css" />
@@ -34,9 +33,9 @@
   <?php
     include '../config/connection.php';
 
-    //Selecting all rows in Instructor_courses table
-    $query = "SELECT * FROM instructors_courses";
-    mysqli_query($db, $query) or die('Error querying database.');
+    // Script to get courses
+    include 'features/instructor-get-courses-data.php'; // Gets $courses_data array.
+
   ?>
 
   <div class="container" id="instructor-course-list">
@@ -158,7 +157,7 @@
                   echo "<li class='list-group-item'>$display_name</li>";
                 }
               }
-              
+
               echo "</ul>
           </div>
       </section>
