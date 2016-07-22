@@ -69,9 +69,10 @@
         include 'features/get-instructors.php'; // Script will initialize $instructors array,
         // an array of associative arrays which hold instructor_id, and display_name.
 
+        // Get students that are enrolled in this course. $course_id must be defined above for this script.
+        include 'features/get-students.php'; // Script will initialize $students array,
+        // an array of associative arrays which hold student_id, and display_name.
 
-
-        // For this course_id, get the students
 
         // TODO: Handle errors
 
@@ -146,14 +147,19 @@
       <section id='student-course-list'>
           <h4>Students</h4>
           <div id='student-list'>
-              <ul class='list-group'>
-                  <li class='list-group-item'>Student 1</li>
-                  <li class='list-group-item'>Student 2</li>
-                  <li class='list-group-item'>Student 3</li>
-                  <li class='list-group-item'>Student 4</li>
-                  <li class='list-group-item'>Student 5</li>
-                  <li class='list-group-item'>Student 6</li>
-              </ul>
+              <ul class='list-group'>";
+
+              // Display students
+              if (empty($students)) {
+                echo "There are no students enrolled in this course.";
+              } else {
+                foreach ($students as $student) {
+                  $display_name = $student['display_name'];
+                  echo "<li class='list-group-item'>$display_name</li>";
+                }
+              }
+              
+              echo "</ul>
           </div>
       </section>
       <br />

@@ -1,5 +1,5 @@
 <?php
-  // $course_id must be defined in the file this script is included.
+  // $course_id must be defined in the file this script is included in.
   // File this script is included in must be in views folder.
   // This script will initialize the $instructors array,
   // an array of associative arrays which hold instructor_id, and display_name.
