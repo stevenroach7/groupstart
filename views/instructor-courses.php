@@ -64,7 +64,12 @@
         $subject_area = $course_data['subject_area'];
         $registration_code = $course_data['registration_code'];
 
-        // For this course_id, get the instructors
+
+        // Get instructors that teach this course. $course_id must be defined above for this script.
+        include 'features/get-instructors.php'; // Script will initialize $instructors array,
+        // an array of associative arrays which hold instructor_id, and display_name.
+
+
 
         // For this course_id, get the students
 
@@ -88,67 +93,87 @@
         }
 
 
+
+        // Display Title
         echo "<h3>$title</h3>
-          <div>
-            <section id='course-decription'><h4>Course Description</h4>
-              <p>$description</p>
-              </section><br>
-              <section id='course-projects'>
-                  <h4>Course Projects</h4>
-                  <div id='project-list'>
-                      <ul class='list-group'>";
-                      // Display projects
-                      if (empty($projects)) {
-                        echo "This course has no projects.";
-                      } else {
-                        foreach ($projects as $project) {
-                          $title = $project['title'];
-                          // TODO: use the project_id to pass the url
-                          echo "<a href='instructor-project.php'><li class='list-group-item'>'$title'</li> </a>";
-                        }
-                      }
-                echo "</ul>
-                  </div>
-            <br />
-              <a href='instructor-add-project.php?course_id=$course_id&instructor_id=$instructor_id' class='btn btn-info' role='button' id='add-new-group'>Create New Project</a>
-        </section>
+          <div>";
+
+        // Display instructors
+        echo "<section id='course-decription'><h4>Instructors: ";
+
+        // for loop so we can put commas after all names except for the last one.
+        for ($x = 0; $x < count($instructors); $x++) {
+        // foreach ($instructors as $instructor) {
+
+          $display_name = $instructors[$x]['display_name'];
+          echo "$display_name";
+
+          if ($x !== count($instructors) - 1) { // Add comma and space for all entries but last.
+            echo ", ";
+          }
+
+
+        }
+        echo"</h4></section><br>";
+
+
+
+        echo "<section id='course-decription'><h4>Course Description</h4>
+          <p>$description</p>
+          </section><br>
+          <section id='course-projects'>
+              <h4>Course Projects</h4>
+              <div id='project-list'>
+                  <ul class='list-group'>";
+
+        // Display projects
+        if (empty($projects)) {
+          echo "This course has no projects.";
+        } else {
+          foreach ($projects as $project) {
+            $title = $project['title'];
+            // TODO: use the project_id to pass the url
+            echo "<a href='instructor-project.php'><li class='list-group-item'>'$title'</li> </a>";
+          }
+        }
+            echo "</ul>
+              </div>
         <br />
+          <a href='instructor-add-project.php?course_id=$course_id&instructor_id=$instructor_id' class='btn btn-info' role='button' id='add-new-group'>Create New Project</a>
+    </section>
+    <br />
 
-        <section id='student-course-list'>
-            <h4>Students</h4>
-            <div id='student-list'>
-                <ul class='list-group'>
-                    <li class='list-group-item'>Student 1</li>
-                    <li class='list-group-item'>Student 2</li>
-                    <li class='list-group-item'>Student 3</li>
-                    <li class='list-group-item'>Student 4</li>
-                    <li class='list-group-item'>Student 5</li>
-                    <li class='list-group-item'>Student 6</li>
-                </ul>
-            </div>
-        </section>
-        <br />
+      <section id='student-course-list'>
+          <h4>Students</h4>
+          <div id='student-list'>
+              <ul class='list-group'>
+                  <li class='list-group-item'>Student 1</li>
+                  <li class='list-group-item'>Student 2</li>
+                  <li class='list-group-item'>Student 3</li>
+                  <li class='list-group-item'>Student 4</li>
+                  <li class='list-group-item'>Student 5</li>
+                  <li class='list-group-item'>Student 6</li>
+              </ul>
+          </div>
+      </section>
+      <br />
 
-        <b>Student registration code: '$registration_code'</b>
+      <b>Student Registration Code: $registration_code</b>
 
-        <br><br>
+      <br><br>
 
-        <a href=# class='btn btn-info' role='button' id='view-course-attachments'>View course attachments</a>
+      <a href=# class='btn btn-info' role='button' id='view-course-attachments'>View course attachments</a>
 
-      </div>";
+    </div>";
+        }
+
       }
-
-    }
     ?>
   </div><br>
          <!-- <a href="instructor-add-course.php" class="btn btn-info" role="button" id="add-new-course">Add New Course</a> -->
         <!--button id="add-new-course" type="button" class="btn btn-default">Add New Course</button-->
     <a href="instructor-add-course.php" class="btn btn-info" role="button" id="add-new-course">Add New Course</a>
       </div>
-
-
-
-
 
 </body>
 </html>

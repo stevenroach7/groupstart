@@ -105,7 +105,9 @@
         $subject_area = $course_data['subject_area'];
 
 
-        // For this course_id, get the instructors
+        // Get instructors that teach this course. $course_id must be defined above for this script.
+        include 'features/get-instructors.php'; // Script will initialize $instructors array,
+        // an array of associative arrays which hold instructor_id, and display_name.
 
 
         // TODO: Handle errors
@@ -127,35 +129,56 @@
             $projects[] = $project_info;
         }
 
-
+        // Display Title
         echo "<h3>$title</h3>
-          <div>
-            <section id='course-decription'><h4>Course Description</h4>
-              <p>$description</p>
-              </section><br>
-              <section id='course-projects'>
-                  <h4>Course Projects</h4>
-                  <div id='project-list'>
-                      <ul class='list-group'>";
-                      // Display projects
-                      if (empty($projects)) {
-                        echo "This course has no projects.";
-                      } else {
-                        foreach ($projects as $project) {
-                          $title = $project['title'];
-                          // TODO: use the project_id to pass the url
-                          echo "<a href='student-start-project.php'><li class='list-group-item'>'$title'</li> </a>";
-                        }
-                      }
-                echo "</ul>
-                  </div>
-              </section><br><br>
+          <div>";
+
+        // Display instructors
+        echo "<section id='course-decription'><h4>Instructors: ";
+
+        // for loop so we can put commas after all names except for the last one.
+        for ($x = 0; $x < count($instructors); $x++) {
+        // foreach ($instructors as $instructor) {
+
+          $display_name = $instructors[$x]['display_name'];
+          echo "$display_name";
+
+          if ($x !== count($instructors) - 1) { // Add comma and space for all entries but last.
+            echo ", ";
+          }
 
 
-              <a href=# class='btn btn-info' role='button' id='view-course-attachments'>View course attachments</a>
-              <a href='student-project.php' class='btn btn-info' style='float:right; width:300px;' role='button' id='view-student-group'>View My Group</a>
+        }
+        echo"</h4></section><br>";
 
-          </div>";
+        // Display course description
+        echo "<section id='course-decription'><h4>Course Description</h4>
+          <p>$description</p>
+          </section><br>
+          <section id='course-projects'>
+              <h4>Course Projects</h4>
+              <div id='project-list'>
+                  <ul class='list-group'>";
+
+                  // Display projects
+                  if (empty($projects)) {
+                    echo "This course has no projects.";
+                  } else {
+                    foreach ($projects as $project) {
+                      $title = $project['title'];
+                      // TODO: use the project_id to pass the url
+                      echo "<a href='student-start-project.php'><li class='list-group-item'>'$title'</li> </a>";
+                    }
+                  }
+            echo "</ul>
+              </div>
+          </section><br><br>
+
+
+          <a href=# class='btn btn-info' role='button' id='view-course-attachments'>View course attachments</a>
+          <a href='student-project.php' class='btn btn-info' style='float:right; width:300px;' role='button' id='view-student-group'>View My Group</a>
+
+        </div>";
         }
     }
     ?>
@@ -165,21 +188,9 @@
         <h4>Add New Course</h4>
         <input type="text" name="registration_code" placeholder="Enter Course Registration Code">
         <input type="submit" name="add_course_submit" value="Submit" form = "add-course-student-form">
+        <!-- TODO: Refresh page after user presses submit so new courses show up. -->
       </form>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   </body>
 </html>
