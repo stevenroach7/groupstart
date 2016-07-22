@@ -28,6 +28,9 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="../css/style.css" />
+
+    <script src="../js/dropzone.min.js"></script>
+
   </head>
 
   <body>
@@ -153,6 +156,18 @@
                 </div>
               </div>
             </div>
+
+            <!-- Testing file upload -->
+
+              <form action="features/upload.php" class="dropzone">
+                  <div class="dz-default dz-message">
+                      <span>Drop files here to upload</span>
+                  </div>
+             </form>
+           <input type="file" multiple="multiple" class="dz-hidden-input" style="visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;">
+
+
+
           </div>
 
 
