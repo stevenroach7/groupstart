@@ -105,6 +105,28 @@
         $subject_area = $course_data['subject_area'];
 
 
+        // For this course_id, get the instructors
+
+
+        // TODO: Handle errors
+
+        // For this course_id, get the projects
+
+        // Query projects table to find projects with course_id as the course_fk
+        $get_projects = mysqli_query($db, "SELECT * FROM projects WHERE course_fk = '".$course_id."'");
+
+        $projects = array();
+          // Get course id of courses
+        if (mysqli_num_rows($get_projects) > 0) {
+
+            $project_info = array();
+            while($row = mysqli_fetch_assoc($get_projects)) {
+              $project_info['project_id'] = $row['project_id'];
+              $project_info['title'] = $row['title'];
+            }
+            $projects[] = $project_info;
+        }
+
 
         echo "<h3>$title</h3>
           <div>
@@ -114,14 +136,18 @@
               <section id='course-projects'>
                   <h4>Course Projects</h4>
                   <div id='project-list'>
-                      <ul class='list-group'>
-                          <a href='student-start-project.php'><li class='list-group-item'>First item</li> </a>
-                          <a href='student-start-project.php'><li class='list-group-item'>Second item</li></a>
-                          <a href='student-start-project.php'><li class='list-group-item'>Third item</li></a>
-                          <a href='student-start-project.php'><li class='list-group-item'>First item</li></a>
-                          <a href='student-start-project.php'><li class='list-group-item'>Second item</li></a>
-                          <a href='student-start-project.php'><li class='list-group-item'>Third item</li></a>
-                      </ul>
+                      <ul class='list-group'>";
+                      // Display projects
+                      if (empty($projects)) {
+                        echo "This course has no projects.";
+                      } else {
+                        foreach ($projects as $project) {
+                          $title = $project['title'];
+                          // TODO: use the project_id to pass the url
+                          echo "<a href='student-start-project.php'><li class='list-group-item'>'$title'</li> </a>";
+                        }
+                      }
+                echo "</ul>
                   </div>
               </section><br><br>
 
