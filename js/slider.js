@@ -1,6 +1,4 @@
-$( document ).ready(function() {
-    
-    
+$(document).ready(function() {
 
    var html5Slider = document.getElementById('range');
 
@@ -37,4 +35,4 @@ mininputNumber.addEventListener('change', function(){
 	html5Slider.noUiSlider.set([null, this.value]);
 });
     
-})
+});

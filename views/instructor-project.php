@@ -6,121 +6,161 @@
 
 
 <html>
-
-
-  <head>
-		<?php
-			include 'features/authentication.php';
-			include 'features/instructor-authentication.php';
-			include 'features/banner.php'
-		?>
-
+    
+    
+    <head>
+        <?php
+            include 'features/authentication.php';
+            include 'features/instructor-authentication.php';
+            include 'features/banner.php'
+            ?>
+        
         <link rel="stylesheet" type="text/css" href="../css/style.css" />
-
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-      <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-
-      <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
-      <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
-<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
-      <script type="text/javascript" src="../js/instructor-project.js"></script>
-
-
-  </head>
-
-
-  <body>
-      <?php echo $banner ?>
-      <div class="container">
-	<div class="row">
-		<div class="col-md-8" id="project-info">
-			<div class="row" id="description-importance">
-				<div class="col-md-6" id="project-description">
-                    <h2>Project Description</h2>
-					<p id="proj-descrip-statement">
-						Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
-					</p>
-					<button type="button" class="btn btn-block btn-default " id="edit-proj-descrip">
-						Edit
-					</button>
-				</div>
-				<div class="col-md-6" id="importance-statment">
-                    <h2>Group Importance Statement</h2>
-					<p id="group-impo-statement">
-						Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
-					</p>
-					<button type="button" class="btn btn-block btn-default" id="edit-impo-statement">
-						Edit
-					</button>
-				</div>
-			</div>
-			<div class="row" id="chosen-machnisms">
-				<div class="col-md-6" id="group-formation"><h2>Clustering Options</h2>
-					<p>
-						Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
-					</p>
-					<button type="button" class="btn btn-block btn-default">
-						Change
-					</button>
-				</div>
-				<div class="col-md-6" id="group-intro">
-					<h2>Introduction Options</h2><p>
-						Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
-					</p>
-					<button type="button" class="btn btn-block btn-default">
-						Change
-					</button>
-				</div>
-			</div>
-		</div>
-        <div class="col-md-1"></div>
-		<div class="col-md-3" id="manage-group">
-			<div class="row">
-                <h3>Manage Groups</h3>
-				<div class="col-md-12" id="manage-group-panels">
-                    <div id="tabs">
-                        <ul>
-                            <li><a href="#a">Tab A</a></li>
-                            <li><a href="#b">Tab B</a></li>
-                            <li><a href="#c">Tab C</a></li>
-                            <li><a href="#d">Tab D</a></li>
-                        </ul>
-                        <div id="a"><p>Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus.</p></div>
-                        <div id="b"><p>In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus.</p></div>
-                        <div id="c"><p> Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus.</p></div>
-                        <div id="d"><p> Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus.</p></div>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+            
+            <!-- Latest compiled and minified CSS -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+                
+                <!-- Optional theme -->
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+                    
+                    <!-- Latest compiled and minified JavaScript -->
+                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+                    
+                    <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+                    <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+                    <script type="text/javascript" src="../js/instructor-project.js"></script>
+                    
+                    
+                    </head>
+    
+    
+    <body>
+        <?php echo $banner ?>
+     
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8" id="project-info">
+                    <div id="complete-add-project-process" class="section">
+                                <div class="row">
+                                    <div class="col-md-12" id="saved-proj-title">
+                                        <h3>Project Title</h3>
+                                        <p id="projTitle">Pellentesque habitant morbi tristique</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-6" id="project-description">
+                                                <h3>
+                                                    Project Description
+                                                </h3>
+                                                <p id="projectDes">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
+                                                </p>
+                                            </div>
+                                            <div class="col-md-6" id="saved-impo-state">
+                                                <h3>
+                                                    Group Importance Statment
+                                                </h3>
+                                                <p>
+                                                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="row" id="saved-group-formation">
+                                            <div class="col-md-12">
+                                                <h3>
+                                                    Group Formation Options
+                                                </h3>
+                                                
+                                                <table class="table table-striped" id="saved-formation-options">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Clustering options</th>
+                                                            <th>Selected options</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Clustering algorithm</td>
+                                                            <td id="clustering-algo-selected-option"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Minimum group size</td>
+                                                            <td id="chosen-min-group-size"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Maximum group size</td>
+                                                            <td id="chosen-max-group-size"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Variables to cluster by</td>
+                                                            <td id="selected-variables"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            
+                                            </div></div>
+                                        <div class="row">
+                                            <div class="col-md-12" style="margin-bottom:50px">
+                                                <h3>
+                                                    Group Charter Options
+                                                </h3>
+                                                <p>
+                                                Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
+                                                </p>
+                
+                                            </div></div>
+                                
+                                        
+                                        
+                        
+                                    </div>
+                                </div>  
+                            </div>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-3" id="manage-group">
+                    <div class="row">
+                        <h3>Manage Groups</h3>
+                        <div class="col-md-12" id="manage-group-panels">
+                            <div id="tabs">
+                                <ul>
+                                    <li><a href="#a">Tab A</a></li>
+                                    <li><a href="#b">Tab B</a></li>
+                                    <li><a href="#c">Tab C</a></li>
+                                    <li><a href="#d">Tab D</a></li>
+                                </ul>
+                                <div id="a"><p>Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus.</p></div>
+                                <div id="b"><p>In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus.</p></div>
+                                <div id="c"><p> Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus.</p></div>
+                                <div id="d"><p> Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h3>View other Projects</h3>
+                        <div class="col-md-12">
+                            <div id='project-list-inpro'>
+                                <ul class='list-group'>
+                                    <a href='instructor-project.php'><li class='list-group-item'>Project 1</li> </a>
+                                    <a href='instructor-project.php'><li class='list-group-item'>Project 2</li></a>
+                                    <a href='instructor-project.php'><li class='list-group-item'>Project 3</li></a>
+                                    <a href='instructor-project.php'><li class='list-group-item'>Project 4</li></a>
+                                    <a href='instructor-project.php'><li class='list-group-item'>Project 5</li></a>
+                                    <a href='instructor-project.php'><li class='list-group-item'>Project 6</li></a>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <h3>View other Projects</h3>
-            <div class="col-md-12">
-                <div id='project-list-inpro'>
-              <ul class='list-group'>
-                  <a href='instructor-project.php'><li class='list-group-item'>Project 1</li> </a>
-                        <a href='instructor-project.php'><li class='list-group-item'>Project 2</li></a>
-                        <a href='instructor-project.php'><li class='list-group-item'>Project 3</li></a>
-                        <a href='instructor-project.php'><li class='list-group-item'>Project 4</li></a>
-                        <a href='instructor-project.php'><li class='list-group-item'>Project 5</li></a>
-                        <a href='instructor-project.php'><li class='list-group-item'>Project 6</li></a>
-              </ul>
-          </div>
-                </div>
-            </div>
         </div>
-          </div>
-      </div>
-
-
-  </body>
+        
+        
+    </body>
 </html>
