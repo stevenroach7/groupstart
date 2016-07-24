@@ -7,7 +7,6 @@
         include 'features/authentication.php';
         include 'features/student-authentication.php';
         include 'features/banner.php';
-        include 'features/student-get-courses-data.php'; // Gets $courses_data array.
       ?>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -30,7 +29,6 @@
    <?php
       // script to add course.
      include '../config/connection.php';
-
 
      // TODO: Figure out how to style validation alerts.
 
@@ -82,6 +80,18 @@
         }
       };
 
+
+
+      // Script to get courses 
+      include 'features/student-get-courses-data.php'; // Gets $courses_data array.
+
+
+
+
+
+
+
+
     ?>
 
 
@@ -105,31 +115,80 @@
         $subject_area = $course_data['subject_area'];
 
 
+        // Get instructors that teach this course. $course_id must be defined above for this script.
+        include 'features/get-instructors.php'; // Script will initialize $instructors array,
+        // an array of associative arrays which hold instructor_id, and display_name.
 
+
+        // TODO: Handle errors
+
+        // For this course_id, get the projects
+
+        // Query projects table to find projects with course_id as the course_fk
+        $get_projects = mysqli_query($db, "SELECT * FROM projects WHERE course_fk = '".$course_id."'");
+
+        $projects = array();
+          // Get course id of courses
+        if (mysqli_num_rows($get_projects) > 0) {
+
+            $project_info = array();
+            while($row = mysqli_fetch_assoc($get_projects)) {
+              $project_info['project_id'] = $row['project_id'];
+              $project_info['title'] = $row['title'];
+            }
+            $projects[] = $project_info;
+        }
+
+        // Display Title
         echo "<h3>$title</h3>
-          <div>
-            <section id='course-decription'><h4>Course Description</h4>
-              <p>$description</p>
-              </section><br>
-              <section id='course-projects'>
-                  <h4>Course Projects</h4>
-                  <div id='project-list'>
-                      <ul class='list-group'>
-                          <a href='student-start-project.php'><li class='list-group-item'>First item</li> </a>
-                          <a href='student-start-project.php'><li class='list-group-item'>Second item</li></a>
-                          <a href='student-start-project.php'><li class='list-group-item'>Third item</li></a>
-                          <a href='student-start-project.php'><li class='list-group-item'>First item</li></a>
-                          <a href='student-start-project.php'><li class='list-group-item'>Second item</li></a>
-                          <a href='student-start-project.php'><li class='list-group-item'>Third item</li></a>
-                      </ul>
-                  </div>
-              </section><br><br>
+          <div>";
+
+        // Display instructors
+        echo "<section id='course-decription'><h4>Instructors: ";
+
+        // for loop so we can put commas after all names except for the last one.
+        for ($x = 0; $x < count($instructors); $x++) {
+        // foreach ($instructors as $instructor) {
+
+          $display_name = $instructors[$x]['display_name'];
+          echo "$display_name";
+
+          if ($x !== count($instructors) - 1) { // Add comma and space for all entries but last.
+            echo ", ";
+          }
 
 
-              <a href=# class='btn btn-info' role='button' id='view-course-attachments'>View course attachments</a>
-              <a href='student-project.php' class='btn btn-info' style='float:right; width:300px;' role='button' id='view-student-group'>View My Group</a>
+        }
+        echo"</h4></section><br>";
 
-          </div>";
+        // Display course description
+        echo "<section id='course-decription'><h4>Course Description</h4>
+          <p>$description</p>
+          </section><br>
+          <section id='course-projects'>
+              <h4>Course Projects</h4>
+              <div id='project-list'>
+                  <ul class='list-group'>";
+
+                  // Display projects
+                  if (empty($projects)) {
+                    echo "This course has no projects.";
+                  } else {
+                    foreach ($projects as $project) {
+                      $title = $project['title'];
+                      // TODO: use the project_id to pass the url
+                      echo "<a href='student-start-project.php'><li class='list-group-item'>'$title'</li> </a>";
+                    }
+                  }
+            echo "</ul>
+              </div>
+          </section><br><br>
+
+
+          <a href=# class='btn btn-info' role='button' id='view-course-attachments'>View course attachments</a>
+          <a href='student-project.php' class='btn btn-info' style='float:right; width:300px;' role='button' id='view-student-group'>View My Group</a>
+
+        </div>";
         }
     }
     ?>
@@ -139,21 +198,9 @@
         <h4>Add New Course</h4>
         <input type="text" name="registration_code" placeholder="Enter Course Registration Code">
         <input type="submit" name="add_course_submit" value="Submit" form = "add-course-student-form">
+        <!-- TODO: Refresh page after user presses submit so new courses show up. -->
       </form>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   </body>
 </html>

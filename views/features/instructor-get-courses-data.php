@@ -1,6 +1,8 @@
 <?php
  // script to get courses instructor teaches. This must be included from a page in the views directory.
 
+// TODO: Handle errors
+
  include '../config/connection.php';
 
  // Query students_courses table to get course id's
@@ -31,6 +33,8 @@ if (isset($_SESSION['instructor_id'])) {
          $course_info['description'] = $row['description'];
          $course_info['platform'] = $row['platform'];
          $course_info['subject_area'] = $row['subject_area'];
+         $course_info['registration_code'] = $row['registration_code'];
+
          // Get instructors here
        }
        $courses_data[] = $course_info;

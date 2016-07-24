@@ -28,6 +28,9 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="../css/style.css" />
+
+    <script src="../js/dropzone.min.js"></script>
+
   </head>
 
   <body>
@@ -39,27 +42,27 @@
       // TODO: Figure out best way to display messages.
       if (isset($_POST['change-name-submit'])) { // Check if submit is pressed
 
-         if (empty($_POST['name'])) { // check if name field is empty
-           echo "Name field cannot be blank.";
-         } else { // name field is not empty
-           $display_name = $_POST['name'];
+       if (empty($_POST['name'])) { // check if name field is empty
+         echo 'Name field cannot be blank.';
+       } else { // name field is not empty
+         $display_name = $_POST['name'];
 
-           // TODO: Check for bad characters. Check to make sure name is appropriate. 
+         // TODO: Check for bad characters. Check to make sure name is appropriate.
 
-           // Update session storage.
-           $_SESSION['display_name'] = $display_name;
-             $student_id = $_SESSION['student_id'];
+         // Update session storage.
+         $_SESSION['display_name'] = $display_name;
+          $student_id = $_SESSION['student_id'];
 
-           // Add updated name to database.
+         // Add updated name to database.
 
-           $update_name = "UPDATE students SET display_name='$display_name' WHERE student_id='$student_id'";
+         $update_name = "UPDATE students SET display_name='$display_name' WHERE student_id='$student_id'";
 
-             if (mysqli_query($db, $update_name)) {
-                 echo 'Record updated successfully';
-             } else {
-                 echo 'Error updating record: '.mysqli_error($db);
-             }
+         if (mysqli_query($db, $update_name)) {
+             echo 'Record updated successfully';
+         } else {
+             echo 'Error updating record: '.mysqli_error($db);
          }
+       }
       };
      ?>
 
@@ -137,24 +140,34 @@
 
                   <?php
                     if (empty($courses_data)) {
-                      echo "<h3>You are not enrolled in any courses.</h3>";
+                        echo '<h3>You are not enrolled in any courses.</h3>';
                     } else {
-
-                      foreach($courses_data as $course_data) {
-                        $title = $course_data['title'];
-                        echo "<a class='list-group-item clearfix'>$title
+                        foreach ($courses_data as $course_data) {
+                            $title = $course_data['title'];
+                            echo "<a class='list-group-item clearfix'>$title
                           <span class='pull-right'>
                             <button class='btn btn-xs btn-info'>Leave Course</button>
                           </span>
                         </a>";
-
-                      }
+                        }
                     }
                   ?>
                   </a>
                 </div>
               </div>
             </div>
+
+            <!-- Testing file upload -->
+
+              <form action="features/upload.php" class="dropzone">
+                  <div class="dz-default dz-message">
+                      <span>Drop files here to upload</span>
+                  </div>
+             </form>
+           <input type="file" multiple="multiple" class="dz-hidden-input" style="visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;">
+
+
+
           </div>
 
 
