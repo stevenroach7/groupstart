@@ -1,10 +1,34 @@
+function completeClustoptions(){
+    if($('#clustering-options-form input:checked').length > 0 == true){
+        $('#panel-clustering-options').prop('checked', true);
+    } else {
+        $('#panel-clustering-options').prop('checked', false);
+    };
+};
+
+function completeDescriptitle(){
+    var des_text = tinymce.get('area-description').getContent();
+    
+    if(des_text == "" || des_text == " " || des_text == null ){
+        //console.log("it is empty");
+        //console.log(des_text);
+        $('#panel-project-desrciption').prop('checked', false);
+    } else {
+        //console.log("it is not empty");
+        //console.log(des_text);
+        $('#panel-project-desrciption').prop('checked', true);
+    };
+    
+};
+
+
+
+
 $(document).ready(function(){
     
     /* To display on complete-div and get form values for projects table in db*/
     
     $("#save-project-descrip-title").click(function(){
-        
-        //console.log("it is being saved and displayed");
         
         var projectTitle = $('#project-title').val();
         var projectDescription = tinymce.get('area-description').getContent({format : 'text'});
@@ -15,6 +39,8 @@ $(document).ready(function(){
         
         $('#fordb_title').val(projectTitle);
         $('#fordb_descrip').val(projectDescription);
+        
+        completeDescriptitle();
     });
     
     $('#save-group-impo-statment').click(function(){
@@ -24,6 +50,8 @@ $(document).ready(function(){
         $('div#saved-impo-state > p').text(impoStatement);
         
         $('#fordb_impoState').val(impoStatement);
+        
+        $('#panel-edit-impo-statement').prop('checked', true);
         
     });
     
@@ -48,6 +76,8 @@ $(document).ready(function(){
         $('#fordb_algo').val(chosenclustAlgo);
         $('#fordb_max').val(maxGroupsize);
         $('#fordb_min').val(minGroupsize);
+        
+        completeClustoptions();
     
     });
 });
