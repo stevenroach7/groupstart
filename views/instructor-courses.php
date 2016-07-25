@@ -15,6 +15,7 @@
 
 
   <script type="text/javascript" src="../js/accordion_functionality.js"></script>
+  <script type="text/javascript" src="../js/instructor-course.js"></script>
 
   <script src="http://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
 
@@ -36,6 +37,7 @@
     // Script to get courses
     include 'features/instructor-get-courses-data.php'; // Gets $courses_data array.
 
+    
   ?>
 
   <div class="container" id="instructor-course-list">
@@ -62,7 +64,7 @@
         $platform = $course_data['platform'];
         $subject_area = $course_data['subject_area'];
         $registration_code = $course_data['registration_code'];
-
+        
 
         // Get instructors that teach this course. $course_id must be defined above for this script.
         include 'features/get-instructors.php'; // Script will initialize $instructors array,
@@ -176,13 +178,24 @@
       </section>
       <br />
 
-      <b>Student Registration Code: $registration_code</b>
+      <b id='registration-code'>Student Registration Code: $registration_code</b>
 
       <br><br>
 
       <a href=# class='btn btn-info' role='button' id='view-course-attachments'>View course attachments</a>
+      <button class='btn btn-info pull-right' onclick='removeButton(this)' role='button' style='color:black' id='remove-course' name='remove-course'><span class='glyphicon glyphicon-trash'></span></button>
+      <input class='hidden' value='' name='remove' id='submitDelete'>";
+        
+        if(isset($_GET['rA']) && $_GET['rA'] == 2) {
+          echo "remove this course";
+          $active = $_GET['rA'];
+          $updateActive = mysqli_query($db, "UPDATE courses SET active = $active WHERE course_id = '$course_id'");
+        } else{
+          echo "do not remove course";
+        }
+  
 
-    </div>";
+    echo"</div>";
         }
 
       }
