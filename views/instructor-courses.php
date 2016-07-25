@@ -136,15 +136,16 @@
           echo "This course has no projects.";
         } else {
           foreach ($projects as $project) {
+            $project_id = $project['project_id'];
             $title = $project['title'];
             // TODO: use the project_id to pass the url
-            echo "<a href='instructor-project.php'><li class='list-group-item'>'$title'</li> </a>";
+            echo "<a href='instructor-project.php?project_id=$project_id'><li class='list-group-item'>'$title'</li> </a>";
           }
         }
             echo "</ul>
               </div>
         <br />
-          <a href='instructor-add-project.php?course_id=$course_id&instructor_id=$instructor_id' class='btn btn-info' role='button' id='add-new-group'>Create New Project</a>
+          <a href='instructor-add-project.php?course_id=$course_id' class='btn btn-info' role='button' id='add-new-group'>Create New Project</a>
     </section>
     <br />
 
