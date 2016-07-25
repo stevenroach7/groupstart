@@ -157,17 +157,6 @@
               </div>
             </div>
 
-            <!-- Testing file upload -->
-
-              <form action="features/upload.php" class="dropzone">
-                  <div class="dz-default dz-message">
-                      <span>Drop files here to upload</span>
-                  </div>
-             </form>
-           <input type="file" multiple="multiple" class="dz-hidden-input" style="visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;">
-
-
-
           </div>
 
 
