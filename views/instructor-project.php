@@ -41,6 +41,32 @@
     
     <body>
         <?php echo $banner ?>
+        <?php
+            include '../config/connection.php';
+            include 'features/instructor-get-courses-data.php';
+
+            $project_id = $_GET['project_id'];
+            
+            $get_project_info = mysqli_query($db, "SELECT * FROM projects WHERE project_id = '$project_id'");
+
+            if(!$get_project_info ){
+                die('Could not get data: ' . mysql_error());
+            };
+
+            $title = $description = $group_importance_statement = $min_group_size = $max_group_size = $group_form_algorithm = "";
+
+            while($row = mysqli_fetch_assoc($get_project_info)){
+                $title = $row['title'];
+                $description = $row['description'];
+                $group_importance_statement = $row['group_importance_statement'];
+                $min_group_size = $row['min_group_size'];
+                $max_group_size = $row['max_group_size'];
+                $group_form_algorithm = $row['group_form_algorithm'];
+            };
+
+    
+
+        ?>
      
         <div class="container">
             <div class="row">
@@ -49,7 +75,7 @@
                                 <div class="row">
                                     <div class="col-md-12" id="saved-proj-title">
                                         <h3>Project Title</h3>
-                                        <p id="projTitle">Pellentesque habitant morbi tristique</p>
+                                        <p id="projTitle"><?php echo $title ?></p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -59,15 +85,16 @@
                                                 <h3>
                                                     Project Description
                                                 </h3>
-                                                <p id="projectDes">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
+                                                <p id="projectDes">
+                                                    <?php echo $description ?>
                                                 </p>
                                             </div>
                                             <div class="col-md-6" id="saved-impo-state">
                                                 <h3>
                                                     Group Importance Statment
                                                 </h3>
-                                                <p>
-                                                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+                                                <p id="statment-impo">
+                                                    <?php echo $group_importance_statement ?>
                                                 </p>
                                             </div>
                                         </div>
@@ -87,15 +114,15 @@
                                                     <tbody>
                                                         <tr>
                                                             <td>Clustering algorithm</td>
-                                                            <td id="clustering-algo-selected-option"></td>
+                                                            <td id="clustering-algo-selected-option"><?php echo $group_form_algorithm ?></td>
                                                         </tr>
                                                         <tr>
                                                             <td>Minimum group size</td>
-                                                            <td id="chosen-min-group-size"></td>
+                                                            <td id="chosen-min-group-size"><?php echo $min_group_size ?></td>
                                                         </tr>
                                                         <tr>
                                                             <td>Maximum group size</td>
-                                                            <td id="chosen-max-group-size"></td>
+                                                            <td id="chosen-max-group-size"><?php echo $max_group_size ?></td>
                                                         </tr>
                                                         <tr>
                                                             <td>Variables to cluster by</td>
@@ -147,12 +174,42 @@
                         <div class="col-md-12">
                             <div id='project-list-inpro'>
                                 <ul class='list-group'>
-                                    <a href='instructor-project.php'><li class='list-group-item'>Project 1</li> </a>
-                                    <a href='instructor-project.php'><li class='list-group-item'>Project 2</li></a>
-                                    <a href='instructor-project.php'><li class='list-group-item'>Project 3</li></a>
-                                    <a href='instructor-project.php'><li class='list-group-item'>Project 4</li></a>
-                                    <a href='instructor-project.php'><li class='list-group-item'>Project 5</li></a>
-                                    <a href='instructor-project.php'><li class='list-group-item'>Project 6</li></a>
+                                    
+                                    <?php
+            
+                                        // Query projects table to find projects with course_id
+                                        $get_projects = mysqli_query($db, "SELECT * FROM projects WHERE course_fk = $_GET[course_id]");
+                                        //echo print_r(mysqli_fetch_assoc($get_projects));
+        
+                                        $projects = array();
+                                        // Get course id of courses
+                                        if (mysqli_num_rows($get_projects) > 0) {
+                                            
+                                            
+                                            $project_info = array();
+                                            
+                                            while($row = mysqli_fetch_assoc($get_projects)) {
+                                                
+                                                $project_info['project_id'] = $row['project_id'];
+                                                $project_info['title'] = $row['title'];
+                                                $projects[] = $project_info;
+                                            };
+                                        };
+
+                                            // Display projects
+                                            if (empty($projects)) {
+                                                echo "This course has no projects.";
+                                            } else {
+                                                foreach ($projects as $project) {
+                                                    $project_id = $project['project_id'];
+                                                    $title = $project['title'];
+                                                    
+                                                    // TODO: use the project_id to pass the url
+                                                    echo "<a href='instructor-project.php?project_id=$project_id&course_id=$_GET[course_id]'><li class='list-group-item'>$title</li> </a>";
+                                                }
+                                            };
+                                    
+                                    ?>
                                 </ul>
                             </div>
                         </div>

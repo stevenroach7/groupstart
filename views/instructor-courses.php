@@ -81,6 +81,7 @@
         $get_projects = mysqli_query($db, "SELECT * FROM projects WHERE course_fk = '$course_id'");
         
         
+        
         $projects = array();
           // Get course id of courses
         if (mysqli_num_rows($get_projects) > 0) {
@@ -102,6 +103,10 @@
         // Display Title
         echo "<h3>$title</h3>
           <div>";
+        
+        //Allows instructor to delete courses
+        /*echo "<h3>$title<a onclick='removePanel(this)' style='float:right'>X</a></h3>
+          <div>"*/
 
         // Display instructors
         echo "<section id='course-decription'><h4>Instructors: ";
@@ -136,10 +141,12 @@
           echo "This course has no projects.";
         } else {
           foreach ($projects as $project) {
+            //$course_id = $project['course_fk'];
             $project_id = $project['project_id'];
             $title = $project['title'];
+           
             // TODO: use the project_id to pass the url
-            echo "<a href='instructor-project.php?project_id=$project_id'><li class='list-group-item'>'$title'</li> </a>";
+            echo "<a href='instructor-project.php?project_id=$project_id&course_id=$course_id'><li class='list-group-item'>$title</li> </a>";
           }
         }
             echo "</ul>
