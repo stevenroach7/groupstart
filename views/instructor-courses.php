@@ -78,19 +78,24 @@
         // For this course_id, get the projects
 
         // Query projects table to find projects with course_id as the course_fk
-        $get_projects = mysqli_query($db, "SELECT * FROM projects WHERE course_fk = '".$course_id."'");
-
+        $get_projects = mysqli_query($db, "SELECT * FROM projects WHERE course_fk = '$course_id'");
+        
+        
         $projects = array();
           // Get course id of courses
         if (mysqli_num_rows($get_projects) > 0) {
+          
+          //echo print_r(mysqli_fetch_assoc($get_projects));
 
             $project_info = array();
             while($row = mysqli_fetch_assoc($get_projects)) {
               $project_info['project_id'] = $row['project_id'];
               $project_info['title'] = $row['title'];
-            }
-            $projects[] = $project_info;
-        }
+              
+              $projects[] = $project_info;
+            };
+        };
+      
 
 
 
@@ -175,8 +180,6 @@
       }
     ?>
   </div><br>
-         <!-- <a href="instructor-add-course.php" class="btn btn-info" role="button" id="add-new-course">Add New Course</a> -->
-        <!--button id="add-new-course" type="button" class="btn btn-default">Add New Course</button-->
     <a href="instructor-add-course.php" class="btn btn-info" role="button" id="add-new-course">Add New Course</a>
       </div>
 
