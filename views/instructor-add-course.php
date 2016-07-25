@@ -36,7 +36,18 @@
 
             $title = $description = $platform = $subject_area = ''; //initializing variables for database fields
 
-            // TODO: Clean this up and handle errors.
+            // TODO: Handle errors and malicious input.
+
+
+            // It’s generally considered a good idea to verify the integrity of the upload before accepting it.
+            // Typical checks include ensuring the file is not a zero-byte file with the
+            // ‘size’ key of the $_FILES array, and verifying that the file was indeed uploaded through a POST operation (and not “injected”
+            // into the script artificially by a malicious user) with the is_uploaded_file() function.
+            // You may also choose to test the file type if your application only allows particular types of files to be uploaded.
+            //
+            // Don’t use the file extension to determine the file type, as it’s easy to rename an executable file with a “safe” extension.
+            // Instead, use the ‘type’ key of the $_FILES array to check the Multipurpose Internet Mail Extensions (MIME) type of the file,
+            // and only allow those types you deem to be safe.
 
             if (isset($_POST['submit'])) { //checks if the add project button has been clicked
 
@@ -44,7 +55,11 @@
               $target_dir = "../uploads/";
               $target_file = $target_dir . basename($_FILES["file-upload"]["name"]);
               $uploadOk = 1;
-              $fileType = pathinfo($target_file,PATHINFO_EXTENSION);
+              $file_size = $_FILES['file-upload']['size'];
+              $file_type = $_FILES['file-upload']['type'];
+              // echo $file_type;
+              // echo $file_size;
+
               // Check if image file is a actual image or fake image
 
               // Check file size
@@ -53,7 +68,7 @@
                   $uploadOk = 0;
               }
               // Allow certain file formats
-              if($fileType != "pdf") {
+              if($file_type != "application/pdf") {
                   echo "Sorry, only PDF files are allowed.";
                   $uploadOk = 0;
               }
@@ -134,7 +149,7 @@
                   echo "The file ". basename( $_FILES["file-upload"]["name"]). " has been uploaded.";
 
                   $file = $_FILES["file-upload"]["name"];
-                  $upload_file = "INSERT INTO attachments (attachment_id, file, course_fk) VALUES (NULL, '$file', '$course_id')";
+                  $upload_file = "INSERT INTO attachments (attachment_id, file, file_type, file_size, course_fk) VALUES (NULL, '$file', '$file_type', '$file_size', '$course_id')";
 
                   $retval = mysqli_query($db, $upload_file);
 
@@ -147,7 +162,7 @@
                     echo "Sorry, there was an error uploading your file.";
                 }
 
-                // header('Location: http://localhost/groupstart/views/instructor-courses.php');//once all queries are done relocate to instructor-course page
+                header('Location: http://localhost/groupstart/views/instructor-courses.php');//once all queries are done relocate to instructor-course page
                 };
             };
 
