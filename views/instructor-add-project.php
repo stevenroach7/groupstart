@@ -338,7 +338,7 @@ include 'features/instructor-get-courses-data.php'
                                                 </h3>
                                                 <p id="projectDes">
                                                 </p>
-                                                <button type="button" class="btn btn-default">
+                                                <button id="edit-descrip-title" type="button" class="btn btn-info">
                                                     Edit
                                                 </button>
                                             </div>
@@ -349,16 +349,15 @@ include 'features/instructor-get-courses-data.php'
                                                 <p>
                                                 Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
                                                 </p>
-                                                <button type="button" class="btn btn-default">
+                                                <button id="edit-impo" type="button" class="btn btn-info">
                                                     Edit
                                                 </button>
                                             </div>
                                         </div>
                                         <div class="row" id="saved-group-formation">
                                             <div class="col-md-12">
-                                                <h3>
-                                                    Group Formation Options
-                                                </h3>
+                                                <h3>Group Formation Options</h3>
+                                                <button id="changeClust-options" style="float:right" type="button" class="btn btn-info">Change</button>
                                                 
                                                 <table class="table table-striped" id="saved-formation-options">
                                                     <thead>
@@ -386,11 +385,8 @@ include 'features/instructor-get-courses-data.php'
                                                         </tr>
                                                     </tbody>
                                                 </table>
-                                                
-                                                <button type="button" class="btn btn-default">
-                                                    Change
-                                                </button>
-                                            </div></div>
+                                            </div>
+                                            </div>
                                         <div class="row">
                                             <div class="col-md-12" style="margin-bottom:50px">
                                                 <h3>
@@ -399,7 +395,7 @@ include 'features/instructor-get-courses-data.php'
                                                 <p>
                                                 Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
                                                 </p>
-                                                <button type="button" class="btn btn-default">
+                                                <button id="change-charter-options" type="button" class="btn btn-info">
                                                     Change
                                                 </button>
                                             </div></div>
