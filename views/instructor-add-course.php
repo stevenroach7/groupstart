@@ -168,7 +168,7 @@
                     echo "Sorry, there was an error uploading your file.";
                 }
 
-                //header('Location: http://localhost/groupstart/views/instructor-courses.php'); //once all queries are done relocate to instructor-course page
+                header('Location: http://localhost/groupstart/views/instructor-courses.php'); //once all queries are done relocate to instructor-course page
                 };
             };
 
