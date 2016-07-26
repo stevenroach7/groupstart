@@ -37,7 +37,7 @@
     // Script to get courses
     include 'features/instructor-get-courses-data.php'; // Gets $courses_data array.
 
-    
+
   ?>
 
   <div class="container" id="instructor-course-list">
@@ -64,7 +64,7 @@
         $platform = $course_data['platform'];
         $subject_area = $course_data['subject_area'];
         $registration_code = $course_data['registration_code'];
-        
+
 
         // Get instructors that teach this course. $course_id must be defined above for this script.
         include 'features/get-instructors.php'; // Script will initialize $instructors array,
@@ -81,31 +81,31 @@
 
         // Query projects table to find projects with course_id as the course_fk
         $get_projects = mysqli_query($db, "SELECT * FROM projects WHERE course_fk = '$course_id'");
-        
-        
-        
+
+
+
         $projects = array();
           // Get course id of courses
         if (mysqli_num_rows($get_projects) > 0) {
-          
+
           //echo print_r(mysqli_fetch_assoc($get_projects));
 
             $project_info = array();
             while($row = mysqli_fetch_assoc($get_projects)) {
               $project_info['project_id'] = $row['project_id'];
               $project_info['title'] = $row['title'];
-              
+
               $projects[] = $project_info;
             };
         };
-      
+
 
 
 
         // Display Title
         echo "<h3>$title</h3>
           <div>";
-        
+
         //Allows instructor to delete courses
         /*echo "<h3>$title<a onclick='removePanel(this)' style='float:right'>X</a></h3>
           <div>"*/
@@ -146,7 +146,7 @@
             //$course_id = $project['course_fk'];
             $project_id = $project['project_id'];
             $title = $project['title'];
-           
+
             // TODO: use the project_id to pass the url
             echo "<a href='instructor-project.php?project_id=$project_id&course_id=$course_id'><li class='list-group-item'>$title</li> </a>";
           }
@@ -182,10 +182,10 @@
 
       <br><br>
 
-      <a href=# class='btn btn-info' role='button' id='view-course-attachments'>View course attachments</a>
+      <a href='features/download.php?id=$course_id' class='btn btn-info' role='button' id='view-course-attachments'>Download Course Attachment</a>
       <button class='btn btn-info pull-right' onclick='removeButton(this)' role='button' style='color:black' id='remove-course' name='remove-course'><span class='glyphicon glyphicon-trash'></span></button>
       <input class='hidden' value='' name='remove' id='submitDelete'>";
-        
+
         if(isset($_GET['rA']) && $_GET['rA'] == 2) {
           echo "remove this course";
           $active = $_GET['rA'];
@@ -193,7 +193,7 @@
         } else{
           echo "do not remove course";
         }
-  
+
 
     echo"</div>";
         }
