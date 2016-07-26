@@ -148,16 +148,12 @@
                 if (move_uploaded_file($_FILES["file-upload"]["tmp_name"], $target_file)) {
                   echo "The file ". basename( $_FILES["file-upload"]["name"]). " has been uploaded.";
 
-                  $file_tmp_name = $_FILES['file-upload']['tmp_name'];
-                  $fp = fopen($file_tmp_name, 'rb');
-                  $file = fread($fp, filesize($file_tmp_name));
-                //   $file = addslashes($file);
-                  fclose($fp);
 
-                  // $file = addslashes(file_get_contents($_FILES['file-upload']['tmp_name']));
-
+                  $file = mysqli_real_escape_string($db, file_get_contents($target_file));
 
                   $upload_file = "INSERT INTO attachments (attachment_id, file, file_name, file_type, file_size, course_fk) VALUES (NULL, '$file', '$file_name', '$file_type', '$file_size', '$course_id')";
+
+                  echo "did it work?";
 
                   $retval = mysqli_query($db, $upload_file);
 
