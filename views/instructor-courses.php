@@ -56,7 +56,7 @@
 
     } else {
     
-    //filter courses that not active
+    //filter courses that are not active
       $courses_data = array_filter($courses_data, function($v) { return $v['active'] == 1; });
     
     //print_r($courses_data);

@@ -112,15 +112,14 @@
                 };
 
                 $numtitle = substr($numtitle, 0, 10);//gets  a subtring of lenght 10 of numeric representation of course title
-                $get_courses = mysqli_query($db, "SELECT * FROM instructors_courses WHERE instructor_fk = '".$instructor_id."'");
-                
-                print_r($get_courses);
 
                 //$str = substr($str, 0, 4);
                 //$strcon = mysqli_insert_id($db) . $str . $numtitle;
+                
 
                 //mysql query to update registration_code of recently inserted data so that it equals numtitle
-                $query2 = "UPDATE courses SET registration_code= CONCAT(LAST_INSERT_ID(), $numtitle) WHERE title = '$title'";
+                //$query2 = "UPDATE courses SET registration_code= CONCAT(LAST_INSERT_ID(), $numtitle) WHERE course_id = '$course_id'";
+                $query2 = "UPDATE courses SET registration_code= CONCAT($course_id, $numtitle) WHERE course_id = '$course_id'";
 
                 $retval2 = mysqli_query($db, $query2); //performing mysql query
 
