@@ -111,7 +111,7 @@
           <div>"*/
 
         // Display instructors
-        echo "<section id='course-decription'><h4>Instructors: ";
+        echo "<section><h4>Instructors: ";
 
         // for loop so we can put commas after all names except for the last one.
         for ($x = 0; $x < count($instructors); $x++) {
@@ -184,18 +184,7 @@
 
       <a href='features/download.php?id=$course_id' class='btn btn-info' role='button' id='view-course-attachments'>Download Course Attachment</a>
       <button class='btn btn-info pull-right' onclick='removeButton(this)' role='button' style='color:black' id='remove-course' name='remove-course'><span class='glyphicon glyphicon-trash'></span></button>
-      <input class='hidden' value='' name='remove' id='submitDelete'>";
-
-        if(isset($_GET['rA']) && $_GET['rA'] == 2) {
-          echo "remove this course";
-          $active = $_GET['rA'];
-          $updateActive = mysqli_query($db, "UPDATE courses SET active = $active WHERE course_id = '$course_id'");
-        } else{
-          echo "do not remove course";
-        }
-
-
-    echo"</div>";
+      </div>";
         }
 
       }
