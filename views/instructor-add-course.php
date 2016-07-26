@@ -112,6 +112,9 @@
                 };
 
                 $numtitle = substr($numtitle, 0, 10);//gets  a subtring of lenght 10 of numeric representation of course title
+                $get_courses = mysqli_query($db, "SELECT * FROM instructors_courses WHERE instructor_fk = '".$instructor_id."'");
+                
+                print_r($get_courses);
 
                 //$str = substr($str, 0, 4);
                 //$strcon = mysqli_insert_id($db) . $str . $numtitle;
@@ -166,7 +169,7 @@
                     echo "Sorry, there was an error uploading your file.";
                 }
 
-                header('Location: http://localhost/groupstart/views/instructor-courses.php'); //once all queries are done relocate to instructor-course page
+                //header('Location: http://localhost/groupstart/views/instructor-courses.php'); //once all queries are done relocate to instructor-course page
                 };
             };
 

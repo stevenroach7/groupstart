@@ -8,6 +8,6 @@ $(document).ready(function() {
                 document.location.hash = "active="+activeTitle;
         }
       });
-};
+});
 
 
