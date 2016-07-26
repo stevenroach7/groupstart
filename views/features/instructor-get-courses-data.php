@@ -34,6 +34,7 @@ if (isset($_SESSION['instructor_id'])) {
          $course_info['platform'] = $row['platform'];
          $course_info['subject_area'] = $row['subject_area'];
          $course_info['registration_code'] = $row['registration_code'];
+         $course_info['active'] = $row['active'];
 
          // Get instructors here
        }
