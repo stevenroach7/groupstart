@@ -57,8 +57,8 @@
               $uploadOk = 1;
               $file_size = $_FILES['file-upload']['size'];
               $file_type = $_FILES['file-upload']['type'];
-              // echo $file_type;
-              // echo $file_size;
+              $file_name = $_FILES['file-upload']['name'];
+
 
               // Check if image file is a actual image or fake image
 
@@ -68,10 +68,10 @@
                   $uploadOk = 0;
               }
               // Allow certain file formats
-              if($file_type != "application/pdf") {
-                  echo "Sorry, only PDF files are allowed.";
-                  $uploadOk = 0;
-              }
+            //   if($file_type != "application/pdf") {
+            //       echo "Sorry, only PDF files are allowed.";
+            //       $uploadOk = 0;
+            //   }
 
               if (empty($_POST['title']) || (empty($_POST['description']))) {
                 //checking that required fields in form is filled
@@ -148,8 +148,16 @@
                 if (move_uploaded_file($_FILES["file-upload"]["tmp_name"], $target_file)) {
                   echo "The file ". basename( $_FILES["file-upload"]["name"]). " has been uploaded.";
 
-                  $file = $_FILES["file-upload"]["name"];
-                  $upload_file = "INSERT INTO attachments (attachment_id, file, file_type, file_size, course_fk) VALUES (NULL, '$file', '$file_type', '$file_size', '$course_id')";
+                  $file_tmp_name = $_FILES['file-upload']['tmp_name'];
+                  $fp = fopen($file_tmp_name, 'rb');
+                  $file = fread($fp, filesize($file_tmp_name));
+                //   $file = addslashes($file);
+                  fclose($fp);
+
+                  // $file = addslashes(file_get_contents($_FILES['file-upload']['tmp_name']));
+
+
+                  $upload_file = "INSERT INTO attachments (attachment_id, file, file_name, file_type, file_size, course_fk) VALUES (NULL, '$file', '$file_name', '$file_type', '$file_size', '$course_id')";
 
                   $retval = mysqli_query($db, $upload_file);
 
@@ -162,7 +170,7 @@
                     echo "Sorry, there was an error uploading your file.";
                 }
 
-                header('Location: http://localhost/groupstart/views/instructor-courses.php');//once all queries are done relocate to instructor-course page
+                header('Location: http://localhost/groupstart/views/instructor-courses.php'); //once all queries are done relocate to instructor-course page
                 };
             };
 
