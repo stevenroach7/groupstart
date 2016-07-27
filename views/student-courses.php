@@ -89,7 +89,7 @@
 
 
 
-      // Script to get courses 
+      // Script to get courses
       include 'features/student-get-courses-data.php'; // Gets $courses_data array.
 
 
@@ -192,7 +192,7 @@
           </section><br><br>
 
 
-          <a href=# class='btn btn-info' role='button' id='view-course-attachments'>View course attachments</a>
+          <a href='features/download.php?id=$course_id&type=course' class='btn btn-info' role='button' id='view-course-attachments'>Download Course Attachments</a>
           <a href='student-project.php' class='btn btn-info' style='float:right; width:300px;' role='button' id='view-student-group'>View My Group</a>
 
         </div>";
