@@ -29,13 +29,10 @@
 	     echo $file;
 	     mysqli_close($db);
 	     exit;
-      //  header('Location: http://localhost/groupstart/views/instructor-courses.php');
-
 
 
    } else { // 0 results are returned so there are no files to download
     echo "No files available to download";
-    exit;
    }
 
 	}

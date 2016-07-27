@@ -49,35 +49,19 @@
             // Instead, use the ‘type’ key of the $_FILES array to check the Multipurpose Internet Mail Extensions (MIME) type of the file,
             // and only allow those types you deem to be safe.
 
+
+            // TODO: Allow multiple files to be uploaded using foreach loop. http://techstream.org/Web-Development/PHP/Multiple-File-Upload-with-PHP-and-MySQL
+            // TODO: Rework logic to allow no files to be uploaded but if files are uploaded, then they must be valid. Use isset($_FILES['']) to see if any files have been uploaded.
+
+
+
             if (isset($_POST['submit'])) { //checks if the add project button has been clicked
 
-              // file upload validation check.
-              $target_dir = "../uploads/";
-              $target_file = $target_dir . basename($_FILES["file-upload"]["name"]);
-              $uploadOk = 1;
-              $file_size = $_FILES['file-upload']['size'];
-              $file_type = $_FILES['file-upload']['type'];
-              $file_name = $_FILES['file-upload']['name'];
 
-
-              // Check if image file is a actual image or fake image
-
-              // Check file size
-              if ($_FILES["file-upload"]["size"] > 5000000) { // 5 Megabytes
-                  echo "Sorry, your file is too large.";
-                  $uploadOk = 0;
-              }
-              // Allow certain file formats
-            //   if($file_type != "application/pdf") {
-            //       echo "Sorry, only PDF files are allowed.";
-            //       $uploadOk = 0;
-            //   }
 
               if (empty($_POST['title']) || (empty($_POST['description']))) {
                 //checking that required fields in form is filled
                 echo 'You either forgot to put a course title or a course description.';
-              } elseif ($uploadOk === 0) {
-                echo " Please try again.";
               } else {
 
                 //setting initialized variables to values entered by user
@@ -115,7 +99,7 @@
 
                 //$str = substr($str, 0, 4);
                 //$strcon = mysqli_insert_id($db) . $str . $numtitle;
-                
+
 
                 //mysql query to update registration_code of recently inserted data so that it equals numtitle
                 //$query2 = "UPDATE courses SET registration_code= CONCAT(LAST_INSERT_ID(), $numtitle) WHERE course_id = '$course_id'";
@@ -147,29 +131,60 @@
                 };
 
 
-                if (move_uploaded_file($_FILES["file-upload"]["tmp_name"], $target_file)) {
-                  echo "The file ". basename( $_FILES["file-upload"]["name"]). " has been uploaded.";
+                foreach($_FILES['file-uploads']['tmp_name'] as $key => $tmp_name ){
 
 
-                  $file = mysqli_real_escape_string($db, file_get_contents($target_file));
+                  $file_name = $_FILES['file-uploads']['name'][$key];
+                  $file_size = $_FILES['file-uploads']['size'][$key];
+                  $file_tmp = $_FILES['file-uploads']['tmp_name'][$key];
+                  $file_type = $_FILES['file-uploads']['type'][$key];
 
-                  $upload_file = "INSERT INTO attachments (attachment_id, file, file_name, file_type, file_size, course_fk) VALUES (NULL, '$file', '$file_name', '$file_type', '$file_size', '$course_id')";
 
-                  echo "did it work?";
+                  // file upload validation check.
+                  $target_dir = "../uploads/";
+                  $target_file = $target_dir . basename($file_name);
+                  $uploadOk = 1;
 
-                  $retval = mysqli_query($db, $upload_file);
 
-                  if (!$retval) {
-                    echo mysql_error();
-                    die('Could not enter data given: '.mysql_error());
+                  // Check if image file is a actual image or fake image
+
+                  // Check file size
+                  if ($file_size > 1000000) { // 1 Megabyte
+                      echo "Sorry, your file is too large.";
+                      $uploadOk = 0;
+                  }
+                  // Allow certain file formats
+                  if($file_type != "application/pdf") {
+                      echo "Sorry, only PDF files are allowed.";
+                      $uploadOk = 0;
                   }
 
-                } else {
-                    echo "Sorry, there was an error uploading your file.";
+
+                  if (move_uploaded_file($file_tmp, $target_file)) {
+                    echo "The file ". basename($file_name). " has been uploaded.";
+
+
+                    $file = mysqli_real_escape_string($db, file_get_contents($target_file));
+
+                    $upload_file = "INSERT INTO attachments (attachment_id, file, file_name, file_type, file_size, course_fk) VALUES (NULL, '$file', '$file_name', '$file_type', '$file_size', '$course_id')";
+
+                    echo "did it work?";
+
+                    $retval = mysqli_query($db, $upload_file);
+
+                    if (!$retval) {
+                      echo mysqli_error($db);
+                      die('Could not enter data given: '.mysqli_error($db));
+                    }
+
+                  } else {
+                      echo "Sorry, there was an error uploading your file.";
+                  }
+
                 }
 
-                header('Location: http://localhost/groupstart/views/instructor-courses.php'); //once all queries are done relocate to instructor-course page
-                };
+              header('Location: http://localhost/groupstart/views/instructor-courses.php'); //once all queries are done relocate to instructor-course page
+              };
             };
 
             ?>
@@ -190,8 +205,10 @@
           <textarea rows="4" cols="50" id="course-description" name="description"></textarea>
           <br>
 
-          <h4>Course Attachment</h4>
-            Upload a PDF: <input type="file" name="file-upload" id="file-upload">
+
+          <!-- TODO: Change to array so that multiple files can be uploaded -->
+          <h4>Course Attachments</h4>
+            Upload PDF's (Each file must be smaller than 1 Megabyte): <input type="file" name="file-uploads[]" id="file-upload" multiple="" />
         </form>
         <input type="submit" name="submit" value="Add Course" class="btn btn-info" form="add-course-form" id="add-new-course"/><br>
 
