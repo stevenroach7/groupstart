@@ -34,7 +34,6 @@
   <body>
       <?php echo $banner ?>
       <div class="container">
-          <h1>Student's Settings</h1>
 	<div class="row" id="memeber-list-area">
 		<div class="col-md-12">
             <h3>Group Members</h3>
@@ -56,7 +55,7 @@
 		<div class="col-md-8" id="milestones-area">
             <div class="panel-group" id="accordion">
   <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading clearfix">
         <button type="button" class="btn btn-default pull-right">Submit</button>
       <h4 class="panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
@@ -71,7 +70,7 @@
     </div>
   </div>
   <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading clearfix">
         <button type="button" class="btn btn-default pull-right">Submit</button>
       <h4 class="panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
@@ -86,7 +85,7 @@
     </div>
   </div>
   <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading clearfix">
         <button type="button" class="btn btn-default pull-right">Submit</button>
       <h4 class="panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">

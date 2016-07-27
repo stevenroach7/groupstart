@@ -73,6 +73,7 @@ include 'features/instructor-get-courses-data.php'
                 //mysql query to insert values into respective fields
                 $query = "INSERT INTO projects (project_id, course_fk, title, description, group_importance_statement, min_group_size, max_group_size, group_form_algorithm) VALUES (NULL, $course_fk, '$title', '$description', '$group_importance_statement','$min_group_size', '$max_group_size', '$group_form_algorithm')"; 
                 
+
                 $retval = mysqli_query($db,$query); //performing mysql query
                 
                 if(!$retval ) { //if data is not inserted into database return error
@@ -80,7 +81,7 @@ include 'features/instructor-get-courses-data.php'
                 };
                 //echo "Entered data successfully\n";
                 
-                header("Location: http://localhost/groupstart/views/instructor-project.php");// once data has been inserted into database redirect to instructor-project page.
+                header("Location: http://localhost/groupstart/views/instructor-courses.php");// once data has been inserted into database redirect to instructor-project page.
             };
         };
       

@@ -142,6 +142,9 @@
                                                 </p>
                 
                                             </div></div>
+                                        <div class="row" id="add-deliverables">
+                                            <a class="btn btn-info btn-block">Add project deliverables for students</a>
+                                        </div>
                                 
                                         
                                         

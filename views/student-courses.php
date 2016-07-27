@@ -41,14 +41,16 @@
 
           // Check if registration code exists in courses.
           $check_registration_code = mysqli_query($db, "SELECT * FROM courses WHERE registration_code = '".$registration_code."'");
+        
 
-
-            // Get course id of course
+            // Get course id of course and if it is active or not
           if (mysqli_num_rows($check_registration_code) > 0) {
             // output data of each row
             while($row = mysqli_fetch_assoc($check_registration_code)) {
               $course_id = $row["course_id"];
-            }
+              $active = $row["active"];
+            };
+            
 
             // get student_id from session storage
             $student_id = $_SESSION['student_id'];
@@ -56,10 +58,15 @@
             // Check if student is already in that course
             $check_exists = mysqli_query($db, "SELECT * FROM students_courses WHERE student_fk = '".$student_id."' AND course_fk = '".$course_id."'");
             $num_rows = mysqli_num_rows($check_exists);
+            
 
             if ($num_rows !== 0) {
               echo "You are already registered for this course.";
 
+            } elseif($active == 0){
+              
+              echo "This course is no longer active.";
+                
             } else {
 
               // Add entry to student_courses table
