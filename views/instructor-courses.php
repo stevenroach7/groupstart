@@ -55,12 +55,12 @@
       echo '<h1>You are not currently teaching any courses.';
 
     } else {
-    
+
     //filter courses that are not active
       $courses_data = array_filter($courses_data, function($v) { return $v['active'] == 1; });
-    
+
     //print_r($courses_data);
-    
+
       foreach ($courses_data as $course_data) {
 
         $course_id = $course_data['course_id'];
