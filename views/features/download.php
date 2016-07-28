@@ -17,15 +17,17 @@
      $result = mysqli_query($db, $query) or die('Error, query failed');
      break;
 
-
-
+     case 'project':
+     $query = "SELECT * FROM attachments WHERE project_fk = '$id'";
+     $result = mysqli_query($db, $query) or die('Error, query failed');
+     break;
    }
 
 
    if (mysqli_num_rows($result) === 1) {
 
      while($row = mysqli_fetch_assoc($result)) {
-       $id = $row['attachment_id'];
+       $attachment_id = $row['attachment_id'];
        $file = $row['file'];
        $file_name = str_replace(',', '', $row['file_name']); // Need to remove commas from $file_name, http://stackoverflow.com/questions/13578428/duplicate-headers-received-from-server
        $file_type = $row['file_type'];
@@ -40,7 +42,6 @@
       echo $file;
       mysqli_close($db);
       exit;
-
 
    } elseif (mysqli_num_rows($result) > 1) {
      // Create zip file and let user download that.

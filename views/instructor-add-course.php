@@ -154,10 +154,6 @@
                       // file upload validation check.
                       $target_dir = '../uploads/';
                       $target_file = $target_dir.basename($file_name);
-                      $uploadOk = 1;
-
-
-
 
                       if (move_uploaded_file($file_tmp, $target_file)) {
                           echo 'The file '.basename($file_name).' has been uploaded.';
