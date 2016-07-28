@@ -38,152 +38,146 @@
 
             // TODO: Handle errors and malicious input.
 
-
-            // It’s generally considered a good idea to verify the integrity of the upload before accepting it.
-            // Typical checks include ensuring the file is not a zero-byte file with the
-            // ‘size’ key of the $_FILES array, and verifying that the file was indeed uploaded through a POST operation (and not “injected”
-            // into the script artificially by a malicious user) with the is_uploaded_file() function.
-            // You may also choose to test the file type if your application only allows particular types of files to be uploaded.
-            //
-            // Don’t use the file extension to determine the file type, as it’s easy to rename an executable file with a “safe” extension.
-            // Instead, use the ‘type’ key of the $_FILES array to check the Multipurpose Internet Mail Extensions (MIME) type of the file,
-            // and only allow those types you deem to be safe.
-
-
-            // TODO: Allow multiple files to be uploaded using foreach loop. http://techstream.org/Web-Development/PHP/Multiple-File-Upload-with-PHP-and-MySQL
-            // TODO: Rework logic to allow no files to be uploaded but if files are uploaded, then they must be valid. Use isset($_FILES['']) to see if any files have been uploaded.
-
-
-
             if (isset($_POST['submit'])) { //checks if the add project button has been clicked
 
+              // check if file uploads are valid.
+              $files_valid = 1; // Boolean
+              $files_uploaded = 0; // Integer count
 
+              foreach ($_FILES['file-uploads']['tmp_name'] as $key => $tmp_name) {
+
+                $file_size = $_FILES['file-uploads']['size'][$key];
+                $file_tmp = $_FILES['file-uploads']['tmp_name'][$key];
+                $file_type = $_FILES['file-uploads']['type'][$key];
+
+                if (is_uploaded_file($file_tmp)) {
+
+                  $files_uploaded += 1;
+
+                  // Check file size
+                  if ($file_size > 1000000) { // 1 Megabyte
+                      echo 'Sorry, only files smaller than 1 Megabyte are allowed . ';
+                      $files_valid = 0;
+                  } elseif (!$file_size > 0) { // 1 Megabyte
+                      echo 'Invalid file uploaded . ';
+                      $files_valid = 0;
+                  }
+
+                  // Allow certain file formats
+                  if ($file_type != 'application/pdf') {
+                      echo 'Sorry, only PDF files are allowed. ';
+                      $files_valid = 0;
+                  }
+                }
+              }
 
               if (empty($_POST['title']) || (empty($_POST['description']))) {
-                //checking that required fields in form is filled
-                echo 'You either forgot to put a course title or a course description.';
+                  //checking that required fields in form is filled
+                echo 'You either forgot to put a course title or a course description. ';
+              } elseif ($files_valid === 0) {
+                echo 'Please try again. ';
               } else {
 
                 //setting initialized variables to values entered by user
 
                 $title = $_POST['title'];
-                $description = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
-                $platform = $_POST['platform'];
-                $subject_area = $_POST['subject_area'];
-                $registration_code = trim($title); //sets registration_code as title for first insert
+                  $description = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
+                  $platform = $_POST['platform'];
+                  $subject_area = $_POST['subject_area'];
+                  $registration_code = trim($title); //sets registration_code as title for first insert
 
                 //mysql query to insert values into respective fields
                 $query = "INSERT INTO courses (course_id, title, description, platform, subject_area, registration_code) VALUES (NULL, '$title', '$description', '$platform', '$subject_area', '$registration_code')";
 
-                $retval = mysqli_query($db, $query);//performing mysql query
+                  $retval = mysqli_query($db, $query);//performing mysql query
 
                 if (!$retval) {
-                  //if data is not inserted into database return error
+                    //if data is not inserted into database return error
                   die('Could not enter data given: '.mysql_error());
                 };
 
-                $course_id = mysqli_insert_id($db);
-
+                  $course_id = mysqli_insert_id($db);
 
                 //function to create unique registration code for specific course
                 $str = preg_replace('/\s+/', '', $title);//removes all spaces in title
                 $strlen = strlen($str);
-                $numtitle = '';//variable for numeric representation for course title
+                  $numtitle = '';//variable for numeric representation for course title
 
                 for ($i = 0; $i <= $strlen; ++$i) {
-                  $char = substr($str, $i, 1);
-                  $numtitle .= ord($char);
+                    $char = substr($str, $i, 1);
+                    $numtitle .= ord($char);
                 };
 
-                $numtitle = substr($numtitle, 0, 10);//gets  a subtring of lenght 10 of numeric representation of course title
+                  $numtitle = substr($numtitle, 0, 10);//gets  a subtring of lenght 10 of numeric representation of course title
 
                 //$str = substr($str, 0, 4);
                 //$strcon = mysqli_insert_id($db) . $str . $numtitle;
-
 
                 //mysql query to update registration_code of recently inserted data so that it equals numtitle
                 //$query2 = "UPDATE courses SET registration_code= CONCAT(LAST_INSERT_ID(), $numtitle) WHERE course_id = '$course_id'";
                 $query2 = "UPDATE courses SET registration_code= CONCAT($course_id, $numtitle) WHERE course_id = '$course_id'";
 
-                $retval2 = mysqli_query($db, $query2); //performing mysql query
+                  $retval2 = mysqli_query($db, $query2); //performing mysql query
 
                 if (!$retval2) { // if update does not work then delete data where registration_code is the title
                   $sql = "DELETE FROM courses WHERE registration_code = '$title'";
 
-                  if (mysqli_query($db, $sql)) {
-                    //checking if delete was successful
+                    if (mysqli_query($db, $sql)) {
+                        //checking if delete was successful
                     echo 'Record deleted successfully';
-                  } else {
-                    echo 'Error deleting record: '.mysql_error();
-                  };
+                    } else {
+                        echo 'Error deleting record: '.mysql_error();
+                    };
 
-                  die('Could not input proper registration code for this course: '.mysql_error());
+                    die('Could not input proper registration code for this course: '.mysql_error());
                 };
-
 
                 //mysql query to update instrutors_course table
                 $query3 = "INSERT INTO instructors_courses (instructor_course_id, course_fk, instructor_fk) VALUES (NULL, LAST_INSERT_ID(), '$instructor_id') ";
 
-                $retval3 = mysqli_query($db, $query3);
+                  $retval3 = mysqli_query($db, $query3);
 
-                if (!$retval) {
-                    die('Could not update instructors_course_table: '.mysql_error());
-                };
-
-
-                foreach($_FILES['file-uploads']['tmp_name'] as $key => $tmp_name ){
+                  if (!$retval) {
+                      die('Could not update instructors_course_table: '.mysql_error());
+                  };
 
 
-                  $file_name = $_FILES['file-uploads']['name'][$key];
-                  $file_size = $_FILES['file-uploads']['size'][$key];
-                  $file_tmp = $_FILES['file-uploads']['tmp_name'][$key];
-                  $file_type = $_FILES['file-uploads']['type'][$key];
+
+                  if ($files_uploaded > 0) {
+
+                    foreach ($_FILES['file-uploads']['tmp_name'] as $key => $tmp_name) {
+                      $file_name = $_FILES['file-uploads']['name'][$key];
+                      $file_size = $_FILES['file-uploads']['size'][$key];
+                      $file_tmp = $_FILES['file-uploads']['tmp_name'][$key];
+                      $file_type = $_FILES['file-uploads']['type'][$key];
+
+                      // file upload validation check.
+                      $target_dir = '../uploads/';
+                      $target_file = $target_dir.basename($file_name);
+                      $uploadOk = 1;
 
 
-                  // file upload validation check.
-                  $target_dir = "../uploads/";
-                  $target_file = $target_dir . basename($file_name);
-                  $uploadOk = 1;
 
 
-                  // Check if image file is a actual image or fake image
+                      if (move_uploaded_file($file_tmp, $target_file)) {
+                          echo 'The file '.basename($file_name).' has been uploaded.';
 
-                  // Check file size
-                  if ($file_size > 1000000) { // 1 Megabyte
-                      echo "Sorry, your file is too large.";
-                      $uploadOk = 0;
-                  }
-                  // Allow certain file formats
-                  if($file_type != "application/pdf") {
-                      echo "Sorry, only PDF files are allowed.";
-                      $uploadOk = 0;
-                  }
+                          $file = mysqli_real_escape_string($db, file_get_contents($target_file));
 
+                          $upload_file = "INSERT INTO attachments (attachment_id, file, file_name, file_type, file_size, course_fk) VALUES (NULL, '$file', '$file_name', '$file_type', '$file_size', '$course_id')";
 
-                  if (move_uploaded_file($file_tmp, $target_file)) {
-                    echo "The file ". basename($file_name). " has been uploaded.";
+                          $retval = mysqli_query($db, $upload_file);
 
-
-                    $file = mysqli_real_escape_string($db, file_get_contents($target_file));
-
-                    $upload_file = "INSERT INTO attachments (attachment_id, file, file_name, file_type, file_size, course_fk) VALUES (NULL, '$file', '$file_name', '$file_type', '$file_size', '$course_id')";
-
-                    echo "did it work?";
-
-                    $retval = mysqli_query($db, $upload_file);
-
-                    if (!$retval) {
-                      echo mysqli_error($db);
-                      die('Could not enter data given: '.mysqli_error($db));
+                          if (!$retval) {
+                              echo mysqli_error($db);
+                              die('Could not enter data given: '.mysqli_error($db));
+                          }
+                      } else {
+                          echo 'Sorry, there was an error uploading your file.';
+                      }
                     }
-
-                  } else {
-                      echo "Sorry, there was an error uploading your file.";
                   }
-
-                }
-
-              header('Location: http://localhost/groupstart/views/instructor-courses.php'); //once all queries are done relocate to instructor-course page
+                  header('Location: http://localhost/groupstart/views/instructor-courses.php'); //once all queries are done relocate to instructor-course page
               };
             };
 
