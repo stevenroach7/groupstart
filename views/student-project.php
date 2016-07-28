@@ -52,7 +52,7 @@
 		</div>
 	</div><br><br>
 	<div class="row">
-		<div class="col-md-8" id="milestones-area">
+		<!--div class="col-md-8" id="milestones-area">
             <div class="panel-group" id="accordion">
   <div class="panel panel-default">
     <div class="panel-heading clearfix">
@@ -99,23 +99,26 @@
       commodo consequat.</div>
     </div>
   </div>
-</div>
+</div-->
 
 		</div>
-		<div class="col-md-4" id="commun-link-area"><table class="table table-striped">
-<thead><tr><th>Communication tools</th><th>Link</th></tr></thead>
-<tbody>
-    <tr><td>..</td><td>..</td></tr>
-    <tr><td>..</td><td>..</td></tr>
-    <tr><td>..</td><td>..</td></tr>
-    <tr><td>..</td><td>..</td></tr>
-    <tr><td>..</td><td>..</td></tr>
-    <tr><td>..</td><td>..</td></tr>
-    <tr><td>..</td><td>..</td></tr>
-    <tr><td>..</td><td>..</td></tr>
-
-  </tbody></table>
-            <button type="button" class="btn btn-default pull-right">View Group Charter</button>
+		<div class="col-md-12" id="commun-link-area">
+		  <table class="table table-striped">
+		      <thead>
+		          <tr><th>Communication tools</th><th>Link</th></tr>
+		      </thead>
+		      <tbody>
+		          <tr><td>..</td><td>..</td></tr>
+		          <tr><td>..</td><td>..</td></tr>
+		          <tr><td>..</td><td>..</td></tr>
+		          <tr><td>..</td><td>..</td></tr>
+		          <tr><td>..</td><td>..</td></tr>
+		          <tr><td>..</td><td>..</td></tr>
+                  <tr><td>..</td><td>..</td></tr>
+		          <tr><td>..</td><td>..</td></tr>
+		      </tbody> 
+		    </table>
+            <button type="button" class="btn btn-info pull-right">View Group Charter</button>
 		</div>
 	</div>
 </div>

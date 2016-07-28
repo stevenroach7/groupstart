@@ -810,6 +810,7 @@ tr {
 
 table{
     height:300px;
+    margin: 0px;
 }
 
 tbody{
@@ -817,6 +818,12 @@ tbody{
     height: 200px;
     width: 100%;
     position: absolute;
+    margin-bottom: 0px;
+}
+
+#commun-link-area{
+    height:300px;
+    margin: 0px;
 }
 /*Styling for student-start-project.php*/
 

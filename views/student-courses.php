@@ -142,8 +142,8 @@
             while($row = mysqli_fetch_assoc($get_projects)) {
               $project_info['project_id'] = $row['project_id'];
               $project_info['title'] = $row['title'];
-            }
-            $projects[] = $project_info;
+              $projects[] = $project_info;
+            } 
         }
 
         // Display Title
@@ -176,7 +176,6 @@
               <h4>Course Projects</h4>
               <div id='project-list'>
                   <ul class='list-group'>";
-
                   // Display projects
                   if (empty($projects)) {
                     echo "This course has no projects.";
@@ -184,7 +183,7 @@
                     foreach ($projects as $project) {
                       $title = $project['title'];
                       // TODO: use the project_id to pass the url
-                      echo "<a href='student-start-project.php'><li class='list-group-item'>'$title'</li> </a>";
+                      echo "<li class='list-group-item clearfix'><a href='student-start-project.php'>$title</a><span class='pull-right'><a href='student-project.php' class='btn btn-info' id='view-student-group'>View My Group</a></span></li> ";
                     }
                   }
             echo "</ul>
@@ -193,7 +192,6 @@
 
 
           <a href='features/download.php?id=$course_id&type=course' class='btn btn-info' role='button' id='view-course-attachments'>Download Course Attachments</a>
-          <a href='student-project.php' class='btn btn-info' style='float:right; width:300px;' role='button' id='view-student-group'>View My Group</a>
 
         </div>";
         }

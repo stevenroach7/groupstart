@@ -1,5 +1,5 @@
 function completeClustoptions(){
-    if($('#clustering-options-form input:checked').length > 0 == true){
+    if($('#clust-variable-list input:checked').length > 0 == true){
         $('#panel-clustering-options').prop('checked', true);
     } else {
         $('#panel-clustering-options').prop('checked', false);
@@ -80,4 +80,11 @@ $(document).ready(function(){
         completeClustoptions();
     
     });
+    
+    
+    $('#save-intro-options').click(function(){
+        $('#panel-charter-options').prop('checked', 'true');
+    });
+    
+    
 });

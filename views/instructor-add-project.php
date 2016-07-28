@@ -315,7 +315,9 @@ include 'features/instructor-get-courses-data.php'
                                     </div>
                                 </div><br/>
                             </div>
-                            <div id="charter-options-panel" class="section">Charter Options panel is now open
+                            <div id="charter-options-panel" class="section">
+                                <p>Charter Options panel is now open</p>
+                                <input type="submit" name="submit" class="btn btn-info" id="save-intro-options" style="float:left;width:400px !important" value="Save" />
                                 <a href="#" class="btn btn-info" role="button" id="next-step-to-complete-div" style="float:right">Next Step</a></div>
                             
                             <div id="complete-add-project-process" class="section">
