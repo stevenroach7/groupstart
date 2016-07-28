@@ -41,8 +41,8 @@
   ?>
 
   <div class="container" id="instructor-course-list">
-    <h1 style="text-align:center">List of Courses</h1>
-    <!-- <h2 style="text-align:center">Welcome <?php echo $instructorInfo['name']?></h2><br> -->
+    <h1 style="text-align:center">List of Courses</h1><br>
+    <h4><?php echo $instructorInfo['name'] ?></h4><br>
 
     <div id='accordion'>
 
@@ -173,8 +173,14 @@
                 echo "There are no students enrolled in this course.";
               } else {
                 foreach ($students as $student) {
+                  $name = $student['name'];
                   $display_name = $student['display_name'];
-                  echo "<li class='list-group-item'>$display_name</li>";
+                  if(!$display_name){
+                    echo "<li class='list-group-item'>$name</li>";
+                  } else{
+                    echo "<li class='list-group-item'>$display_name</li>";
+                  }
+                  
                 }
               }
 

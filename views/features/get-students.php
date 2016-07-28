@@ -19,7 +19,9 @@
       while($row = mysqli_fetch_assoc($get_students_courses)) {
         $student_ids[] = $row['student_fk'];
       }
-  }
+  } 
+    
+  
 
   // Query students table to find students with student_id's and add to students array
   $students = array();
@@ -32,12 +34,14 @@
 
       $student_info = array();
       while ($row = mysqli_fetch_assoc($get_student)) {
-        $student_info['instructor_id'] = $row['student_id'];
+        $student_info['student_id'] = $row['student_id'];
         $student_info['display_name'] = $row['display_name'];
+        $student_info['name'] = $row['name'];
       }
       $students[] = $student_info;
     }
   }
+//print_r($students);
 
 
  ?>
