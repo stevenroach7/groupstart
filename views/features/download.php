@@ -48,7 +48,7 @@
 
      // Need Clever way to make file name because I think they all need to be different. Use ID.
      $target_dir = "../../uploads/";
-     $zip_name = 'course-'.$id.'-attachments.zip';
+     $zip_name = $type.'-'.$id.'-attachments.zip';
      $zip_dir = $target_dir . basename($zip_name);
 
      $zip = new ZipArchive;
