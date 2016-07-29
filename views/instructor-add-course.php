@@ -196,11 +196,12 @@
           <br>
 
 
-          <!-- TODO: Change to array so that multiple files can be uploaded -->
           <h4>Course Attachments</h4>
-            Upload PDF's (Each file must be smaller than 1 Megabyte): <input type="file" name="file-uploads[]" id="file-upload" multiple="" />
+          <label>Upload PDF's (Each file must be smaller than 1 Megabyte):</label><input type="file" name="file-uploads[]" id="file-upload" multiple="" />
+
+          <input type="submit" name="submit" value="Add Course" class="btn btn-info" form="add-course-form" id="add-new-course"/><br>
         </form>
-        <input type="submit" name="submit" value="Add Course" class="btn btn-info" form="add-course-form" id="add-new-course"/><br>
+
 
       </div>
 

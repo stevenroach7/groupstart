@@ -180,7 +180,7 @@
                   } else{
                     echo "<li class='list-group-item'>$display_name</li>";
                   }
-                  
+
                 }
               }
 
