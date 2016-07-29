@@ -116,9 +116,10 @@
 		          <tr><td>..</td><td>..</td></tr>
                   <tr><td>..</td><td>..</td></tr>
 		          <tr><td>..</td><td>..</td></tr>
-		      </tbody> 
+		      </tbody>
 		    </table>
             <button type="button" class="btn btn-info pull-right">View Group Charter</button>
+          
 		</div>
 	</div>
 </div>
