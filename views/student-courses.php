@@ -182,8 +182,9 @@
                   } else {
                     foreach ($projects as $project) {
                       $title = $project['title'];
+                      $project_id = $project['project_id'];
                       // TODO: use the project_id to pass the url
-                      echo "<li class='list-group-item clearfix'><a href='student-start-project.php'>$title</a><span class='pull-right'><a href='student-project.php' class='btn btn-info' id='view-student-group'>View My Group</a></span></li> ";
+                      echo "<li class='list-group-item clearfix'><a href='student-start-project.php?id=$project_id&course_id=$course_id'>$title</a><span class='pull-right'><a href='student-project.php' class='btn btn-info' id='view-student-group'>View My Group</a></span></li> ";
                     }
                   }
             echo "</ul>

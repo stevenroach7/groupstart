@@ -780,12 +780,19 @@ body{
 /*Styling for student-start-project.php*/
 
 .panel-body p{
-    height: 500px;
+    height: 300px;
+}
+#student-form-group{
+    margin-bottom: 20px;
 }
 
 #clust-para p, #intro-para p{
     border: 2px solid #D3D3D3;
     padding: 10px;
+}
+
+#check-description, #check-statement{
+    margin-bottom: 20px;
 }
 /*Styling for student-start-project.php*/
 
