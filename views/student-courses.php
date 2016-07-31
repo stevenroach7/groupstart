@@ -41,7 +41,7 @@
 
           // Check if registration code exists in courses.
           $check_registration_code = mysqli_query($db, "SELECT * FROM courses WHERE registration_code = '".$registration_code."'");
-        
+
 
             // Get course id of course and if it is active or not
           if (mysqli_num_rows($check_registration_code) > 0) {
@@ -50,7 +50,7 @@
               $course_id = $row["course_id"];
               $active = $row["active"];
             };
-            
+
 
             // get student_id from session storage
             $student_id = $_SESSION['student_id'];
@@ -58,15 +58,15 @@
             // Check if student is already in that course
             $check_exists = mysqli_query($db, "SELECT * FROM students_courses WHERE student_fk = '".$student_id."' AND course_fk = '".$course_id."'");
             $num_rows = mysqli_num_rows($check_exists);
-            
+
 
             if ($num_rows !== 0) {
               echo "You are already registered for this course.";
 
             } elseif($active == 0){
-              
+
               echo "This course is no longer active.";
-                
+
             } else {
 
               // Add entry to student_courses table
@@ -143,7 +143,7 @@
               $project_info['project_id'] = $row['project_id'];
               $project_info['title'] = $row['title'];
               $projects[] = $project_info;
-            } 
+            }
         }
 
         // Display Title
@@ -184,7 +184,7 @@
                       $title = $project['title'];
                       $project_id = $project['project_id'];
                       // TODO: use the project_id to pass the url
-                      echo "<li class='list-group-item clearfix'><a href='student-start-project.php?id=$project_id&course_id=$course_id'>$title</a><span class='pull-right'><a href='student-project.php' class='btn btn-info' id='view-student-group'>View My Group</a></span></li> ";
+                      echo "<li class='list-group-item clearfix'><a href='student-start-project.php?project_id=$project_id&course_id=$course_id'>$title</a> <span class='pull-right'> <a href='student-project.php' class='btn btn-info' id='view-student-group'>View My Group</a></span></li> ";
                     }
                   }
             echo "</ul>
