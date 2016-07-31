@@ -163,7 +163,7 @@ include 'features/instructor-get-courses-data.php'
 
 
 
-              header("Location: http://localhost/groupstart/views/instructor-courses.php");// once data has been inserted into database redirect to instructor-project page.
+              // header("Location: http://localhost/groupstart/views/instructor-courses.php");// once data has been inserted into database redirect to instructor-project page.
             };
         };
 
@@ -261,12 +261,15 @@ include 'features/instructor-get-courses-data.php'
                                 <input type="text" id="project-title"><br><br>
                                     <textarea rows="4" cols="50" id="area-description" class="mceEditor"></textarea><br><br><br>
 
-                                    <h4>Project Attachments</h4>
+                                    <!-- <h4>Project Attachments</h4>
 
                                     <form action="../php_scripts/upload.php" class="dropzone dz-clickable">
                                         <div class="dz-default dz-message">
                                             <span>Drop files here to upload</span>
-                                        </div>
+                                        </div> -->
+
+                                        <!-- <h4>Project Attachments</h4>
+                                        Upload PDF's (Each file must be smaller than 1 Megabyte): <input type="file" name="file-uploads[]" id="file-upload" multiple="" /> -->
                                     </form><br><br>
                                     <a href="#" class="btn btn-info" role="button" id="add-project-options">Add Project Options</a><i>(optional)</i><br>
                                     <a href="#" class="btn btn-info" role="button" id="add-project-examples" style="margin-bottom:20px">Add Project Examples</a><i>(optional)</i><br>
@@ -495,6 +498,7 @@ include 'features/instructor-get-courses-data.php'
                                             <input type="hidden" name = "min_group_size" id="fordb_min" value=""/>
                                             <input type="hidden" name = "max_group_size" id="fordb_max" value=""/>
                                             <input type="hidden" name = "group_form_algorithm" id="fordb_algo" value=""/>
+                                            <!-- <input type="hidden" name = "project-files[]" id="fordb_project_files" value="" multiple="" /> -->
 
                                             <h3>Project Attachments</h3>
                                             Upload PDF's (Each file must be smaller than 1 Megabyte): <input type="file" name="file-uploads[]" id="file-upload" multiple="" />
