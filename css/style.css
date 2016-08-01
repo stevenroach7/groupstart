@@ -1,6 +1,6 @@
 html, body {
     height: 100%;
-    
+
 }
 body{
     padding-top: 70px;
@@ -555,7 +555,7 @@ body{
     width: 438px;
     overflow-x: scroll;
     border:1px solid grey;
-    
+
 }
 .ui-tabs.ui-tabs-vertical {
     padding: 0;
@@ -680,7 +680,7 @@ body{
     height: 30px;
     font-size: 18px;
     font-weight: 200;
-    
+
 }
 #rangeSlider{
     margin-bottom: 20px;
@@ -720,7 +720,7 @@ body{
 
 #chart li {
     display: inline;
-    
+
 }
 
 #chart .block {
@@ -733,7 +733,7 @@ body{
     -ms-transform: rotate( 45deg );
     transform: rotate( 45deg );
     position: relative;
-    
+
 }
 
 #chart li:nth-of-type(4){
@@ -973,7 +973,7 @@ input[type="text"]{
 
 body .a0-primary.a0-next{
     background-color: #337ab7 !important;
-    
+
 }
 
 body .a0-icon-badge{
@@ -991,7 +991,7 @@ body .a0-icon-badge{
  }*/
 #hom-page p,  #hom-page h1,  #hom-page h5,  #hom-pageh3{
     color: white;
-    
+
 }
 
 #webpage-description div:first-of-type p{
@@ -1002,7 +1002,7 @@ body .a0-icon-badge{
 #webpage-description div:first-of-type h5{
     font-size: 20px;
     text-align:center;
-    
+
 }
 #research-affil{
     margin-bottom: 20px;
@@ -1018,14 +1018,14 @@ body .a0-icon-badge{
     /*background: red;*/
 }
 #web-rep-icons{
-    width: 600px;
+    width: 640px;
     /*background: blue;*/
     margin:0 auto;
 }
 
 #web-icons-area h3{
     display: inline;
-    margin: 20px;
+    margin: 18px;
     text-align: center;
 }
 
@@ -1058,7 +1058,7 @@ body .a0-icon-badge{
  #login-side{
  height: 400px;
  margin: 20px;
- 
+
  }*/
 
 /* The Modal (background) */
@@ -1100,20 +1100,21 @@ body .a0-icon-badge{
 }
 
 #su-buttons{
-    width: 50%;
+    width: 80%;
     /*background: orange;*/
     height: auto;
     transform: translateY(40%);
     margin: 0 auto;
-    display: block;
+    display: table;
+    text-align: center;
     position: relative;
-    
+
 }
 
 #su-buttons button{
-    margin-right: 10px;
-    margin-bottom: 50px;
-    width: 100% !important;
+    margin-right: 50px;
+    /*margin-bottom: 50px;*/
+    width: 40% !important;
 }
 
 .vr {

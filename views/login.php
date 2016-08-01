@@ -66,12 +66,12 @@
                       </div>
                   </div>
                   <div class="row" id="web-icons-area">
-                      <div class="col-md-12">
+                    <div class="col-md-12">
                           <div id="web-rep-icons">
                           <i class="fa fa-users fa-5x" aria-hidden="true" id="group-work">
                           </i>
                           <i class="fa fa-cloud fa-5x" aria-hidden="true" id="idea-generation"></i>
-                      <i class="fa fa-file-text-o fa-5x" aria-hidden="true" id="charter-formation"></i><br><h3>Group Work</h3><h3>Idea Formation</h3><h3>Charter Creation</h3></div>
+                      <i class="fa fa-file-text-o fa-5x" aria-hidden="true" id="charter-formation"></i><br><h3>Group Work</h3><h3>Group Formation</h3><h3>Group Introduction</h3></div>
                   </div>
 
               </div>
@@ -86,32 +86,8 @@
                   <div class="row" id="sign-up-side">
                   <div class="col-md-12" id="sign-up-buttons" >
                       <div id="p0">
-                      <h1 style="color:black;text-align:center">Sign-Up</h1>
-            <!--div id="su-buttons">
-                      <button type="button" class="btn btn-primary" id="student-myBtn">Student</button><br>
-                      <button type="button" class="btn btn-primary" id="instructor-myBtn">Instructor</button>
-</div-->
+                      <h1 style="color:black;text-align:center">Get Started</h1>
 
-<!-- The Modal -->
-<div id="stuModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close" id="student-close">x</span>
-    <p>Student Modal</p>
-  </div>
-
-</div>
-                      <!-- The Modal -->
-<div id="instModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close" id="instructor-close">x</span>
-    <p>Instructor Modal..</p>
-  </div>
-
-</div>
                       </div>
                       <script src="https://cdn.auth0.com/js/lock-9.1.min.js"></script>
     <script type="text/javascript">
@@ -169,49 +145,17 @@
 
     </script>
 <div id="su-buttons">
-    
-    <button onclick="window.studentSignIn();" type="button" class="btn btn-primary" id="student-myBtn">Student</button><br>
-                      <button onclick="window.instructorSignIn();" type="button" class="btn btn-primary" id="instructor-myBtn">Instructor</button>
-    
-    <!--button onclick="window.studentSignIn();">Students</button-->
-    <!--button onclick="window.instructorSignIn();">Instructors</button-->
-                      </div>      
+
+    <button onclick="window.studentSignIn();" type="button" class="btn btn-primary" id="student-myBtn">Student</button>
+    <button onclick="window.instructorSignIn();" type="button" class="btn" id="instructor-myBtn">Instructor</button>
+
+                      </div>
                       </div>
 
                   </div>
 
               </div>
-                  <!--div class="row" id="login-side">
 
-              <div class="col-md-6">
-                  <div class="row" id="login-square">
-            
-                  <div class="col-md-12" id="login-form"><div id="p1">
-                      <h1 style="color:black;text-align:center">Sign-In</h1><br>
-                      <form>
-                          <fieldset id="user-identity">
-                              <div>
-            <input class="radio-input" type="radio" name="test" value="Student" />
-            <label class="radio-label">Student</label>
-            <input class="radio-input" type="radio" name="test" value="Instructor" />
-            <label class="radio-label">Instructor</label>
-                          </div>
-                          </fieldset><br>
-
-  <fieldset class="form-group">
-      <div>
-      <label for="user-email">Email address</label><br>
-          <input type="email" class="text-input" id="user-email" placeholder="Enter email"></div><br>
-      <div>
-    <label for="user-pw">Password</label><br>
-          <input type="password" class="text-input" id="user-pw"  placeholder="Password"></div>
-                          </fieldset><br>
-      <button type="submit" class="btn btn-primary center-block">Login</button></form>
-                      </div>
-                      </div>
-                      </div>
-                  </div>
-                      </div-->
                   </div>
                   </div>
           </div>
