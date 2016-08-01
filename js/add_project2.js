@@ -8,7 +8,7 @@ function completeClustoptions(){
 
 function completeDescriptitle(){
     var des_text = tinymce.get('area-description').getContent();
-    
+
     if(des_text == "" || des_text == " " || des_text == null ){
         //console.log("it is empty");
         //console.log(des_text);
@@ -18,73 +18,86 @@ function completeDescriptitle(){
         //console.log(des_text);
         $('#panel-project-desrciption').prop('checked', true);
     };
-    
+
 };
 
 
 
 
 $(document).ready(function(){
-    
+
     /* To display on complete-div and get form values for projects table in db*/
-    
+
     $("#save-project-descrip-title").click(function(){
-        
+
         var projectTitle = $('#project-title').val();
         var projectDescription = tinymce.get('area-description').getContent({format : 'text'});
-        
+        // var projectFiles = document.getElementById('file-upload').files;
+        // console.log(projectFiles);
+
         $('div#saved-proj-title > p').text(projectTitle);
-        
+
         $('div#project-description > p').text(projectDescription);
-        
+
+        // $('#fordb_project_files').val(projectFiles);
+        //
+        // $("#file-upload").change(function(){
+        //     var $this = $(this), $clone = $this.clone();
+        //   //   $this.after($clone).appendTo('#add-project-form');
+        //     $('#fordb_project_files').val($this.after($clone));
+        //     console.log('ugh');
+        // });
+        //
+        //
+        // console.log(document.getElementById('file-upload').files);
         $('#fordb_title').val(projectTitle);
         $('#fordb_descrip').val(projectDescription);
-        
+
         completeDescriptitle();
     });
-    
+
     $('#save-group-impo-statment').click(function(){
-        
+
         var impoStatement = $('#statement').text();
-        
+
         $('div#saved-impo-state > p').text(impoStatement);
-        
+
         $('#fordb_impoState').val(impoStatement);
-        
+
         $('#panel-edit-impo-statement').prop('checked', true);
-        
+
     });
-    
+
     $('#save-formation-options').click(function(){
-        
+
         var clusteringAlgo = document.getElementById('algo-list');
-        
+
         var chosenclustAlgo = clusteringAlgo.options[clusteringAlgo.selectedIndex].text;
-        
+
         var minGroupsize = $('#min-input-number').val();
-        
+
         var maxGroupsize = $('#max-input-number').val();
-        
+
         var clustVariables = $('#clust-variable-list input[type=checkbox]:checked').map(function() {return this.value;}).get().join(', ');
-        
-        
+
+
         $('#clustering-algo-selected-option').text(chosenclustAlgo);
         $('#chosen-min-group-size').text(minGroupsize);
         $('#chosen-max-group-size').text(maxGroupsize);
         $('#selected-variables').text(clustVariables);
-        
+
         $('#fordb_algo').val(chosenclustAlgo);
         $('#fordb_max').val(maxGroupsize);
         $('#fordb_min').val(minGroupsize);
-        
+
         completeClustoptions();
-    
+
     });
-    
-    
+
+
     $('#save-intro-options').click(function(){
         $('#panel-charter-options').prop('checked', 'true');
     });
-    
-    
+
+
 });

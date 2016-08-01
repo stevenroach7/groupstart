@@ -4,6 +4,8 @@
   // This script will initialize the $instructors array,
   // an array of associative arrays which hold instructor_id, and display_name.
   include '../config/connection.php';
+  include 'authentication.php';
+  
 
 
   // For this course_id, get the instructors
