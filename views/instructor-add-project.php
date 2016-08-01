@@ -159,11 +159,7 @@ include 'features/instructor-get-courses-data.php'
                 }
               }
 
-
-
-
-
-              // header("Location: http://localhost/groupstart/views/instructor-courses.php");// once data has been inserted into database redirect to instructor-project page.
+              header("Location: http://localhost/groupstart/views/instructor-courses.php");// once data has been inserted into database redirect to instructor-project page.
             };
         };
 
@@ -478,10 +474,11 @@ include 'features/instructor-get-courses-data.php'
                                         <div class="row">
                                             <div class="col-md-12" style="margin-bottom:50px">
                                                 <h3>
-                                                    Group Charter Options
+                                                    Group Introduction Options
                                                 </h3>
                                                 <p>
-                                                Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
+                                                For our beta release, students will explain their motivation for taking the course as well as filling out group expectations they would like to see for their project group.
+                                                These motivations and group expectations will be displayed in a group's project page.
                                                 </p>
                                                 <button id="change-charter-options" type="button" class="btn btn-info">
                                                     Change
