@@ -6,7 +6,6 @@
 
 <html>
 
-
   <head>
     <?php
       include 'features/authentication.php';
@@ -18,16 +17,16 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
       <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <!-- jQuery library -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-<!-- Latest compiled JavaScript -->
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+      <!-- Latest compiled JavaScript -->
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
       <link rel="stylesheet" type="text/css" href="../css/style.css" />
-    <script type="text/javascript" src="../js/student-start-project.js"></script>
+      <script type="text/javascript" src="../js/student-start-project.js"></script>
 
   </head>
 
@@ -90,7 +89,7 @@
             <br />
             <br />
 
-            <a href="student-cluster-form.php" class="btn btn-info btn-block" role="button" id="student-form-group">I am ready to join a group!</a>
+            <a href="student-group-introduction.php" class="btn btn-info btn-block" role="button" id="student-form-group">I am ready to join a group!</a>
 
           </div>
           <div class="col-md-4">
