@@ -1,9 +1,11 @@
 <?php
  // script to get courses student is enrolled in. This must be included from a page in the views directory.
 
-// TODO: Handle errors 
+// TODO: Handle errors
 
  include '../config/connection.php';
+ include 'authentication.php';
+
 
 
 

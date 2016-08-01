@@ -4,6 +4,8 @@
 // TODO: Handle errors
 
  include '../config/connection.php';
+ include 'authentication.php';
+ 
 
  // Query students_courses table to get course id's
 if (isset($_SESSION['instructor_id'])) {

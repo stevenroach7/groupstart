@@ -1,5 +1,6 @@
 <?php
 
+include 'authentication.php';
 
 
 // We checked to make sure session type was student or instructor in authentication.php

@@ -4,6 +4,7 @@
   // This script will initialize the $students array,
   // an array of associative arrays which hold student_id, and display_name.
   include '../config/connection.php';
+  include 'authentication.php';
 
 
   // For this course_id, get the students
@@ -19,9 +20,9 @@
       while($row = mysqli_fetch_assoc($get_students_courses)) {
         $student_ids[] = $row['student_fk'];
       }
-  } 
-    
-  
+  }
+
+
 
   // Query students table to find students with student_id's and add to students array
   $students = array();
