@@ -88,9 +88,9 @@
 
             <br />
             <br />
-
-            <a href="student-group-introduction.php" class="btn btn-info btn-block" role="button" id="student-form-group">I am ready to join a group!</a>
-
+            <?php
+            echo "<a href='student-group-introduction.php?project_id=$project_id' class='btn btn-info btn-block' role='button' id='student-form-group'>I am ready to join a group!</a>";
+            ?>
           </div>
           <div class="col-md-4">
             <h3 style="text-align:center;">Other projects avaliable in this course</h3><br />
