@@ -145,10 +145,12 @@
                         foreach ($courses_data as $course_data) {
                             $title = $course_data['title'];
                             echo "<a class='list-group-item clearfix'>$title
-                          <span class='pull-right'>
-                            <button class='btn btn-xs btn-info'>Leave Course</button>
-                          </span>
+
                         </a>";
+
+                        // <span class='pull-right'>
+                        //   <button class='btn btn-xs btn-info'>Leave Course</button>
+                        // </span>
                         }
                     }
                   ?>

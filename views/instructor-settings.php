@@ -45,7 +45,7 @@
            } else { // name field is not empty
              $name = $_POST['name'];
 
-             // TODO: Check for bad characters. Check to make sure name is appropriate. 
+             // TODO: Check for bad characters. Check to make sure name is appropriate.
 
              // Update session storage.
              $_SESSION['display_name'] = $name;
@@ -147,10 +147,10 @@
                         foreach($courses_data as $course_data) {
                           $title = $course_data['title'];
                           echo "<a class='list-group-item clearfix'>$title
-                            <span class='pull-right'>
-                              <button class='btn btn-xs btn-info'>End Course</button>
-                            </span>
                           </a>";
+                          // <span class='pull-right'>
+                          //   <button class='btn btn-xs btn-info'>End Course</button>
+                          // </span>
 
                         }
                       }

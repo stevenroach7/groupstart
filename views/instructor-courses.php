@@ -198,8 +198,6 @@
                 }
               }
 
-              // TODO: Add edit attachments options
-
               echo "</ul>
           </div>
       </section>
@@ -210,7 +208,25 @@
       <br><br>
 
       <a href='features/download.php?id=$course_id&type=course' class='btn btn-info' role='button' id='view-course-attachments'>Download Course Attachments</a>
-      <a  href='features/delete-course.php?id=$course_id&rA=0'  class='btn btn-info pull-right' style='color:black' id='remove-course' name='remove-course'><span class='glyphicon glyphicon-trash'></span></a>
+
+
+      <script type='text/javascript'>
+        <!--
+           function getConfirmation(){
+              var retVal = confirm('Are you sure you want to delete this course?');
+              if( retVal == true ){
+                 window.location.replace('http://localhost/groupstart/views/features/delete-course.php?id=$course_id&rA=0');
+                 return true;
+              }
+              else{
+                 return false;
+              }
+           }
+        //-->
+     </script>
+
+      <button  class='btn btn-info pull-right' style='color:black' id='remove-course'><span class='glyphicon glyphicon-trash' onclick='getConfirmation();'></span></button>
+
       </div>";
         }
 
