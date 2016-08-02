@@ -198,6 +198,7 @@
 
           <h4>Course Attachments</h4>
           <label>Upload PDF's (Each file must be smaller than 1 Megabyte):</label><input type="file" name="file-uploads[]" id="file-upload" multiple="" />
+          <br />
 
           <input type="submit" name="submit" value="Add Course" class="btn btn-info" form="add-course-form" id="add-new-course"/><br>
         </form>

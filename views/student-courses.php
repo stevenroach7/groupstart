@@ -183,8 +183,48 @@
                     foreach ($projects as $project) {
                       $title = $project['title'];
                       $project_id = $project['project_id'];
-                      // TODO: use the project_id to pass the url
-                      echo "<li class='list-group-item clearfix'><a href='student-start-project.php?project_id=$project_id&course_id=$course_id'>$title</a> <span class='pull-right'> <a href='student-project.php' class='btn btn-info' id='view-student-group'>View My Group</a></span></li> ";
+
+                      echo "<li class='list-group-item clearfix'>$title";
+
+                      // If student has not started project, show start project button.
+                      // Else - If student has group, show View Group Button, Else show notification saying you'll get a group soon.
+                      // TODO: Test this.
+
+                      // Query student_projects table to find if student has started project
+                      $get_student_projects = mysqli_query($db, "SELECT * FROM student_projects WHERE student_fk = '".$student_id."' AND project_fk = '".$project_id."'");
+
+                      if (mysqli_num_rows($get_student_projects) > 0) {
+
+                        // Check if student is in group. Need to see if student has a project group and then make sure that project group is for this project.
+                        $in_group = 0; // Initialize boolean specifying if student is in group as false.
+                        $get_project_group_students = mysqli_query($db, "SELECT * FROM project_group_students WHERE student_fk = '".$student_id."'");
+
+                        if (mysqli_num_rows($get_project_group_students) > 0) {
+
+                          while($row = mysqli_fetch_assoc($get_project_group_students)) {
+                            $project_group_id = $row['project_group_fk'];
+
+                            // Check that group is for this project.
+                            $get_project_group = mysqli_query($db, "SELECT * FROM project_group WHERE project_group_id = '".$project_group_id."' AND project_fk = '".$project_id."'");
+
+                            if (mysqli_num_rows($get_project_group) > 0) {
+                              $in_group = 1;
+                              break;
+                            }
+                          }
+                        }
+
+                        if ($in_group) {
+                          // TODO: Pass project id through url
+                          echo "<span class='pull-right'> <a href='student-project.php' class='btn btn-info' id='view-student-group'>View My Group</a></span></li> ";
+
+                        } else {
+                          echo "<span class='pull-right'> You will be placed in a group soon.</span></li> ";
+                        }
+                      } else { // Student has not started project
+                        echo "<span class='pull-right'> <a href='student-start-project.php?project_id=$project_id&course_id=$course_id' class='btn btn-info' id='start-project'>Start Project</a></span></li> ";
+
+                      }
                     }
                   }
             echo "</ul>
