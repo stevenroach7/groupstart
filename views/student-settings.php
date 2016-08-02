@@ -64,6 +64,63 @@
          }
        }
       };
+
+      if (isset($_POST['change-pic-submit'])) {
+
+
+        $file_size = $_FILES["pic-upload"]["size"];
+        $file_tmp = $_FILES['pic-upload']['tmp_name'];
+        $file_name = $_FILES['pic-upload']['name'];
+        $file_type = $_FILES['pic-upload']['type'];
+
+        $file_valid = 1;
+
+        // Check file size
+        if ($file_size > 1000000) { // 1 Megabyte
+         echo 'Sorry, only files smaller than 1 Megabyte are allowed . ';
+         $file_valid = 0;
+        } elseif (!$file_size > 0) { // 1 Megabyte
+         echo 'Invalid file uploaded . ';
+         $file_valid = 0;
+        }
+        // Allow certain file formats
+        if ($file_type != 'image/png') {
+          echo 'You must submit a png image.';
+          $file_valid = 0;
+        }
+
+        if ($file_valid) {
+          // file upload validation check.
+          $target_dir = '../uploads/';
+          $target_file = $target_dir.basename($file_name);
+
+          if (move_uploaded_file($file_tmp, $target_file)) {
+
+            $file = mysqli_real_escape_string($db, file_get_contents($target_file));
+
+            $upload_pic = "UPDATE students SET profile_pic = '$file' WHERE student_id = '$student_id'";
+
+
+            $retval = mysqli_query($db, $upload_pic);
+
+            if (!$retval) {
+              echo mysqli_error($db);
+              die('Could not enter data given: '.mysqli_error($db));
+            }
+           } else {
+             echo 'Sorry, there was an error uploading your file.';
+
+           }
+        }
+
+
+      }
+
+
+
+
+
+
      ?>
 
 
@@ -71,6 +128,7 @@
     <div class="container">
         <?php
         $display_name = $_SESSION['display_name'];
+        $student_id = $_SESSION['student_id'];
         echo "<h1>$display_name</h1>";
         ?>
         <div class="row">
@@ -79,8 +137,24 @@
                   <div class="col-md-5" >
                     <div class="row" id="profile-pic">
                       <div class="col-md-12" >
-                        <img src="images/placeholder.png" alt="profile picture" class="img-rounded"><br><br>
-                        <button type="button" class="btn btn-block btn-default">Change Profile Picture</button><br>
+                        <!-- <img src="images/placeholder.png" alt="profile picture" class="img-rounded"> -->
+                        <?php
+
+                          $get_prof_pic = "SELECT * FROM students WHERE student_id = $student_id";
+                          $sth = $db->query($get_prof_pic);
+                          $result=mysqli_fetch_array($sth);
+                          echo '<img src="data:image/png;base64,'.base64_encode( $result['profile_pic'] ).'" alt="Image not found" onError="this.onerror=null;this.src=\'images/placeholder.png\';" class="img-rounded prof-pic">';
+
+                        ?>
+
+                        <br><br>
+                        <!-- <a href="features/change-password.php" class="btn btn-block btn-default" role="button">Change Password</a>
+                        <button type="button" class="btn btn-block btn-default">Change Profile Picture</button><br> -->
+                        <form action="" method="POST" id="upload-pic" enctype="multipart/form-data">
+                          <span>Upload a new profile picture: </span><input type="file" name="pic-upload" id="pic-upload"> <br />
+                          <input type="submit" name="change-pic-submit" value="Upload Picture" class="btn btn-block btn-default" form="upload-pic"/><br>
+                        </form>
+
                       </div>
                     </div>
                   </div>
@@ -137,7 +211,7 @@
           <div class="row">
             <div class="col-md-12">
               <h3>Courses</h3>
-              
+
                 <div class="list-group"id='course-manage-list'>
 
                   <?php
