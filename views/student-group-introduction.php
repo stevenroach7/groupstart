@@ -37,8 +37,6 @@
 
         include '../config/connection.php';
 
-
-
         $project_id = $_GET['project_id'];
         $student_id = $_SESSION['student_id'];
 
@@ -47,36 +45,38 @@
           // gather variables from form
           $motivation = $_POST['motivation'];
 
-          // initialize all expectations in array as 0.
-          $expectations = array('work' => 0, 'inform' => 0, 'messages' => 0, 'progress' => 0, 'consensus' => 0, 'diversity' => 0, 'honest' => 0, 'active' => 0, 'trust' => 0, 'respect' => 0);
+            if (empty($motivation)) { // Make sure user has entered motivation
+            echo 'Please enter a motivation for taking this course.';
+            } else {
 
-          // Loop through checked expectations.
-          foreach ($_POST['expectations'] as $val) {
+              // initialize all expectations in array as 0.
+              $expectations = array('work' => 0, 'inform' => 0, 'messages' => 0, 'progress' => 0, 'consensus' => 0, 'diversity' => 0, 'honest' => 0, 'active' => 0, 'trust' => 0, 'respect' => 0);
 
-            // Change value in expectations array if expectation is checked.
-            foreach ($expectations as $expectation => $bool) {
-              if ($val == $expectation) {
-                $expectations[$expectation] = 1;
+              // Loop through checked expectations.
+              foreach ($_POST['expectations'] as $val) {
+
+                // Change value in expectations array if expectation is checked.
+                foreach ($expectations as $expectation => $bool) {
+                  if ($val == $expectation) {
+                      $expectations[$expectation] = 1;
+                  }
+                }
               }
+
+              // Insert into student_projects.
+              $insert = "INSERT INTO `student_projects` (`student_project_id`, `student_fk`, `project_fk`, `motivation`, `work`, `inform`, `messages`, `progress`, `consensus`, `diversity`, `honest`, `active`, `trust`, `respect`)
+              VALUES (NULL, '$student_id', '$project_id', '$motivation', $expectations[work], $expectations[inform], $expectations[messages], $expectations[progress], $expectations[consensus], $expectations[diversity], $expectations[honest], $expectations[active], $expectations[trust], $expectations[respect])";
+
+              $retval = mysqli_query($db, $insert); // performing mysql query
+
+              if (!$retval) {
+                // if data is not inserted into database return error
+                die('Could not enter data given: '.mysqli_error($db));
+              };
+              
+              header('Location: http://localhost/groupstart/views/student-courses.php');
             }
-
           }
-
-          // Insert into student_projects.
-          // TODO: Finish and test this insert query.
-          // $insert = "INSERT INTO `student_projects` (`student_project_id`, `student_fk`, `motivation`, `work`, `inform`, `messages`, `progress`, `consensus`, `diversity`, `honest`, `active`, `trust`, `respect`)
-          // VALUES (NULL, '$student_id', '$motivation', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)";
-          //
-          // if ($db->query($insert) === TRUE) {
-          //   echo "New record created successfully";
-          // } else {
-          //   echo "Error: " . $insert . "<br>" . $db->error;
-          // }
-
-
-
-        }
-
        ?>
 
 

@@ -2,6 +2,24 @@
 
 $questions = ['question 1', 'question 2', 'question 3', 'question 4', 'question 5'];
 
+
+
+
+// Insert into student_projects.
+$insert = "INSERT INTO `student_projects` (`student_project_id`, `student_fk`, `project_fk`, `motivation`, `work`, `inform`, `messages`, `progress`, `consensus`, `diversity`, `honest`, `active`, `trust`, `respect`)
+VALUES (NULL, '$student_id', '$project_id', '$motivation', '$expectations[work]', '$expectations[inform]', '$expectations[messages]', '$expectations[progress]', '$expectations[consensus]', '$expectations[diversity]', '$expectations[honest]', '$expectations[active]', '$expectations[trust]', '$expectations[respect]')";
+
+$retval = mysqli_query($db, $insert); // performing mysql query
+
+if (!$retval) {
+  // if data is not inserted into database return error
+  die('Could not enter data given: '.mysqli_error($db));
+};
+
+header('Location: http://localhost/groupstart/views/student-courses.php');
+
+
+
  ?>
 
 

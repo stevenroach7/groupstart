@@ -277,7 +277,7 @@ include 'features/instructor-get-courses-data.php'
 
                             <div id="impo-state-panel" class="section">
                                 <h2>Group Importance Statement</h2>
-                                <p id="statement"> Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.
+                                <p id="statement">Collaboration has been proven to increase learning in students. Working on a group project together mimics the demands of industry in a way in which no individual project does.
                                     </p>
                                     <a href="#" class="btn btn-info" role="button" style="margin-bottom:20px !important;" id="edit-impo-statment">Edit</a>
 
@@ -397,7 +397,8 @@ include 'features/instructor-get-courses-data.php'
                                 </div><br/>
                             </div>
                             <div id="charter-options-panel" class="section">
-                                <p>Charter Options panel is now open</p>
+                                <p>For our alpha release, students will explain their motivation for taking the course as well as filling out group expectations they would like to see for their project group.
+                                These motivations and group expectations will be displayed in a group's project page.</p>
                                 <input type="submit" name="submit" class="btn btn-info" id="save-intro-options" style="float:left;width:400px !important" value="Save" />
                                 <a href="#" class="btn btn-info" role="button" id="next-step-to-complete-div" style="float:right">Next Step</a></div>
 
@@ -477,7 +478,7 @@ include 'features/instructor-get-courses-data.php'
                                                     Group Introduction Options
                                                 </h3>
                                                 <p>
-                                                For our beta release, students will explain their motivation for taking the course as well as filling out group expectations they would like to see for their project group.
+                                                For our alpha release, students will explain their motivation for taking the course as well as filling out group expectations they would like to see for their project group.
                                                 These motivations and group expectations will be displayed in a group's project page.
                                                 </p>
                                                 <button id="change-charter-options" type="button" class="btn btn-info">

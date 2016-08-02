@@ -197,7 +197,7 @@
 
                         // Check if student is in group. Need to see if student has a project group and then make sure that project group is for this project.
                         $in_group = 0; // Initialize boolean specifying if student is in group as false.
-                        $get_project_group_students = mysqli_query($db, "SELECT * FROM project_group_students WHERE student_fk = '".$student_id."' AND project_fk = '".$project_id."'");
+                        $get_project_group_students = mysqli_query($db, "SELECT * FROM project_group_students WHERE student_fk = '".$student_id."'");
 
                         if (mysqli_num_rows($get_project_group_students) > 0) {
 
