@@ -271,8 +271,8 @@ include 'features/instructor-get-courses-data.php'
                                         <!-- <h4>Project Attachments</h4>
                                         Upload PDF's (Each file must be smaller than 1 Megabyte): <input type="file" name="file-uploads[]" id="file-upload" multiple="" /> -->
                                     </form><br><br>
-                                    <a href="#" class="btn btn-info" role="button" id="add-project-options">Add Project Options</a><i>(optional)</i><br>
-                                    <a href="#" class="btn btn-info" role="button" id="add-project-examples" style="margin-bottom:20px">Add Project Examples</a><i>(optional)</i><br>
+                                    <!--a href="#" class="btn btn-info" role="button" id="add-project-options">Add Project Options</a><i>(optional)</i><br>
+                                    <a href="#" class="btn btn-info" role="button" id="add-project-examples" style="margin-bottom:20px">Add Project Examples</a><i>(optional)</i><br-->
 
                                     <a href="#" class="btn btn-info" role="button" id="next-step-to-impo-statement" style="float:right">Next Step</a>
 

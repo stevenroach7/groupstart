@@ -142,9 +142,11 @@
                                                 </p>
 
                                             </div></div>
-                                        <div class="row" id="add-deliverables">
+                                        <a class="btn btn-info btn-block">Form student groups!</a><br>
+                    
+                                        <!--div class="row" id="add-deliverables">
                                             <a class="btn btn-info btn-block">Add project deliverables for students</a>
-                                        </div>
+                                        </div-->
 
 
 
@@ -219,9 +221,9 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                          <?php
+                          <!--?php
                             echo "<a href='features/download.php?id=$project_id&type=project' class='btn btn-info' role='button' id='view-project-attachments'>Download Project Attachments</a>";
-                          ?>
+                          ?-->
                         </div>
                     </div>
 
