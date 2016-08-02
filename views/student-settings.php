@@ -136,22 +136,28 @@
           </div>
           <div class="row">
             <div class="col-md-12">
+              <h3>Courses</h3>
+              
                 <div class="list-group"id='course-manage-list'>
 
                   <?php
                     if (empty($courses_data)) {
                         echo '<h3>You are not enrolled in any courses.</h3>';
                     } else {
-                        foreach ($courses_data as $course_data) {
-                            $title = $course_data['title'];
-                            echo "<a class='list-group-item clearfix'>$title
 
-                        </a>";
+                      // Filter out inactive courses.
+                      $courses_data = array_filter($courses_data, function($v) { return $v['active'] == 1; });
 
-                        // <span class='pull-right'>
-                        //   <button class='btn btn-xs btn-info'>Leave Course</button>
-                        // </span>
-                        }
+                      foreach ($courses_data as $course_data) {
+                          $title = $course_data['title'];
+                          echo "<a class='list-group-item clearfix'>$title
+
+                      </a>";
+
+                      // <span class='pull-right'>
+                      //   <button class='btn btn-xs btn-info'>Leave Course</button>
+                      // </span>
+                      }
                     }
                   ?>
                   </a>

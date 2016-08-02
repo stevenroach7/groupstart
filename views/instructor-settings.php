@@ -127,22 +127,24 @@
                             </form>
                           </div>
                         </div>
-
                       </div>
                     </div>
-
                   </div>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-md-12">
+                  <h3>Courses</h3>
                   <div class="list-group"id='course-manage-list'>
 
                     <?php
                       if (empty($courses_data)) {
                         echo "<h3>You are not teaching any courses.</h3>";
                       } else {
+
+                        // Filter out inactive courses.
+                        $courses_data = array_filter($courses_data, function($v) { return $v['active'] == 1; });
 
                         foreach($courses_data as $course_data) {
                           $title = $course_data['title'];
