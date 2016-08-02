@@ -1183,3 +1183,48 @@ body .a0-icon-badge{
 
 
 /*Styling for index.php*/
+
+
+
+
+/* Styling for student-group-introduction */
+
+
+input[type="checkbox"].css-check {
+    display:none;
+}
+
+input[type="checkbox"].css-check  + label span {
+    display:inline-block;
+    width:19px;
+    height:19px;
+    margin:-1px 4px 0 0;
+    vertical-align:middle;
+    background:url(../img/check_radio_sheet.png) left top no-repeat;
+    cursor:pointer;
+}
+
+
+input[type="checkbox"].css-check:checked + label span {
+    background:url(../img/check_radio_sheet.png) -19px top no-repeat;
+}
+
+.expect-label {
+    font-weight: normal;
+    font-size: 18px;
+}
+
+#group-intro-submit {
+    width: 90% !important;
+}
+
+#motivation-input {
+    width: 90% !important;
+}
+
+#group-intro-content {
+outline: 3px solid gray;
+padding: 10px;
+margin: 10px;
+background-color: rgb(220, 220, 220);
+}
