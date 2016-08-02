@@ -36,7 +36,8 @@
          $course_info['description'] = $row['description'];
          $course_info['platform'] = $row['platform'];
          $course_info['subject_area'] = $row['subject_area'];
-         // TODO: Get course instructors here
+         $course_info['active'] = $row['active'];
+         
        }
        $courses_data[] = $course_info;
      }

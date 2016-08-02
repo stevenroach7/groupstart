@@ -115,8 +115,14 @@
         /*echo "<h3>$title<a onclick='removePanel(this)' style='float:right'>X</a></h3>
           <div>"*/
 
+        if (count($instructors) > 1) {
+          $instructor_label = 'Instructors:';
+        } else {
+          $instructor_label = 'Instructor:';
+        }
+
         // Display instructors
-        echo "<section><h4>Instructors: ";
+        echo "<section><h4><label>$instructor_label</label> ";
 
         // for loop so we can put commas after all names except for the last one.
         for ($x = 0; $x < count($instructors); $x++) {
@@ -131,11 +137,19 @@
 
 
         }
-        echo"</h4></section><br>";
 
 
 
-        echo "<section id='course-decription'><h4>Course Description</h4>
+        echo"</h4></section>";
+
+
+        echo "<section><h4 class='course-val'><label>Platform:</label> $platform</h4>";
+
+        echo "<h4 class='pull-right' class='course-val'><label>Subject Area:</label> $subject_area</h4></section>";
+
+
+        // Display course description
+        echo "<section id='course-decription'><h4><label>Course Description</label></h4>
           <p>$description</p>
           </section><br>
           <section id='course-projects'>
@@ -152,7 +166,7 @@
             $project_id = $project['project_id'];
             $title = $project['title'];
 
-            
+
             echo "<a href='instructor-project.php?project_id=$project_id&course_id=$course_id'><li class='list-group-item'>$title</li> </a>";
           }
         }
@@ -184,8 +198,6 @@
                 }
               }
 
-              // TODO: Add edit attachments options
-
               echo "</ul>
           </div>
       </section>
@@ -196,7 +208,25 @@
       <br><br>
 
       <a href='features/download.php?id=$course_id&type=course' class='btn btn-info' role='button' id='view-course-attachments'>Download Course Attachments</a>
-      <a  href='features/delete-course.php?id=$course_id&rA=0'  class='btn btn-info pull-right' style='color:black' id='remove-course' name='remove-course'><span class='glyphicon glyphicon-trash'></span></a>
+
+
+      <script type='text/javascript'>
+        <!--
+           function getConfirmation(){
+              var retVal = confirm('Are you sure you want to delete this course?');
+              if( retVal == true ){
+                 window.location.replace('http://localhost/groupstart/views/features/delete-course.php?id=$course_id&rA=0');
+                 return true;
+              }
+              else{
+                 return false;
+              }
+           }
+        //-->
+     </script>
+
+      <button  class='btn btn-info pull-right' style='color:black' id='remove-course'><span class='glyphicon glyphicon-trash' onclick='getConfirmation();'></span></button>
+
       </div>";
         }
 

@@ -113,6 +113,9 @@
       echo "<h1>You are not currently enrolled in any courses.";
     } else {
 
+      // Filter out inactive courses.
+      $courses_data = array_filter($courses_data, function($v) { return $v['active'] == 1; });
+
       foreach ($courses_data as $course_data) {
 
         $course_id = $course_data['course_id'];
@@ -150,8 +153,15 @@
         echo "<h3>$title</h3>
           <div>";
 
+
+        if (count($instructors) > 1) {
+          $instructor_label = 'Instructors:';
+        } else {
+          $instructor_label = 'Instructor:';
+        }
+
         // Display instructors
-        echo "<section id='course-decription'><h4>Instructors: ";
+        echo "<section id='course-decription'><h4><label>$instructor_label</label> ";
 
         // for loop so we can put commas after all names except for the last one.
         for ($x = 0; $x < count($instructors); $x++) {
@@ -166,14 +176,19 @@
 
 
         }
-        echo"</h4></section><br>";
+        echo"</h4></section>";
+
+        echo "<section><h4 class='course-val'><label>Platform:</label> $platform</h4>";
+
+        echo "<h4 class='pull-right' class='course-val'><label>Subject Area:</label> $subject_area</h4></section>";
+
 
         // Display course description
-        echo "<section id='course-decription'><h4>Course Description</h4>
+        echo "<section id='course-decription'><h4><label>Course Description</label></h4>
           <p>$description</p>
           </section><br>
           <section id='course-projects'>
-              <h4>Course Projects</h4>
+              <h4><label>Course Projects</label></h4>
               <div id='project-list'>
                   <ul class='list-group'>";
                   // Display projects
