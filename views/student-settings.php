@@ -51,7 +51,7 @@
 
          // Update session storage.
          $_SESSION['display_name'] = $display_name;
-          $student_id = $_SESSION['student_id'];
+         $student_id = $_SESSION['student_id'];
 
          // Add updated name to database.
 
@@ -112,8 +112,6 @@
 
            }
         }
-
-
       }
 
 
@@ -137,7 +135,6 @@
                   <div class="col-md-5" >
                     <div class="row" id="profile-pic">
                       <div class="col-md-12" >
-                        <!-- <img src="images/placeholder.png" alt="profile picture" class="img-rounded"> -->
                         <?php
 
                           $get_prof_pic = "SELECT * FROM students WHERE student_id = $student_id";
@@ -148,8 +145,6 @@
                         ?>
 
                         <br><br>
-                        <!-- <a href="features/change-password.php" class="btn btn-block btn-default" role="button">Change Password</a>
-                        <button type="button" class="btn btn-block btn-default">Change Profile Picture</button><br> -->
                         <form action="" method="POST" id="upload-pic" enctype="multipart/form-data">
                           <span>Upload a new profile picture: </span><input type="file" name="pic-upload" id="pic-upload"> <br />
                           <input type="submit" name="change-pic-submit" value="Upload Picture" class="btn btn-block btn-default" form="upload-pic"/><br>
