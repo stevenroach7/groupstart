@@ -538,6 +538,10 @@ body{
 
 /*Above is styling for on instructor-courses.php*/
 
+.course-val {
+    display: inline-block;
+}
+
 
 /*Styling for instructor-project.php*/
 
