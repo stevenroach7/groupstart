@@ -54,7 +54,7 @@
       ?>
       <div class="container">
         <div class="row" >
-          <div class="col-md-8" id="student-need-read">
+          <div class="col-md-8 col-md-offset-2" id="student-need-read">
             <h1><?php echo $title ?></h1><br>
             <div class="panel-group" id="accordion">
               <div class="panel panel-default">
@@ -92,7 +92,7 @@
             echo "<a href='student-group-introduction.php?project_id=$project_id' class='btn btn-info btn-block' role='button' id='student-form-group'>I am ready to join a group!</a>";
             ?>
           </div>
-          <div class="col-md-4">
+          <!--div class="col-md-4">
             <h3 style="text-align:center;">Other projects avaliable in this course</h3><br />
             <div id='view-other-projects'>
               <ul class='list-group'>
@@ -129,7 +129,7 @@
                 ?>
                 </ul>
               </div>
-            </div>
+            </div-->
           </div>
         </div>
 

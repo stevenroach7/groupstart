@@ -81,7 +81,7 @@
 
 
       <div class="container">
-        <h1>Group Introduction</h1>
+        <h1>Group Introduction</h1><br>
         <form action="" method="POST" id="group-intro">
 
           <div id="group-intro-content">
@@ -122,7 +122,7 @@
 
             <label>Want to add a different group expectation? No worries, you may add new expectations in the group page after the group has been formed.</label> <br />
             <br />
-            <input type="submit" name="submit" value="Submit" class="btn btn-primary" form="group-intro" id="group-intro-submit"/>
+            <input type="submit" name="submit" value="Submit" class="btn btn-primary" style="margin-left:30px;" form="group-intro" id="group-intro-submit"/>
           </div>
           <!-- <input type="submit" name="submit" value="Submit" class="btn btn-info" form="group-intro" id="group-intro-submit"/> -->
 
