@@ -19,6 +19,10 @@
 
 <body>
 
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container"><a class="banner pull-left" href="index.php" style="text-align:left"><h1>GroupStart</h1></a></div>
+  </nav>
+
  <div class="jumbotron jumbotron-fluid" id="index-page" style="background-color: #d3d3d3 !important">
   <div class="container">
     <div class="row" id="top-half">

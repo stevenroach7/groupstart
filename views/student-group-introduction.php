@@ -37,6 +37,8 @@
 
         include '../config/connection.php';
 
+        include 'features/alert.php';
+
         $project_id = $_GET['project_id'];
         $student_id = $_SESSION['student_id'];
 
@@ -46,7 +48,7 @@
           $motivation = $_POST['motivation'];
 
             if (empty($motivation)) { // Make sure user has entered motivation
-            echo 'Please enter a motivation for taking this course.';
+              alertUser('Please enter a motivation for taking this course.');
             } else {
 
               // initialize all expectations in array as 0.
