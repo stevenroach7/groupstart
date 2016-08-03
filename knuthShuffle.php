@@ -41,6 +41,7 @@ function randomCluster($students){ //get array of students unique id from db
 			
 			for($i = 0; $i < $remStudents; $i++){ //add each remaining student to a valid group
 				array_push($groups[$i], $lastGroup[$i]);
+				$remStudents--;
 			}
 			
 			$groupSizes = array_map('count', $groups);
@@ -55,7 +56,7 @@ function randomCluster($students){ //get array of students unique id from db
 }
 
 
-$arr = range(0, 49);
+$arr = range(0, 108);
 randomCluster($arr);
 
 ?>

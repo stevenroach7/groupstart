@@ -142,7 +142,30 @@
                                                 </p>
 
                                             </div></div>
-                                        <a class="btn btn-info btn-block">Form student groups!</a><br>
+                                        <?php
+                                            
+                                            $getAlgo = mysqli_query($db, "SELECT group_form_algorithm FROM projects WHERE project_id = $_GET[project_id]");
+                                            
+                                            if(!$getAlgo){
+                                                die('Could not get data: ' . mysql_error());
+                                            };
+                                            
+                                            $clustAlgo = "";
+                                            
+                                            while($row = mysqli_fetch_assoc($getAlgo)){
+                                                $clustAlgo = $row['group_form_algorithm'];
+                                            };
+
+                                            if($clustAlgo == "Random Algorithm"){
+                                                //group students with random algorithm
+                                                echo "<a href='features/random_clustering.php?id=$project_id' class='btn btn-info btn-block'>Form student groups!</a><br>";
+                                            } else{
+                                                //echo "the algorithm you have chosen has not been implemented yet";
+                                                echo "<a class='btn btn-info btn-block'>Form student groups!</a><br>";
+                                            };
+            
+                                        ?>
+                                        
                     
                                         <!--div class="row" id="add-deliverables">
                                             <a class="btn btn-info btn-block">Add project deliverables for students</a>
