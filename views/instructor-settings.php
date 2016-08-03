@@ -34,14 +34,15 @@
       <?php echo $banner ?>
       <?php
 
-        // script to change instructor name.
-        include '../config/connection.php';
 
-        // TODO: Figure out best way to display messages.
+        include '../config/connection.php';
+        include 'features/alert.php';
+
+        // script to change instructor name.
         if (isset($_POST['change-name-submit'])) { // Check if submit is pressed
 
            if (empty($_POST['name'])) { // check if name field is empty
-             echo "Name field cannot be blank.";
+             alertUser("Name field cannot be blank.");
            } else { // name field is not empty
              $name = $_POST['name'];
 
@@ -63,7 +64,7 @@
            }
         };
 
-
+        // Script to change profile pic
         if (isset($_POST['change-pic-submit'])) {
 
 
@@ -76,15 +77,15 @@
 
           // Check file size
           if ($file_size > 1000000) { // 1 Megabyte
-           echo 'Sorry, only files smaller than 1 Megabyte are allowed . ';
+           alertUser('Sorry, only files smaller than 1 Megabyte are allowed.');
            $file_valid = 0;
           } elseif (!$file_size > 0) { // 1 Megabyte
-           echo 'Invalid file uploaded . ';
+           alertUser('Invalid file uploaded.');
            $file_valid = 0;
           }
           // Allow certain file formats
           if ($file_type != 'image/png') {
-            echo 'You must submit a png image.';
+            alertUser('You must submit a png image.');
             $file_valid = 0;
           }
 

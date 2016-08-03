@@ -49,6 +49,8 @@ include 'features/instructor-get-courses-data.php'
 
         include '../config/connection.php';
 
+        include 'features/alert.php';
+
 
         $course_fk = $title = $description = $group_importance_statement = $min_group_size = $max_group_size = $group_form_algorithm = ""; //initializing variables for database fields
 
@@ -75,16 +77,16 @@ include 'features/instructor-get-courses-data.php'
 
               // Check file size
               if ($file_size > 1000000) { // 1 Megabyte
-                  echo 'Sorry, only files smaller than 1 Megabyte are allowed . ';
+                  alertUser('Sorry, only files smaller than 1 Megabyte are allowed.');
                   $files_valid = 0;
               } elseif (!$file_size > 0) { // 1 Megabyte
-                  echo 'Invalid file uploaded . ';
+                  alertUser('Invalid file uploaded.');
                   $files_valid = 0;
               }
 
               // Allow certain file formats
               if ($file_type != 'application/pdf') {
-                  echo 'Sorry, only PDF files are allowed. ';
+                  alertUser('Sorry, only PDF files are allowed.');
                   $files_valid = 0;
               }
             }
@@ -101,10 +103,10 @@ include 'features/instructor-get-courses-data.php'
 
             if(empty($_POST['title']) || (empty($_POST['description'])) || (empty($_POST['min_group_size'])) || (empty($_POST['max_group_size'])) || (empty($_POST['group_form_algorithm'])) ){ //checking that required fields in form is filled
 
-              echo 'A required field is empty. ';
+              alertUser('A required field is empty.');
 
             } elseif ($files_valid === 0) {
-              echo 'Please try again. ';
+        
             } else {
               //setting initialized variables to values entered by user
 

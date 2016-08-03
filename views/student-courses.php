@@ -30,7 +30,9 @@
       // script to add course.
      include '../config/connection.php';
 
-     // TODO: Figure out how to style validation alerts.
+
+     include 'features/alert.php';
+
 
      if(isset($_POST['add_course_submit'])){
 
@@ -61,11 +63,12 @@
 
 
             if ($num_rows !== 0) {
-              echo "You are already registered for this course.";
+
+              alertUser("You are already registered for this course.");
 
             } elseif($active == 0){
 
-              echo "This course is no longer active.";
+              alertUser("This course is no longer active.");
 
             } else {
 
@@ -75,13 +78,12 @@
 
               if(!$retval ) {
                 die('Could not enter data: ' . mysqli_error($db));
-                echo "Registration did not work.";
               }
-              echo "You have been registered for this course.\n";
+              alertUser("You have been registered for this course.");
             }
 
           } else {
-            echo "Registration code does not exist. Please try again.";
+            alertUser("Registration code does not exist. Please try again.");
           }
 
         }

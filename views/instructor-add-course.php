@@ -33,6 +33,9 @@
         <?php
             include '../config/connection.php';
             include 'features/instructor-get-courses-data.php';
+            include 'features/alert.php';
+
+
 
             $title = $description = $platform = $subject_area = ''; //initializing variables for database fields
 
@@ -56,16 +59,16 @@
 
                   // Check file size
                   if ($file_size > 1000000) { // 1 Megabyte
-                      echo 'Sorry, only files smaller than 1 Megabyte are allowed . ';
+                      alertUser('Sorry, only files smaller than 1 Megabyte are allowed.');
                       $files_valid = 0;
                   } elseif (!$file_size > 0) { // 1 Megabyte
-                      echo 'Invalid file uploaded . ';
+                      alertUser('Invalid file uploaded .');
                       $files_valid = 0;
                   }
 
                   // Allow certain file formats
                   if ($file_type != 'application/pdf') {
-                      echo 'Sorry, only PDF files are allowed. ';
+                      alertUser('Sorry, only PDF files are allowed.');
                       $files_valid = 0;
                   }
                 }
@@ -73,9 +76,9 @@
 
               if (empty($_POST['title']) || (empty($_POST['description']))) {
                   //checking that required fields in form is filled
-                echo 'You either forgot to put a course title or a course description. ';
+                alertUser('You either forgot to put a course title or a course description.');
               } elseif ($files_valid === 0) {
-                echo 'Please try again. ';
+                
               } else {
 
                 //setting initialized variables to values entered by user
