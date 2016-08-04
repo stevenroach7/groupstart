@@ -143,7 +143,7 @@
                           $get_prof_pic = "SELECT * FROM students WHERE student_id = $student_id";
                           $sth = $db->query($get_prof_pic);
                           $result=mysqli_fetch_array($sth);
-                          echo '<img src="data:image/png;base64,'.base64_encode( $result['profile_pic'] ).'" alt="Image not found" onError="this.onerror=null;this.src=\'images/placeholder.png\';" class="img-rounded prof-pic">';
+                          echo '<img src="data:image/png;base64,'.base64_encode( $result['profile_pic'] ).'" alt="Image not found" onError="this.onerror=null;this.src=\'../img/placeholder.png\';" class="img-rounded prof-pic">';
 
                         ?>
 

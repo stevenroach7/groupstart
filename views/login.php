@@ -107,7 +107,7 @@
             }
           }
           , callbackURL: 'http://localhost/groupstart/views/features/student-callback.php'
-            ,icon: "images/icon.png"
+            ,icon: "../img/icon.png"
           , responseType: 'code'
           , authParams: {
             scope: 'openid email'  // Learn about scopes: https://auth0.com/docs/scopes
@@ -130,7 +130,7 @@
             }
           }
           , callbackURL: 'http://localhost/groupstart/views/features/instructor-callback.php'
-            ,icon: "images/icon.png"
+            ,icon: "../img/icon.png"
           , responseType: 'code'
           , authParams: {
             scope: 'openid email'  // Learn about scopes: https://auth0.com/docs/scopes
