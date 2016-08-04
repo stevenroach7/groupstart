@@ -1,4 +1,5 @@
 <!-- Banner at the top of each page. Check if logged in and if not, redirect to login page. If so, show logout button-->
+<html>
 <?php
 
 ?>

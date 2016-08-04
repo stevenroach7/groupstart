@@ -1,6 +1,7 @@
 <?php
 
     include '../config/connection.php';
+    
 
     $project_id = $_GET['project_id'];
     $course_id = $_GET['course_id'];

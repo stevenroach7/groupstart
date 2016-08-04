@@ -135,7 +135,7 @@
                                                     </tbody>
                                                 </table><br>
                                             </div>
-                                            <div class="alert alert-info" role="alert" style="width:520px;float:left";>
+                                            <div class="alert alert-info" role="alert" style="width:400px;float:left";>
   <strong>Reminder!</strong> If you change group size range remember to click the form student groups button again.
 </div>
                                             <button class="btn btn-info pull-right" id="edit-group-formation">change group size range</button>
@@ -220,6 +220,62 @@
                         <h3>Manage Groups</h3>
                         <div class="col-md-12" id="manage-group-panels">
                             <div id="tabs">
+                                <?php
+                                    
+                                    $pgid = str_replace('_fk',' ',$_GET['pgid']);
+                                    $pgarray =  explode(' ', $pgid);
+
+                                    
+                                    echo "<ul>";
+                                        foreach($pgarray as $project_group => $project_group_id){
+                                            echo "<li><a href='#".$project_group_id."'>". "Group ".$project_group."</a></li>";
+                                        };
+                                    echo "</ul>";
+
+                                    foreach($pgarray as $project_group => $project_group_id){
+                                        echo "<div id='".$project_group_id."'>";
+                                        
+                                            $getStudents = mysqli_query($db, "SELECT student_fk FROM project_group_students WHERE project_group_fk = '".$project_group_id."'");
+                                        
+                                            if(!$getStudents){
+                                                die('Could not get data: ' . mysql_error());
+                                            } else{
+                                                $students_id = array();
+                                                
+                                                while($row = mysqli_fetch_assoc($getStudents)){
+                                                    $students_id[] = $row['student_fk'];
+                                                };
+                                                
+                                                //print_r($students_id);
+                                                
+                                                foreach($students_id as $key => $id){
+                                                    
+                                                    //echo $id . PHP_EOL;
+                                                    
+                                                    $get_student_name = mysqli_query($db,"SELECT name FROM students WHERE student_id = $id ");
+                                                    
+                                                    
+                                                    if(!$get_student_name){
+                                                        die('Could not get data: ' . mysql_error());
+                                                    } else{
+                                                
+                                                        $student = "";
+                                                        
+                                                        while($row = mysqli_fetch_assoc($get_student_name)){
+                                                            $student = $row['name'];
+                                                        };
+                                                        echo "<li>". $student ."</li>";
+                                                    }
+                                                    
+                                                }
+                                            }
+                                        echo "</div>";
+                                    }
+                                    
+                                    
+                                ?>
+                            </div>
+                            <!--div id="tabs">
                                 <ul>
                                     <li><a href="#a">Tab A</a></li>
                                     <li><a href="#b">Tab B</a></li>
@@ -230,7 +286,7 @@
                                 <div id="b"><p>In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus.</p></div>
                                 <div id="c"><p> Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus.</p></div>
                                 <div id="d"><p> Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus.</p></div>
-                            </div>
+                            </div-->
                         </div>
                     </div>
                     <div class="row">
