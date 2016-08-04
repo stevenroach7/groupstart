@@ -37,15 +37,14 @@
 
         include '../config/connection.php';
 
-        // Get project_group_id through URL
 
-        // Use project_group_id to get other students in project and display
-        // Use project group_id to get group introduction info based on those students and display.
-        // Get course id
-        // Use course id to allow for easy navigation
+        // TODO: Get course id
+        // TODO: Use course id and student_id to allow for easy navigation to other projects.
 
         $project_group_id = $_GET['project_group_id'];
 
+
+        // Get group of students in this project
         $get_project_group = mysqli_query($db, "SELECT * FROM project_group WHERE project_group_id = '".$project_group_id."'");
 
         // We are querying based off of a primary key so the result should be unique.
@@ -72,14 +71,14 @@
           // Use student_id to query students table to get display_name
           $get_student = mysqli_query($db, "SELECT * FROM students WHERE student_id = '".$student_id."'");
 
-            $row = mysqli_fetch_assoc($get_student); // student_id is the primary key so only one result should be returned.
+          $row = mysqli_fetch_assoc($get_student); // student_id is the primary key so only one result should be returned.
 
           $student_info['display_name'] = $row['display_name'];
 
           // Use student_id and project_id to query student_projects to get student_project info
           $get_student_projects = mysqli_query($db, "SELECT * FROM student_projects WHERE student_fk = '".$student_id."' AND project_fk = '".$project_id."'");
 
-            $row = mysqli_fetch_assoc($get_student_projects); // Intersection of student_id and project_id is unique so only one result should be returned.
+          $row = mysqli_fetch_assoc($get_student_projects); // Intersection of student_id and project_id is unique so only one result should be returned.
           // Get motivation sentence.
           $student_info['motivation'] = $row['motivation'];
 
@@ -94,6 +93,98 @@
           $student_project_info[] = $student_info;
         }
 
+
+
+
+        // Use student_project_info array to calculate group expectations
+
+        /*
+        * Takes a student_project_info array and returns an array of student expectation arrays.
+        */
+         function create_expectations_info($student_project_info) {
+          $expectations_info = array();
+
+          foreach ($student_project_info as $student_info) {
+            $expectations_info[] = $student_info['expectations'];
+          }
+          return $expectations_info;
+        }
+
+        /*
+        * Takes an array of expectation preferences arrays and returns an associative array holding the number of times each expectation is true in the expectation_arrays.
+        */
+        function calculate_expectation_counts($expectation_arrays) {
+
+          $expectations_counts = array(); // Holds the number of times each expectation has been counted true.
+
+          foreach ($expectation_arrays as $expectations) {
+            foreach ($expectations as $expect_key => $expect_val) {
+
+              if ($expect_val == 1) {
+
+                if (!array_key_exists($expect_key, $expectations_counts)) { // check if expectation has been counted yet.
+                  $expectations_counts[$expect_key] = 1; // initialize count as 1
+                } else {
+                  $expectations_counts[$expect_key]++; // key exists so increment count
+                }
+              }
+
+            }
+          }
+          return $expectations_counts;
+        }
+
+        /*
+        * Takes an associative array of expectations and their counts, a denominator to use to calculate percentages and a percentage value.
+        * Returns the expectations where the count / $total is greater than $pct.
+        */
+        function filter_expectations_counts($expectations_counts, $total, $pct) {
+
+          $true_expectations = array(); // Holds keys of expectations that are true in at least $pct of the expectation_arrays.
+
+          foreach($expectations_counts as $expect_key => $count) {
+            if ($count / $total >= $pct) {
+              $true_expectations[] = $expect_key;
+            }
+          }
+          return $true_expectations;
+        }
+
+        /*
+        * Takes an array of expectations arrays and a percent and returns an array of the expectations that were true in
+        * at least $pct of the expectation_arrays.
+        */
+        function calculate_group_expectations($expectation_arrays, $pct) {
+
+          // Create array holding number of times each expectation is true in the expectation_arrays.
+          $expectation_counts = calculate_expectation_counts($expectation_arrays);
+
+          // Filter expectation_counts arrays for the expectations counted $pct or more percent of the time
+          $num_arrays = count($expectation_arrays); // Holds number of possible expectations. Will act as denominator in calculating percent.
+
+          return filter_expectations_counts($expectation_counts, $num_arrays, $pct);
+        }
+
+        // Create array of only expectations data.
+        $expectations_info = create_expectations_info($student_project_info);
+
+        // Calculate group expectations that should be displayed
+        $true_expectations = calculate_group_expectations($expectations_info, 0.5);
+
+        // Messages to display based off of expectation keys.
+        $expectation_messages = array(
+        'work' => 'Complete agreed upon work on time',
+        'inform' => 'Inform of non-completion',
+        'messages' => 'Read and respond to messages within agreed time',
+        'progress' => 'Inform others of progress',
+        'consensus' => 'Respect consensus decisions',
+        'diversity' => 'Value diversity',
+        'honest' => 'Be honest',
+        'active' => 'Play an active part in team',
+        'trust' => 'Trust each other',
+        'respect' => 'Respect each other'
+      );
+
       ?>
 
 
@@ -106,7 +197,21 @@
 
                    <?php
                      foreach ($student_project_info as $student_info) {
-                         echo "<li class='list-group-item'>$student_info[display_name]: $student_info[motivation]</li>";
+                         echo "<li class='list-group-item'><label>$student_info[display_name]:</label> $student_info[motivation]</li>";
+                     }
+                   ?>
+
+                 </ul>
+               </div>
+		         </div>
+             <div class="col-md-12">
+               <h3>Group Expectations</h3>
+               <div id="member-list">
+                 <ul class="list-group" >
+
+                   <?php
+                     foreach ($true_expectations as $expectation) {
+                       echo "<li class='list-group-item'>$expectation_messages[$expectation]</li>";
                      }
                    ?>
 
@@ -115,7 +220,10 @@
 		         </div>
 	         </div>
            <br><br>
-	         <div class="row">
+
+
+
+	         <!-- <div class="row"> -->
 		<!--div class="col-md-8" id="milestones-area">
             <div class="panel-group" id="accordion">
   <div class="panel panel-default">
@@ -165,28 +273,28 @@
   </div>
 </div-->
 
-		</div>
-		<div class="col-md-12" id="commun-link-area">
-		  <table class="table table-striped">
-		      <thead>
-		          <tr><th>Communication tools</th><th>Link</th></tr>
-		      </thead>
-		      <tbody>
-		          <tr><td>..</td><td>..</td></tr>
-		          <tr><td>..</td><td>..</td></tr>
-		          <tr><td>..</td><td>..</td></tr>
-		          <tr><td>..</td><td>..</td></tr>
-		          <tr><td>..</td><td>..</td></tr>
-		          <tr><td>..</td><td>..</td></tr>
-                  <tr><td>..</td><td>..</td></tr>
-		          <tr><td>..</td><td>..</td></tr>
-		      </tbody>
-		    </table>
-            <button type="button" class="btn btn-info pull-right">View Group Charter</button>
+		<!-- </div> -->
+        <div class="col-md-12" id="commun-link-area">
+    	    <table class="table table-striped">
+            <thead>
+              <tr><th>Communication tools</th><th>Link</th></tr>
+    		    </thead>
+    		    <tbody>
+              <tr><td>..</td><td>..</td></tr>
+    		      <tr><td>..</td><td>..</td></tr>
+    		      <tr><td>..</td><td>..</td></tr>
+    	        <tr><td>..</td><td>..</td></tr>
+              <tr><td>..</td><td>..</td></tr>
+    		      <tr><td>..</td><td>..</td></tr>
+              <tr><td>..</td><td>..</td></tr>
+    		      <tr><td>..</td><td>..</td></tr>
+    		    </tbody>
+    		  </table>
+        </div>
 
-		</div>
-	</div>
-</div>
 
+      </div>
+    </div>
+    
   </body>
 </html>
