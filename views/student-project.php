@@ -40,6 +40,10 @@
 
         // TODO: Get course id
         // TODO: Use course id and student_id to allow for easy navigation to other projects.
+        // TODO: Connect communications to DB
+        // TODO: Create add new communications form
+        // TODO: Add project deliverables display_name
+        // TODO: Add project deliverables form upload 
 
         $project_group_id = $_GET['project_group_id'];
 
@@ -295,6 +299,6 @@
 
       </div>
     </div>
-    
+
   </body>
 </html>
