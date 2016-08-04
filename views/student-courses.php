@@ -200,6 +200,7 @@
                     foreach ($projects as $project) {
                       $title = $project['title'];
                       $project_id = $project['project_id'];
+                      $project_group_id = NULL;
 
                       echo "<li class='list-group-item clearfix'>$title";
 
@@ -224,7 +225,7 @@
                             // Check that group is for this project.
                             $get_project_group = mysqli_query($db, "SELECT * FROM project_group WHERE project_group_id = '".$project_group_id."' AND project_fk = '".$project_id."'");
 
-                            if (mysqli_num_rows($get_project_group) > 0) {
+                            if (mysqli_num_rows($get_project_group) > 0) { // $project_group_id is legitimate.
                               $in_group = 1;
                               break;
                             }
@@ -232,14 +233,15 @@
                         }
 
                         if ($in_group) {
-                          // TODO: Pass project id through url
-                          echo "<span class='pull-right'> <a href='student-project.php' class='btn btn-info' id='view-student-group'>View My Group</a></span></li> ";
+                          // Only need to pass project_group_id through url since we can use that to get project_id and course_id.
+                          echo "<span class='pull-right'> <a href='student-project.php?project_group_id=$project_group_id' class='btn btn-info' id='view-student-group'>View My Group</a></span></li> ";
 
                         } else {
                           echo "<span class='pull-right'> You will be placed in a group soon.</span></li> ";
                         }
                       } else { // Student has not started project
-                        echo "<span class='pull-right'> <a href='student-start-project.php?project_id=$project_id&course_id=$course_id' class='btn btn-info' id='start-project'>Start Project</a></span></li> ";
+                        // Only need to pass project_id through url since we can use that to get course_id.
+                        echo "<span class='pull-right'> <a href='student-start-project.php?project_id=$project_id' class='btn btn-info' id='start-project'>Start Project</a></span></li> ";
 
                       }
                     }

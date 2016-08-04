@@ -1,7 +1,6 @@
 <?php
 
 
-
  ?>
 
 
@@ -33,25 +32,90 @@
 
   <body>
       <?php echo $banner ?>
+
+      <?php
+
+        include '../config/connection.php';
+
+        // Get project_group_id through URL
+
+        // Use project_group_id to get other students in project and display
+        // Use project group_id to get group introduction info based on those students and display.
+        // Get course id
+        // Use course id to allow for easy navigation
+
+        $project_group_id = $_GET['project_group_id'];
+
+        $get_project_group = mysqli_query($db, "SELECT * FROM project_group WHERE project_group_id = '".$project_group_id."'");
+
+        // We are querying based off of a primary key so the result should be unique.
+        $row = mysqli_fetch_assoc($get_project_group);
+        $project_id = $row['project_fk'];
+
+        // Get students in project group
+        $student_ids = array(); // array of student_ids of students in project group
+        $get_students = mysqli_query($db, "SELECT * FROM project_group_students WHERE project_group_fk = '".$project_group_id."'");
+
+        if (mysqli_num_rows($get_students) > 0) {
+            while ($row = mysqli_fetch_assoc($get_students)) {
+                $student_ids[] = $row['student_fk'];
+            }
+        }
+
+        // Create array of student information from student_projects table.
+        $student_project_info = array(); // Initialize empty array to hold arrays of info for each student.
+
+        foreach ($student_ids as $student_id) {
+            $student_info = array(); // Initialize array of info
+          $student_info['student_id'] = $student_id;
+
+          // Use student_id to query students table to get display_name
+          $get_student = mysqli_query($db, "SELECT * FROM students WHERE student_id = '".$student_id."'");
+
+            $row = mysqli_fetch_assoc($get_student); // student_id is the primary key so only one result should be returned.
+
+          $student_info['display_name'] = $row['display_name'];
+
+          // Use student_id and project_id to query student_projects to get student_project info
+          $get_student_projects = mysqli_query($db, "SELECT * FROM student_projects WHERE student_fk = '".$student_id."' AND project_fk = '".$project_id."'");
+
+            $row = mysqli_fetch_assoc($get_student_projects); // Intersection of student_id and project_id is unique so only one result should be returned.
+          // Get motivation sentence.
+          $student_info['motivation'] = $row['motivation'];
+
+          // Create array of expectation inputs.
+          $expectations = array('work' => $row['work'], 'inform' => $row['inform'], 'messages' => $row['messages'],
+          'progress' => $row['progress'], 'consensus' => $row['consensus'], 'diversity' => $row['diversity'],
+          'honest' => $row['honest'], 'active' => $row['active'], 'trust' => $row['trust'], 'respect' => $row['respect'], );
+          // Add expectations array to student_info
+          $student_info['expectations'] = $expectations;
+
+          // Add student info array to array holding a student_info array for each student
+          $student_project_info[] = $student_info;
+        }
+
+      ?>
+
+
       <div class="container">
-	<div class="row" id="memeber-list-area">
-		<div class="col-md-12">
-            <h3>Group Members</h3>
-            <div id="member-list">
-            <ul class="list-group" >
-  <li class="list-group-item">Cras justo odio</li>
-  <li class="list-group-item">Dapibus ac facilisis in</li>
-  <li class="list-group-item">Morbi leo risus</li>
-  <li class="list-group-item">Porta ac consectetur ac</li>
-  <li class="list-group-item">Vestibulum at eros</li>
-                <li class="list-group-item">Cras justo odio</li>
-  <li class="list-group-item">Dapibus ac facilisis in</li>
-  <li class="list-group-item">Morbi leo risus</li>
-                </ul>
-            </div>
-		</div>
-	</div><br><br>
-	<div class="row">
+	       <div class="row" id="memeber-list-area">
+		         <div class="col-md-12">
+               <h3>Group Members</h3>
+               <div id="member-list">
+                 <ul class="list-group" >
+
+                   <?php
+                     foreach ($student_project_info as $student_info) {
+                         echo "<li class='list-group-item'>$student_info[display_name]: $student_info[motivation]</li>";
+                     }
+                   ?>
+
+                 </ul>
+               </div>
+		         </div>
+	         </div>
+           <br><br>
+	         <div class="row">
 		<!--div class="col-md-8" id="milestones-area">
             <div class="panel-group" id="accordion">
   <div class="panel panel-default">
