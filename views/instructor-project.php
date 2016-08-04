@@ -34,6 +34,7 @@
                     <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
                     <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
                     <script type="text/javascript" src="../js/instructor-project.js"></script>
+                    <script src="../js/modal.js"></script>
 
 
                     </head>
@@ -46,6 +47,7 @@
             include 'features/instructor-get-courses-data.php';
 
             $project_id = $_GET['project_id'];
+            $course_id = $_GET['course_id'];
 
             $get_project_info = mysqli_query($db, "SELECT * FROM projects WHERE project_id = '$project_id'");
 
@@ -64,9 +66,10 @@
                 $group_form_algorithm = $row['group_form_algorithm'];
             };
 
-
+         
 
         ?>
+       
 
         <div class="container">
             <div class="row">
@@ -103,6 +106,7 @@
                                                 <h3>
                                                     Group Formation Options
                                                 </h3>
+                                            
 
                                                 <table class="table table-striped" id="saved-formation-options">
                                                     <thead>
@@ -129,9 +133,41 @@
                                                             <td id="selected-variables"></td>
                                                         </tr>
                                                     </tbody>
-                                                </table>
+                                                </table><br>
+                                            </div>
+                                            <div class="alert alert-info" role="alert" style="width:520px;float:left";>
+  <strong>Reminder!</strong> If you change group size range remember to click the form student groups button again.
+</div>
+                                            <button class="btn btn-info pull-right" id="edit-group-formation">change group size range</button>
+                                                    
+                                                    <div id="myModal" class="modal">
 
-                                            </div></div>
+                                                      <!-- Modal content -->
+                                                      <div class="modal-content">
+                                                        <span class="close">x</span>
+                                                          
+                                                          <p hidden id="projectID"><?php echo $project_id?></p>
+                                                          <p hidden id="courseID"><?php echo $course_id?></p>
+                                                        <form id="form-change-range" action="" method="POST">
+                                                            <label for="minSize">minimum group size</label>
+                                                            <input type="number" id="minSize" name="min_group_size" style="margin-bottom:10px;" min="2"><br>
+                                                            <label for="maxSize">maximum group size</label>
+                                                            <input type="number" id="maxSize" name="max_group_size" style="margin-bottom:20px;" min="2"><br>
+                                                            <input class="btn btn-info" id="changeRange" type="button" value="make changes!" name="change_range" form="form-change-range"><br>
+                                                          </form>
+                                                          
+                                                       
+                                                            
+                                                      </div>
+
+                                                    </div>
+                                        </div>
+                                                
+                                               
+                                                
+                                                    
+                                            
+                                           
                                         <div class="row">
                                             <div class="col-md-12" style="margin-bottom:50px">
                                                 <h3>
@@ -158,7 +194,7 @@
 
                                             if($clustAlgo == "Random Algorithm"){
                                                 //group students with random algorithm
-                                                echo "<a href='features/random_clustering.php?id=$project_id' class='btn btn-info btn-block'>Form student groups!</a><br>";
+                                                echo "<a href='features/random_clustering.php?id=$project_id&cid=$course_id' class='btn btn-info btn-block'>Form student groups!</a><br>";
                                             } else{
                                                 //echo "the algorithm you have chosen has not been implemented yet";
                                                 echo "<a class='btn btn-info btn-block'>Form student groups!</a><br>";

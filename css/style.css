@@ -826,7 +826,7 @@ table{
 
 tbody{
     overflow-y: scroll;
-    height: 200px;
+    height: inherit;
     width: 100%;
     position: absolute;
     margin-bottom: 0px;

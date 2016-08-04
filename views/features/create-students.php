@@ -7,7 +7,7 @@
     $success = 1; // boolean holding if insert is successful
 
     // Repeat n times
-    for ($x = 0; $x < $n; $x++) {
+    for ($x = 79; $x < $n; $x++) {
 
       // Make fake data
       $auth0_id = $x.date('Y-m-d H:i:s'); // This variable must be unique. Use Datetime to achieve this.
@@ -31,6 +31,56 @@
 
   }
 
-  create_students(100);
+  //create_students(200);
+
+  function create_students_for_course($n) {
+
+    include '../../config/connection.php';
+    $success = 1; // boolean holding if insert is successful
+
+    // Repeat n times
+    for ($x = 76; $x < $n; $x++) {
+
+      $insert = "INSERT INTO `students_courses` (`student_course_id`, `student_fk`, `course_fk`) VALUES (NULL, '.$x.', '165')";
+
+      $retval = mysqli_query($db, $insert);
+
+      if (!$retval) { // Failed insert. Break out of loop
+        echo mysqli_error($db);
+        $success = 0;
+        break;
+      }
+    }
+    if ($success) {
+      echo 'Success';
+    }
+
+  }
+  //create_students_for_course(103);
+
+  function create_students_for_project($n) {
+
+    include '../../config/connection.php';
+    $success = 1; // boolean holding if insert is successful
+
+    // Repeat n times
+    for ($x = 78; $x < $n; $x++) {
+
+      $insert = "INSERT INTO `student_projects` (`student_project_id`, `student_fk`, `project_fk`) VALUES (NULL, '.$x.', '7')";
+
+      $retval = mysqli_query($db, $insert);
+
+      if (!$retval) { // Failed insert. Break out of loop
+        echo mysqli_error($db);
+        $success = 0;
+        break;
+      }
+    }
+    if ($success) {
+      echo 'Success';
+    }
+
+  }
+  //create_students_for_project(104);
 
  ?>

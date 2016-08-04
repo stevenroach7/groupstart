@@ -98,6 +98,8 @@ $(document).ready(function(){
     $('#save-intro-options').click(function(){
         $('#panel-charter-options').prop('checked', 'true');
     });
+    
+
 
 
 });
