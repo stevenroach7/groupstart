@@ -132,14 +132,14 @@
                     <div class="col-md-5" >
                       <div class="row" id="profile-pic">
                         <div class="col-md-12">
-                          <!-- <img src="images/placeholder.png" alt="profile picture" class="img-rounded"><br><br>
+                          <!-- <img src="../img/placeholder.png" alt="profile picture" class="img-rounded"><br><br>
                           <button type="button" class="btn btn-block btn-default">Change Profile Picture</button><br> -->
                           <?php
 
                             $get_prof_pic = "SELECT * FROM instructors WHERE instructor_id = $instructor_id";
                             $sth = $db->query($get_prof_pic);
                             $result=mysqli_fetch_array($sth);
-                            echo '<img src="data:image/png;base64,'.base64_encode( $result['profile_pic'] ).'" alt="Image not found" onError="this.onerror=null;this.src=\'images/placeholder.png\';" class="img-rounded prof-pic">';
+                            echo '<img src="data:image/png;base64,'.base64_encode( $result['profile_pic'] ).'" alt="Image not found" onError="this.onerror=null;this.src=\'../img/placeholder.png\';" class="img-rounded prof-pic">';
 
                           ?>
 
