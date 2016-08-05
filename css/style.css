@@ -446,10 +446,20 @@ body{
 
 
 /*Styling for student-project.php*/
-#memeber-list-area{
+#member-list-area{
     padding-top: 20px;
+    width: 60%;
 }
 #member-list {
+    border:2px solid black;
+    width:auto;
+    height: 300px;
+    overflow-x: scroll;
+}
+
+
+
+#expectation-list {
     border:2px solid black;
     width:auto;
     height: 300px;
@@ -770,4 +780,16 @@ max-height: 300px;
     outline: 4px solid rgba(100, 100, 100, 1);
     /*border: 1px;
     border-color: rgba(0, 0, 200, 0.5);*/
+}
+
+
+.link {
+    margin-right: 35%;
+}
+
+
+.deliverable {
+    outline: 1px solid rgba(150, 150, 150, 0.5);
+
+
 }

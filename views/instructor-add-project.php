@@ -28,8 +28,6 @@
       <script type="text/javascript" src="../js/add_project.js"></script>
       <script type="text/javascript" src="../js/add_project2.js"></script>
 
-      <script src="../js/dropzone.min.js"></script>
-
       <script src="../js/nouislider.min.js"></script>
 
       <script type="text/javascript" src="../js/slider.js"></script>
@@ -106,7 +104,7 @@ include 'features/instructor-get-courses-data.php'
               alertUser('A required field is empty.');
 
             } elseif ($files_valid === 0) {
-        
+
             } else {
               //setting initialized variables to values entered by user
 
@@ -261,15 +259,8 @@ include 'features/instructor-get-courses-data.php'
 
                                     <!-- <h4>Project Attachments</h4>
 
-                                    <form action="../php_scripts/upload.php" class="dropzone dz-clickable">
-                                        <div class="dz-default dz-message">
-                                            <span>Drop files here to upload</span>
-                                        </div> -->
 
-                                        <!-- <h4>Project Attachments</h4>
-                                        Upload PDF's (Each file must be smaller than 1 Megabyte): <input type="file" name="file-uploads[]" id="file-upload" multiple="" /> -->
-                                    </form><br><br>
-                                    <!--a href="#" class="btn btn-info" role="button" id="add-project-options">Add Project Options</a><i>(optional)</i><br>
+                                    a href="#" class="btn btn-info" role="button" id="add-project-options">Add Project Options</a><i>(optional)</i><br>
                                     <a href="#" class="btn btn-info" role="button" id="add-project-examples" style="margin-bottom:20px">Add Project Examples</a><i>(optional)</i><br-->
 
                                     <a href="#" class="btn btn-info" role="button" id="next-step-to-impo-statement" style="float:right">Next Step</a>

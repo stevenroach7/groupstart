@@ -10,8 +10,6 @@
 
         <link rel="stylesheet" type="text/css" href="../css/style.css" />
 
-        <script src="../js/dropzone.min.js"></script>
-
         <script src="https://cdn.tinymce.com/4/tinymce.min.js"></script>
 
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -78,7 +76,7 @@
                   //checking that required fields in form is filled
                 alertUser('You either forgot to put a course title or a course description.');
               } elseif ($files_valid === 0) {
-                
+
               } else {
 
                 //setting initialized variables to values entered by user
