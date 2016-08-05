@@ -165,9 +165,26 @@
             //$course_id = $project['course_fk'];
             $project_id = $project['project_id'];
             $title = $project['title'];
+            
+            
+            $get_project_group_ids = mysqli_query($db,"SELECT project_group_id FROM project_group WHERE project_fk = '.$project_id.'");
+            
+            //$pgid = "";
+            
+            if(mysqli_num_rows($get_project_group_ids) > 0) {
+              
+              $project_group_ids = array();
+              
+              while($row = mysqli_fetch_assoc($get_project_group_ids)){
+                $project_group_ids[] = $row['project_group_id'];
+              }
+              
+               $pgid = implode("_fk",$project_group_ids);
+            } else{
+              $pgid = "none";
+            }
 
-
-            echo "<a href='instructor-project.php?project_id=$project_id&course_id=$course_id'><li class='list-group-item'>$title</li> </a>";
+            echo "<a href='instructor-project.php?project_id=$project_id&course_id=$course_id&pgid=$pgid'><li class='list-group-item'>$title</li> </a>";
           }
         }
             echo "</ul>

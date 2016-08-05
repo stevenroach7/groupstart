@@ -221,9 +221,11 @@
                         <div class="col-md-12" id="manage-group-panels">
                             <div id="tabs">
                                 <?php
-                                    
-                                    $pgid = str_replace('_fk',' ',$_GET['pgid']);
-                                    $pgarray =  explode(' ', $pgid);
+                                    $pgid = $_GET['pgid'];
+
+                                    if($pgid != "none"){
+                                        $pgid = str_replace('_fk',' ',$pgid);
+                                        $pgarray =  explode(' ', $pgid);
 
                                     
                                     echo "<ul>";
@@ -269,7 +271,18 @@
                                                     
                                                 }
                                             }
+                                        
+                                    }
+                                    
                                         echo "</div>";
+                                    } else{
+                                        
+                                        echo "<ul>";
+                                        echo "<li><a href='#nogroups'>No Group</a></li>";
+                                        echo "</ul>";
+                                        
+                                        echo "<div id=nogroups>No groups have been formed for this project yet.</div>";
+                                        
                                     }
                                     
                                     

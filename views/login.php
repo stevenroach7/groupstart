@@ -28,7 +28,6 @@
   <?php include 'features/banner.php' ?>
 
   <head>
-    <?php echo $banner ?>
 
 
 
@@ -52,7 +51,8 @@
 
 
   <body>
-      <div class="jumbotron jumbotron-fluid" style=background-color:#d3d3d3 !important;>
+     <?php echo $banner ?>
+      <div class="jumbotron jumbotron-fluid" style="background-color:#d3d3d3 !important;margin-top:30px;">
   <div class="container">
     <div class="row" id="top-half">
               <h1 style="text-align:center">Welcome to GroupStart</h1>
@@ -80,15 +80,13 @@
 </div>
       <div class="container-fluid" id="home-page">
           <div class= "row" id="bottom-half">
-              <div class="col-md-12">
+              <div class="col-md-8 col-md-offset-2" id="su-buttons">
                   <div class="row" id="users-part">
-              <div class="col-md-12">
-                  <div class="row" id="sign-up-side">
-                  <div class="col-md-12" id="sign-up-buttons" >
-                      <div id="p0">
-                      <h1 style="color:black;text-align:center">Get Started</h1>
+    <button onclick="window.studentSignIn();" type="button" class="btn btn-primary" id="student-myBtn">Student</button>
+    <button onclick="window.instructorSignIn();" type="button" class="btn" id="instructor-myBtn" style="background-color:#d3d3d3;">Instructor</button>
 
-                      </div>
+                    </div></div></div></div>
+
                       <script src="https://cdn.auth0.com/js/lock-9.1.min.js"></script>
     <script type="text/javascript">
 
@@ -139,37 +137,7 @@
         });
       }
 
-
-
-
-
     </script>
-<div id="su-buttons">
-
-    <button onclick="window.studentSignIn();" type="button" class="btn btn-primary" id="student-myBtn">Student</button>
-    <button onclick="window.instructorSignIn();" type="button" class="btn" id="instructor-myBtn">Instructor</button>
-
-                      </div>
-                      </div>
-
-                  </div>
-
-              </div>
-
-                  </div>
-                  </div>
-          </div>
-      </div>
-
-
-
-
-
-
-
-
-
-
   </body>
 
 

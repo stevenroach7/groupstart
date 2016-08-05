@@ -221,7 +221,43 @@ body{
     margin-bottom: 20px;
 }
 
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
 
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
 
 /*Styling for instructor-project.php*/
 
@@ -583,26 +619,12 @@ input[type="text"]{
 
 body .a0-primary.a0-next{
     background-color: #337ab7 !important;
-
 }
 
 body .a0-icon-badge{
     visibility: hidden;
 }
 
-#home-page{
-    /*background: grey;*/
-}
-
-/*#top-half{
- width: 100%;
- background: red;
- height: 500px;
- }*/
-#hom-page p,  #hom-page h1,  #hom-page h5,  #hom-pageh3{
-    color: white;
-
-}
 
 #webpage-description div:first-of-type p{
     font-size: 30px;
@@ -623,6 +645,7 @@ body .a0-icon-badge{
     margin-right: 60px;
     margin-bottom: 10px;
 }
+
 #web-icons-area{
     /*height: 300px;*/
     /*background: red;*/
@@ -639,143 +662,36 @@ body .a0-icon-badge{
     text-align: center;
 }
 
-#bottom-half{
-    height: 400px;
-    /*background: purple;*/
-}
-
 #users-part{
     /*background: green;*/
-    height: 400px;
-    margin-top:10px;
+    margin-top:20px;
 }
 
-#sign-up-side{
-    /*background: pink;*/
-    height: 160px;
-    margin: 20px;
-    border: 5px solid #d3d3d3;
-    margin-right: 20px;
-}
-
-#login-square{
-    border: 5px solid grey;
-    height: 400px;
-    margin: 20px;
-}
-
-/*
- #login-side{
- height: 400px;
- margin: 20px;
-
- }*/
-
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content/Box */
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-}
-
-/* The Close Button */
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
 
 #su-buttons{
-    width: 80%;
-    /*background: orange;*/
+    width: 100%;
+/*    background: orange;*/
     height: auto;
-    transform: translateY(40%);
+/*    transform: translateY(40%);*/
+    margin-top: 20px;
     margin: 0 auto;
     display: table;
     text-align: center;
+    margin-bottom: 10px;
     position: relative;
 
 }
 
 #su-buttons button{
     margin-right: 50px;
+    font-size: 30px;
     /*margin-bottom: 50px;*/
-    width: 40% !important;
+    width: 300px;
 }
 
-.vr {
-    width:5px;
-    background-color:gray;
-    position:absolute;
-    top:0;
-    bottom:0;
-    left:0px;
-}
 
-#user-identity {
-    text-align: center;
-}
-#user-identity label{
-    margin-right: 50px;
-}
-.form-group{
-    text-align: center;
-}
 
-.form-group input{
-    width: 400px;
-}
-#login-form{
-    align-content: center;
-    /*background: red;*/
-}
 
-#p1{
-    /*border: 2px solid #888;
-     margin-right: 10px;
-     margin-bottom: 10px;
-     height: 350px;*/
-}
-
-#p0{
-    /*border: 2px solid #888;
-     margin-left: 10px;
-     margin-bottom: 10px;
-     height: 350px;*/
-}
-
-#sign-up-buttons{
-    align-content: center;
-    /*background: green;*/
-}
-
-#login-form button{
-    width: 400px !important;
-}
 
 /*Styling for login.php*/
 
