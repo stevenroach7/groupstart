@@ -480,9 +480,9 @@
 				
 				//echo "There are not enough students to create a group";
 				echo "<div class='row' style='text-align:center;'><div class = 'col-md-8 col-md-offset-2'>";
-				echo "<div class='alert alert-success'>There are not enough students to create a group. You will be redirected to this project's page.</div>";
+				echo "<div class='alert alert-success'>There are not enough students to create a group. You will be redirected to this project's page in 20 seconds.</div>";
 				
-				$url = 'http://localhost/groupstart/views/instructor-project.php?project_id='.$project_id.'&course_id='.$course_id;
+				$url = 'http://localhost/groupstart/views/instructor-project.php?project_id='.$project_id.'&course_id='.$course_id.'&pgid=none';
 				
 				header('refresh:20; url='.$url);
 				
@@ -494,9 +494,9 @@
 		} else{
 			
 			echo "<div class='row' style='text-align:center;'><div class = 'col-md-8 col-md-offset-2'>";
-			echo "<div class='alert alert-success'>There are not enough students to create a group. You will be redirected to this project's page.</div>";
+			echo "<div class='alert alert-success'>There are not enough students to create a group. You will be redirected to this project's page in 20 seconds.</div>";
 			
-			$url = 'http://localhost/groupstart/views/instructor-project.php?project_id='.$project_id.'&course_id='.$course_id;
+			$url = 'http://localhost/groupstart/views/instructor-project.php?project_id='.$project_id.'&course_id='.$course_id.'&pgid=none';
 			
 			header('refresh:20; url='.$url);
 			
