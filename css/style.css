@@ -410,10 +410,20 @@ body{
 
 
 /*Styling for student-project.php*/
-#memeber-list-area{
+#member-list-area{
     padding-top: 20px;
+    width: 60%;
 }
 #member-list {
+    border:2px solid black;
+    width:auto;
+    height: 300px;
+    overflow-x: scroll;
+}
+
+
+
+#expectation-list {
     border:2px solid black;
     width:auto;
     height: 300px;

@@ -5,11 +5,11 @@
 
 
 <html>
-<?php
-  include 'features/authentication.php';
-  include 'features/student-authentication.php';
-  include 'features/banner.php'
-?>
+  <?php
+    include 'features/authentication.php';
+    include 'features/student-authentication.php';
+    include 'features/banner.php'
+  ?>
 
   <head>
 
@@ -270,7 +270,7 @@
 
 
       <div class="container">
-	       <div class="row" id="memeber-list-area">
+	       <div class="row" id="member-list-area">
 		         <div class="col-md-12">
                <h3>Group Members</h3>
                <div id="member-list">
@@ -287,7 +287,7 @@
 		         </div>
              <div class="col-md-12">
                <h3>Group Expectations</h3>
-               <div id="member-list">
+               <div id="expectation-list">
                  <ul class="list-group" >
 
                    <?php
@@ -304,91 +304,89 @@
 
 
 
-	         <!-- <div class="row"> -->
-		<!--div class="col-md-8" id="milestones-area">
-            <div class="panel-group" id="accordion">
-  <div class="panel panel-default">
-    <div class="panel-heading clearfix">
-        <button type="button" class="btn btn-default pull-right">Submit</button>
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-        Milestone 1</a>
-      </h4>
-    </div>
-    <div id="collapse1" class="panel-collapse collapse in">
-      <div class="panel-body sp">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat.</div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading clearfix">
-        <button type="button" class="btn btn-default pull-right">Submit</button>
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-        Milestone 2</a>
-      </h4>
-    </div>
-    <div id="collapse2" class="panel-collapse collapse">
-      <div class="panel-body sp">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat.</div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading clearfix">
-        <button type="button" class="btn btn-default pull-right">Submit</button>
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-        Milestone 3</a>
-      </h4>
-    </div>
-    <div id="collapse3" class="panel-collapse collapse">
-      <div class="panel-body sp">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat.</div>
-    </div>
-  </div>
-</div-->
+	        <div class="row">
+		        <div class="col-md-8" id="milestones-area">
+              <h3>Project Deliverables</h3>
+              <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
 
-		<!-- </div> -->
-        <div class="col-md-12" id="commun-link-area">
-    	    <table class="table table-striped">
-            <thead>
-              <tr><th>Communication Tool</th><th>Link</th></tr>
-    		    </thead>
-    		    <tbody>
-              <?php
+                  <?php
 
-              foreach ($communications as $com) {
+                    if (empty($deliverables)) {
+                      echo "<h5>There are no project deliverables at this time.</h5>";
 
-                echo "<tr><td>$com[tool]</td><td class='pull-right link'>$com[link]</td>
-                <td>
-                <a href='features/delete-com-tool.php?communication_id=$com[communication_id]&project_group_id=$project_group_id' class='btn btn-primary pull-right' role='button'>Delete Tool</a>
 
-                </td>
-                </tr>";
-              }
+                    } else {
 
-              ?>
+                      foreach ($deliverables as $deliverable) {
+                        // TODO: Fix collapse id's.
 
-              <!-- Show Add tool input as last row -->
-              <form action="" method="POST" id="add-com-tool">
-                <tr><td><input type="text" name="tool" class="com-input" placeholder="Tool"></td>
+                        echo "<div class='panel-heading clearfix'>
+                          <button type='button' class='btn btn-default pull-right'>Submit</button> <!-- TODO: Add onclick modal -->
+                          <h4 class='panel-title'>
+                            <a data-toggle='collapse' data-parent='#accordion' href='#collapse1'>$deliverable[title]</a>
+                          </h4>
+                        </div>
+                        <div id='collapse1' class='panel-collapse collapse in'>
+                          <div class='panel-body sp'>
+                          $deliverable[description]
+                          <label>Due Date: $deliverable[due_date]</label>
+                          </div>
+                        </div>";
 
-                <td class="link"> <input type="text" class="com-input" name="link" placeholder="Link"></td>
-                <td>
-                  <input type="submit" name="add-com-submit" value="Add Tool" class="btn btn-info" style="margin-left:30px;" form="add-com-tool" id="add-com-submit"/>
-                </td></tr>
-              </form>
+                      }
 
-    		    </tbody>
-    		  </table>
+
+
+                    }
+
+
+
+                   ?>
+
+
+
+
+
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12" id="commun-link-area">
+    	       <table class="table table-striped">
+               <thead>
+                 <tr><th>Communication Tool</th><th>Link</th></tr>
+    		        </thead>
+    		        <tbody>
+                <?php
+
+                foreach ($communications as $com) {
+
+                  echo "<tr><td>$com[tool]</td><td class='pull-right link'>$com[link]</td>
+                  <td>
+                  <a href='features/delete-com-tool.php?communication_id=$com[communication_id]&project_group_id=$project_group_id' class='btn btn-primary pull-right' role='button'>Delete Tool</a>
+
+                  </td>
+                  </tr>";
+                }
+
+                ?>
+
+                <!-- Show Add tool input as last row -->
+                <form action="" method="POST" id="add-com-tool">
+                  <tr><td><input type="text" name="tool" class="com-input" placeholder="Tool"></td>
+                    <td class="link"> <input type="text" class="com-input" name="link" placeholder="Link"></td>
+                    <td>
+                      <input type="submit" name="add-com-submit" value="Add Tool" class="btn btn-info" style="margin-left:30px;" form="add-com-tool" id="add-com-submit"/>
+                    </td></tr>
+                </form>
+    		      </tbody>
+    		    </table>
+          </div>
         </div>
       </div>
-    </div>
-  </body>
-</html>
+    </body>
+  </html>
