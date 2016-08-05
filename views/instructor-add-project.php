@@ -28,8 +28,6 @@
       <script type="text/javascript" src="../js/add_project.js"></script>
       <script type="text/javascript" src="../js/add_project2.js"></script>
 
-      <script src="../js/dropzone.min.js"></script>
-
       <script src="../js/nouislider.min.js"></script>
 
       <script type="text/javascript" src="../js/slider.js"></script>
@@ -106,7 +104,7 @@ include 'features/instructor-get-courses-data.php'
               alertUser('A required field is empty.');
 
             } elseif ($files_valid === 0) {
-        
+
             } else {
               //setting initialized variables to values entered by user
 

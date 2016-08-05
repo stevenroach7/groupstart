@@ -29,8 +29,6 @@
 
     <link rel="stylesheet" type="text/css" href="../css/style.css" />
 
-    <script src="../js/dropzone.min.js"></script>
-
   </head>
 
   <body>
