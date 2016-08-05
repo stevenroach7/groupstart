@@ -89,8 +89,14 @@ $(document).ready(function(){
         $('#fordb_algo').val(chosenclustAlgo);
         $('#fordb_max').val(maxGroupsize);
         $('#fordb_min').val(minGroupsize);
+        
+        if(chosenclustAlgo != "Random Algorithm"){
+            completeClustoptions();
+        } else{
+            $('#panel-clustering-options').prop('checked', true);
+        }
 
-        completeClustoptions();
+        
 
     });
 
