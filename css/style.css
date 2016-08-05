@@ -675,6 +675,7 @@ body .a0-icon-badge{
 #users-part{
     /*background: green;*/
     margin-top:20px;
+    margin-bottom: 30px;
 }
 
 
@@ -687,7 +688,6 @@ body .a0-icon-badge{
     margin: 0 auto;
     display: table;
     text-align: center;
-    margin-bottom: 10px;
     position: relative;
 
 }

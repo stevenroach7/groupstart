@@ -81,6 +81,7 @@
       <div class="container-fluid" id="home-page">
           <div class= "row" id="bottom-half">
               <div class="col-md-8 col-md-offset-2" id="su-buttons">
+                <h3>Sign-in or Sign-up below!</h3>
                   <div class="row" id="users-part">
     <button onclick="window.studentSignIn();" type="button" class="btn btn-primary" id="student-myBtn">Student</button>
     <button onclick="window.instructorSignIn();" type="button" class="btn" id="instructor-myBtn" style="background-color:#d3d3d3;">Instructor</button>
