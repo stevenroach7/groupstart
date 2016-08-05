@@ -234,7 +234,7 @@
         // Get Deliverables for this project
         $deliverables = array();
 
-        $get_deliverables = mysqli_query($db, "SELECT * FROM deliverables WHERE project_fk = '".$project_id."'");
+        $get_deliverables = mysqli_query($db, "SELECT * FROM project_deliverables WHERE project_fk = '".$project_id."'");
 
         if (mysqli_num_rows($get_deliverables) > 0) {
 
