@@ -318,16 +318,19 @@
 
                     } else {
 
-                      foreach ($deliverables as $deliverable) {
+                      // foreach ($deliverables as $deliverable)
                         // TODO: Fix collapse id's.
+                      for ($x = 0; $x < count($deliverables); $x++) { // For loop instead of foreach so we can use index for id of collapsible element
 
-                        echo "<div class='panel-heading clearfix'>
+                        $deliverable = $deliverables[$x];
+
+                        echo "<div class='panel-heading clearfix deliverable'>
                           <button type='button' class='btn btn-default pull-right'>Submit</button> <!-- TODO: Add onclick modal -->
                           <h4 class='panel-title'>
-                            <a data-toggle='collapse' data-parent='#accordion' href='#collapse1'>$deliverable[title]</a>
+                            <a data-toggle='collapse' data-parent='#accordion' href='#collapse$x'>$deliverable[title]</a>
                           </h4>
                         </div>
-                        <div id='collapse1' class='panel-collapse collapse in'>
+                        <div id='collapse$x' class='panel-collapse collapse in'>
                           <div class='panel-body sp'>
                           $deliverable[description]
                           <label>Due Date: $deliverable[due_date]</label>
@@ -335,20 +338,8 @@
                         </div>";
 
                       }
-
-
-
                     }
-
-
-
                    ?>
-
-
-
-
-
-
 
                 </div>
               </div>

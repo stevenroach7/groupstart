@@ -871,6 +871,9 @@ max-height: 300px;
     margin-right: 35%;
 }
 
-.com-input {
-    /*width: 4px;*/
+
+.deliverable {
+    outline: 1px solid rgba(150, 150, 150, 0.5);
+
+
 }
