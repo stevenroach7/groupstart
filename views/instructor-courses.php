@@ -184,7 +184,7 @@
               $pgid = "none";
             }
 
-            echo "<a href='instructor-project.php?project_id=$project_id&course_id=$course_id&pgid=$pgid'><li class='list-group-item'>$title</li> </a>";
+            echo "<li class='list-group-item clearfix'>$title<span class='pull-right'><a href='instructor-project.php?project_id=$project_id&course_id=$course_id&pgid=$pgid' class='btn btn-info'>View project</a></span></li>";
           }
         }
             echo "</ul>
