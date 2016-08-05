@@ -40,8 +40,6 @@
 
         // TODO: Get course id
         // TODO: Use course id and student_id to allow for easy navigation to other projects.
-        // TODO: Connect communications to DB
-        // TODO: Create add new communications form
         // TODO: Add project deliverables display_name
         // TODO: Add project deliverables form upload
 
@@ -187,51 +185,86 @@
         'active' => 'Play an active part in team',
         'trust' => 'Trust each other',
         'respect' => 'Respect each other'
-      );
+        );
 
 
 
 
-      // Script to get Communication tools and links and handle deletes and additions.
+        // Script to get Communication tools and links and handle deletes and additions.
 
-      // Add communication tool and link
-      if (isset($_POST['add-com-submit'])) {
+        // Add communication tool and link
+        if (isset($_POST['add-com-submit'])) {
 
-        $name = $_POST['tool'];
-        $link = $_POST['link'];
+          $name = $_POST['tool'];
+          $link = $_POST['link'];
 
-        // Insert into communications table.
-        $insert = "INSERT INTO `communications` (`communication_id`, `name`, `link`, `project_group_fk`)
-        VALUES (NULL, '$name', '$link', '$project_group_id')";
+          // Insert into communications table.
+          $insert = "INSERT INTO `communications` (`communication_id`, `name`, `link`, `project_group_fk`)
+          VALUES (NULL, '$name', '$link', '$project_group_id')";
 
-        $retval = mysqli_query($db, $insert); // performing mysql query
+          $retval = mysqli_query($db, $insert); // performing mysql query
 
-        if (!$retval) {
-          // if data is not inserted into database return error
-          die('Could not enter data given: '.mysqli_error($db));
-        };
+          if (!$retval) {
+            // if data is not inserted into database return error
+            die('Could not enter data given: '.mysqli_error($db));
+          };
 
-        header("Location: http://localhost/groupstart/views/student-project.php?project_group_id=$project_group_id");
-
-
-      }
-
-      // Get group communication tools and links
-
-      $communications = array();
-
-      $get_communications = mysqli_query($db, "SELECT * FROM communications WHERE project_group_fk = '".$project_group_id."'");
-
-      if (mysqli_num_rows($get_communications) > 0) {
-
-        while ($row = mysqli_fetch_assoc($get_communications)) {
-          $communication = array();
-          $communication['tool'] = $row['name'];
-          $communication['link'] = $row['link'];
-          $communication['communication_id'] = $row['communication_id'];
-          $communications[] = $communication;
+          header("Location: http://localhost/groupstart/views/student-project.php?project_group_id=$project_group_id");
         }
-      }
+
+        // Get group communication tools and links
+        $communications = array();
+
+        $get_communications = mysqli_query($db, "SELECT * FROM communications WHERE project_group_fk = '".$project_group_id."'");
+
+        if (mysqli_num_rows($get_communications) > 0) {
+
+          while ($row = mysqli_fetch_assoc($get_communications)) {
+            $communication = array();
+            $communication['tool'] = $row['name'];
+            $communication['link'] = $row['link'];
+            $communication['communication_id'] = $row['communication_id'];
+            $communications[] = $communication;
+          }
+        }
+
+
+
+
+        // Get Deliverables for this project
+        $deliverables = array();
+
+        $get_deliverables = mysqli_query($db, "SELECT * FROM deliverables WHERE project_fk = '".$project_id."'");
+
+        if (mysqli_num_rows($get_deliverables) > 0) {
+
+          while ($row = mysqli_fetch_assoc($get_deliverables)) {
+            $deliverable = array();
+            $deliverable['project_deliverable_id'] = $row['project_deliverable_id'];
+            $deliverable['title'] = $row['title'];
+            $deliverable['description'] = $row['description'];
+            $deliverable['due_date'] = $row['due_date'];
+            $deliverables[] = $deliverable;
+          }
+        }
+
+
+        // Get Deliverable Submissions for this project
+        $submissions = array();
+
+        $get_submissions = mysqli_query($db, "SELECT * FROM project_group_project_deliverables WHERE project_group_fk = '".$project_group_id."'");
+
+        if (mysqli_num_rows($get_submissions) > 0) {
+
+          while ($row = mysqli_fetch_assoc($get_submissions)) {
+            $submission = array();
+            $submission['submission_id'] = $row['project_group_project_deliverables_id'];
+            $submission['submission_text'] = $row['submission_text'];
+            $submission['project_deliverable_id'] = $row['project_deliverables_fk'];
+            $submission[] = $submission;
+          }
+        }
+
 
       ?>
 
