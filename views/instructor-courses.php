@@ -225,7 +225,7 @@
         //-->
      </script>
 
-      <button  class='btn btn-info pull-right' style='color:black' id='remove-course'><span class='glyphicon glyphicon-trash' onclick='getConfirmation();'></span></button>
+      <button class='btn btn-info pull-right' style='color:black' id='remove-course'><span class='glyphicon glyphicon-trash' onclick='getConfirmation();'></span></button>
 
       </div>";
         }

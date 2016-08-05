@@ -43,7 +43,7 @@
         // TODO: Connect communications to DB
         // TODO: Create add new communications form
         // TODO: Add project deliverables display_name
-        // TODO: Add project deliverables form upload 
+        // TODO: Add project deliverables form upload
 
         $project_group_id = $_GET['project_group_id'];
 
@@ -189,6 +189,50 @@
         'respect' => 'Respect each other'
       );
 
+
+
+
+      // Script to get Communication tools and links and handle deletes and additions.
+
+      // Add communication tool and link
+      if (isset($_POST['add-com-submit'])) {
+
+        $name = $_POST['tool'];
+        $link = $_POST['link'];
+
+        // Insert into communications table.
+        $insert = "INSERT INTO `communications` (`communication_id`, `name`, `link`, `project_group_fk`)
+        VALUES (NULL, '$name', '$link', '$project_group_id')";
+
+        $retval = mysqli_query($db, $insert); // performing mysql query
+
+        if (!$retval) {
+          // if data is not inserted into database return error
+          die('Could not enter data given: '.mysqli_error($db));
+        };
+
+        header("Location: http://localhost/groupstart/views/student-project.php?project_group_id=$project_group_id");
+
+
+      }
+
+      // Get group communication tools and links
+
+      $communications = array();
+
+      $get_communications = mysqli_query($db, "SELECT * FROM communications WHERE project_group_fk = '".$project_group_id."'");
+
+      if (mysqli_num_rows($get_communications) > 0) {
+
+        while ($row = mysqli_fetch_assoc($get_communications)) {
+          $communication = array();
+          $communication['tool'] = $row['name'];
+          $communication['link'] = $row['link'];
+          $communication['communication_id'] = $row['communication_id'];
+          $communications[] = $communication;
+        }
+      }
+
       ?>
 
 
@@ -281,24 +325,37 @@
         <div class="col-md-12" id="commun-link-area">
     	    <table class="table table-striped">
             <thead>
-              <tr><th>Communication tools</th><th>Link</th></tr>
+              <tr><th>Communication Tool</th><th>Link</th></tr>
     		    </thead>
     		    <tbody>
-              <tr><td>..</td><td>..</td></tr>
-    		      <tr><td>..</td><td>..</td></tr>
-    		      <tr><td>..</td><td>..</td></tr>
-    	        <tr><td>..</td><td>..</td></tr>
-              <tr><td>..</td><td>..</td></tr>
-    		      <tr><td>..</td><td>..</td></tr>
-              <tr><td>..</td><td>..</td></tr>
-    		      <tr><td>..</td><td>..</td></tr>
+              <?php
+
+              foreach ($communications as $com) {
+
+                echo "<tr><td>$com[tool]</td><td class='pull-right link'>$com[link]</td>
+                <td>
+                <a href='features/delete-com-tool.php?communication_id=$com[communication_id]&project_group_id=$project_group_id' class='btn btn-primary pull-right' role='button'>Delete Tool</a>
+
+                </td>
+                </tr>";
+              }
+
+              ?>
+
+              <!-- Show Add tool input as last row -->
+              <form action="" method="POST" id="add-com-tool">
+                <tr><td><input type="text" name="tool" class="com-input" placeholder="Tool"></td>
+
+                <td class="link"> <input type="text" class="com-input" name="link" placeholder="Link"></td>
+                <td>
+                  <input type="submit" name="add-com-submit" value="Add Tool" class="btn btn-info" style="margin-left:30px;" form="add-com-tool" id="add-com-submit"/>
+                </td></tr>
+              </form>
+
     		    </tbody>
     		  </table>
         </div>
-
-
       </div>
     </div>
-
   </body>
 </html>
