@@ -673,18 +673,17 @@ body .a0-icon-badge{
 }
 
 #users-part{
-    /*background: green;*/
-    margin-top:20px;
-    margin-bottom: 30px;
+/*    background: green;*/
+    margin-bottom: 20px;
+    top:-50px;
 }
 
 
 #su-buttons{
     width: 100%;
 /*    background: orange;*/
-    height: auto;
+    height: 50px;
 /*    transform: translateY(40%);*/
-    margin-top: 20px;
     margin: 0 auto;
     display: table;
     text-align: center;
