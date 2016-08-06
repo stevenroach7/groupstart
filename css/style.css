@@ -789,6 +789,17 @@ max-height: 300px;
 
 .deliverable {
     outline: 1px solid rgba(150, 150, 150, 0.5);
+}
 
+
+.expectation {
+    width: 50%;
+    /*height: 100%;*/
+    background-color: rgba(39, 232, 51, .8);
+    /*margin: inherit;*/
+    padding: inherit;
+    /*margin: -50px -50px- 50px -50px;*/
+    /*margin-left: -20px;*/
+    /*padding-left: 20px;*/
 
 }

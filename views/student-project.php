@@ -152,6 +152,30 @@
           return $true_expectations;
         }
 
+
+        /*
+        * Takes an associative array of expectations and their counts, a denominator to use to calculate percentages and a percentage value.
+        * Returns an associative array with the keys being the expectation and the values being the percentages. If the percentage is greater than $pct,
+        * the value is automatically 1.
+        */
+        function convert_expectations_counts($expectations_counts, $total, $pct) {
+
+          $true_expectations = array(); // Holds keys of expectations that are true in at least $pct of the expectation_arrays.
+
+          foreach($expectations_counts as $expect_key => $count) {
+            if ($count / $total >= $pct) {
+              $true_expectations[$expect_key] = 1;
+            } else {
+              $true_expectations[$expect_key] = $count / $total;
+            }
+          }
+          return $true_expectations;
+        }
+
+
+
+
+
         /*
         * Takes an array of expectations arrays and a percent and returns an array of the expectations that were true in
         * at least $pct of the expectation_arrays.
@@ -167,11 +191,42 @@
           return filter_expectations_counts($expectation_counts, $num_arrays, $pct);
         }
 
+
+        /*
+        * Takes an array of expectations arrays and a percent and returns an array of the expectations that were true in
+        * at least $pct of the expectation_arrays.
+        */
+        function calculate_group_expectations1($expectation_arrays, $pct) {
+
+          // Create array holding number of times each expectation is true in the expectation_arrays.
+          $expectation_counts = calculate_expectation_counts($expectation_arrays);
+
+          // Filter expectation_counts arrays for the expectations counted $pct or more percent of the time
+          $num_arrays = count($expectation_arrays); // Holds number of possible expectations. Will act as denominator in calculating percent.
+
+          return convert_expectations_counts($expectation_counts, $num_arrays, $pct);
+        }
+
+
+
+
+
         // Create array of only expectations data.
         $expectations_info = create_expectations_info($student_project_info);
 
         // Calculate group expectations that should be displayed
         $true_expectations = calculate_group_expectations($expectations_info, 0.5);
+
+
+
+        $true_expectations1 = calculate_group_expectations1($expectations_info, 0.5);
+
+        foreach ($true_expectations1 as $key => $value) {
+          echo $key." =>  ".$value."    ";
+        }
+
+
+
 
         // Messages to display based off of expectation keys.
         $expectation_messages = array(
@@ -291,8 +346,10 @@
                  <ul class="list-group" >
 
                    <?php
-                     foreach ($true_expectations as $expectation) {
-                       echo "<li class='list-group-item'>$expectation_messages[$expectation]</li>";
+                     foreach ($true_expectations1 as $expectation => $val) {
+                       if ($val == 1) {
+                         echo "<li class='list-group-item'><div class='expectation'>$expectation_messages[$expectation]</div></li>";
+                       }
                      }
                    ?>
 
@@ -318,11 +375,10 @@
 
                     } else {
 
-                      // foreach ($deliverables as $deliverable)
-                        // TODO: Fix collapse id's.
                       for ($x = 0; $x < count($deliverables); $x++) { // For loop instead of foreach so we can use index for id of collapsible element
 
                         $deliverable = $deliverables[$x];
+
 
                         echo "<div class='panel-heading clearfix deliverable'>
                           <button type='button' class='btn btn-default pull-right'>Submit</button> <!-- TODO: Add onclick modal -->
