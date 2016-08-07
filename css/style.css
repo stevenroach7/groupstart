@@ -789,6 +789,31 @@ max-height: 300px;
 
 .deliverable {
     outline: 1px solid rgba(150, 150, 150, 0.5);
+}
 
 
+/*.expectation {
+    width: 100%;
+    background-color: rgba(39, 232, 51, .8);
+    padding: inherit;
+
+}*/
+
+
+.item {
+    width: 100%;
+    padding: inherit;
+    display: inline-block;
+}
+
+.item-confirmed {
+    background-color: rgb(39,232, 51);
+    background-color: rgba(39, 232, 51, .8);
+
+}
+
+
+.item-pending {
+    background-color: rgb(255, 255, 0);
+    background-color: rgba(255, 255, 0, .8);
 }
