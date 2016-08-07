@@ -7,7 +7,7 @@ $(document).ready(function() {
         
         var projectID = $('#projectID').text();
         var courseID = $('#courseID').text();
-       
+        var pgID = $('#pgID').text();
         
         if(!$('#maxSize').val() || !$('#minSize').val()){
             alert("You did not put a value for either the minimum group size, maximum group size or both");
@@ -16,7 +16,7 @@ $(document).ready(function() {
             
         } else {
             
-            if($('#maxSize').val() < $('#minSize').val()){
+            if(parseInt($('#maxSize').val()) < parseInt($('#minSize').val())){
                 alert("The maximum size has to be larger than or equal to the minimum group size")
             } else{
                 $('#form-change-range').attr("action", "make-changes-group-formation.php?project_id=".concat(projectID, "&course_id=", courseID));
@@ -24,7 +24,7 @@ $(document).ready(function() {
                 var maxV = $('#maxSize').val();
                 var minV = $('#minSize').val();
                 
-                location.href = "make-changes-group-formation.php?project_id=".concat(projectID, "&course_id=", courseID, "&max=", maxV, "&min=", minV);
+                location.href = "make-changes-group-formation.php?project_id=".concat(projectID, "&course_id=", courseID, "&pgid=", pgID, "&max=", maxV, "&min=", minV);
                 
             }
             
