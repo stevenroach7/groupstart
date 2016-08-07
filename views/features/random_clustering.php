@@ -153,7 +153,7 @@
 							
 							//redirect to instructor-create-project
 							
-							$url = 'http://localhost/groupstart/views/instructor-project.php?project_id='.$project_id.'&course_id='.$course_id;
+							$url = 'http://localhost/groupstart/views/instructor-project.php?project_id='.$project_id.'&course_id='.$course_id.'&pgid=none';
 							
 							header('refresh:20; url='.$url);
 							
