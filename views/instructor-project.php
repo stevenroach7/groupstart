@@ -226,6 +226,8 @@
                                     if($pgid != "none"){
                                         $pgid = str_replace('_fk',' ',$pgid);
                                         $pgarray =  explode(' ', $pgid);
+                                        
+                                
 
                                     
                                     echo "<ul>";
@@ -233,11 +235,15 @@
                                             echo "<li><a href='#".$project_group_id."'>". "Group ".$project_group."</a></li>";
                                         };
                                     echo "</ul>";
+                                        
+                                       
 
                                     foreach($pgarray as $project_group => $project_group_id){
+                                        
                                         echo "<div id='".$project_group_id."'>";
                                         
                                             $getStudents = mysqli_query($db, "SELECT student_fk FROM project_group_students WHERE project_group_fk = '".$project_group_id."'");
+                                           
                                         
                                             if(!$getStudents){
                                                 die('Could not get data: ' . mysql_error());
@@ -271,10 +277,11 @@
                                                     
                                                 }
                                             }
+                                        echo "</div>";
                                         
                                     }
                                     
-                                        echo "</div>";
+                                        
                                     } else{
                                         
                                         echo "<ul>";
