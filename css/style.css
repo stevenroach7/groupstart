@@ -16,6 +16,7 @@ body{
     right: 0;
     bottom: 0;
     left: 0;
+    background: rgb(0,0,0);
     background: rgba(0,0,0,0.8);
     z-index: 99999;
     opacity:0;
@@ -791,13 +792,9 @@ max-height: 300px;
     outline: 1px solid rgba(150, 150, 150, 0.5);
 }
 
-
-/*.expectation {
-    width: 100%;
-    background-color: rgba(39, 232, 51, .8);
-    padding: inherit;
-
-}*/
+.deliverable-heading {
+    display: inline-block;
+}
 
 
 .item {
