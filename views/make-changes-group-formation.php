@@ -17,5 +17,5 @@
         die('Could not update projects table: '.mysql_error());
     };
     
-    header('Location: http://localhost/groupstart/views/instructor-project.php?project_id='.$project_id.'&course_id='.$course_id)
+    header('Location: http://localhost/groupstart/views/instructor-project.php?project_id='.$project_id.'&course_id='.$course_id.'&pgid=none')
 ?>
