@@ -48,6 +48,8 @@
 
             $project_id = $_GET['project_id'];
             $course_id = $_GET['course_id'];
+            $pgid = $_GET['pgid'];
+
 
             $get_project_info = mysqli_query($db, "SELECT * FROM projects WHERE project_id = '$project_id'");
 
@@ -148,6 +150,7 @@
                                                           
                                                           <p hidden id="projectID"><?php echo $project_id?></p>
                                                           <p hidden id="courseID"><?php echo $course_id?></p>
+                                                          <p hidden id="pgID"><?php echo $pgid?></p>
                                                         <form id="form-change-range" action="" method="POST">
                                                             <label for="minSize">minimum group size</label>
                                                             <input type="number" id="minSize" name="min_group_size" style="margin-bottom:10px;" min="2"><br>

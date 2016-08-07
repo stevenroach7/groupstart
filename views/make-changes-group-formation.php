@@ -7,6 +7,8 @@
     $course_id = $_GET['course_id'];
     $pgid = $_GET['pgid'];
 
+    echo $pgid;
+
     $max_group_size = $_GET['max'];
     $min_group_size = $_GET['min'];
 
