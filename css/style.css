@@ -792,14 +792,28 @@ max-height: 300px;
 }
 
 
-.expectation {
-    width: 50%;
-    /*height: 100%;*/
+/*.expectation {
+    width: 100%;
     background-color: rgba(39, 232, 51, .8);
-    /*margin: inherit;*/
     padding: inherit;
-    /*margin: -50px -50px- 50px -50px;*/
-    /*margin-left: -20px;*/
-    /*padding-left: 20px;*/
 
+}*/
+
+
+.item {
+    width: 100%;
+    padding: inherit;
+    display: inline-block;
+}
+
+.item-confirmed {
+    background-color: rgb(39,232, 51);
+    background-color: rgba(39, 232, 51, .8);
+
+}
+
+
+.item-pending {
+    background-color: rgb(255, 255, 0);
+    background-color: rgba(255, 255, 0, .8);
 }

@@ -122,7 +122,7 @@
             • Send apologies if unable to attend
             -->
 
-            <label>Want to add a different group expectation? No worries, you may add new expectations in the group page after the group has been formed.</label> <br />
+            <!-- <label>Want to add a different group expectation? No worries, you may add new expectations in the group page after the group has been formed.</label> <br /> -->
             <br />
             <input type="submit" name="submit" value="Submit" class="btn btn-primary" style="margin-left:30px;" form="group-intro" id="group-intro-submit"/>
           </div>

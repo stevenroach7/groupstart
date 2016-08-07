@@ -38,12 +38,11 @@
         include '../config/connection.php';
 
 
-        // TODO: Get course id
-        // TODO: Use course id and student_id to allow for easy navigation to other projects.
-        // TODO: Add project deliverables display_name
         // TODO: Add project deliverables form upload
+        // TODO: Fix layout and styling of page. 
 
         $project_group_id = $_GET['project_group_id'];
+        $student_id = $_SESSION['student_id'];
 
 
         // Get group of students in this project
@@ -67,7 +66,8 @@
         $student_project_info = array(); // Initialize empty array to hold arrays of info for each student.
 
         foreach ($student_ids as $student_id) {
-            $student_info = array(); // Initialize array of info
+
+          $student_info = array(); // Initialize array of info
           $student_info['student_id'] = $student_id;
 
           // Use student_id to query students table to get display_name
@@ -92,10 +92,8 @@
           $student_info['expectations'] = $expectations;
 
           // Add student info array to array holding a student_info array for each student
-          $student_project_info[] = $student_info;
+          $student_project_info[$student_id] = $student_info;
         }
-
-
 
 
         // Use student_project_info array to calculate group expectations
@@ -173,9 +171,6 @@
         }
 
 
-
-
-
         /*
         * Takes an array of expectations arrays and a percent and returns an array of the expectations that were true in
         * at least $pct of the expectation_arrays.
@@ -209,23 +204,15 @@
 
 
 
-
-
         // Create array of only expectations data.
         $expectations_info = create_expectations_info($student_project_info);
 
         // Calculate group expectations that should be displayed
         $true_expectations = calculate_group_expectations($expectations_info, 0.5);
 
-
-
         $true_expectations1 = calculate_group_expectations1($expectations_info, 0.5);
 
-        foreach ($true_expectations1 as $key => $value) {
-          echo $key." =>  ".$value."    ";
-        }
-
-
+        arsort($true_expectations1); // sort by value in descending order.
 
 
         // Messages to display based off of expectation keys.
@@ -241,8 +228,6 @@
         'trust' => 'Trust each other',
         'respect' => 'Respect each other'
         );
-
-
 
 
         // Script to get Communication tools and links and handle deletes and additions.
@@ -343,16 +328,56 @@
              <div class="col-md-12">
                <h3>Group Expectations</h3>
                <div id="expectation-list">
-                 <ul class="list-group" >
-
+                 <ul class="list-group">
+                  <!-- TODO: Style the expectations display. -->
                    <?php
                      foreach ($true_expectations1 as $expectation => $val) {
+
+                       $pct = round(100 * $val);
                        if ($val == 1) {
-                         echo "<li class='list-group-item'><div class='expectation'>$expectation_messages[$expectation]</div></li>";
+                        //  echo "<li class='list-group-item'><div class='expectation'>$expectation_messages[$expectation]</div></li>";
+                        echo "<li class='list-group-item'>
+
+                          <div class='item item-confirmed'>
+                            <div class='expectation'>$expectation_messages[$expectation]</div>
+
+                              <div class='progress'>
+                                <div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='$pct'
+                                aria-valuemin='0' aria-valuemax='100' style='width:$pct%;'>
+                                  Confirmed
+                                </div>
+                              </div>
+                            </div>
+                          </li>";
+
+
+
+
+
+                       } else {
+                         echo "<li class='list-group-item'>
+
+                          <div class='item item-pending'>
+                           <div class='expectation-pending'>$expectation_messages[$expectation]</div>
+
+                           <div class='progress'>
+                             <div class='progress-bar progress-bar-warning' role='progressbar' aria-valuenow='$pct'
+                             aria-valuemin='0' aria-valuemax='100' style='width:$pct%;'>
+                              $pct%
+                             </div>
+                           </div>";
+
+                           if ($student_project_info[$student_id]['expectations'][$expectation] == 1) { // Show that they voted for this.
+                             echo "<span class='glyphicon glyphicon-ok'></span>";
+                           } else { // Show button to vote for this expectation.
+                             echo "<a href='features/add-expectation.php?student_id=$student_id&project_id=$project_id&project_group_id=$project_group_id&expectation=$expectation' role='button' class='btn btn-primary'>Vote</a>";
+                           }
+
+                          echo "</div>
+                         </li>";
                        }
                      }
                    ?>
-
                  </ul>
                </div>
 		         </div>
