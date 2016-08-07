@@ -39,7 +39,7 @@
 
 
         // TODO: Add project deliverables form upload
-        // TODO: Fix layout and styling of page. 
+        // TODO: Fix layout and styling of page.
 
         $project_group_id = $_GET['project_group_id'];
         $student_id = $_SESSION['student_id'];
@@ -404,10 +404,48 @@
 
                         $deliverable = $deliverables[$x];
 
+                        // if (isset($_POST['submit-deliverable$x'])) {
+                        //   // Insert to student_group_project_deliverables.
+                        //   $submission_link = $_POST['deliberable-link$x'];
+                        //   $deliverable_id = $deliverable['project_deliverable_id'];
+                        //
+                        //   $add_submission = mysqli_query($db, "INSERT INTO `project_group_project_deliverables` (`project_group_project_deliverables_id`, `submission_text`, `project_group_fk`, `project_deliverables_fk`)
+                        //   VALUES (NULL, '$submission_link', '$project_group_id', '$deliverable_id')");
+                        //
+                        // } elseif (isset($_POST['update-deliverable$x'])) {
+                        //
+                        //   // $update_submission = mysqli_query($db, "INSERT INTO `project_group_project_deliverables` (`project_group_project_deliverables_id`, `submission_text`, `project_group_fk`, `project_deliverables_fk`)
+                        //   // VALUES (NULL, '$submission_link', '$project_group_id', '$deliverable_id')");
+                        //
+                        // }
 
-                        echo "<div class='panel-heading clearfix deliverable'>
-                          <button type='button' class='btn btn-default pull-right'>Submit</button> <!-- TODO: Add onclick modal -->
-                          <h4 class='panel-title'>
+
+                        echo "<div class='panel-heading clearfix deliverable'>";
+
+                        if (true) {
+                        echo "<form action='' method='POST' id='submit-deliverable-form'>
+                            <input type='text' name='deliverable-link$x' placeholder='Add a link to your submission here.'>
+                            <input type='submit' name='submit-deliverable$x' class='btn btn-default pull-right' value='Submit' form='submit-deliverable-form'>
+                          </form>";
+                          echo $_POST['submit-deliverable.$x'];
+
+                          if (isset($_POST['submit-deliverable$x'])) {
+                            // Insert to student_group_project_deliverables.
+                            $submission_link = $_POST['deliberable-link$x'];
+                            $deliverable_id = $deliverable['project_deliverable_id'];
+
+                            $add_submission = mysqli_query($db, "INSERT INTO `project_group_project_deliverables` (`project_group_project_deliverables_id`, `submission_text`, `project_group_fk`, `project_deliverables_fk`)
+                            VALUES (NULL, '$submission_link', '$project_group_id', '$deliverable_id')");
+
+                          }
+                        } else {
+                          echo "<form action='' method='POST' id='submit-deliverable-form'>
+                              <input type='text' name='deliverable-link$x' placeholder='Add a link to your submission here.'>
+                              <input type='submit' name='update-deliverable$x' class='btn btn-default pull-right' value='Update Submission' form='submit-deliverable-form'>
+                            </form>";
+                        }
+
+                          echo "<h4 class='panel-title'>
                             <a data-toggle='collapse' data-parent='#accordion' href='#collapse$x'>$deliverable[title]</a>
                           </h4>
                         </div>
