@@ -126,7 +126,6 @@
             <br />
             <input type="submit" name="submit" value="Submit" class="btn btn-primary" style="margin-left:30px;" form="group-intro" id="group-intro-submit"/>
           </div>
-          <!-- <input type="submit" name="submit" value="Submit" class="btn btn-info" form="group-intro" id="group-intro-submit"/> -->
 
         </form>
       </div>

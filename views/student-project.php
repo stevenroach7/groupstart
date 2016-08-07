@@ -39,7 +39,7 @@
 
 
         // TODO: Add project deliverables form upload
-        // TODO: Fix layout and styling of page. 
+        // TODO: Fix layout and styling of page.
 
         $project_group_id = $_GET['project_group_id'];
         $student_id = $_SESSION['student_id'];
@@ -300,8 +300,8 @@
             $submission = array();
             $submission['submission_id'] = $row['project_group_project_deliverables_id'];
             $submission['submission_text'] = $row['submission_text'];
-            $submission['project_deliverable_id'] = $row['project_deliverables_fk'];
-            $submission[] = $submission;
+            // $submission['project_deliverable_id'] = $row['project_deliverables_fk'];
+            $submissions[$row['project_deliverables_fk']] = $submission;
           }
         }
 
@@ -404,10 +404,68 @@
 
                         $deliverable = $deliverables[$x];
 
+                        echo "<div class='panel-heading clearfix deliverable'>";
 
-                        echo "<div class='panel-heading clearfix deliverable'>
-                          <button type='button' class='btn btn-default pull-right'>Submit</button> <!-- TODO: Add onclick modal -->
-                          <h4 class='panel-title'>
+                        // Check if deliverable has been submitted and get submission link.
+
+                        if (isset($submissions[$deliverable['project_deliverable_id']])) {
+                          echo "yes";
+                        } else {
+                          echo "no";
+                        }
+
+
+                        // TODO: Refactor this so that it works or try putring it in another file.
+
+                        if (!isset($submissions[$deliverable['project_deliverable_id']])) { // If this deliverable has not been submitted.
+                          $text_name = 'deliverable-link-add'.$x;
+                          $submit_name = 'submit-deliverable'.$x;
+                          $submit_value = 'Submit';
+                          $add = 1;
+
+                        } else { // If this deliverable has been submitted already
+                          $text_name = 'deliverable-link-update'.$x;
+                          $submit_name = 'update-deliverable'.$x;
+                          $submit_value = 'Update Submission';
+                          $add = 0;
+                          echo $submissions[$deliverable['project_deliverable_id']]['submission_text'];
+                        }
+
+                        echo "<form action='' method='POST' id='submit-deliverable-form'>
+                          <input type='text' name=$text_name placeholder='Add a link to your submission here.'>
+                          <input type='submit' name=$submit_name class='btn btn-default pull-right' value=$submit_value form='submit-deliverable-form'>
+                        </form>";
+
+                        if (isset($_POST[$submit_name]) && ($add == 1)) {
+                          // Insert to student_group_project_deliverables.
+                          $submission_link = $_POST[$text_name]; // TODO: Find bug causing index error here.
+                          $deliverable_id = $deliverable['project_deliverable_id'];
+
+                          $add_submission = mysqli_query($db, "INSERT INTO `project_group_project_deliverables` (`project_group_project_deliverables_id`, `submission_text`, `project_group_fk`, `project_deliverables_fk`)
+                          VALUES (NULL, '$submission_link', '$project_group_id', '$deliverable_id')");
+
+                          // Refresh page so display updates.
+                          // header("Location: http://localhost/groupstart/views/student-project.php?project_group_id=$project_group_id");
+                          // header("Refresh:0");
+
+                        } elseif (isset($_POST[$submit_name]) && ($add == 0)) {
+
+                          $submission_link = $_POST[$text_name];
+                          $deliverable_id = $deliverable['project_deliverable_id'];
+
+                          // TODO: Make this query work.
+                          // $update_submission = mysqli_query($db, "UPDATE project_group_project_deliverables SET submission_text = $submission_link WHERE project_group_fk='$project_group_id' AND project_deliverables_fk='$deliverable_id'");
+
+                          $update_submission = mysqli_query($db, "UPDATE `project_group_project_deliverables` SET `submission_text` = '$submission_link' WHERE `project_group_project_deliverables`.`project_group_fk` = 'project_group_id' AND `project_group_project_deliverables`.`project_deliverables_fk` = '$deliverable_id'");
+                          // Refresh Page so display will update.
+                          // header("Location: http://localhost/groupstart/views/student-project.php?project_group_id=$project_group_id");
+                          // header("Refresh:0");
+
+
+                        }
+
+
+                          echo "<h4 class='panel-title'>
                             <a data-toggle='collapse' data-parent='#accordion' href='#collapse$x'>$deliverable[title]</a>
                           </h4>
                         </div>
