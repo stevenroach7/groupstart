@@ -818,12 +818,12 @@ max-height: 300px;
 
 .item-confirmed {
     background-color: rgb(39,232, 51);
-    background-color: rgba(39, 232, 51, .8);
+    background-color: rgba(39, 232, 51, .5);
 
 }
 
 
 .item-pending {
     background-color: rgb(255, 255, 0);
-    background-color: rgba(255, 255, 0, .8);
+    background-color: rgba(255, 255, 0, .5);
 }

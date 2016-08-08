@@ -407,8 +407,6 @@
                         $date = new DateTime($deliverable['due_date']);
                         $date_format = date_format($date, "m/d/Y H:i:s");
 
-
-                        //TODO: Get Style to display correctly.
                         echo "<div class='panel-heading clearfix deliverable'>
                         <div class='deliverable-heading'>
                           <div class-'deliverable-title'>
@@ -446,7 +444,7 @@
                           $form_name = 'update-deliverable-form'.$x;
                           echo "<label>Submission:</label>
                           <form action='features/update-deliverable.php?deliverable_id=$deliverable[project_deliverable_id]&project_group_id=$project_group_id&index=$x' method='POST' id=$form_name>
-                            <input type='text' name=$text_name value='$submission_text'>
+                            <input type='text' name=$text_name placeholder='Add a link to your submission here.' value='$submission_text'>
                             <input type='submit' name=$submit_name class='btn btn-default pull-right' value='Update Submission' form=$form_name>
                           </form>";
 
