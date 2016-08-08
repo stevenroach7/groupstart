@@ -37,10 +37,6 @@
 
         include '../config/connection.php';
 
-
-        // TODO: Add project deliverables form upload
-        // TODO: Fix layout and styling of page.
-
         $project_group_id = $_GET['project_group_id'];
         $student_id = $_SESSION['student_id'];
 
@@ -51,6 +47,14 @@
         // We are querying based off of a primary key so the result should be unique.
         $row = mysqli_fetch_assoc($get_project_group);
         $project_id = $row['project_fk'];
+
+        // Get Project Title and store it in a variable for later
+        $get_project = mysqli_query($db, "SELECT * FROM projects WHERE project_id= '".$project_id."'");
+
+        // We are querying based off of a primary key so the result should be unique.
+        $row = mysqli_fetch_assoc($get_project);
+        $project_title = $row['title'];
+
 
         // Get students in project group
         $student_ids = array(); // array of student_ids of students in project group
@@ -171,27 +175,12 @@
         }
 
 
+
         /*
         * Takes an array of expectations arrays and a percent and returns an array of the expectations that were true in
         * at least $pct of the expectation_arrays.
         */
         function calculate_group_expectations($expectation_arrays, $pct) {
-
-          // Create array holding number of times each expectation is true in the expectation_arrays.
-          $expectation_counts = calculate_expectation_counts($expectation_arrays);
-
-          // Filter expectation_counts arrays for the expectations counted $pct or more percent of the time
-          $num_arrays = count($expectation_arrays); // Holds number of possible expectations. Will act as denominator in calculating percent.
-
-          return filter_expectations_counts($expectation_counts, $num_arrays, $pct);
-        }
-
-
-        /*
-        * Takes an array of expectations arrays and a percent and returns an array of the expectations that were true in
-        * at least $pct of the expectation_arrays.
-        */
-        function calculate_group_expectations1($expectation_arrays, $pct) {
 
           // Create array holding number of times each expectation is true in the expectation_arrays.
           $expectation_counts = calculate_expectation_counts($expectation_arrays);
@@ -207,12 +196,10 @@
         // Create array of only expectations data.
         $expectations_info = create_expectations_info($student_project_info);
 
-        // Calculate group expectations that should be displayed
+
         $true_expectations = calculate_group_expectations($expectations_info, 0.5);
 
-        $true_expectations1 = calculate_group_expectations1($expectations_info, 0.5);
-
-        arsort($true_expectations1); // sort by value in descending order.
+        arsort($true_expectations); // sort by value in descending order.
 
 
         // Messages to display based off of expectation keys.
@@ -228,6 +215,10 @@
         'trust' => 'Trust each other',
         'respect' => 'Respect each other'
         );
+
+        // NOTE: This expectations code is pretty messy because I changed how the process worked halfway through and haven't had time to completely clean it up.
+        // Right now, expectations with over 50% of group members votes are automatically changed to be 100% and then they display as confirmed. If
+        // an expectation gets 0 votes from the beginning. It isn't displayed in the first place so cannot be added later.
 
 
         // Script to get Communication tools and links and handle deletes and additions.
@@ -310,84 +301,94 @@
 
 
       <div class="container">
-	       <div class="row" id="member-list-area">
-		         <div class="col-md-12">
-               <h3>Group Members</h3>
-               <div id="member-list">
-                 <ul class="list-group" >
 
-                   <?php
-                     foreach ($student_project_info as $student_info) {
-                         echo "<li class='list-group-item'><label>$student_info[display_name]:</label> $student_info[motivation]</li>";
-                     }
-                   ?>
+        <div class='col-md-12'>
+          <h1><?php echo "$project_title"; ?></h1>
+        </div>
 
-                 </ul>
-               </div>
-		         </div>
-             <div class="col-md-12">
-               <h3>Group Expectations</h3>
-               <div id="expectation-list">
-                 <ul class="list-group">
-                  <!-- TODO: Style the expectations display. -->
-                   <?php
-                     foreach ($true_expectations1 as $expectation => $val) {
 
-                       $pct = round(100 * $val);
-                       if ($val == 1) {
-                        //  echo "<li class='list-group-item'><div class='expectation'>$expectation_messages[$expectation]</div></li>";
-                        echo "<li class='list-group-item'>
+	      <div class="col-md-6">
+          <h3>Group Members</h3>
+          <div id="member-list">
+            <ul class="list-group">
 
-                          <div class='item item-confirmed'>
-                            <div class='expectation'>$expectation_messages[$expectation]</div>
+                 <?php
+                   foreach ($student_project_info as $student_info) {
+                       echo "<li class='list-group-item'><label>$student_info[display_name]:</label> $student_info[motivation]</li>";
+                   }
+                 ?>
 
-                              <div class='progress'>
-                                <div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='$pct'
-                                aria-valuemin='0' aria-valuemax='100' style='width:$pct%;'>
-                                  Confirmed
-                                </div>
+              </ul>
+            </div>
+	         </div>
+           <div class='col-md-1'>
+           </div>
+           <div class="col-md-5">
+             <h3>Group Expectations</h3>
+             <div id="expectation-list">
+               <ul class="list-group">
+
+                 <?php
+                   foreach ($true_expectations as $expectation => $val) {
+
+                     $pct = round(100 * $val);
+                     if ($val == 1) {
+                      //  echo "<li class='list-group-item'><div class='expectation'>$expectation_messages[$expectation]</div></li>";
+                      echo "<li class='list-group-item'>
+
+                        <div class='item item-confirmed'>
+                          <div class='expectation'><label>$expectation_messages[$expectation]</label></div>
+
+                            <div class='progress'>
+                              <div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='$pct'
+                              aria-valuemin='0' aria-valuemax='100' style='width:$pct%;'>
+                                Confirmed
                               </div>
                             </div>
-                          </li>";
+                          </div>
+                        </li>";
 
 
 
 
 
-                       } else {
-                         echo "<li class='list-group-item'>
+                     } else {
+                       echo "<li class='list-group-item'>
 
-                          <div class='item item-pending'>
-                           <div class='expectation-pending'>$expectation_messages[$expectation]</div>
+                        <div class='item item-pending'>
+                         <div class='expectation-pending'><label>$expectation_messages[$expectation]</label></div>
 
-                           <div class='progress'>
-                             <div class='progress-bar progress-bar-warning' role='progressbar' aria-valuenow='$pct'
-                             aria-valuemin='0' aria-valuemax='100' style='width:$pct%;'>
-                              $pct%
-                             </div>
-                           </div>";
+                         <div class='progress'>
+                           <div class='progress-bar progress-bar-warning' role='progressbar' aria-valuenow='$pct'
+                           aria-valuemin='0' aria-valuemax='100' style='width:$pct%;'>
+                            $pct%
+                           </div>
+                         </div>";
 
-                           if ($student_project_info[$student_id]['expectations'][$expectation] == 1) { // Show that they voted for this.
-                             echo "<span class='glyphicon glyphicon-ok'></span>";
-                           } else { // Show button to vote for this expectation.
-                             echo "<a href='features/add-expectation.php?student_id=$student_id&project_id=$project_id&project_group_id=$project_group_id&expectation=$expectation' role='button' class='btn btn-primary'>Vote</a>";
-                           }
+                         if ($student_project_info[$student_id]['expectations'][$expectation] == 1) { // Show that they voted for this.
+                           echo "<span class='glyphicon glyphicon-ok'></span>";
+                         } else { // Show button to vote for this expectation.
+                           echo "<a href='features/add-expectation.php?student_id=$student_id&project_id=$project_id&project_group_id=$project_group_id&expectation=$expectation' role='button' class='btn btn-default'>Vote for this Expectation</a>";
+                         }
 
-                          echo "</div>
-                         </li>";
-                       }
+                        echo "</div>
+                       </li>";
                      }
-                   ?>
-                 </ul>
-               </div>
-		         </div>
+                   }
+                 ?>
+               </ul>
+             </div>
 	         </div>
-           <br><br>
+
+           <div class='col-md-12'>
+             <br />
+             <br />
+
+           </div>
 
 
 
-	        <div class="row">
-		        <div class="col-md-8" id="milestones-area">
+		        <div class="col-md-6" id="milestones-area">
               <h3>Project Deliverables</h3>
               <div class="panel-group" id="accordion">
                 <div class="panel panel-default">
@@ -397,83 +398,59 @@
                     if (empty($deliverables)) {
                       echo "<h5>There are no project deliverables at this time.</h5>";
 
-
                     } else {
 
                       for ($x = 0; $x < count($deliverables); $x++) { // For loop instead of foreach so we can use index for id of collapsible element
 
                         $deliverable = $deliverables[$x];
 
-                        echo "<div class='panel-heading clearfix deliverable'>";
+                        $date = new DateTime($deliverable['due_date']);
+                        $date_format = date_format($date, "m/d/Y H:i:s");
 
-                        // Check if deliverable has been submitted and get submission link.
+                        echo "<div class='panel-heading clearfix deliverable'>
+                        <div class='deliverable-heading'>
+                          <div class-'deliverable-title'>
+                            <h4 class='panel-title'>
+                              <a data-toggle='collapse' data-parent='#accordion' href='#collapse$x'>$deliverable[title]</a>
+                            </h4>
+                          </div>
+                          <div class='date-display'>
+                            <label>Due Date:</label>
+                            $date_format
+                          </div>
+                        </div>
+                      </div>
+                      <div id='collapse$x' class='panel-collapse collapse'>
+                        <div class='panel-body sp'>
+                        <label>Description:</label>
+                        $deliverable[description] <br />";
 
-                        if (isset($submissions[$deliverable['project_deliverable_id']])) {
-                          echo "yes";
-                        } else {
-                          echo "no";
-                        }
-
-
-                        // TODO: Refactor this so that it works or try putring it in another file.
-
+                        // Check if deliverable has been submitted and get submission text if so.
                         if (!isset($submissions[$deliverable['project_deliverable_id']])) { // If this deliverable has not been submitted.
-                          $text_name = 'deliverable-link-add'.$x;
+                          $text_name = 'deliverable-text'.$x;
                           $submit_name = 'submit-deliverable'.$x;
-                          $submit_value = 'Submit';
-                          $add = 1;
+                          $form_name = 'add-deliverable-form'.$x;
+                          echo "<label>Submission:</label>
+                          <form action='features/add-deliverable.php?deliverable_id=$deliverable[project_deliverable_id]&project_group_id=$project_group_id&index=$x' method='POST' id=$form_name>
+                            <input type='text' name=$text_name placeholder='Add a link to your submission here.'>
+                            <input type='submit' name=$submit_name class='btn btn-default pull-right' value='Submit' form=$form_name>
+                          </form>";
 
                         } else { // If this deliverable has been submitted already
-                          $text_name = 'deliverable-link-update'.$x;
-                          $submit_name = 'update-deliverable'.$x;
-                          $submit_value = 'Update Submission';
-                          $add = 0;
-                          echo $submissions[$deliverable['project_deliverable_id']]['submission_text'];
-                        }
 
-                        echo "<form action='' method='POST' id='submit-deliverable-form'>
-                          <input type='text' name=$text_name placeholder='Add a link to your submission here.'>
-                          <input type='submit' name=$submit_name class='btn btn-default pull-right' value=$submit_value form='submit-deliverable-form'>
-                        </form>";
-
-                        if (isset($_POST[$submit_name]) && ($add == 1)) {
-                          // Insert to student_group_project_deliverables.
-                          $submission_link = $_POST[$text_name]; // TODO: Find bug causing index error here.
-                          $deliverable_id = $deliverable['project_deliverable_id'];
-
-                          $add_submission = mysqli_query($db, "INSERT INTO `project_group_project_deliverables` (`project_group_project_deliverables_id`, `submission_text`, `project_group_fk`, `project_deliverables_fk`)
-                          VALUES (NULL, '$submission_link', '$project_group_id', '$deliverable_id')");
-
-                          // Refresh page so display updates.
-                          // header("Location: http://localhost/groupstart/views/student-project.php?project_group_id=$project_group_id");
-                          // header("Refresh:0");
-
-                        } elseif (isset($_POST[$submit_name]) && ($add == 0)) {
-
-                          $submission_link = $_POST[$text_name];
-                          $deliverable_id = $deliverable['project_deliverable_id'];
-
-                          // TODO: Make this query work.
-                          // $update_submission = mysqli_query($db, "UPDATE project_group_project_deliverables SET submission_text = $submission_link WHERE project_group_fk='$project_group_id' AND project_deliverables_fk='$deliverable_id'");
-
-                          $update_submission = mysqli_query($db, "UPDATE `project_group_project_deliverables` SET `submission_text` = '$submission_link' WHERE `project_group_project_deliverables`.`project_group_fk` = 'project_group_id' AND `project_group_project_deliverables`.`project_deliverables_fk` = '$deliverable_id'");
-                          // Refresh Page so display will update.
-                          // header("Location: http://localhost/groupstart/views/student-project.php?project_group_id=$project_group_id");
-                          // header("Refresh:0");
-
+                          $submission_text = $submissions[$deliverable['project_deliverable_id']]['submission_text'];
+                          $text_name = 'deliverable-text'.$x;
+                          $submit_name = 'submit-deliverable'.$x;
+                          $form_name = 'update-deliverable-form'.$x;
+                          echo "<label>Submission:</label>
+                          <form action='features/update-deliverable.php?deliverable_id=$deliverable[project_deliverable_id]&project_group_id=$project_group_id&index=$x' method='POST' id=$form_name>
+                            <input type='text' name=$text_name placeholder='Add a link to your submission here.' value='$submission_text'>
+                            <input type='submit' name=$submit_name class='btn btn-default pull-right' value='Update Submission' form=$form_name>
+                          </form>";
 
                         }
 
-
-                          echo "<h4 class='panel-title'>
-                            <a data-toggle='collapse' data-parent='#accordion' href='#collapse$x'>$deliverable[title]</a>
-                          </h4>
-                        </div>
-                        <div id='collapse$x' class='panel-collapse collapse in'>
-                          <div class='panel-body sp'>
-                          $deliverable[description]
-                          <label>Due Date: $deliverable[due_date]</label>
-                          </div>
+                        echo "</div>
                         </div>";
 
                       }
@@ -483,23 +460,27 @@
                 </div>
               </div>
             </div>
+          <div class='col-md-1'>
           </div>
 
-          <div class="col-md-12" id="commun-link-area">
+
+          <div class="col-md-5" id="commun-link-area">
+            <h3>Communication Tools</h3>
     	       <table class="table table-striped">
                <thead>
-                 <tr><th>Communication Tool</th><th>Link</th></tr>
-    		        </thead>
+                 <tr><th width="35%">Tool</th><th class='pull-left' width="35%">Link</th></tr>
+    		       </thead>
     		        <tbody>
                 <?php
 
                 foreach ($communications as $com) {
 
-                  echo "<tr><td>$com[tool]</td><td class='pull-right link'>$com[link]</td>
-                  <td>
-                  <a href='features/delete-com-tool.php?communication_id=$com[communication_id]&project_group_id=$project_group_id' class='btn btn-primary pull-right' role='button'>Delete Tool</a>
-
-                  </td>
+                  echo "<tr>
+                    <td>$com[tool]</td>
+                    <td class='link' width='35%'>$com[link]</td>
+                    <td width='35%'>
+                    <a href='features/delete-com-tool.php?communication_id=$com[communication_id]&project_group_id=$project_group_id' class='btn btn-default pull-right' role='button'>Delete Tool</a>
+                    </td>
                   </tr>";
                 }
 
@@ -508,9 +489,9 @@
                 <!-- Show Add tool input as last row -->
                 <form action="" method="POST" id="add-com-tool">
                   <tr><td><input type="text" name="tool" class="com-input" placeholder="Tool"></td>
-                    <td class="link"> <input type="text" class="com-input" name="link" placeholder="Link"></td>
-                    <td>
-                      <input type="submit" name="add-com-submit" value="Add Tool" class="btn btn-info" style="margin-left:30px;" form="add-com-tool" id="add-com-submit"/>
+                    <td class="link"> <input type="text" class="com-input" name="link" placeholder="Link" width='35%'></td>
+                    <td width='35%'>
+                      <input type="submit" name="add-com-submit" value="Add Tool" class="btn btn-info" style="float: right;" form="add-com-tool" id="add-com-submit"/>
                     </td></tr>
                 </form>
     		      </tbody>

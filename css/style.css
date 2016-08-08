@@ -16,6 +16,7 @@ body{
     right: 0;
     bottom: 0;
     left: 0;
+    background: rgb(0,0,0);
     background: rgba(0,0,0,0.8);
     z-index: 99999;
     opacity:0;
@@ -451,18 +452,18 @@ body{
     width: 60%;
 }
 #member-list {
-    border:2px solid black;
-    width:auto;
-    height: 300px;
+    border: 1px solid gray;
+    width: auto;
+    height: 50%;
     overflow-x: scroll;
 }
 
 
 
 #expectation-list {
-    border:2px solid black;
-    width:auto;
-    height: 300px;
+    border: 1px solid gray;
+    width: auto;
+    height: 50%;
     overflow-x: scroll;
 }
 
@@ -473,7 +474,7 @@ tr {
 
 table{
     height:300px;
-    margin: 0px;
+    margin: 0;
 }
 
 tbody{
@@ -481,12 +482,12 @@ tbody{
     height: inherit;
     width: 100%;
     position: absolute;
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 #commun-link-area{
     height:300px;
-    margin: 0px;
+    margin: 0;
 }
 /*Styling for student-start-project.php*/
 
@@ -505,9 +506,8 @@ tbody{
     margin-left: auto;
     margin-right: auto;
 }
-#profile-area{
-    /*background: blue;*/
-}
+
+
 
 #section0{
     height: 75px;
@@ -782,6 +782,12 @@ max-height: 300px;
 }
 
 
+.project-list-group {
+    height: 500px;
+}
+
+
+
 .link {
     margin-right: 35%;
 }
@@ -791,13 +797,17 @@ max-height: 300px;
     outline: 1px solid rgba(150, 150, 150, 0.5);
 }
 
+.deliverable-heading {
 
-/*.expectation {
-    width: 100%;
-    background-color: rgba(39, 232, 51, .8);
-    padding: inherit;
+}
 
-}*/
+.deliverable-title {
+    float: left;
+}
+
+.date-display {
+    float: right;
+}
 
 
 .item {
@@ -808,12 +818,12 @@ max-height: 300px;
 
 .item-confirmed {
     background-color: rgb(39,232, 51);
-    background-color: rgba(39, 232, 51, .8);
+    background-color: rgba(39, 232, 51, .5);
 
 }
 
 
 .item-pending {
     background-color: rgb(255, 255, 0);
-    background-color: rgba(255, 255, 0, .8);
+    background-color: rgba(255, 255, 0, .5);
 }
