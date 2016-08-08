@@ -452,18 +452,18 @@ body{
     width: 60%;
 }
 #member-list {
-    border:2px solid black;
-    width:auto;
-    height: 300px;
+    border: 1px solid gray;
+    width: auto;
+    height: 50%;
     overflow-x: scroll;
 }
 
 
 
 #expectation-list {
-    border:2px solid black;
-    width:auto;
-    height: 300px;
+    border: 1px solid gray;
+    width: auto;
+    height: 50%;
     overflow-x: scroll;
 }
 
@@ -474,7 +474,7 @@ tr {
 
 table{
     height:300px;
-    margin: 0px;
+    margin: 0;
 }
 
 tbody{
@@ -482,12 +482,12 @@ tbody{
     height: inherit;
     width: 100%;
     position: absolute;
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 #commun-link-area{
     height:300px;
-    margin: 0px;
+    margin: 0;
 }
 /*Styling for student-start-project.php*/
 
@@ -506,9 +506,8 @@ tbody{
     margin-left: auto;
     margin-right: auto;
 }
-#profile-area{
-    /*background: blue;*/
-}
+
+
 
 #section0{
     height: 75px;
@@ -783,6 +782,12 @@ max-height: 300px;
 }
 
 
+.project-list-group {
+    height: 500px;
+}
+
+
+
 .link {
     margin-right: 35%;
 }
@@ -793,7 +798,15 @@ max-height: 300px;
 }
 
 .deliverable-heading {
-    display: inline-block;
+
+}
+
+.deliverable-title {
+    float: left;
+}
+
+.date-display {
+    float: right;
 }
 
 
