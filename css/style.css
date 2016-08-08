@@ -160,8 +160,15 @@ body{
     overflow: hidden;
 }
 
+.groups-list {
+    width: 500px;
+}
+
 .group-tabs {
     float: left;
+    height: 50%;
+    overflow-y: scroll;
+    /*width: 500px;*/
 }
 
 .group-members {

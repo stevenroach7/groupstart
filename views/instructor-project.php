@@ -45,6 +45,8 @@
         <?php
             include '../config/connection.php';
             include 'features/instructor-get-courses-data.php';
+            include 'features/alert.php';
+
 
             $project_id = $_GET['project_id'];
             $course_id = $_GET['course_id'];
@@ -97,19 +99,24 @@
               $description = $_POST['description'];
               $due_date = $_POST['due-date'];
 
+              if (empty($title) || empty($description) || empty($due_date)) {
+                  alertUser("Please complete all required fields");
+              } else {
 
-              // Insert into communications table.
-              $insert = "INSERT INTO `project_deliverables` (`project_deliverable_id`, `project_fk`, `title`, `description`, `due_date`)
-              VALUES (NULL, '$project_id', '$title', '$description', '$due_date')";
 
-              $retval = mysqli_query($db, $insert); // performing mysql query
+                  // Insert into communications table.
+                  $insert = "INSERT INTO `project_deliverables` (`project_deliverable_id`, `project_fk`, `title`, `description`, `due_date`)
+                  VALUES (NULL, '$project_id', '$title', '$description', '$due_date')";
 
-              if (!$retval) {
-                // if data is not inserted into database return error
-                die('Could not enter data given: '.mysqli_error($db));
-              };
+                  $retval = mysqli_query($db, $insert); // performing mysql query
 
-              header("Refresh: 0");
+                  if (!$retval) {
+                    // if data is not inserted into database return error
+                    die('Could not enter data given: '.mysqli_error($db));
+                  };
+
+                  header("Refresh: 0");
+                }
             }
 
         ?>
@@ -320,7 +327,7 @@
 
 
 
-                                    echo "<div class='group-tabs'><ul>";
+                                    echo "<div class='group-tabs'><ul class='groups-list'>";
                                         foreach($pgarray as $project_group => $project_group_id){
                                             echo "<li><a href='#".$project_group_id."'>". "Group ".$project_group."</a></li>";
                                         };
