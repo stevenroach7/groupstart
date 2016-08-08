@@ -467,7 +467,6 @@
                                                     $project_id = $project['project_id'];
                                                     $title = $project['title'];
 
-                                                    // TODO: use the project_id to pass the url
                                                     echo "<a href='instructor-project.php?project_id=$project_id&course_id=$_GET[course_id]'><li class='list-group-item'>$title</li> </a>";
                                                 }
                                             };
