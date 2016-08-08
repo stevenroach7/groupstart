@@ -113,15 +113,15 @@
 						
 						//do database connection
 							
-							echo "everything went fine" . PHP_EOL;
-							
-							echo "<pre>\n";
-							print_r($groups);
-							echo "</pre>";
-				
-							echo "<pre>\n";
-							print_r($groupSizes);
-							echo "</pre>";
+//							echo "everything went fine" . PHP_EOL;
+//							
+//							echo "<pre>\n";
+//							print_r($groups);
+//							echo "</pre>";
+//				
+//							echo "<pre>\n";
+//							print_r($groupSizes);
+//							echo "</pre>";
 				
 							$checkgroups = mysqli_query($db, "SELECT project_fk FROM project_group WHERE project_fk = '.$project_id.'");
 							
@@ -492,15 +492,15 @@
 							
 							//do database connection
 							
-							echo "everything went fine" . PHP_EOL;
-							
-							echo "<pre>\n";
-							print_r($groups);
-							echo "</pre>";
-				
-							echo "<pre>\n";
-							print_r($groupSizes);
-							echo "</pre>";
+//							echo "everything went fine" . PHP_EOL;
+//							
+//							echo "<pre>\n";
+//							print_r($groups);
+//							echo "</pre>";
+//				
+//							echo "<pre>\n";
+//							print_r($groupSizes);
+//							echo "</pre>";
 				
 							$checkgroups = mysqli_query($db, "SELECT project_fk FROM project_group WHERE project_fk = '.$project_id.'");
 							
@@ -661,7 +661,7 @@
 					
 					//do database connection
 					
-					echo "everything went fine and there were no remaining students" . PHP_EOL;
+//					echo "everything went fine and there were no remaining students" . PHP_EOL;
 					
 					
 					$checkgroups = mysqli_query($db, "SELECT project_fk FROM project_group WHERE project_fk = '.$project_id.'");
