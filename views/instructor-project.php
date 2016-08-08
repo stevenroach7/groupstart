@@ -279,18 +279,20 @@
                                                       }
                                                     }
                                                    ?>
+
                                                    <!-- TODO: Style this input section.-->
+                                                   <h5> Add New Project Deliverable</h5>
                                                    <form action="" method="POST" id="add-deliverable-form">
 
-                                                        <input type="text" name="title" class="del-input" placeholder="Title">
-                                                        <input type="text" name="description" class="del-input" placeholder="Description">
-                                                        <input type="date" class="del-input" name="due-date" placeholder="Due Date">
-                                                        <input type="submit" name="add-deliverable-submit" value="Add Deliverable" class="btn btn-info" style="float: right;" form="add-deliverable-form" id="add-deliverable-submit"/>
-                                                   </form>
+                                                        <input type="text" name="title" class="del-input" placeholder="Title" style="width: 30%;">
 
+                                                        <span class='pull-right'><label>Due Date:</label><input type="date" class="del-input" name="due-date" placeholder="Due Date"></span>
+
+                                                        <input type="text" name="description" class="del-input" placeholder="Description" style="width: 100%;">
+                                                        <input type="submit" name="add-deliverable-submit" value="Add Deliverable" class="btn btn-info" form="add-deliverable-form" id="add-deliverable-submit"/>
+                                                   </form>
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
 
