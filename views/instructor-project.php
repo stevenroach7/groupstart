@@ -271,6 +271,7 @@
                                                         <div class='panel-body sp'>
                                                         <label>Description:</label>
                                                         $deliverable[description] <br />
+                                                        <a href='features/delete-deliverable.php?project_deliverable_id=$deliverable[project_deliverable_id]&project_id=$project_id&course_id=$course_id&pgid=$pgid' class='btn btn-default ' role='button'>Delete Deliverable</a>
                                                       </div>
                                                     </div>";
 
@@ -284,10 +285,8 @@
 
                                                         <input type="text" name="title" class="del-input" placeholder="Title">
                                                         <input type="text" name="description" class="del-input" placeholder="Description">
-
                                                         <input type="date" class="del-input" name="due-date" placeholder="Due Date">
-
-                                                         <input type="submit" name="add-deliverable-submit" value="Add Deliverable" class="btn btn-info" style="float: right;" form="add-deliverable-form" id="add-deliverable-submit"/>
+                                                        <input type="submit" name="add-deliverable-submit" value="Add Deliverable" class="btn btn-info" style="float: right;" form="add-deliverable-form" id="add-deliverable-submit"/>
                                                    </form>
 
 
