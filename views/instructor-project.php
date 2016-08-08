@@ -88,7 +88,27 @@
               }
             }
 
+            // Add communication tool and link
+            if (isset($_POST['add-deliverable-submit'])) {
 
+              $title = $_POST['title'];
+              $description = $_POST['description'];
+              $due_date = $_POST['due-date'];
+
+
+              // Insert into communications table.
+              $insert = "INSERT INTO `project_deliverables` (`project_deliverable_id`, `project_fk`, `title`, `description`, `due_date`)
+              VALUES (NULL, '$project_id', '$title', '$description', '$due_date')";
+
+              $retval = mysqli_query($db, $insert); // performing mysql query
+
+              if (!$retval) {
+                // if data is not inserted into database return error
+                die('Could not enter data given: '.mysqli_error($db));
+              };
+
+              header("Refresh: 0");
+            }
 
         ?>
 
@@ -258,7 +278,6 @@
                                                       }
                                                     }
                                                    ?>
-                                                   <!-- TODO: Write insert deliverable script-->
                                                    <!-- TODO: Style this input section.-->
 
                                                    <form action="" method="POST" id="add-deliverable-form">
