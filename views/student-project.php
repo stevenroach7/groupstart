@@ -410,7 +410,8 @@
                         <div class='deliverable-heading'>
                           <div class-'deliverable-title'>
                             <h4 class='panel-title'>
-                              <a data-toggle='collapse' data-parent='#accordion' href='#collapse$x'>$deliverable[title]</a>
+                            $deliverable[title]
+                            <a data-toggle='collapse' data-parent='#accordion' href='#collapse$x' role='button' class='btn btn-default pull-right'>View Deliverable Details</a>
                             </h4>
                           </div>
                           <div class='date-display'>

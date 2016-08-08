@@ -819,17 +819,12 @@ max-height: 300px;
     outline: 1px solid rgba(150, 150, 150, 0.5);
 }
 
-.deliverable-heading {
 
-}
 
 .deliverable-title {
     float: left;
 }
 
-.date-display {
-    float: right;
-}
 
 
 .item {
