@@ -280,7 +280,6 @@
                                                     }
                                                    ?>
                                                    <!-- TODO: Style this input section.-->
-
                                                    <form action="" method="POST" id="add-deliverable-form">
 
                                                         <input type="text" name="title" class="del-input" placeholder="Title">
@@ -288,9 +287,6 @@
                                                         <input type="date" class="del-input" name="due-date" placeholder="Due Date">
                                                         <input type="submit" name="add-deliverable-submit" value="Add Deliverable" class="btn btn-info" style="float: right;" form="add-deliverable-form" id="add-deliverable-submit"/>
                                                    </form>
-
-
-
 
                                                     </div>
                                                 </div>
