@@ -165,20 +165,20 @@
             //$course_id = $project['course_fk'];
             $project_id = $project['project_id'];
             $title = $project['title'];
-            
-            
+
+
             $get_project_group_ids = mysqli_query($db,"SELECT project_group_id FROM project_group WHERE project_fk = '.$project_id.'");
-            
+
             //$pgid = "";
-            
+
             if(mysqli_num_rows($get_project_group_ids) > 0) {
-              
+
               $project_group_ids = array();
-              
+
               while($row = mysqli_fetch_assoc($get_project_group_ids)){
                 $project_group_ids[] = $row['project_group_id'];
               }
-              
+
                $pgid = implode("_fk",$project_group_ids);
             } else{
               $pgid = "none";
@@ -229,10 +229,11 @@
 
       <script type='text/javascript'>
         <!--
-           function getConfirmation(){
+           function getConfirmation(course_id){
               var retVal = confirm('Are you sure you want to delete this course?');
               if( retVal == true ){
-                 window.location.replace('http://localhost/groupstart/views/features/delete-course.php?id=$course_id&rA=0');
+                var url = 'http://localhost/groupstart/views/features/delete-course.php?id=' + course_id +'&rA=0';
+                 window.location.replace(url);
                  return true;
               }
               else{
@@ -242,7 +243,8 @@
         //-->
      </script>
 
-      <button class='btn btn-info pull-right' style='color:black' id='remove-course'><span class='glyphicon glyphicon-trash' onclick='getConfirmation();'></span></button>
+      <button class='btn btn-info pull-right' style='color:black' id='remove-course'><span class='glyphicon glyphicon-trash' onclick='getConfirmation($course_id);'></span></button>
+
 
       </div>";
         }

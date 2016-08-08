@@ -68,10 +68,52 @@
                 $group_form_algorithm = $row['group_form_algorithm'];
             };
 
-         
+
+
+
+            // Get Deliverables for this project
+            $deliverables = array();
+            $deliverable_names = array();// Need an associative array indexed by project deliverable id's for the group submission deliverable title.
+
+            $get_deliverables = mysqli_query($db, "SELECT * FROM project_deliverables WHERE project_fk = '".$project_id."'");
+
+            if (mysqli_num_rows($get_deliverables) > 0) {
+
+              while ($row = mysqli_fetch_assoc($get_deliverables)) {
+                $deliverable = array();
+                $deliverable['project_deliverable_id'] = $row['project_deliverable_id'];
+                $deliverable['title'] = $row['title'];
+                $deliverable['description'] = $row['description'];
+                $deliverable['due_date'] = $row['due_date'];
+                $deliverables[] = $deliverable;
+                $deliverable_names[$row['project_deliverable_id']] = $row['title'];
+              }
+            }
+
+            // Add communication tool and link
+            if (isset($_POST['add-deliverable-submit'])) {
+
+              $title = $_POST['title'];
+              $description = $_POST['description'];
+              $due_date = $_POST['due-date'];
+
+
+              // Insert into communications table.
+              $insert = "INSERT INTO `project_deliverables` (`project_deliverable_id`, `project_fk`, `title`, `description`, `due_date`)
+              VALUES (NULL, '$project_id', '$title', '$description', '$due_date')";
+
+              $retval = mysqli_query($db, $insert); // performing mysql query
+
+              if (!$retval) {
+                // if data is not inserted into database return error
+                die('Could not enter data given: '.mysqli_error($db));
+              };
+
+              header("Refresh: 0");
+            }
 
         ?>
-       
+
 
         <div class="container">
             <div class="row">
@@ -108,7 +150,7 @@
                                                 <h3>
                                                     Group Formation Options
                                                 </h3>
-                                            
+
 
                                                 <table class="table table-striped" id="saved-formation-options">
                                                     <thead>
@@ -138,16 +180,16 @@
                                                 </table><br>
                                             </div>
                                             <div class="alert alert-info" role="alert" style="width:400px;float:left";>
-  <strong>Reminder!</strong> If you change group size range remember to click the form student groups button again.
-</div>
+                                                <strong>Reminder!</strong> If you change group size range remember to click the form student groups button again.
+                                            </div>
                                             <button class="btn btn-info pull-right" id="edit-group-formation">change group size range</button>
-                                                    
+
                                                     <div id="myModal" class="modal">
 
                                                       <!-- Modal content -->
                                                       <div class="modal-content">
                                                         <span class="close">x</span>
-                                                          
+
                                                           <p hidden id="projectID"><?php echo $project_id?></p>
                                                           <p hidden id="courseID"><?php echo $course_id?></p>
                                                           <p hidden id="pgID"><?php echo $pgid?></p>
@@ -158,39 +200,24 @@
                                                             <input type="number" id="maxSize" name="max_group_size" style="margin-bottom:20px;" min="2"><br>
                                                             <input class="btn btn-info" id="changeRange" type="button" value="make changes!" name="change_range" form="form-change-range"><br>
                                                           </form>
-                                                          
-                                                       
-                                                            
-                                                      </div>
 
-                                                    </div>
+
+
+                                                </div>
+
+                                            </div>
                                         </div>
-                                                
-                                               
-                                                
-                                                    
-                                            
-                                           
-                                        <div class="row">
-                                            <div class="col-md-12" style="margin-bottom:50px">
-                                                <h3>
-                                                    Group Charter Options
-                                                </h3>
-                                                <p>
-                                                Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
-                                                </p>
 
-                                            </div></div>
                                         <?php
-                                            
+
                                             $getAlgo = mysqli_query($db, "SELECT group_form_algorithm FROM projects WHERE project_id = $_GET[project_id]");
-                                            
+
                                             if(!$getAlgo){
                                                 die('Could not get data: ' . mysql_error());
                                             };
-                                            
+
                                             $clustAlgo = "";
-                                            
+
                                             while($row = mysqli_fetch_assoc($getAlgo)){
                                                 $clustAlgo = $row['group_form_algorithm'];
                                             };
@@ -202,14 +229,74 @@
                                                 //echo "the algorithm you have chosen has not been implemented yet";
                                                 echo "<a class='btn btn-info btn-block'>Form student groups!</a><br>";
                                             };
-            
-                                        ?>
-                                        
-                    
-                                        <!--div class="row" id="add-deliverables">
-                                            <a class="btn btn-info btn-block">Add project deliverables for students</a>
-                                        </div-->
 
+                                        ?>
+
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+
+                                                <h3>
+                                                    Project Deliverables
+                                                </h3>
+                                                <div class="panel-group" id="accordion">
+                                                    <div class="panel panel-default">
+
+                                                <?php
+
+                                                    if (empty($deliverables)) {
+                                                      echo "<h5>There are no project deliverables at this time.</h5>";
+
+                                                    } else {
+
+                                                      for ($x = 0; $x < count($deliverables); $x++) { // For loop instead of foreach so we can use index for id of collapsible element
+
+                                                        $deliverable = $deliverables[$x];
+
+                                                        $date = new DateTime($deliverable['due_date']);
+                                                        $date_format = date_format($date, "m/d/Y H:i:s");
+
+                                                        echo "<div class='panel-heading clearfix deliverable'>
+                                                        <div class='deliverable-heading'>
+                                                          <div class-'deliverable-title'>
+                                                            <h4 class='panel-title'>
+                                                              <a data-toggle='collapse' data-parent='#accordion' href='#collapse$x'>$deliverable[title]</a>
+                                                            </h4>
+                                                          </div>
+                                                          <div class='date-display'>
+                                                            <label>Due Date:</label>
+                                                            $date_format
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                      <div id='collapse$x' class='panel-collapse collapse'>
+                                                        <div class='panel-body sp'>
+                                                        <label>Description:</label>
+                                                        $deliverable[description] <br />
+                                                        <a href='features/delete-deliverable.php?project_deliverable_id=$deliverable[project_deliverable_id]&project_id=$project_id&course_id=$course_id&pgid=$pgid' class='btn btn-default ' role='button'>Delete Deliverable</a>
+                                                      </div>
+                                                    </div>";
+
+
+                                                      }
+                                                    }
+                                                   ?>
+
+                                                   <!-- TODO: Style this input section.-->
+                                                   <h5> Add New Project Deliverable</h5>
+                                                   <form action="" method="POST" id="add-deliverable-form">
+
+                                                        <input type="text" name="title" class="del-input" placeholder="Title" style="width: 30%;">
+
+                                                        <span class='pull-right'><label>Due Date:</label><input type="date" class="del-input" name="due-date" placeholder="Due Date"></span>
+
+                                                        <input type="text" name="description" class="del-input" placeholder="Description" style="width: 100%;">
+                                                        <input type="submit" name="add-deliverable-submit" value="Add Deliverable" class="btn btn-info" form="add-deliverable-form" id="add-deliverable-submit"/>
+                                                   </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
 
 
@@ -226,90 +313,115 @@
                                 <?php
                                     $pgid = $_GET['pgid'];
 
-                                    if($pgid != "none"){
+                                    if($pgid != "none") {
                                         $pgid = str_replace('_fk',' ',$pgid);
                                         $pgarray =  explode(' ', $pgid);
-                                        
-                                
 
-                                    
-                                    echo "<ul>";
+
+
+
+                                    echo "<div class='group-tabs'><ul>";
                                         foreach($pgarray as $project_group => $project_group_id){
                                             echo "<li><a href='#".$project_group_id."'>". "Group ".$project_group."</a></li>";
                                         };
-                                    echo "</ul>";
-                                        
-                                       
+                                    echo "</ul></div>";
 
-                                    foreach($pgarray as $project_group => $project_group_id){
-                                        
-                                        echo "<div id='".$project_group_id."'>";
-                                        
+
+
+                                    foreach($pgarray as $project_group => $project_group_id) {
+
+                                        echo "<div id='".$project_group_id."'>
+
+                                            <div class='group-members'>
+                                                <h4>Group Members</h4>";
+
+
                                             $getStudents = mysqli_query($db, "SELECT student_fk FROM project_group_students WHERE project_group_fk = '".$project_group_id."'");
-                                           
-                                        
+
+
                                             if(!$getStudents){
                                                 die('Could not get data: ' . mysql_error());
                                             } else{
                                                 $students_id = array();
-                                                
+
                                                 while($row = mysqli_fetch_assoc($getStudents)){
                                                     $students_id[] = $row['student_fk'];
                                                 };
-                                                
+
                                                 //print_r($students_id);
-                                                
+
                                                 foreach($students_id as $key => $id){
-                                                    
+
                                                     //echo $id . PHP_EOL;
-                                                    
+
                                                     $get_student_name = mysqli_query($db,"SELECT name FROM students WHERE student_id = $id ");
-                                                    
-                                                    
+
+
                                                     if(!$get_student_name){
                                                         die('Could not get data: ' . mysql_error());
                                                     } else{
-                                                
+
                                                         $student = "";
-                                                        
+
                                                         while($row = mysqli_fetch_assoc($get_student_name)){
                                                             $student = $row['name'];
                                                         };
                                                         echo "<li>". $student ."</li>";
                                                     }
-                                                    
+
                                                 }
                                             }
+                                            echo "</div>";
+
+                                            // Get group submissions
+                                            echo "<div class='group-submissions'><h4>Group Submissions</h4>";
+
+                                            // Get Deliverable Submissions for this project
+                                            $submissions = array();
+
+                                            $get_submissions = mysqli_query($db, "SELECT * FROM project_group_project_deliverables WHERE project_group_fk = '".$project_group_id."'");
+
+                                            if (mysqli_num_rows($get_submissions) > 0) {
+
+                                              while ($row = mysqli_fetch_assoc($get_submissions)) {
+                                                $submission = array();
+                                                $submission['submission_id'] = $row['project_group_project_deliverables_id'];
+                                                $submission['submission_text'] = $row['submission_text'];
+                                                $submissions[$row['project_deliverables_fk']] = $submission;
+                                              }
+                                            }
+
+                                            echo "<div class='submissions'>";
+                                            if (empty($submissions)) {
+                                                echo "No Submissions";
+                                            } else {
+                                                foreach ($submissions as $project_deliverable_id => $submission) {
+                                                    echo "<li>".$deliverable_names[$project_deliverable_id].":</li>";
+                                                    echo "Submission Link: ".$submission['submission_text']."<br />";
+                                                }
+                                            }
+                                            echo "</div>";
+
+                                          echo "</div>";
+
                                         echo "</div>";
-                                        
-                                    }
-                                    
-                                        
+
+                                        }
+
                                     } else{
-                                        
+
                                         echo "<ul>";
                                         echo "<li><a href='#nogroups'>No Group</a></li>";
                                         echo "</ul>";
-                                        
+
                                         echo "<div id=nogroups>No groups have been formed for this project yet.</div>";
-                                        
+
                                     }
-                                    
-                                    
+
+
                                 ?>
                             </div>
-                            <!--div id="tabs">
-                                <ul>
-                                    <li><a href="#a">Tab A</a></li>
-                                    <li><a href="#b">Tab B</a></li>
-                                    <li><a href="#c">Tab C</a></li>
-                                    <li><a href="#d">Tab D</a></li>
-                                </ul>
-                                <div id="a"><p>Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus.</p></div>
-                                <div id="b"><p>In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus.</p></div>
-                                <div id="c"><p> Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus.</p></div>
-                                <div id="d"><p> Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus.</p></div>
-                            </div-->
+
                         </div>
                     </div>
                     <div class="row">
@@ -357,14 +469,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                          <!--?php
-                            echo "<a href='features/download.php?id=$project_id&type=project' class='btn btn-info' role='button' id='view-project-attachments'>Download Project Attachments</a>";
-                          ?-->
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>

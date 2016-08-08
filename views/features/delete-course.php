@@ -11,7 +11,7 @@
     //echo "Clicked";
     $query = "UPDATE courses SET active='$rA' WHERE course_id=$id";
 
-   $result = mysqli_query($db, $query) or die('Could not update active column: '.mysql_error());
+   $result = mysqli_query($db, $query) or die('Could not update active column: '.mysqli_error($db));
 
   } else{
     echo "The delete button was not clicked";

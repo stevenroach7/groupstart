@@ -291,7 +291,6 @@
             $submission = array();
             $submission['submission_id'] = $row['project_group_project_deliverables_id'];
             $submission['submission_text'] = $row['submission_text'];
-            // $submission['project_deliverable_id'] = $row['project_deliverables_fk'];
             $submissions[$row['project_deliverables_fk']] = $submission;
           }
         }
