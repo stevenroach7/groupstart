@@ -95,18 +95,18 @@
             // Add communication tool and link
             if (isset($_POST['add-deliverable-submit'])) {
 
-              $title = $_POST['title'];
-              $description = $_POST['description'];
+              $deliverable_title = $_POST['title'];
+              $deliverable_description = $_POST['description'];
               $due_date = $_POST['due-date'];
 
-              if (empty($title) || empty($description) || empty($due_date)) {
-                  alertUser("Please complete all required fields");
+              if (empty($deliverable_title) || empty($deliverable_description) || empty($due_date)) {
+                  alertUser("Please complete all required fields.");
               } else {
 
 
                   // Insert into communications table.
                   $insert = "INSERT INTO `project_deliverables` (`project_deliverable_id`, `project_fk`, `title`, `description`, `due_date`)
-                  VALUES (NULL, '$project_id', '$title', '$description', '$due_date')";
+                  VALUES (NULL, '$project_id', '$deliverable_title', '$deliverable_description', '$due_date')";
 
                   $retval = mysqli_query($db, $insert); // performing mysql query
 
@@ -267,7 +267,8 @@
                                                         <div class='deliverable-heading'>
                                                           <div class-'deliverable-title'>
                                                             <h4 class='panel-title'>
-                                                              <a data-toggle='collapse' data-parent='#accordion' href='#collapse$x'>$deliverable[title]</a>
+                                                                $deliverable[title]
+                                                              <a data-toggle='collapse' data-parent='#accordion' href='#collapse$x' role='button' class='btn btn-default'>View Deliverable Details</a>
                                                             </h4>
                                                           </div>
                                                           <div class='date-display'>
@@ -289,7 +290,6 @@
                                                     }
                                                    ?>
 
-                                                   <!-- TODO: Style this input section.-->
                                                    <h5> Add New Project Deliverable</h5>
                                                    <form action="" method="POST" id="add-deliverable-form">
 
