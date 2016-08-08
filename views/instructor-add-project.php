@@ -354,11 +354,11 @@ include 'features/instructor-get-courses-data.php'
                                                     <div class="col-md-6" id="cluster-by-options"><h4 style="font-weight:200">Variables to Cluster by</h4>
                                                         <div class="scrollbox">
                                                             <ul class="list-group" id="clust-variable-list">
-                                                                <li class="list-group-item"><input type="checkbox" name="clustering-by" value="cluster-by-option1"> Option 1</li>
-                                                                <li class="list-group-item"><input type="checkbox" name="clustering-by" value="cluster-by-option2"> Option 2</li>
-                                                                <li class="list-group-item"><input type="checkbox" name="clustering-by" value="cluster-by-option3"> Option 3</li>
-                                                                <li class="list-group-item"><input type="checkbox" name="clustering-by" value="cluster-by-option4"> Option 4</li>
-                                                                <li class="list-group-item"><input type="checkbox" name="clustering-by" value="cluster-by-option5">Option 5</li>
+                                                                <li class="list-group-item"><input type="checkbox" name="clustering-by" value="cluster-by-location"> Location</li>
+                                                                <li class="list-group-item"><input type="checkbox" name="clustering-by" value="cluster-by-experience"> Experience</li>
+                                                                <li class="list-group-item"><input type="checkbox" name="clustering-by" value="cluster-by-learningstyle"> Learning Style</li>
+                                                                <li class="list-group-item"><input type="checkbox" name="clustering-by" value="cluster-by-motivation"> Motivation</li>
+                                                                <li class="list-group-item"><input type="checkbox" name="clustering-by" value="cluster-by-projpref"> Project perferences</li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -367,9 +367,9 @@ include 'features/instructor-get-courses-data.php'
                                                             <h5 style="color:black">clustering algorithm:</h5>
                                                             <h5 style="color:black">clustering by:</h5>
                                                             <ul>
-                                                                <li>location</li>
-                                                                <li>experience</li>
-                                                                <li>age</li>
+                                                                <li>Location</li>
+                                                                <li>Experience</li>
+                                                                <li>Motivation</li>
                                                             </ul>
                                                             <h5 style="color:black">Minimum group size:</h5>
                                                             <h5 style="color:black">Maximum group size:</h5>
