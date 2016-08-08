@@ -73,6 +73,7 @@
 
             // Get Deliverables for this project
             $deliverables = array();
+            $deliverable_names = array();// Need an associative array indexed by project deliverable id's for the group submission deliverable title.
 
             $get_deliverables = mysqli_query($db, "SELECT * FROM project_deliverables WHERE project_fk = '".$project_id."'");
 
@@ -85,6 +86,7 @@
                 $deliverable['description'] = $row['description'];
                 $deliverable['due_date'] = $row['due_date'];
                 $deliverables[] = $deliverable;
+                $deliverable_names[$row['project_deliverable_id']] = $row['title'];
               }
             }
 
@@ -311,24 +313,28 @@
                                 <?php
                                     $pgid = $_GET['pgid'];
 
-                                    if($pgid != "none"){
+                                    if($pgid != "none") {
                                         $pgid = str_replace('_fk',' ',$pgid);
                                         $pgarray =  explode(' ', $pgid);
 
 
 
 
-                                    echo "<ul>";
+                                    echo "<div class='group-tabs'><ul>";
                                         foreach($pgarray as $project_group => $project_group_id){
                                             echo "<li><a href='#".$project_group_id."'>". "Group ".$project_group."</a></li>";
                                         };
-                                    echo "</ul>";
+                                    echo "</ul></div>";
 
 
 
-                                    foreach($pgarray as $project_group => $project_group_id){
+                                    foreach($pgarray as $project_group => $project_group_id) {
 
-                                        echo "<div id='".$project_group_id."'>";
+                                        echo "<div id='".$project_group_id."'>
+
+                                            <div class='group-members'>
+                                                <h4>Group Members</h4>";
+
 
                                             $getStudents = mysqli_query($db, "SELECT student_fk FROM project_group_students WHERE project_group_fk = '".$project_group_id."'");
 
@@ -365,10 +371,42 @@
 
                                                 }
                                             }
+                                            echo "</div>";
+
+                                            // Get group submissions
+                                            echo "<div class='group-submissions'><h4>Group Submissions</h4>";
+
+                                            // Get Deliverable Submissions for this project
+                                            $submissions = array();
+
+                                            $get_submissions = mysqli_query($db, "SELECT * FROM project_group_project_deliverables WHERE project_group_fk = '".$project_group_id."'");
+
+                                            if (mysqli_num_rows($get_submissions) > 0) {
+
+                                              while ($row = mysqli_fetch_assoc($get_submissions)) {
+                                                $submission = array();
+                                                $submission['submission_id'] = $row['project_group_project_deliverables_id'];
+                                                $submission['submission_text'] = $row['submission_text'];
+                                                $submissions[$row['project_deliverables_fk']] = $submission;
+                                              }
+                                            }
+
+                                            echo "<div class='submissions'>";
+                                            if (empty($submissions)) {
+                                                echo "No Submissions";
+                                            } else {
+                                                foreach ($submissions as $project_deliverable_id => $submission) {
+                                                    echo "<li>".$deliverable_names[$project_deliverable_id].":</li>";
+                                                    echo "Submission Link: ".$submission['submission_text']."<br />";
+                                                }
+                                            }
+                                            echo "</div>";
+
+                                          echo "</div>";
+
                                         echo "</div>";
 
-                                    }
-
+                                        }
 
                                     } else{
 

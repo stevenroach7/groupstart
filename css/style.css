@@ -156,7 +156,22 @@ body{
     margin-bottom: 20px;
 }
 
+#tabs {
+    overflow: hidden;
+}
 
+.group-tabs {
+    float: left;
+}
+
+.group-members {
+    float: right;
+}
+
+.group-submissions {
+    /*float: left;*/
+
+}
 #manage-group-panels{
     width: auto;
 }
