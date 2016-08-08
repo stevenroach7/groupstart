@@ -5,7 +5,6 @@
 
     $project_id = $_GET['project_id'];
     $course_id = $_GET['course_id'];
-    $pgid = $_GET['pgid'];
 
     echo $pgid;
 
@@ -19,8 +18,6 @@
     if (!$retval) {
         die('Could not update projects table: '.mysql_error());
     };
-
     
-    header('Location: http://localhost/groupstart/views/instructor-project.php?project_id='.$project_id.'&course_id='.$course_id.'&pgid='.$pgid);
-
+    header('Location: http://localhost/groupstart/views/instructor-project.php?project_id='.$project_id.'&course_id='.$course_id.'&pgid=none')
 ?>
