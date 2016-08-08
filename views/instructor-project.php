@@ -231,7 +231,8 @@
 
                                             if($clustAlgo == "Random Algorithm"){
                                                 //group students with random algorithm
-                                                echo "<a href='features/random_clustering.php?id=$project_id&cid=$course_id' class='btn btn-info btn-block'>Form student groups!</a><br>";
+                                                //echo "<a href='features/random_clustering.php?id=$project_id&cid=$course_id' class='btn btn-info btn-block'>Form student groups!</a><br>";
+                                                echo "<a href='features/randomClustering.php?id=$project_id&cid=$course_id' class='btn btn-info btn-block'>Form student groups!</a><br>";
                                             } else{
                                                 //echo "the algorithm you have chosen has not been implemented yet";
                                                 echo "<a class='btn btn-info btn-block'>Form student groups!</a><br>";
