@@ -279,7 +279,9 @@
 						
 					} else{
 						
-						if($remStudents != 0 ){ //if there are still students not in a group
+						if($remStudents != 0 ){
+							
+							//if there are still students not in a group
 							//echo "someting went wrong!" . PHP_EOL;
 							
 							echo "<div class='row' style='text-align:center;'><div class = 'col-md-8 col-md-offset-2'>";
@@ -316,10 +318,171 @@
 							echo "</pre>";
 							*/
 							
+							$checkgroups = mysqli_query($db, "SELECT project_fk FROM project_group WHERE project_fk = '.$project_id.'");
 							
+							if(mysqli_num_rows($checkgroups) > 0){
+								//echo "groups already exist for this project" .PHP_EOL;
+								//then update table
+								
+								$get_project_group_ids = mysqli_query($db,"SELECT project_group_id FROM project_group WHERE project_fk = '.$project_id.'");
+								
+								$project_group_ids = array();
+								
+								while($row = mysqli_fetch_assoc($get_project_group_ids)){
+									$project_group_ids[] = $row['project_group_id'];
+								
+								}
+								
+								//print_r($project_group_ids);
+								$values = implode(", ",$project_group_ids);
+					
+								$listValues = "(" .$values .")";
+								//echo $listValues;
+					
+								$delete2 = "DELETE FROM project_group_students WHERE project_group_fk IN $listValues";
+					
+								$retval2 = mysqli_query($db, $delete2); // performing mysql query
+					
+								if (!$retval2) {
+									//if this delete fails then stop process
+									die('Could not delete students: '.mysqli_error($db));
+								} else{
+									//else, students have been deleted now you can delete entires in project_group 
+									//now delete old groups first
+									
+									$delete = "DELETE FROM project_group WHERE project_fk = '$project_id'";
+									
+									$retval = mysqli_query($db, $delete); // performing mysql query
+									
+									if (!$retval) {
+										// if data is not inserted into database return error
+										die('Could not delete entries: '.mysqli_error($db));
+									} else{
+										//echo "groups have been deleted";
+									}
+								}
+								
+								
+								//NEXT update tables with the newly formed groups
+								
+								
+								//first update project_group table with new groups
+								//print_r($lastGroup);
+								
+								//$groups = array_push($groups, $lastGroup); //add last group to group
+								$groups[count($groups)] = $lastGroup;
+								
+							
+								
+							
+								
+								for($i=0; $i < count($groups); $i++){
+									
+									$insert = "INSERT INTO project_group (project_group_id, project_fk) VALUES (NULL, '.$project_id.')";
+									$retval = mysqli_query($db, $insert); // performing mysql query
+									
+									if (!$retval) {
+										// if data is not inserted into database return error
+										die('Could not insert groups data given: '.mysqli_error($db));
+									};
+								}
+								
+								
+								//second update project_group_student table with students in each group
+								
+								$get_project_group_ids = mysqli_query($db,"SELECT project_group_id FROM project_group WHERE project_fk = '.$project_id.'");
+								
+								if(mysqli_num_rows($get_project_group_ids) == count($groups)) {
+									
+									
+									//if statement is making sure that last insert worked properly
+									//if all entires were inserted then continue process of updating project_group_student table with students in each group
+									$project_group_ids = array();
+									
+									while($row = mysqli_fetch_assoc($get_project_group_ids)){
+										$project_group_ids[] = $row['project_group_id'];
+									}
+									
+									foreach($groups as $group => $members){
+										
+										$project_group_fk = $project_group_ids[$group];
+										
+										foreach($members as $member => $student){
+											//for each student in each group insert an entry into project_group_students
+											$insert = "INSERT INTO project_group_students (project_group_students_id, project_group_fk, student_fk) VALUES (NULL,'.$project_group_fk.','.$student.') ";
+											
+											$retval = mysqli_query($db, $insert); // performing mysql query
+											
+											if (!$retval) {
+												// if data is not inserted into database return error
+												die('Could not enter students given: '.mysqli_error($db));
+											};
+										}
+									}
+								} else{
+									echo "Entires were not properly inserted in project_group table" . PHP_EOL;
+								}
+							
+							} else {
+								//groups have not already been formed for this project so insert
+								//echo "groups have not already been formed for this project";
+								
+								
+								//first insert new groups into project_group table
+								for($i=0; $i < count($groups); $i++){
+									
+									$insert = "INSERT INTO project_group (project_group_id, project_fk) VALUES (NULL, '.$project_id.')";
+									$retval = mysqli_query($db, $insert); // performing mysql query
+									
+									if (!$retval) {
+										// if data is not inserted into database return error
+										die('Could not enter data given: '.mysqli_error($db));
+									};
+								};
+								
+								
+								//second insert students in each group into project_group_students table
+								$get_project_group_ids = mysqli_query($db,"SELECT project_group_id FROM project_group WHERE project_fk = '.$project_id.'");
+								
+								if(mysqli_num_rows($get_project_group_ids) == count($groups)) {
+									//if statement is making sure that last insert worked properly
+									//if all entires were inserted then continue process of updating project_group_student table with students in each group
+									
+									$project_group_ids = array();
+									
+									while($row = mysqli_fetch_assoc($get_project_group_ids)){
+										$project_group_ids[] = $row['project_group_id'];
+									}
+									
+									
+									foreach($groups as $group => $members){
+										
+										$project_group_fk = $project_group_ids[$group];
+										
+										foreach($members as $member => $student){
+											//for each student in each group insert an entry into project_group_students
+											
+											$insert = "INSERT INTO project_group_students (project_group_students_id, project_group_fk, student_fk) VALUES (NULL,'.$project_group_fk.','.$student.') ";
+											
+											$retval = mysqli_query($db, $insert); // performing mysql query
+											
+											if (!$retval){
+												// if data is not inserted into database return error
+												die('Could not enter students given: '.mysqli_error($db));
+											
+											};
+										}
+									}
+								} else{
+									echo "Entires were not properly inserted in project_group table" . PHP_EOL;
+								}
+							}
+						
+						$pgid = implode("_fk",$project_group_ids);
 							//redirect to instructor-create-project
 							
-							$url = 'http://localhost/groupstart/views/instructor-project.php?project_id='.$project_id.'&course_id='.$course_id.'&pgid=none';
+							
+							$url = 'http://localhost/groupstart/views/instructor-project.php?project_id='.$project_id.'&course_id='.$course_id.'&pgid='.$pgid;
 							
 							header('refresh:20; url='.$url);
 							
@@ -488,10 +651,11 @@
 									echo "Entires were not properly inserted in project_group table" . PHP_EOL;
 								}
 							}
-						}
-						$pgid = implode("_fk",$project_group_ids);
+							$pgid = implode("_fk",$project_group_ids);
 						
 						header('Location: http://localhost/groupstart/views/instructor-project.php?project_id='.$project_id.'&course_id='.$course_id.'&pgid='.$pgid);//ADD OTHER VAR
+						}
+						
 					}
 				} else{
 					
@@ -654,8 +818,7 @@
 				
 				echo "</div></div>";
 					
-				
-				//header('Location: http://localhost/groupstart/views/instructor-project.php?project_id='.$project_id.'&course_id='.$course_id);
+			
 			}
 		} else{
 			
@@ -667,7 +830,7 @@
 			header('refresh:20; url='.$url);
 			
 			echo "</div></div>";
-			//header('Location: http://localhost/groupstart/views/instructor-project.php?project_id='.$project_id.'&course_id='.$course_id);
+			
 		}
 	
 	?>
