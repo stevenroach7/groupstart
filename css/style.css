@@ -672,7 +672,7 @@ body .a0-icon-badge{
     margin-bottom: 20px;
 }
 
-#group-work, #idea-generation, #charter-formation{
+#group-work, #idea-generation, #group-introduction{
     margin-left: 60px;
     margin-right: 60px;
     margin-bottom: 10px;
@@ -690,13 +690,12 @@ body .a0-icon-badge{
 
 #web-icons-area h3{
     display: inline;
-    margin: 18px;
     text-align: center;
 }
 
 #users-part{
 /*    background: green;*/
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     top:-50px;
 }
 
@@ -716,9 +715,11 @@ body .a0-icon-badge{
 #su-buttons button{
     margin-right: 50px;
     font-size: 30px;
-    /*margin-bottom: 50px;*/
     width: 300px;
 }
+
+
+
 
 
 

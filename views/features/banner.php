@@ -32,7 +32,7 @@ if (isset($_SESSION['type'])) { // Create redirect links for banner.
     $logout = "";
   }
 
-  $banner = '<nav class="navbar navbar-default navbar-fixed-top" >
+  $banner = '<nav class="navbar navbar-default navbar-fixed-top" style="background-color:#d3d3d3;border-style: outset;" >
   <div class="container" >'.$logo.$settings.$logout.'</div></nav>';
 
 

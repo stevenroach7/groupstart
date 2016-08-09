@@ -52,7 +52,7 @@
 
   <body>
      <?php echo $banner ?>
-      <div class="jumbotron jumbotron-fluid" style="background-color:#d3d3d3 !important;margin-top:30px;">
+      <div class="jumbotron jumbotron-fluid" style="background-color:#d3d3d3 !important;margin-top:30px;height:600px !important;">
   <div class="container">
     <div class="row" id="top-half">
               <h1 style="text-align:center">Welcome to GroupStart</h1>
@@ -68,10 +68,10 @@
                   <div class="row" id="web-icons-area">
                     <div class="col-md-12">
                           <div id="web-rep-icons">
-                          <i class="fa fa-users fa-5x" aria-hidden="true" id="group-work">
-                          </i>
-                          <i class="fa fa-cloud fa-5x" aria-hidden="true" id="idea-generation"></i>
-                      <i class="fa fa-file-text-o fa-5x" aria-hidden="true" id="charter-formation"></i><br><h3>Group Work</h3><h3>Group Formation</h3><h3>Group Introduction</h3></div>
+                            <img src="../img/multiple-users-silhouette.png" id="group-work"/>
+                            <img src="../img/workers.png" id="group-formation"/>
+                            <img src="../img/handshake.png" id="group-introduction"/><br>
+                            <h3 style="margin-right:55px;"></h3><h3 style="margin-right:35px;">Group Work</h3><h3 style="margin-right:15px;">Group Formation</h3><h3>Group Introduction</h3></div>
                   </div>
 
               </div>
