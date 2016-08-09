@@ -1,13 +1,13 @@
 <?php
 
 
-  function create_students($n) {
+  function create_students($n, $start) {
 
     include '../../config/connection.php';
     $success = 1; // boolean holding if insert is successful
 
     // Repeat n times
-    for ($x = 79; $x < $n; $x++) {
+    for ($x = $start; $x < $start + $n; $x++) {
 
       // Make fake data
       $auth0_id = $x.date('Y-m-d H:i:s'); // This variable must be unique. Use Datetime to achieve this.
@@ -33,15 +33,15 @@
 
   //create_students(200);
 
-  function create_students_for_course($n) {
+  function create_students_for_course($n, $start, $course_id) {
 
     include '../../config/connection.php';
     $success = 1; // boolean holding if insert is successful
 
     // Repeat n times
-    for ($x = 76; $x < $n; $x++) {
+    for ($x = $start; $x < $start + $n; $x++) {
 
-      $insert = "INSERT INTO `students_courses` (`student_course_id`, `student_fk`, `course_fk`) VALUES (NULL, '.$x.', '165')";
+      $insert = "INSERT INTO `students_courses` (`student_course_id`, `student_fk`, `course_fk`) VALUES (NULL, '.$x.', '$course_id')";
 
       $retval = mysqli_query($db, $insert);
 
@@ -56,17 +56,16 @@
     }
 
   }
-  //create_students_for_course(103);
 
-  function create_students_for_project($n) {
+  function create_students_for_project($n, $start, $project_id) {
 
     include '../../config/connection.php';
     $success = 1; // boolean holding if insert is successful
 
     // Repeat n times
-    for ($x = 78; $x < $n; $x++) {
+    for ($x = $start; $x < $start + $n; $x++) {
 
-      $insert = "INSERT INTO `student_projects` (`student_project_id`, `student_fk`, `project_fk`) VALUES (NULL, '.$x.', '7')";
+      $insert = "INSERT INTO `student_projects` (`student_project_id`, `student_fk`, `project_fk`) VALUES (NULL, '.$x.', '$project_id')";
 
       $retval = mysqli_query($db, $insert);
 
@@ -81,6 +80,16 @@
     }
 
   }
-  //create_students_for_project(104);
+
+
+    function create_fake_students($n, $start, $course_id, $project_id) {
+      create_students($n, $start);
+      create_students_for_project($n, $start, $course_id);
+      create_students_for_course($n, $start, $project_id);
+    }
+
+
+
+    $create_fake_students(100, 865, 177, 19);
 
  ?>
