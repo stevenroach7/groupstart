@@ -45,7 +45,7 @@
         if (isset($_POST['submit'])) {
 
           // gather variables from form
-          $motivation = $_POST['motivation'];
+          $motivation = mysqli_real_escape_string($db, trim($_POST['motivation']));
 
             if (empty($motivation)) { // Make sure user has entered motivation
               alertUser('Please enter a motivation for taking this course.');
