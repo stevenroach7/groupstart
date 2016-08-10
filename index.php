@@ -69,7 +69,8 @@
                             <img src="img/workers.png" id="group-formation"/>
                             <img src="img/handshake.png" id="group-introduction"/><br>
                             <h3 style="margin-right:55px;"></h3><h3 style="margin-right:35px;">Group Work</h3><h3 style="margin-right:15px;">Group Formation</h3><h3>Group Introduction</h3></div>
-              </div></div>
+              </div>
+              </div>
               </div>
      <a href="views/login.php" class="btn btn-info btn-lg center-block" role="button" id="get-started">Get Started</a>
 </div>
