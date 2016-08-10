@@ -233,9 +233,9 @@
                                                 //group students with random algorithm
                                                 //echo "<a href='features/random_clustering.php?id=$project_id&cid=$course_id' class='btn btn-info btn-block'>Form student groups!</a><br>";
                                                  if($pgid != "none") {
-                                                      echo "<a href='features/randomClustering.php?id=$project_id&cid=$course_id' class='btn btn-info btn-block'>Re-form student groups!</a><br>";
+                                                      echo "<a class='btn btn-info btn-block' id='reformgroups'>Re-form student groups!</a><br>";
                                                  } else{
-                                                      echo "<a href='features/randomClustering.php?id=$project_id&cid=$course_id' class='btn btn-info btn-block'>Form student groups!</a><br>";
+                                                      echo "<a href='features/randomClustering.php?id=$project_id&cid=$course_id' class='btn btn-info btn-block' id='formgroups'>Form student groups!</a><br>";
                                                  }
                                                
                                             } else{

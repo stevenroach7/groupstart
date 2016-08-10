@@ -17,8 +17,8 @@
             <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
             <script>
                 tinymce.init({
-                             selector: "#course-description"
-                             });
+                  selector: "#course-description"
+                });
                 </script>
 
             </head>
@@ -81,7 +81,7 @@
 
                 //setting initialized variables to values entered by user
 
-                $title = $_POST['title'];
+                  $title = $_POST['title'];
                   $description = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
                   $platform = $_POST['platform'];
                   $subject_area = $_POST['subject_area'];
@@ -111,11 +111,7 @@
 
                   $numtitle = substr($numtitle, 0, 10);//gets  a subtring of lenght 10 of numeric representation of course title
 
-                //$str = substr($str, 0, 4);
-                //$strcon = mysqli_insert_id($db) . $str . $numtitle;
-
                 //mysql query to update registration_code of recently inserted data so that it equals numtitle
-                //$query2 = "UPDATE courses SET registration_code= CONCAT(LAST_INSERT_ID(), $numtitle) WHERE course_id = '$course_id'";
                 $query2 = "UPDATE courses SET registration_code= CONCAT($course_id, $numtitle) WHERE course_id = '$course_id'";
 
                   $retval2 = mysqli_query($db, $query2); //performing mysql query

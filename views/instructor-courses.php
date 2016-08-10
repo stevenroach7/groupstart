@@ -111,9 +111,6 @@
         echo "<h3>$title</h3>
           <div>";
 
-        //Allows instructor to delete courses
-        /*echo "<h3>$title<a onclick='removePanel(this)' style='float:right'>X</a></h3>
-          <div>"*/
 
         if (count($instructors) > 1) {
           $instructor_label = 'Instructors:';

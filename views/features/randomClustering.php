@@ -137,7 +137,6 @@
 						}
 		} else {
 			//groups have not already been formed for this project so insert
-			//echo "groups have not already been formed for this project";
 			
 			//first insert new groups into project_group table
 			
@@ -210,9 +209,6 @@
 		$minGroupsize = $row['min_group_size'];
 	};
 
-	//echo $maxGroupsize . PHP_EOL;
-	//echo $minGroupsize . PHP_EOL;
-
 	$get_students = mysqli_query($db,"SELECT student_fk FROM student_projects WHERE project_fk = $project_id");
 
 
@@ -223,8 +219,6 @@
 				$students_id[] = $row['student_fk'];
 			};
 			
-			//print_r($students_id) . PHP_EOL;
-			//echo count($students_id) . PHP_EOL;
 			
 			if(count($students_id) > $minGroupsize){
 				$shuffledStudents = knuth_shuffle($students_id);
@@ -235,16 +229,15 @@
 				//divide shuffled array into equal chucks...last chunck may have differnt size
 				$groups = array_chunk($shuffledStudents, $avgGroupsize); 
 				
-				/*echo "<pre>\n";
-				print_r($groups);
-				echo "</pre>";*/
+			
 				
 				//get last group of students to see if there's enough students in the group
 				$lastGroup = end($groups); 
-				$remStudents = count($lastGroup); //check how many gorups remain
+				$remStudents = count($lastGroup); //check how many students remain
 				
-				//if the number of remaining students is not equal to avg group size its not  a valid group yet
 				
+				//if the number of remaining students is not equal 
+				//to the averge group size then it is not  a valid group yet
 				if($remStudents != $avgGroupsize){
 					
 					array_pop($groups); //remove invalid group
@@ -260,27 +253,26 @@
 						$groupSizes = array_map('count', $groups);
 						
 						//do database connection
-						//echo "about to connect";
 						databaseConn($db, $project_id, $groups);
 						
-						//echo "connected 1";
+						/*This section is to get the project_group_ids so that each group and the students in the group can be displayed on the project page for the specific project*/
 						$get_project_group_ids = mysqli_query($db,"SELECT project_group_id FROM project_group WHERE project_fk = '.$project_id.'");
 						
-						if(mysqli_num_rows($get_project_group_ids) == count($groups)) {
+						/*making sure that the project groups was properly inserted into the db. If it was then there should be the same number of entries in the project_groups table for a specific project as the number of groups formed in that project*/
+						if(mysqli_num_rows($get_project_group_ids) == count($groups)){
 							$project_group_ids = array();
 							while($row = mysqli_fetch_assoc($get_project_group_ids)){
 								$project_group_ids[] = $row['project_group_id'];
 							}
 						}
 						
-						$pgid = implode("_fk",$project_group_ids);
+						$pgid = implode("_fk",$project_group_ids);//variable to pass to url that has project groups ids to display groups and students for one project
 						
 						header('Location: http://localhost/groupstart/views/instructor-project.php?project_id='.$project_id.'&course_id='.$course_id.'&pgid='.$pgid);//ADD OTHER VAR
 						
 					} else{//max($groupSizes) == $maxGroupsize
 						if($remStudents != 0 ){
 							//if there are still students not in a group
-							//echo "someting went wrong!" . PHP_EOL;
 							
 							echo "<div class='row' style='text-align:center;'><div class = 'col-md-8 col-md-offset-2'>";
 							echo "<h4>There is a total of ". count($students_id)." students who have signed up for this project. </h4><br>" . PHP_EOL;
@@ -288,7 +280,7 @@
 							$currGroupsizes = array_unique($groupSizes);
 							$numGroupsizes = array_count_values($groupSizes);
 							foreach($currGroupsizes as $key => $value){
-								echo "<h4> With the range given, we have created " . $numGroupsizes[$value] . " groups with " . $value . " students. </h4><br>" .PHP_EOL;
+								echo "<h4> With the range given, we were able to create " . $numGroupsizes[$value] . " groups with " . $value . " students. </h4><br>" .PHP_EOL;
 							};
 							
 							
@@ -300,50 +292,55 @@
 							
 							if($maxGroupsize === $minGroupsize){
 								
-								echo "<h4>Consider changing the group size range. If you want groups to all have the same size then change minimum and maximum group size so that it is a divisor of the total number of students in the project.</h4><br>";
+								echo "<h4>Consider changing the group size range so that all students can be put into a group. If you want groups to all have the same size then change minimum and maximum group size so that it is a divisor of the total number of students in the project.</h4><br>";
 							} else{
-								echo "<h4>Consider increasing the group size range.</h4><br>" . PHP_EOL;
+								echo "<h4>Consider increasing the group size range so that all students can be put into a group.</h4><br>" . PHP_EOL;
 							}
 							
 							echo "<div class='alert alert-success'>You will be redirected to this project's page in 20 seconds to make the necessary changes as you see fit.</div>";
 							
 							
 							$groups[count($groups)] = $lastGroup;
+							
 							//do database connection
-							//echo "about to connect in case where max=min";
+							
 							databaseConn($db, $project_id, $groups);
 							
-							//echo "connected 2";
+							/*This section is to get the project_group_ids so that each group and the students in the group can be displayed on the project page for the specific project*/
 							
 							$get_project_group_ids = mysqli_query($db,"SELECT project_group_id FROM project_group WHERE project_fk = '.$project_id.'");
 							
+							/*making sure that the project groups was properly inserted into the db. If it was then there should be the same number of entries in the project_groups table for a specific project as the number of groups formed in that project*/
 							if(mysqli_num_rows($get_project_group_ids) == count($groups)) {
 								$project_group_ids = array();
 								while($row = mysqli_fetch_assoc($get_project_group_ids)){
 									$project_group_ids[] = $row['project_group_id'];
 								}
 							}
-							$pgid = implode("_fk",$project_group_ids);
+							$pgid = implode("_fk",$project_group_ids);//variable to pass to url that has project groups ids to display groups and students for one project
 							
 							$url = 'http://localhost/groupstart/views/instructor-project.php?project_id='.$project_id.'&course_id='.$course_id.'&pgid='.$pgid;
-					header('refresh:20; url='.$url);
+							
+							header('refresh:20; url='.$url);
 							
 						} else{//$remStudents == 0
-							//echo "about to connect";
+						
 							databaseConn($db, $project_id, $groups);
-							//echo "connected 3";
+							
+							/*This section is to get the project_group_ids so that each group and the students in the group can be displayed on the project page for the specific project*/
 							
 							$get_project_group_ids = mysqli_query($db,"SELECT project_group_id FROM project_group WHERE project_fk = '.$project_id.'");
 							
+							/*making sure that the project groups was properly inserted into the db. If it was then there should be the same number of entries in the project_groups table for a specific project as the number of groups formed in that project*/
 							if(mysqli_num_rows($get_project_group_ids) == count($groups)) {
 								$project_group_ids = array();
 								while($row = mysqli_fetch_assoc($get_project_group_ids)){
 									$project_group_ids[] = $row['project_group_id'];
 								}
 							}
+							$pgid = implode("_fk",$project_group_ids);//variable to pass to url that has project groups ids to display groups and students for one project
 							
-							$pgid = implode("_fk",$project_group_ids);
-							header('Location: http://localhost/groupstart/views/instructor-project.php?project_id='.$project_id.'&course_id='.$course_id.'&pgid='.$pgid);//ADD OTHER VAR
+							header('Location: http://localhost/groupstart/views/instructor-project.php?project_id='.$project_id.'&course_id='.$course_id.'&pgid='.$pgid);
 							
 						}
 						
@@ -352,12 +349,15 @@
 						
 					
 				} else{ //$remStudents == $avgGroupsize
-					//echo "about to connect";
+				
 					databaseConn($db, $project_id, $groups);
 					
-					//echo "connected 4";
+					/*This section is to get the project_group_ids so that each group and the students in the group can be displayed on the project page for the specific project*/
+					
 					
 					$get_project_group_ids = mysqli_query($db,"SELECT project_group_id FROM project_group WHERE project_fk = '.$project_id.'");
+					
+					/*making sure that the project groups was properly inserted into the db. If it was then there should be the same number of entries in the project_groups table for a specific project as the number of groups formed in that project*/
 					
 					if(mysqli_num_rows($get_project_group_ids) == count($groups)) {
 						$project_group_ids = array();
@@ -366,14 +366,14 @@
 						}
 					}
 					
-					$pgid = implode("_fk",$project_group_ids);
+					$pgid = implode("_fk",$project_group_ids);//variable to pass to url that has project groups ids to display groups and students for one project
 					
-					header('Location: http://localhost/groupstart/views/instructor-project.php?project_id='.$project_id.'&course_id='.$course_id.'&pgid='.$pgid);//ADD OTHER VAR
+					header('Location: http://localhost/groupstart/views/instructor-project.php?project_id='.$project_id.'&course_id='.$course_id.'&pgid='.$pgid);
 					
 				}
 				
 			} else{//count($students_id) <= $minGroupsize
-				//echo "There are not enough students to create a group";
+				
 				echo "<div class='row' style='text-align:center;'><div class = 'col-md-8 col-md-offset-2'>";
 				echo "<div class='alert alert-success'>There are not enough students to create a group. You will be redirected to this project's page in 20 seconds.</div>";
 				
@@ -386,6 +386,7 @@
 			}
 		
 	} else{//mysqli_num_rows($get_students) < 0
+		
 		echo "<div class='row' style='text-align:center;'><div class = 'col-md-8 col-md-offset-2'>";
 		echo "<div class='alert alert-success'>There are not enough students to create a group. You will be redirected to this project's page in 20 seconds.</div>";
 		
