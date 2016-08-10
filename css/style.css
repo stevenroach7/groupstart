@@ -678,10 +678,6 @@ body .a0-icon-badge{
     margin-bottom: 10px;
 }
 
-#web-icons-area{
-    /*height: 300px;*/
-    /*background: red;*/
-}
 #web-rep-icons{
     width: 640px;
     /*background: blue;*/
@@ -693,18 +689,11 @@ body .a0-icon-badge{
     text-align: center;
 }
 
-#users-part{
-/*    background: green;*/
-    margin-bottom: 10px;
-    top:-50px;
-}
-
 
 #su-buttons{
+    /*    background: orange;*/
     width: 100%;
-/*    background: orange;*/
     height: 50px;
-/*    transform: translateY(40%);*/
     margin: 0 auto;
     display: table;
     text-align: center;

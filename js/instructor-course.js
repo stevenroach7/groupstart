@@ -9,6 +9,5 @@ function removeButton(){
     var removeActive = "&rA="+2;
     
     document.location.hash = document.location.hash+removeActive;
-    //location.href = location.href + removeActive;
 };
 

@@ -29,39 +29,31 @@
 
   <head>
 
-
-
-      <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script-->
-
       <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-<!-- Latest compiled JavaScript -->
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-         <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
 
-      <script src="https://use.fontawesome.com/1439d65c28.js"></script>
-      <!--script src="../js/modal.js"></script-->
+    <script src="https://use.fontawesome.com/1439d65c28.js"></script>
+   
 
   </head>
 
 
   <body>
      <?php echo $banner ?>
-      <div class="jumbotron jumbotron-fluid" style="background-color:#d3d3d3 !important;margin-top:30px;height:600px !important;">
-  <div class="container">
-    <div class="row" id="top-half">
-              <h1 style="text-align:center">Welcome to GroupStart</h1>
-              <div class="col-md-12">
+       <div class="jumbotron jumbotron-fluid" style="background-color:#d3d3d3 !important;margin-top:30px;">
+         <div class="container">
                   <div class="row" id="webpage-description">
                       <div class="col-md-12">
-                            <p>
-      <b>GroupStart</b> is an experimental, alpha-stage application that seeks to facilitate the early stages of an online group project.
-    </p><br>
+                        <h1 style="text-align:center">Welcome to GroupStart</h1>
+                            <p> <b>GroupStart</b> is an experimental, alpha-stage application that seeks to facilitate the early stages of an online group project.</p><br>
                            <h5 style="text-align:center" id="research-affil">University of Minnesota Twin Cities - Computer Science &amp; Engineering - GroupLens Research</h5>
                       </div>
                   </div>
@@ -72,21 +64,16 @@
                             <img src="../img/workers.png" id="group-formation"/>
                             <img src="../img/handshake.png" id="group-introduction"/><br>
                             <h3 style="margin-right:55px;"></h3><h3 style="margin-right:35px;">Group Work</h3><h3 style="margin-right:15px;">Group Formation</h3><h3>Group Introduction</h3></div>
-                  </div>
-
-              </div>
               </div></div>
-  </div>
-</div>
+              </div>
+              </div>
       <div class="container-fluid" id="home-page">
           <div class= "row" id="bottom-half">
               <div class="col-md-8 col-md-offset-2" id="su-buttons">
                 <h3>Sign-in or Sign-up below!</h3>
-                  <div class="row" id="users-part">
     <button onclick="window.studentSignIn();" type="button" class="btn btn-primary" id="student-myBtn">Student</button>
     <button onclick="window.instructorSignIn();" type="button" class="btn" id="instructor-myBtn" style="background-color:#d3d3d3;">Instructor</button>
-
-                    </div></div></div></div>
+</div></div></div>
 
                       <script src="https://cdn.auth0.com/js/lock-9.1.min.js"></script>
     <script type="text/javascript">

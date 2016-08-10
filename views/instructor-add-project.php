@@ -255,13 +255,7 @@ include 'features/instructor-get-courses-data.php'
 
                                 <h4>Project Title</h4>
                                 <input type="text" id="project-title"><br><br>
-                                    <textarea rows="4" cols="50" id="area-description" class="mceEditor"></textarea><br><br><br>
-
-                                    <!-- <h4>Project Attachments</h4>
-
-
-                                    a href="#" class="btn btn-info" role="button" id="add-project-options">Add Project Options</a><i>(optional)</i><br>
-                                    <a href="#" class="btn btn-info" role="button" id="add-project-examples" style="margin-bottom:20px">Add Project Examples</a><i>(optional)</i><br-->
+                                    <textarea rows="4" cols="50" id="area-description" class="mceEditor"></textarea><br>
 
                                     <a href="#" class="btn btn-info" role="button" id="next-step-to-impo-statement" style="float:right">Next Step</a>
 
@@ -285,7 +279,7 @@ include 'features/instructor-get-courses-data.php'
                                     <div class="col-md-12">
 
                                         <div class="row" id="clustering-algos">
-                                            <h4 style="font-weight:200">Algorithms to Cluster Students by:</h4>
+                                            <h4 style="font-weight:200">Algorithms to form groups by:</h4>
                                             <div class="panel-group" id="accordion-clustering-algo">
                                                 <div class="panel panel-default">
                                                     <div class="panel-heading">
@@ -327,7 +321,7 @@ include 'features/instructor-get-courses-data.php'
                                         </div>
                                         <div class="row" id="select-algo">
                                             <div class="col-12-md">
-                                                <label for="algo-list">Select clustering algorithm that you would like to use to group students:</label>
+                                                <label for="algo-list">Select group forming algorithm that you would like to use to group students:</label>
                                                 <select class="form-control" id="algo-list">
                                                     <option value="random-algo">Random Algorithm</option>
                                                     <option value="knn-algo">KNN Algorithm</option>
@@ -351,7 +345,7 @@ include 'features/instructor-get-courses-data.php'
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="row">
-                                                    <div class="col-md-6" id="cluster-by-options"><h4 style="font-weight:200">Variables to Cluster by</h4>
+                                                    <div class="col-md-6" id="cluster-by-options"><h4 style="font-weight:200">Variables to form groups by</h4>
                                                         <div class="scrollbox">
                                                             <ul class="list-group" id="clust-variable-list">
                                                                 <li class="list-group-item"><input type="checkbox" name="clustering-by" value="cluster-by-location"> Location</li>
@@ -363,9 +357,9 @@ include 'features/instructor-get-courses-data.php'
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <h4 style="font-weight:200">Clustering options summary</h4><div id="summary">
-                                                            <h5 style="color:black">clustering algorithm:</h5>
-                                                            <h5 style="color:black">clustering by:</h5>
+                                                        <h4 style="font-weight:200">Group forming options summary</h4><div id="summary">
+                                                            <h5 style="color:black">group formation algorithm:</h5>
+                                                            <h5 style="color:black">forming groups with variables:</h5>
                                                             <ul>
                                                                 <li>Location</li>
                                                                 <li>Experience</li>
@@ -440,13 +434,13 @@ include 'features/instructor-get-courses-data.php'
                                                 <table class="table table-striped" id="saved-formation-options">
                                                     <thead>
                                                         <tr>
-                                                            <th>Clustering options</th>
+                                                            <th>Group forming options</th>
                                                             <th>Selected options</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td>Clustering algorithm</td>
+                                                            <td>Group formation algorithm</td>
                                                             <td id="clustering-algo-selected-option"></td>
                                                         </tr>
                                                         <tr>
@@ -458,7 +452,7 @@ include 'features/instructor-get-courses-data.php'
                                                             <td id="chosen-max-group-size"></td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Variables to cluster by</td>
+                                                            <td>Variables to form groups by</td>
                                                             <td id="selected-variables"></td>
                                                         </tr>
                                                     </tbody>
