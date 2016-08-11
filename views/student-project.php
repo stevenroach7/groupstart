@@ -316,6 +316,17 @@
                        echo "<li class='list-group-item'><label>$student_info[display_name]:</label> $student_info[motivation]</li>";
                    }
                  ?>
+                 <!-- <li class='list-group-item'><label>John Hanson:</label> I want to know how to make better user interfaces so I can be a front end developer. </li>
+                 <li class='list-group-item'><label>Ruth Garner:</label> I am fascinated by the interaction between humans and computers. </li>
+                 <li class='list-group-item'><label>Mary Brown:</label> I want to learn basic user interface design principles for my passion projects. </li>
+                 <li class='list-group-item'><label>Carlton Ward:</label> My employer recommended I take this course. </li>
+                 <li class='list-group-item'><label>Ronald David:</label> I want to know more about user interfaces. </li>
+                 <li class='list-group-item'><label>Stefan Carlisle:</label> I want to make better mobile applications. </li>
+                 <li class='list-group-item'><label>Kelly Osborne:</label> I want people to download my apps. </li>
+                 <li class='list-group-item'><label>Jeffrey Everett:</label> I want to redesign my company's website in a user-friendly way.</li>
+                 <li class='list-group-item'><label>Destiny Williams:</label> I would like to make my blog more interesting. </li>
+                 <li class='list-group-item'><label>Terri Maldonado:</label> I am hoping to get a PHD in an HCI field and would like more background knowledge. </li> -->
+
 
               </ul>
             </div>
