@@ -15,7 +15,6 @@
 
 
   <script type="text/javascript" src="../js/accordion_functionality.js"></script>
-  <script type="text/javascript" src="../js/instructor-course.js"></script>
 
   <script src="http://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
 
@@ -225,7 +224,7 @@
 
 
       <script type='text/javascript'>
-        <!--
+        
            function getConfirmation(course_id){
               var retVal = confirm('Are you sure you want to delete this course?');
               if( retVal == true ){
@@ -237,7 +236,7 @@
                  return false;
               }
            }
-        //-->
+        
      </script>
 
       <button class='btn btn-info pull-right' style='color:black' id='remove-course'><span class='glyphicon glyphicon-trash' onclick='getConfirmation($course_id);'></span></button>

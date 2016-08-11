@@ -1,3 +1,4 @@
+
 function completeClustoptions(){
     if($('#clust-variable-list input:checked').length > 0 == true){
         $('#panel-clustering-options').prop('checked', true);
