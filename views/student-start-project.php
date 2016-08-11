@@ -27,6 +27,21 @@
 
       <link rel="stylesheet" type="text/css" href="../css/style.css" />
       <script type="text/javascript" src="../js/student-start-project.js"></script>
+        
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script> 
+      <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+        
+      <script>
+        $(function(){
+          $('#alertmessage').dialog({
+            autoOpen: false,
+            title: 'Alert message',
+            modal:true,
+            draggable: false
+          });
+        });
+      </script>
 
   </head>
 
@@ -88,8 +103,14 @@
 
             <br />
             <br />
+            <p id="project_id" hidden><?php echo $project_id ?></p>
+            
+            <div id="alertmessage" hidden><p>Make sure that you indicate that you have read both the project description and group importance statement by clicking on the buttons at the bottom of each panel before you click the 'I am ready to join a group' button.</p></div>
+            
             <?php
-            echo "<a href='student-group-introduction.php?project_id=$project_id' class='btn btn-info btn-block' role='button' id='student-form-group'>I am ready to join a group!</a>";
+            //echo "<a href='student-group-introduction.php?project_id=$project_id' class='btn btn-info btn-block' role='button' id='student-form-group'>I am ready to join a group!</a>";
+              echo "<button class='btn btn-info btn-block' role='button' id='student-form-group'>I am ready to join a group!</button>";
+
             ?>
           </div>
           <!--div class="col-md-4">

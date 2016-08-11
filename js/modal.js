@@ -1,6 +1,5 @@
 $(document).ready(function() {
 
-    // Get the modal
 // Get the modal
 var modal = document.getElementById('myModal');
 
