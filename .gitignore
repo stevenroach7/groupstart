@@ -1,8 +1,12 @@
+# Uncomment these when you get the project working again.
+
+
+# vendor/
+
+
+# composer.json
+# composer.lock
+# composer.phar
+
+
 .DS_Store
-
-vendor/
-
-
-composer.json
-composer.lock
-composer.phar
